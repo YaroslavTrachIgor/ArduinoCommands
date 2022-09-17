@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-//MARK -
+//MARK: - Highlight particular String components extension
 public extension NSString {
     
     //MARK: Public
