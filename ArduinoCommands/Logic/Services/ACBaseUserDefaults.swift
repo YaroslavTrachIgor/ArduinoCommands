@@ -8,14 +8,6 @@
 import Foundation
 import UIKit
 
-//MARK: - Global UserDefaults type value
-/**
- The constant below creates a global instance of `UserDefaults` store
- and will be used every time we need to store and retrieve values from the phone memory.
- */
-public let acBaseUserDefaults = UserDefaults.standard
-
-
 //MARK: - Keys
 public extension UserDefaults {
     
@@ -26,8 +18,18 @@ public extension UserDefaults {
         static let isOnboardingNeeded = "IsNeededToBeOpenedKey"
         static let sessionsCountKey = "SessionsCountKey"
         static let checkVersionKey = "CheckVersionKey"
+        static let codeTintColorKey = "CodeTintColorKey"
+        static let codeFontSize = "CodeFontSizeKey"
     }
 }
+
+
+//MARK: - Global UserDefaults type value
+/**
+ The constant below creates a global instance of `UserDefaults` store
+ and will be used every time we need to store and retrieve values from the phone memory.
+ */
+public let acBaseUserDefaults = UserDefaults.standard
 
 
 //MARK: - Fast Wrapper for UserDefaults storage values

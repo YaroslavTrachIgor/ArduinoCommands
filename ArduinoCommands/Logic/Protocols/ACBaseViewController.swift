@@ -78,7 +78,7 @@ protocol ACBaseCodeSnippetViewController: ACBaseDetailViewController {
     func presentColorPickerViewController()
     func presentFontChangeViews(with animationType: ACBaseAnimationType)
     func setupCodeContentViewAppearance(appearanceType: ACBaseAppearanceType)
-    func changeCodeTextViewFontSize(with size: Float)
+    func changeCodeTextViewFontSize()
 }
 
 protocol ACBaseFastImageViewControllerProtocol: ACBaseWithShareViewController {}

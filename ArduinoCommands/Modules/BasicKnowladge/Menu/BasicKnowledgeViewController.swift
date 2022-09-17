@@ -22,6 +22,12 @@ private extension BasicKnowledgeViewController {
                 //MARK: Static
                 static let detail = "DetailSegue"
             }
+            enum Label {
+                
+                //MARK: Static
+                static let tableHeader = "Resources"
+                static let tableFooter = "Arduino Commands © 2022 \n All rights reserved."
+            }
             enum CollectionView {
                 enum CellKeys {
                     
@@ -53,12 +59,6 @@ private extension BasicKnowledgeViewController {
                     static let minimumLineSpacing: CGFloat = 20
                     static let minimumInteritemSpacing: CGFloat = 0
                 }
-            }
-            enum Label {
-                
-                //MARK: Static
-                static let tableHeader = "Resources"
-                static let tableFooter = "Arduino Commands © 2022 \n All rights reserved."
             }
         }
     }

@@ -78,6 +78,10 @@
 		CE75CFA0287ED5A300BA42DF /* ACAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF9F287ED5A300BA42DF /* ACAlertManager.swift */; };
 		CE78D58728CC55270040B4D2 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58628CC55270040B4D2 /* UserDefaultsExtensions.swift */; };
 		CE78D58928CC59FA0040B4D2 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58828CC59F90040B4D2 /* NumericExtensions.swift */; };
+		CE78D58B28D5880D0040B4D2 /* CodeSnippetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */; };
+		CE78D58E28D58DDA0040B4D2 /* ACBaseAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58D28D58DDA0040B4D2 /* ACBaseAnimationType.swift */; };
+		CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */; };
+		CE78D59228D5A0CE0040B4D2 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */; };
 		CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751D28B35ED100B77595 /* StringExtensions.swift */; };
 		CE7F752028B42A0700B77595 /* ACBaseUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */; };
 		CE83D690286982DD009DFFA8 /* ACPasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */; };
@@ -237,6 +241,10 @@
 		CE75CF9F287ED5A300BA42DF /* ACAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAlertManager.swift; sourceTree = "<group>"; };
 		CE78D58628CC55270040B4D2 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		CE78D58828CC59F90040B4D2 /* NumericExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericExtensions.swift; sourceTree = "<group>"; };
+		CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetPresenter.swift; sourceTree = "<group>"; };
+		CE78D58D28D58DDA0040B4D2 /* ACBaseAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseAnimationType.swift; sourceTree = "<group>"; };
+		CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseAppearanceType.swift; sourceTree = "<group>"; };
+		CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
 		CE7F751D28B35ED100B77595 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseUserDefaults.swift; sourceTree = "<group>"; };
 		CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPasteboardManager.swift; sourceTree = "<group>"; };
@@ -385,6 +393,7 @@
 				840B9FC528418F2700EA6D47 /* DataExtensions.swift */,
 				CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */,
 				CE78D58828CC59F90040B4D2 /* NumericExtensions.swift */,
+				CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */,
 				CE7F751D28B35ED100B77595 /* StringExtensions.swift */,
 				CE6EC785288F571D0020DAFF /* JSONDecoderExtensions.swift */,
 				CE78D58628CC55270040B4D2 /* UserDefaultsExtensions.swift */,
@@ -395,6 +404,7 @@
 		8464648027DF6129004B0D12 /* UIExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE78D58C28D58DC60040B4D2 /* Enums */,
 				84CCC9302817117F008371F1 /* Classes */,
 				CECB4A9A28AB4D4C00278130 /* Representable */,
 				84CCC935281830F1008371F1 /* CALayerExtensions.swift */,
@@ -506,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */,
+				CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */,
 			);
 			path = CodeSnippet;
 			sourceTree = "<group>";
@@ -716,6 +727,15 @@
 				CE75CF98287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		CE78D58C28D58DC60040B4D2 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CE78D58D28D58DDA0040B4D2 /* ACBaseAnimationType.swift */,
+				CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		CE8C681B28A14D30006C1888 /* Models */ = {
@@ -969,8 +989,11 @@
 				C474CC4827B2B53B00B1FD9A /* AppDelegate.swift in Sources */,
 				CE8C681D28A14D6B006C1888 /* BasicsCellUIModel.swift in Sources */,
 				840B9FC9284193EE00EA6D47 /* ACFilenames.swift in Sources */,
+				CE78D58E28D58DDA0040B4D2 /* ACBaseAnimationType.swift in Sources */,
 				CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */,
 				CE84FAB2286765BA00CE9D4D /* UIViewControllerExtensions.swift in Sources */,
+				CE78D59228D5A0CE0040B4D2 /* NSStringExtensions.swift in Sources */,
+				CE78D58B28D5880D0040B4D2 /* CodeSnippetPresenter.swift in Sources */,
 				CECB4A9728AB4BB700278130 /* IntroBackgroundView.swift in Sources */,
 				CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */,
 				8464649427E4FE46004B0D12 /* UIFontExtensions.swift in Sources */,
@@ -1020,6 +1043,7 @@
 				CE9235EF28AC9EE50037846F /* SettingsViewToggleCell.swift in Sources */,
 				CECB4A9C28AB4D7F00278130 /* ACBaseVisualEffectView.swift in Sources */,
 				CE75CFA0287ED5A300BA42DF /* ACAlertManager.swift in Sources */,
+				CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */,
 				CE8CDAEF28C64F6E001DC8B1 /* IntroTabView.swift in Sources */,
 				CECB4A9328AB4B0900278130 /* IntroCardUIModel.swift in Sources */,
 				8464648927E0CFE2004B0D12 /* ACLink.swift in Sources */,

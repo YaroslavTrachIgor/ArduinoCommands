@@ -15,6 +15,9 @@ public extension CGFloat {
     enum Corners {
         
         //MARK: Static
+        static var baseACSecondaryRounding: CGFloat {
+            return 28.0
+        }
         static var baseACRounding: CGFloat {
             return 20.0
         }

@@ -16,6 +16,7 @@ private extension UIFont {
         
         //MARK: Static
         static let basicFontName = "Hiragino Mincho ProN"
+        static let codeFontName = "Menlo"
     }
 }
 
@@ -24,6 +25,11 @@ public extension UIFont {
     
     //MARK: Public
     enum ACWeight {
+        case regular
+        case bold
+    }
+    
+    enum ACCodeWeight {
         case regular
         case bold
     }
@@ -50,10 +56,15 @@ public extension UIFont {
 }
 
 
-//MARK: - Setup basic Font settings
+//MARK: - Setup costom Font settings
 public extension UIFont {
     
     //MARK: Static
+    /// <#Description#>
+    /// - Parameters:
+    ///   - ofSize: <#ofSize description#>
+    ///   - weight: <#weight description#>
+    /// - Returns: <#description#>
     static func ACFont(ofSize: CGFloat, weight: UIFont.ACWeight = .regular) -> UIFont {
         let fontName = UIFont.Keys.basicFontName
         switch weight {
@@ -61,6 +72,21 @@ public extension UIFont {
             return UIFont(name: "\(fontName) W3", size: ofSize)!
         case .bold:
             return UIFont(name: "\(fontName) W6", size: ofSize)!
+        }
+    }
+    
+    /// <#Description#>
+    /// - Parameters:
+    ///   - ofSize: <#ofSize description#>
+    ///   - weight: <#weight description#>
+    /// - Returns: <#description#>
+    static func ACCodeFont(ofSize: CGFloat, weight: UIFont.ACCodeWeight = .regular) -> UIFont {
+        let fontName = UIFont.Keys.codeFontName
+        switch weight {
+        case .regular:
+            return UIFont(name: "\(fontName)", size: ofSize)!
+        case .bold:
+            return UIFont(name: "\(fontName) Bold", size: ofSize)!
         }
     }
     
