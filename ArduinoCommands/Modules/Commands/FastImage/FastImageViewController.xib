@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FastImageViewController" customModule="ArduinoCommands" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonsBacKView" destination="pG7-J0-z7w" id="Dq1-np-ucA"/>
+                <outlet property="buttonsBackBlurView" destination="AjE-96-oRx" id="ybH-bT-apL"/>
+                <outlet property="copyImageButton" destination="kOy-wY-8EQ" id="bCm-mN-edm"/>
+                <outlet property="decorationTextView" destination="bQZ-br-eNe" id="sN8-6R-5Xt"/>
+                <outlet property="imageView" destination="QAF-3h-X3N" id="fe9-42-o8n"/>
+                <outlet property="scrollView" destination="mQR-DH-mnz" id="rbk-xP-BVr"/>
+                <outlet property="shareButton" destination="Ghq-rb-2BE" id="6K7-po-mvh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNh-d3-AcH">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rQG-AQ-ku0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQR-DH-mnz">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Снимок экрана 2022-02-09 в 2.35.02 AM" translatesAutoresizingMaskIntoConstraints="NO" id="QAF-3h-X3N">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="w1b-Nt-HhU" firstAttribute="bottom" secondItem="QAF-3h-X3N" secondAttribute="bottom" id="3Gc-I6-ywk"/>
+                        <constraint firstItem="QAF-3h-X3N" firstAttribute="trailing" secondItem="w1b-Nt-HhU" secondAttribute="trailing" id="8UN-eW-OWp"/>
+                        <constraint firstItem="QAF-3h-X3N" firstAttribute="top" secondItem="w1b-Nt-HhU" secondAttribute="top" id="8YU-Dx-Mtt"/>
+                        <constraint firstItem="QAF-3h-X3N" firstAttribute="leading" secondItem="w1b-Nt-HhU" secondAttribute="leading" id="gJU-Fq-bYJ"/>
+                        <constraint firstItem="QAF-3h-X3N" firstAttribute="centerY" secondItem="mQR-DH-mnz" secondAttribute="centerY" id="pHH-gL-T6x"/>
+                        <constraint firstItem="QAF-3h-X3N" firstAttribute="centerX" secondItem="mQR-DH-mnz" secondAttribute="centerX" id="wzY-V7-8Kr"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="GkN-NU-Ijw"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="w1b-Nt-HhU"/>
+                </scrollView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AjE-96-oRx">
+                    <rect key="frame" x="0.0" y="746" width="414" height="150"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ph4-be-gha">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="0vA-zP-Tnb"/>
+                    </constraints>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pG7-J0-z7w">
+                    <rect key="frame" x="0.0" y="746" width="414" height="150"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghq-rb-2BE">
+                            <rect key="frame" x="25" y="60" width="172.5" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="mop-1W-EQX"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Share" subtitle="Share Screenshot" imagePadding="10" cornerStyle="large">
+                                <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
+                                <fontDescription key="subtitleFontDescription" type="system" pointSize="12"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="shareImage:" destination="-1" eventType="touchUpInside" id="KgH-4A-EmB"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOy-wY-8EQ">
+                            <rect key="frame" x="217.5" y="60" width="171.5" height="52"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="k9x-LL-sUx"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="tinted" title="Copy" subtitle="Copy Screenshot" imagePadding="10" cornerStyle="large">
+                                <imageReference key="image" image="rectangle.portrait.on.rectangle.portrait" catalog="system" symbolScale="large"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="copyImage:" destination="-1" eventType="touchUpInside" id="8ws-bb-O2t"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Screenshot Interaction. By using these Buttons you can Save this Screenshot in defferent ways." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bQZ-br-eNe">
+                            <rect key="frame" x="57" y="9" width="300" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="GdG-XY-Eav"/>
+                                <constraint firstAttribute="height" constant="40" id="ss1-Ai-jOf"/>
+                            </constraints>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="4nf-8O-LAf"/>
+                        <constraint firstItem="Ghq-rb-2BE" firstAttribute="leading" secondItem="pG7-J0-z7w" secondAttribute="leading" constant="25" id="DoH-OE-cxl"/>
+                        <constraint firstItem="kOy-wY-8EQ" firstAttribute="leading" secondItem="Ghq-rb-2BE" secondAttribute="trailing" constant="20" id="Tfx-4X-nJP"/>
+                        <constraint firstItem="Ghq-rb-2BE" firstAttribute="width" secondItem="kOy-wY-8EQ" secondAttribute="width" multiplier="1.00649" id="Xji-uc-TFk"/>
+                        <constraint firstItem="Ghq-rb-2BE" firstAttribute="top" secondItem="bQZ-br-eNe" secondAttribute="bottom" constant="11" id="jVq-xl-jMw"/>
+                        <constraint firstItem="kOy-wY-8EQ" firstAttribute="top" secondItem="bQZ-br-eNe" secondAttribute="bottom" constant="11" id="m9T-sU-C3R"/>
+                        <constraint firstItem="bQZ-br-eNe" firstAttribute="top" secondItem="pG7-J0-z7w" secondAttribute="top" constant="9" id="n3G-0R-f0c"/>
+                        <constraint firstAttribute="trailing" secondItem="kOy-wY-8EQ" secondAttribute="trailing" constant="25" id="w27-zE-Akj"/>
+                        <constraint firstItem="bQZ-br-eNe" firstAttribute="centerX" secondItem="pG7-J0-z7w" secondAttribute="centerX" id="y2h-n1-xg2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="pG7-J0-z7w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2kp-lC-QMc"/>
+                <constraint firstAttribute="bottom" secondItem="aNh-d3-AcH" secondAttribute="bottom" id="5ts-dH-Tmh"/>
+                <constraint firstItem="aNh-d3-AcH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BzH-4e-PCx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pG7-J0-z7w" secondAttribute="trailing" id="FtJ-1u-Lha"/>
+                <constraint firstItem="mQR-DH-mnz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="J5n-P1-aNg"/>
+                <constraint firstItem="aNh-d3-AcH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="JGP-v7-lrv"/>
+                <constraint firstItem="AjE-96-oRx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Obq-2c-TNe"/>
+                <constraint firstItem="mQR-DH-mnz" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="URX-IQ-JOi"/>
+                <constraint firstItem="mQR-DH-mnz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VzK-MA-3Q6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mQR-DH-mnz" secondAttribute="trailing" id="dGa-Ve-cTG"/>
+                <constraint firstItem="aNh-d3-AcH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hU0-H8-sM8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AjE-96-oRx" secondAttribute="trailing" id="stz-ct-YWv"/>
+                <constraint firstItem="AjE-96-oRx" firstAttribute="top" secondItem="pG7-J0-z7w" secondAttribute="bottom" constant="-150" id="v5d-iu-kRM"/>
+                <constraint firstAttribute="bottom" secondItem="pG7-J0-z7w" secondAttribute="bottom" id="vr3-7z-Vju"/>
+                <constraint firstAttribute="bottom" secondItem="AjE-96-oRx" secondAttribute="bottom" id="yNr-2k-KaI"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="113.83928571428571"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="rectangle.portrait.on.rectangle.portrait" catalog="system" width="116" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="Снимок экрана 2022-02-09 в 2.35.02 AM" width="357" height="274"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

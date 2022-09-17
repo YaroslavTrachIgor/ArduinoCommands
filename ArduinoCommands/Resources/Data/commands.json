@@ -1,0 +1,340 @@
+[
+    {
+        "name": "Operators",
+        "footer": "",
+        "headerHeight": 38,
+        "commands": [
+            {
+                "name": "setup()",
+                "subtitle": "The main Operators",
+                "description": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board. The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
+                "baseDescription": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-02-09 в 2.33.23 AM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "loop()",
+                "subtitle": "The main Operators",
+                "description": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board. After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
+                "basicDescription": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-02-09 в 2.33.41 AM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            }
+        ]
+    },
+    {
+        "name": "Commands for Digital I/O",
+        "footer": "",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "pinMode()",
+                "subtitle": "Commands for Digital I/O",
+                "description": "Sets whether the specified input/output(pin) will operate as an input or as an output. Learn more about digital input/outputs (pins). Analog inputs (analog pins) can be used as digital inputs/outputs (digital pins). They are accessed by numbers from 14 (for analog input 0) to 19 (for analog input 5).",
+                "baseDescription": "Sets whether the specified input/output(pin) will operate as an input or as an output. Learn more about digital input/outputs (pins).",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-02-09 в 2.34.18 AM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "digitalWrite()",
+                "subtitle": "Commands for Digital I/O",
+                "description": "Gives a HIGH or LOW value to a digital input/output (pin). If an input/output (pin) has been set to OUTPUT mode by the pinMode() function, then for HIGH the voltage at the corresponding input/output (pin) will be 5V (3.3V for 3.3V boards), and 0V (ground) for LOW. If the input/output (pin) was set to input (INPUT), then the digitalWrite function with a value of HIGH will activate the internal 20K terminating resistor. Applying LOW in turn disables this resistor. The load resistor is enough to dim the LED connected to the input. If suddenly the LED works, but is very dim, it may be necessary to set the output mode (OUTPUT) using the pinMode () function. I/O 13 is more difficult to use as a digital input because it has a built-in resistor and an LED. If you also activate the internal 20K pull-up resistor, then the voltage at this input will be about 1.7V, instead of the expected 5V, because. LED and an additional resistor reduces the voltage, i.e.",
+                "baseDescription": "Gives a HIGH or LOW value to a digital input/output (pin). If an input/output (pin) has been set to OUTPUT mode by the pinMode() function, then for HIGH the voltage at the corresponding input/output (pin) will be 5V (3.3V for 3.3V boards), and 0V (ground) for LOW. If the input/output (pin) was set to input (INPUT), then the digitalWrite function with a value of HIGH will activate the internal 20K terminating resistor.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-02-09 в 2.34.47 AM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "digitalRead()",
+                "subtitle": "Commands for Digital I/O",
+                "description": "The function reads the value from the specified input - HIGH or LOW. If the input is not connected, then digitalRead may return HIGH or LOW randomly. Analog inputs (analog pins) can be used as digital inputs/outputs (digital pins). They are accessed by numbers from 14 (for analog input 0) to 19 (for analog input 5).",
+                "baseDescription": "The function reads the value from the specified input - HIGH or LOW. If the input is not connected, then digitalRead may return HIGH or LOW randomly.",
+                "exampleOfCode": "int ledPin = 13;\nint inPin = 7;\nint val = 0;\n \nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n    pinMode(inPin, INPUT);\n}\n\nvoid loop() {\n    val = digitalRead(inPin);\n    digitalWrite(ledPin, val);\n}",
+                "imageURL": "Снимок экрана 2022-02-09 в 2.35.02 AM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            }
+        ]
+    },
+    {
+        "name": "Commands for Analog I/O",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "analogWrite()",
+                "subtitle": "Commands for Analog I/O",
+                "description": "Outputs an analog value (PWM wave) to the I/O port. The function can be useful for controlling the brightness of a connected LED or the speed of a motor. After calling analogWrite(), the output will generate a constant square wave with the specified pulse width until the next call to analogWrite (or a call to digitalWrite or digitalRead on the same I/O port). The PWM signal frequency is approximately 490 Hz. On most Arduino boards (based on the ATmega168 or ATmega328 microcontroller), PWM supports ports 3, 5, 6, 9, 10 and 11, on the Arduino Mega board, ports 2 to 13. On earlier versions of Arduino boards, analogWrite() only worked on 9, 10 and 11. There is no need to set the input/output type with the pinMode() function to call analogWrite(). The analogWrite function has nothing to do with analog inputs and with the analogRead function.",
+                "baseDescription": "Outputs an analog value (PWM wave) to the I/O port. The function can be useful for controlling the brightness of a connected LED or the speed of a motor.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "analogRead()",
+                "subtitle": "Commands for Analog I/O",
+                "description": "The function reads the value from the specified analog input. Most Arduino boards have 6 channels (8 channels for Mini and Nano, 16 for Mega) with a 10-bit analog-to-digital converter (ADC). A voltage applied to an analog input, typically 0 to 5 volts, will be converted to a value from 0 to 1023, that's 1024 steps with a resolution of 0.0049 volts. The voltage spread and pitch can be changed with the analogReference() function. Reading a value from an analog input takes approximately 100 microseconds (0.0001 sec), i.e. the maximum reading rate is approximately 10,000 times per second. If an analog input is not connected, then the values ​​returned by the analogRead() function may be random.",
+                "baseDescription": "The function reads the value from the specified analog input. Most Arduino boards have 6 channels (8 channels for Mini and Nano, 16 for Mega) with a 10-bit analog-to-digital converter (ADC). A voltage applied to an analog input, typically 0 to 5 volts, will be converted to a value from 0 to 1023, that's 1024 steps with a resolution of 0.0049 volts.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "analogReference()",
+                "subtitle": "Commands for Analog I/O",
+                "description": "The function determines the reference voltage relative to which analog measurements are made. The analogRead() function returns a value with a resolution of 10 bits proportional to the input voltage on the analog input, and depending on the reference voltage. Possible settings: DEFAULT(5V standard reference (on 5V platforms) or 3.3V (on 3.3V platforms)), INTERNAL (1.1V internal reference on the ATmega168 and ATmega328 microcontrollers, and 2.56V on the ATmega8), INTERNAL1V1 (1.1V internal voltage reference (Arduino Mega)), INTERNAL2V56 (Built-in 2.56 voltage reference (Arduino Mega)), EXTERNAL (External voltage reference connected to the AREF pin).",
+                "baseDescription": "The function determines the reference voltage relative to which analog measurements are made. The analogRead() function returns a value with a resolution of 10 bits proportional to the input voltage on the analog input, and depending on the reference voltage.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            }
+        ]
+    },
+    {
+        "name": "Working with time",
+        "footer": "",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "millis()",
+                "subtitle": "Commands for Working with Time",
+                "description": "Returns the number of milliseconds since the current program on the Arduino board started executing. This number is reset to zero due to a value overflow after approximately 50 days. Return value is a number of milliseconds since the program started executing. The function has no parameters.",
+                "baseDescription": "Returns the number of milliseconds since the current program on the Arduino board started executing. This number is reset to zero due to a value overflow after approximately 50 days.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "micros()",
+                "subtitle": "Commands for Working with Time",
+                "description": "Returns the number of microseconds since the current program on the Arduino board started executing. The value overflows and resets to zero after approximately 70 minutes. On 16MHz Arduino boards (Duemilanove and Nano) the micros() function has a resolution of 4 microseconds (the return value is always a multiple of 4). On 8MHz boards (Arduino Lilypad) the function resolution is 8 microseconds. The function has no parameters.",
+                "baseDescription": "Returns the number of microseconds since the current program on the Arduino board started executing. The value overflows and resets to zero after approximately 70 minutes.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "delay()",
+                "subtitle": "Commands for Working with Time",
+                "description": "Stops program execution for the number of milliseconds specified in the parameter (1000 milliseconds in 1 second). It is not recommended to use this function for events longer than 10 milliseconds, as during a stop, no port manipulation, no sensor readings, or math operations can be done. As an alternative approach, it is possible to control the execution time of certain functions using millis(). Most board activity is stopped by the delay() function. Nevertheless, the work of interrupts does not stop, the recording of serially transmitted data continues on the RX port, the PWM signal (analogWrite) continues to be generated on the ports.",
+                "baseDescription": "Stops program execution for the number of milliseconds specified in the parameter (1000 milliseconds in 1 second).",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "delayMicroseconds()",
+                "subtitle": "Commands for Working with Time",
+                "description": "Stops program execution for the number of microseconds specified in the parameter (1,000,000 microseconds in 1 second). In this version of Arduino, the maximum pause that can be played correctly is 16383. Perhaps this will be changed in future versions of Arduino. To stop program execution for more than a few thousand microseconds, it is recommended to use the delay() function.",
+                "baseDescription": "Stops program execution for the number of microseconds specified in the parameter (1,000,000 microseconds in 1 second).",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            }
+        ]
+    },
+    {
+        "name": "Serial",
+        "footer": "The Serial function set is used to communicate the Arduino device with a computer or other devices that support a serial data exchange interface. All Arduino boards have at least one serial port (UART, sometimes called USART). Serial data exchange uses digital I/O ports 0 (RX) and 1 (TX), as well as a USB port. It is important to note that if you are using the Serial functions, then you cannot use ports 0 and 1 for other purposes at the same time. \n \nThe Arduino development environment has a built-in Serial monitor. To start data exchange, you need to start the monitor by pressing the Serial monitor button and set the same baud rate with which the begin() function was called.",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "begin()",
+                "subtitle": "Serial methods",
+                "description": "Initiates a serial connection and sets the baud rate in bits/sec (baud). To communicate with a computer, use the following values: 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, or 115200. Other baud rates required by the device may be used when connecting through I/O ports 0 and 1 with which data will be exchanged.",
+                "baseDescription": "Initiates a serial connection and sets the baud rate in bits/sec (baud).",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": false,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "end()",
+                "subtitle": "Serial methods",
+                "description": "Closes the serial connection, the RX and TX ports are free and can be used for I/O. To restore a serial connection, use Serial.begin().",
+                "baseDescription": "Closes the serial connection, the RX and TX ports are free and can be used for I/O. To restore a serial connection, use Serial.begin().",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": false,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "available()",
+                "subtitle": "Serial methods",
+                "description": "The function gets the number of bytes (characters) available for reading from the serial communication interface. These are the bytes that have already arrived and are written to the serial port buffer. The buffer can store up to 64 bytes.",
+                "baseDescription": "The function gets the number of bytes (characters) available for reading from the serial communication interface.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "read()",
+                "subtitle": "Serial methods",
+                "description": "Reads the next available byte from the serial connection buffer.",
+                "baseDescription": "Reads the next available byte from the serial connection buffer.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "flush()",
+                "subtitle": "Serial methods",
+                "description": "Waits for outgoing data transfer to finish (before Arduino 1.0, the function cleared the serial connection buffer).",
+                "baseDescription": "Waits for outgoing data transfer to finish (before Arduino 1.0, the function cleared the serial connection buffer).",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": false,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "print()",
+                "subtitle": "Serial methods",
+                "description": "Sends data over the serial port as ASCII text. This function can accept various types of data. So integers are printed with their corresponding ASCII characters. Reals are output using two ASCII characters, for integer and fractional parts. The bytes are transmitted as a character with the corresponding number. Characters and strings are sent as is. Using the second optional parameter, you can set the basis (number system) for numbers. Valid values are BYTE, BIN (binary), OCT (octal), DEC (decimal), HEX (hexadecimal). For real (fractional) numbers, the second parameter specifies the number of decimal places.",
+                "baseDescription": "Sends data over the serial port as ASCII text. This function can accept various types of data.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "println()",
+                "subtitle": "Serial methods",
+                "description": "Sends data over the serial connection as ASCII text followed by a line break (ASCII character 13 or '\r') and a newline character (ASCII 10 or '\n'). The parameters and data types for this function are the same as for Serial.print().",
+                "baseDescription": "Sends data over the serial connection as ASCII text followed by a line break (ASCII character 13 or '\r') and a newline character (ASCII 10 or '\n').",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "write()",
+                "subtitle": "Serial methods",
+                "description": "The function transmits data as a binary code through a serial connection. The data is sent as one or a series of bytes. To transfer data as characters, another print() function should be used.",
+                "baseDescription": "The function transmits data as a binary code through a serial connection. To transfer data as characters, another print() function should be used.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            },
+            {
+                "name": "peek()",
+                "subtitle": "Serial methods",
+                "description": "Returns the next available byte (character) from the incoming serial connection buffer without removing it from that buffer. That is, a successful call to this function will return the same value as the next call to the read() function.",
+                "baseDescription": "Returns the next available byte (character) from the incoming serial connection buffer without removing it from that buffer.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false
+            }
+        ]
+    },
+    {
+        "name": "Servo",
+        "footer": "This library allows an Arduino board to control RC (hobby) servo motors. Servos have integrated gears and a shaft that can be precisely controlled. Standard servos allow the shaft to be positioned at various angles, usually between 0 and 180 degrees. Continuous rotation servos allow the rotation of the shaft to be set to various speeds. To use this library: #include <Servo.h>.",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "attach()",
+                "subtitle": "Robotics",
+                "description": "Attach the Servo variable to a pin. Note that in Arduino 0016 and earlier, the Servo library supports servos on only two pins: 9 and 10.",
+                "baseDescription": "Attach the Servo variable to a pin. Note that in Arduino 0016 and earlier, the Servo library supports servos on only two pins: 9 and 10.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true
+            },
+            {
+                "name": "write()",
+                "subtitle": "Robotics",
+                "description": "Writes a value to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft (in degrees), moving the shaft to that orientation. On a continuous rotation servo, this will set the speed of the servo (with 0 being full-speed in one direction, 180 being full speed in the other, and a value near 90 being no movement).",
+                "baseDescription": "Writes a value to the servo, controlling the shaft accordingly.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true
+            },
+            {
+                "name": "writeMicroseconds()",
+                "subtitle": "Robotics",
+                "description": "Writes a value in microseconds (us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft. On standard servos a parameter value of 1000 is fully counter-clockwise, 2000 is fully clockwise, and 1500 is in the middle. Note that some manufactures do not follow this standard very closely so that servos often respond to values between 700 and 2300. Feel free to increase these endpoints until the servo no longer continues to increase its range. Note however that attempting to drive a servo past its endpoints (often indicated by a growling sound) is a high-current state, and should be avoided. Continuous-rotation servos will respond to the writeMicrosecond function in an analogous manner to the write function.",
+                "baseDescription": "Writes a value in microseconds (us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true
+            },
+            {
+                "name": "read()",
+                "subtitle": "Robotics",
+                "description": "Reads the current angle of the servo (the value passed to the last call to write()).",
+                "baseDescription": "Reads the current angle of the servo (the value passed to the last call to write()).",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true
+            },
+            {
+                "name": "attached()",
+                "subtitle": "Robotics",
+                "description": "Checks whether the Servo variable is attached to a pin.",
+                "baseDescription": "Checks whether the Servo variable is attached to a pin.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true
+            },
+            {
+                "name": "detach()",
+                "subtitle": "Robotics",
+                "description": "Detachs the Servo variable from its pin. If all Servo variables are detached, then pins 9 and 10 can be used for PWM output with analogWrite().",
+                "baseDescription": "Detachs the Servo variable from its pin.",
+                "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true
+            }
+        ]
+    }
+]

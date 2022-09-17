@@ -1,0 +1,25 @@
+{
+    "title": "What's New",
+    "subtitle": "Arduino Commands",
+    "foreword": "Developed and designed by Trach Yaroslav. Arduino Commands",
+    "sections": [
+        {
+            "title": "New Features",
+            "subtitle": "Now you can set reminders and share your favorites articles.",
+            "tintColorString": "#ff4747",
+            "imageSystemName": "heart.fill"
+        },
+        {
+            "title": "Articles",
+            "subtitle": "A huge number of different articles about special Arduino Commands.",
+            "tintColorString": "#8447ff",
+            "imageSystemName": "square.grid.3x3.topright.filled"
+        },
+        {
+            "title": "Quick access to Websites",
+            "subtitle": "A huge menu of Websites that can provide more information.",
+            "tintColorString": "#fa7f0c",
+            "imageSystemName": "link"
+        }
+    ]
+}
