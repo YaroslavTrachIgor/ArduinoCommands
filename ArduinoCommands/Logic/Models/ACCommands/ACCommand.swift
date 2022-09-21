@@ -10,15 +10,15 @@ import UIKit
 
 //MARK: - Main model
 public final class ACCommand: Codable {
-    let name: String!
-    let subtitle: String!
-    let imageURL: String!
-    let description: String!
-    let exampleOfCode: String!
-    let baseDescription: String!
-    let isLibraryMethod: Bool!
-    let isUsedWithDevices: Bool!
-    let returns: Bool!
+    var name: String!
+    var subtitle: String!
+    var imageURL: String!
+    var description: String!
+    var exampleOfCode: String!
+    var baseDescription: String!
+    var isLibraryMethod: Bool!
+    var isUsedWithDevices: Bool!
+    var returns: Bool!
     
     //MARK: Initialization
     init(name: String!,

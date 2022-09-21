@@ -91,8 +91,6 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
     }
 }
 
-
-
 enum BasicKnowledgeSectionRow {
     case links([ACLinkCellModel])
     case team([ACPersonCellModel])

@@ -8,45 +8,36 @@
 import Foundation
 import UIKit
 
-//MARK: - Basic constnts for Label types properties setup
-public enum ACLabelConstants {
+//MARK: - Keys
+private extension UILabel {
     
-    //MARK: Public
-    enum DecorationLabels {
-        enum Content {
-            
-            //MARK: Static
-            static let method = "Method"
-            static let library = "Library"
-            static let initial = "Initial"
-            static let devices = "Devices"
-            static let returns = "Returns"
-        }
-        enum Colors {
-            
-            //MARK: Static
-            static let method = UIColor.systemIndigo
-            static let library = UIColor.systemBlue
-            static let initial = UIColor.systemTeal
-            static let devices = UIColor.systemPurple
-            static let returns = UIColor.systemPink
+    //MARK: Private
+    enum Keys {
+        enum DecorationLabels {
+            enum Content {
+                
+                //MARK: Static
+                static let method = "Method"
+                static let library = "Library"
+                static let initial = "Initial"
+                static let devices = "Devices"
+                static let returns = "Returns"
+            }
+            enum Colors {
+                
+                //MARK: Static
+                static let method = UIColor.systemIndigo
+                static let library = UIColor.systemBlue
+                static let initial = UIColor.systemTeal
+                static let devices = UIColor.systemPurple
+                static let returns = UIColor.systemPink
+            }
         }
     }
 }
 
 
-public enum DecorationLabelType {
-    case method
-    case initial
-    case library
-    case returns
-    case withDevices
-}
-
-
-
-
-//MARK: - Setup basic Label types
+//MARK: - Fast Label methods
 public extension UILabel {
     
     //MARK: Public
@@ -72,48 +63,40 @@ public extension UILabel {
             alpha = 1
         }
     }
+}
+
+
+//MARK: - Setup basic Label types
+public extension UILabel {
     
-    func setupRightDecoLabel(labelType: DecorationLabelType, if needed: Bool!) {
-        switch labelType {
-        case .returns:
-            let content = ACLabelConstants.DecorationLabels.Content.returns
-            let tintColor = ACLabelConstants.DecorationLabels.Colors.returns
-            setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
-        default:
-            return
-        }
-    }
-    
-    
-    
-    
+    //MARK: Public
     func setupMethodDecoLabel(with needed: Bool! = true) {
-        let content = ACLabelConstants.DecorationLabels.Content.method
-        let tintColor = ACLabelConstants.DecorationLabels.Colors.method
+        let content = Keys.DecorationLabels.Content.method
+        let tintColor = Keys.DecorationLabels.Colors.method
         setupDecorationRoleLabel(content: content, tintColor: tintColor)
     }
     
     func setupLibraryDecoLabel(with needed: Bool! = true) {
-        let content = ACLabelConstants.DecorationLabels.Content.library
-        let tintColor = ACLabelConstants.DecorationLabels.Colors.library
+        let content = Keys.DecorationLabels.Content.library
+        let tintColor = Keys.DecorationLabels.Colors.library
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
     
     func setupReturnsDecoLabel(with needed: Bool!) {
-        let content = ACLabelConstants.DecorationLabels.Content.returns
-        let tintColor = ACLabelConstants.DecorationLabels.Colors.returns
+        let content = Keys.DecorationLabels.Content.returns
+        let tintColor = Keys.DecorationLabels.Colors.returns
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
     
     func setupDevicesDecoLabel(with needed: Bool!) {
-        let content = ACLabelConstants.DecorationLabels.Content.devices
-        let tintColor = ACLabelConstants.DecorationLabels.Colors.devices
+        let content = Keys.DecorationLabels.Content.devices
+        let tintColor = Keys.DecorationLabels.Colors.devices
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
     
     func setupInitialDecoLabel(with needed: Bool!) {
-        let content = ACLabelConstants.DecorationLabels.Content.initial
-        let tintColor = ACLabelConstants.DecorationLabels.Colors.initial
+        let content = Keys.DecorationLabels.Content.initial
+        let tintColor = Keys.DecorationLabels.Colors.initial
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
 }

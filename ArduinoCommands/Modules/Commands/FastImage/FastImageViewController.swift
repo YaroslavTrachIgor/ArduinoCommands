@@ -59,32 +59,6 @@ private extension FastImageViewController {
 }
 
 
-
-
-public extension UITextView {
-    
-    //MARK: Public
-    func setupBaseFooterTextView(text: String, appearance: ACBaseAppearanceType = .dark) {
-        let font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        switch appearance {
-        case .dark:
-            textColor = #colorLiteral(red: 0.9122867584, green: 0.9092650414, blue: 0.9549868703, alpha: 0.6)
-        case .light:
-            break
-        case .system:
-            textColor = .tertiaryLabel
-        }
-        
-        backgroundColor = .clear
-        isSelectable = false
-        isEditable = false
-        self.text = text
-        self.font = font
-    }
-}
-
-
-
 //MARK: - Fast Image preview ViewController
 final class FastImageViewController: UIViewController {
 
@@ -135,7 +109,7 @@ extension FastImageViewController: ACBaseFastImageViewControllerProtocol {
         setupCopyImageButton()
         setupButtonsBacKView()
         setupButtonsBackBlurView()
-        decorationTextView.setupBaseFooterTextView(text: Keys.UI.TextView.decoTextViewContent)
+        decorationTextView.setupBaseFooterTextView(text: Keys.UI.TextView.decoTextViewContent, ofSize: 11.5)
     }
     
     internal func presentActivityVC(activityItems: [Any]) {

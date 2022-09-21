@@ -21,3 +21,33 @@ public extension UITextView {
                  }, completion: nil)
     }
 }
+
+
+//MARK: - Setup basic TextView types
+public extension UITextView {
+    
+    //MARK: Public
+    ///
+    /// - Parameters:
+    ///   - text:
+    ///   - ofSize:
+    ///   - appearance: 
+    func setupBaseFooterTextView(text: String,
+                                 ofSize: CGFloat = 13,
+                                 appearance: ACBaseAppearanceType = .dark) {
+        let font = UIFont.systemFont(ofSize: ofSize, weight: .regular)
+        switch appearance {
+        case .dark:
+            textColor = #colorLiteral(red: 0.9122867584, green: 0.9092650414, blue: 0.9549868703, alpha: 0.6)
+        case .light:
+            break
+        case .system:
+            textColor = .tertiaryLabel
+        }
+        backgroundColor = .clear
+        isSelectable = false
+        isEditable = false
+        self.text = text
+        self.font = font
+    }
+}

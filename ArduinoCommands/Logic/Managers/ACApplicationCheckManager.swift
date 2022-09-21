@@ -48,6 +48,11 @@ final class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
     private init() {}
     
     //MARK: Internal
+    /// This checks version of app downloaded on a particular device,
+    /// and compares it with the current version available in AppStore from Appliction content Database.
+    ///
+    /// The function is used in `BasicKnowledgePresenter` file.
+    /// - Parameter completion: this is the handler which we will use to do some UI stuff.
     func checkVersion(completion: ACBaseCompletionHandler? = nil) {
         service.getApplicationResponse { [self] result in
             switch result {
@@ -59,7 +64,9 @@ final class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
                         completionHandler()
                     }
                     /**
-                     ///////////////////////////////
+                     After New Version alert was shown,
+                     we need to set a new value for the special bool marker,
+                     that would say that Version Alert is not important anymore.
                      */
                     isNeededAlert.toggle()
                 }

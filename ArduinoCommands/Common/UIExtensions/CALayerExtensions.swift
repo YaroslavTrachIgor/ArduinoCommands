@@ -12,6 +12,12 @@ import UIKit
 public extension CALayer {
     
     //MARK: Public
+    /// <#Description#>
+    /// - Parameters:
+    ///   - color: <#color description#>
+    ///   - radius: <#radius description#>
+    ///   - offsetValue: <#offsetValue description#>
+    ///   - opacity: <#opacity description#>
     func setupNeumorphicLightLayerStyle(color: UIColor = UIColor.ACShadow.neuLightShadowColor,
                                         radius: CGFloat = 5.5,
                                         offsetValue: CGFloat = -10,
@@ -24,6 +30,12 @@ public extension CALayer {
                               height: offsetValue)
     }
     
+    /// <#Description#>
+    /// - Parameters:
+    ///   - color: <#color description#>
+    ///   - radius: <#radius description#>
+    ///   - offsetValue: <#offsetValue description#>
+    ///   - opacity: <#opacity description#>
     func setupNeumorphicDarkLayerStyle(color: UIColor = UIColor.ACShadow.neuDarkShadowColor,
                                        radius: CGFloat = 4,
                                        offsetValue: CGFloat = 10,
@@ -36,12 +48,16 @@ public extension CALayer {
                               height: offsetValue)
     }
     
+    /// <#Description#>
+    /// - Parameter backView: <#backView description#>
     func setupNeumorphicLayerFlexibility(with backView: UIView) {
         backgroundColor = backView.layer.backgroundColor
         cornerRadius = backView.layer.cornerRadius
         cornerCurve = backView.layer.cornerCurve
     }
     
+    /// <#Description#>
+    /// - Parameter view: <#view description#>
     func addNeumorphicLayerStyle(on view: UIView) {
         self.frame = view.bounds
         view.layer.insertSublayer(self, at: 0)

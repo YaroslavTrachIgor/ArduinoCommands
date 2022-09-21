@@ -23,5 +23,6 @@ public enum ACURLs {
         static let allArduino = "https://all-arduino.ru/biblioteki-arduino/arduino-biblioteka-servo/"
         static let kiberKoder = "https://bitkit.com.ua/file_downloads/kiberkozer_manual/RUS_instr_kiberkoder.pdf"
         static let arduinoRu = "https://All-arduino.ru"
+        static let arduinoCc = "https://www.arduino.cc"
     }
 }

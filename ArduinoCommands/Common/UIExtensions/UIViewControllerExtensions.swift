@@ -9,6 +9,18 @@ import Foundation
 import SafariServices
 import UIKit
 
+//MARK: - Keys
+private extension UIViewController {
+    
+    //MARK: Private
+    enum Keys {
+        
+        //MARK: Static
+        static let baseAnimationDuration = 0.4
+    }
+}
+
+
 //MARK: - Fast ViewController methods
 public extension UIViewController {
     
@@ -20,7 +32,7 @@ public extension UIViewController {
     ///   - cornerRadius: sheet corners value.
     func presentSheet(with vc: UIViewController,
                       detents: [UISheetPresentationController.Detent] = [.large()],
-                      cornerRadius: CGFloat = 20) {
+                      cornerRadius: CGFloat = CGFloat.Corners.baseACRounding) {
         if let sheet = vc.sheetPresentationController {
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             sheet.preferredCornerRadius = cornerRadius
@@ -36,7 +48,7 @@ public extension UIViewController {
     /// This is usually used in so called `Detail` VCs
     /// to make User absolutaly immersed in the content on screen.
     func hideTabBarWithAnimation(alpha: Int) {
-        let duration: TimeInterval = 0.4
+        let duration = Keys.baseAnimationDuration
         let tabBarAlpha = CGFloat(alpha)
         let animation = UIViewPropertyAnimator(duration: duration, curve: .easeIn) { [self] in
             tabBarController?.tabBar.alpha = tabBarAlpha
@@ -53,6 +65,21 @@ public extension UIViewController {
         config.entersReaderIfAvailable = true
         let vc = SFSafariViewController(url: url!, configuration: config)
         present(vc, animated: true)
+    }
+    
+    /// This creates fast Animation handler.
+    /// - Parameters:
+    ///   - animation: animation handler;
+    ///   - completion: last actions after function execution.
+    func fastAnimation(animation: @escaping ACBaseCompletionHandler,
+                       completion: ACBaseCompletionHandler? = nil) {
+        let duration = Keys.baseAnimationDuration
+        UIView.animate(withDuration: duration) {
+            animation()
+        } completion: { _ in
+            guard let completion = completion else { return }
+            completion()
+        }
     }
     
     func setBlurViewForStatusBar() {
@@ -82,4 +109,3 @@ private extension UIViewController {
         blurEffectView.setFastGlassmorphismBorder()
     }
 }
-

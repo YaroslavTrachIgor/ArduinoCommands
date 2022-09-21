@@ -12,12 +12,12 @@ import UIKit
 public extension NSString {
     
     //MARK: Public
-    /// <#Description#>
+    ///
     /// - Parameters:
-    ///   - boldPartsOfString: <#boldPartsOfString description#>
-    ///   - font: <#font description#>
-    ///   - boldFont: <#boldFont description#>
-    /// - Returns: <#description#>
+    ///   - boldPartsOfString:
+    ///   - font:
+    ///   - boldFont:
+    /// - Returns:
     func addBoldText(boldPartsOfString: Array<NSString>, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
         let nonBoldFontAttribute = [NSAttributedString.Key.font: font!]
         let boldFontAttribute = [NSAttributedString.Key.font: boldFont!]

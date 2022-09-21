@@ -67,7 +67,7 @@
                     <rect key="frame" x="0.0" y="746" width="414" height="150"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghq-rb-2BE">
-                            <rect key="frame" x="25" y="60" width="172.5" height="52"/>
+                            <rect key="frame" x="25" y="59" width="172.5" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="mop-1W-EQX"/>
                             </constraints>
@@ -81,7 +81,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOy-wY-8EQ">
-                            <rect key="frame" x="217.5" y="60" width="171.5" height="52"/>
+                            <rect key="frame" x="217.5" y="59" width="171.5" height="52"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="k9x-LL-sUx"/>
                             </constraints>
@@ -94,7 +94,7 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Screenshot Interaction. By using these Buttons you can Save this Screenshot in defferent ways." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bQZ-br-eNe">
-                            <rect key="frame" x="57" y="9" width="300" height="40"/>
+                            <rect key="frame" x="57" y="6" width="300" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="300" id="GdG-XY-Eav"/>
@@ -111,9 +111,9 @@
                         <constraint firstItem="Ghq-rb-2BE" firstAttribute="leading" secondItem="pG7-J0-z7w" secondAttribute="leading" constant="25" id="DoH-OE-cxl"/>
                         <constraint firstItem="kOy-wY-8EQ" firstAttribute="leading" secondItem="Ghq-rb-2BE" secondAttribute="trailing" constant="20" id="Tfx-4X-nJP"/>
                         <constraint firstItem="Ghq-rb-2BE" firstAttribute="width" secondItem="kOy-wY-8EQ" secondAttribute="width" multiplier="1.00649" id="Xji-uc-TFk"/>
-                        <constraint firstItem="Ghq-rb-2BE" firstAttribute="top" secondItem="bQZ-br-eNe" secondAttribute="bottom" constant="11" id="jVq-xl-jMw"/>
-                        <constraint firstItem="kOy-wY-8EQ" firstAttribute="top" secondItem="bQZ-br-eNe" secondAttribute="bottom" constant="11" id="m9T-sU-C3R"/>
-                        <constraint firstItem="bQZ-br-eNe" firstAttribute="top" secondItem="pG7-J0-z7w" secondAttribute="top" constant="9" id="n3G-0R-f0c"/>
+                        <constraint firstItem="Ghq-rb-2BE" firstAttribute="top" secondItem="bQZ-br-eNe" secondAttribute="bottom" constant="13" id="jVq-xl-jMw"/>
+                        <constraint firstItem="kOy-wY-8EQ" firstAttribute="top" secondItem="bQZ-br-eNe" secondAttribute="bottom" constant="13" id="m9T-sU-C3R"/>
+                        <constraint firstItem="bQZ-br-eNe" firstAttribute="top" secondItem="pG7-J0-z7w" secondAttribute="top" constant="6" id="n3G-0R-f0c"/>
                         <constraint firstAttribute="trailing" secondItem="kOy-wY-8EQ" secondAttribute="trailing" constant="25" id="w27-zE-Akj"/>
                         <constraint firstItem="bQZ-br-eNe" firstAttribute="centerX" secondItem="pG7-J0-z7w" secondAttribute="centerX" id="y2h-n1-xg2"/>
                     </constraints>

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-//MARK: - Setup basic Button types
+//MARK: - Setup base Button types
 public extension UIButton {
     
     //MARK: Public

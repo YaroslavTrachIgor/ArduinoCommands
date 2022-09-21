@@ -14,6 +14,11 @@ private extension CodeSnippetViewController {
     //MARK: Private
     enum Keys {
         enum UI {
+            enum Label {
+                
+                //MARK: Static
+                static let colorPickerVCTitle = "Content Tint"
+            }
             enum Button {
                 
                 //MARK: Static
@@ -25,6 +30,11 @@ private extension CodeSnippetViewController {
                 
                 //MARK: Static
                 static let footer = "View the code example of Command initalization. This will let you understand the basic case of its usage."
+            }
+            enum View {
+                
+                //MARK: Static
+                static let backgroundColor = #colorLiteral(red: 0.1044024155, green: 0.1050226167, blue: 0.1131809279, alpha: 1)
             }
         }
         enum Defaults {
@@ -54,6 +64,9 @@ final class CodeSnippetViewController: UIViewController, ACBaseStoryboarded {
     private var codeFontSize: Float!
     private var codeTintColor: UIColor!
     private var codeContentAppearanceType: ACBaseAppearanceType = .dark
+    private var uiModel: CodeSnippetUIModelProtocol {
+        return CodeSnippetUIModel(model: model)
+    }
     private var presenter: CodeSnippetPresenterProtocol? {
         return CodeSnippetPresenter(view: self, delegate: self, model: model)
     }
@@ -151,27 +164,41 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
         setupCodeTextView()
         setupCodeBackgroundView()
         setupLineNumbersTextView()
+        setupContentSeparatorView()
         setupContentBackgroundView()
         setupSecondaryCodeBackgroundView()
-        setCodeContentAppearance(appearanceType: .dark)
-        appearanceSegmentedControl.setupBaseDetailDarkSegmentedControl()
-        setupCodeContentEditingButton(for: colorPickerGoButton, imageName: Keys.UI.Button.colorPickerGoIcon)
-        setupCodeContentEditingButton(for: fontChangeButton, imageName: Keys.UI.Button.fontChangeIcon)
-        decorationTextView.setupBaseFooterTextView(text: Keys.UI.TextView.footer)
-        costomBackBarButton.setupBaseBackBarButton()
-        shareBarButton.setupBaseShareBarButton()
-        copyBarButton.setupBaseCopyBarButton()
         setupFontChangePopupBlurView()
         setupFontChangePopupBackView()
         setupFontChangeContentView()
         setupFontChangeDoneButton()
         setupFontChangeSlider()
-        contentSeparatorView.backgroundColor = codeTintColor
-        view.backgroundColor = #colorLiteral(red: 0.1044024155, green: 0.1050226167, blue: 0.1131809279, alpha: 1)
+        copyBarButton.setupBaseCopyBarButton()
+        shareBarButton.setupBaseShareBarButton()
+        costomBackBarButton.setupBaseBackBarButton()
+        decorationTextView.setupBaseFooterTextView(text: Keys.UI.TextView.footer)
+        appearanceSegmentedControl.setupBaseDetailDarkSegmentedControl()
+        setupCodeContentEditingButton(for: colorPickerGoButton, imageName: Keys.UI.Button.colorPickerGoIcon)
+        setupCodeContentEditingButton(for: fontChangeButton, imageName: Keys.UI.Button.fontChangeIcon)
+        view.backgroundColor = Keys.UI.View.backgroundColor
     }
     
     internal func moveToThePreviousViewController() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    internal func presentColorPickerViewController() {
+        let title = Keys.UI.Label.colorPickerVCTitle
+        let picker = UIColorPickerViewController()
+        picker.selectedColor = codeTintColor
+        picker.delegate = self
+        picker.title = title
+        present(picker, animated: true, completion: nil)
+    }
+    
+    internal func changeCodeTextViewFontSize() {
+        let newFontSize = CGFloat(codeFontSize)
+        let newFont = UIFont.ACCodeFont(ofSize: newFontSize)
+        codeTextView.font = newFont
     }
     
     internal func presentFontChangeViews(with animationType: ACBaseAnimationType) {
@@ -186,19 +213,6 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
     internal func presentActivityVC(activityItems: [Any]) {
         ACActivityManager.presentVC(activityItems: activityItems, on: self)
     }
-    
-    internal func presentColorPickerViewController() {
-        let picker = UIColorPickerViewController()
-        picker.selectedColor = codeTintColor
-        picker.delegate = self
-        present(picker, animated: true, completion: nil)
-    }
-    
-    internal func changeCodeTextViewFontSize() {
-        let newFontSize = CGFloat(codeFontSize)
-        let newFont = UIFont.ACCodeFont(ofSize: newFontSize)
-        codeTextView.font = newFont
-    }
 }
 
 
@@ -207,15 +221,22 @@ private extension CodeSnippetViewController {
     
     //MARK: Private
     func setupCodeTextView() {
-        let fontSize = CGFloat(codeFontSize)
-        let font = UIFont.ACCodeFont(ofSize: fontSize)
-        let boldFont = UIFont.ACCodeFont(ofSize: fontSize + 0.8, weight: .bold)
-        let command = model.name!
-        let edditedCommand = "\((command.dropLast()).dropLast())"
-        let boldPartsOfString = [NSString(string: edditedCommand)]
-        let attributedText = NSString(string: model.exampleOfCode!).addBoldText(boldPartsOfString: boldPartsOfString, font: font, boldFont: boldFont)
+        let content = uiModel.code(codeFontSize: codeFontSize)
         codeTextView.backgroundColor = .clear
-        codeTextView.attributedText = attributedText
+        codeTextView.attributedText = content
+        codeTextView.textColor = .white
+    }
+    
+    func setupLineNumbersTextView() {
+        let font = UIFont.ACCodeFont(ofSize: 16, weight: .regular)
+        let content = uiModel.linesContent
+        lineNumbersTextView.backgroundColor = .clear
+        lineNumbersTextView.isScrollEnabled = false
+        lineNumbersTextView.isSelectable = false
+        lineNumbersTextView.isEditable = false
+        lineNumbersTextView.textColor = codeTintColor
+        lineNumbersTextView.text = content
+        lineNumbersTextView.font = font
     }
     
     func setupCodeBackgroundView() {
@@ -227,24 +248,11 @@ private extension CodeSnippetViewController {
     }
     
     func setupSecondaryCodeBackgroundView() {
-        let backgroundColor = codeTintColor.withAlphaComponent(0.05)
         let maskedCorners: CACornerMask = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
-        secondaryCodeBackgroundView.backgroundColor = backgroundColor
         secondaryCodeBackgroundView.layer.maskedCorners = maskedCorners
         secondaryCodeBackgroundView.layer.cornerRadius = cornerRadius
         secondaryCodeBackgroundView.layer.masksToBounds = true
-    }
-    
-    func setupLineNumbersTextView() {
-        let font = UIFont.ACCodeFont(ofSize: 16, weight: .regular)
-        var content = String()
-        for lineNumber in 0...40 { content = content + " \(lineNumber)" }
-        lineNumbersTextView.backgroundColor = .clear
-        lineNumbersTextView.isScrollEnabled = false
-        lineNumbersTextView.textColor = codeTintColor
-        lineNumbersTextView.text = content
-        lineNumbersTextView.font = font
     }
     
     func setupContentBackgroundView() {
@@ -255,10 +263,27 @@ private extension CodeSnippetViewController {
         contentBackgroundView.layer.cornerRadius = cornerRadius
         contentBackgroundView.layer.borderColor = borderColor
         contentBackgroundView.layer.borderWidth = 1
+        contentBackgroundView.alpha = 1
+    }
+    
+    func setupContentSeparatorView() {
+        let backgroundColor = codeTintColor.withAlphaComponent(0.95)
+        contentSeparatorView.isUserInteractionEnabled = false
+        contentSeparatorView.backgroundColor = backgroundColor
+        contentSeparatorView.alpha = 1
+    }
+    
+    func setupFontChangePopupBlurView() {
+        let bounds = view.bounds
+        let effect = UIBlurEffect(style: .dark)
+        fontChangePopupBlurView.layer.cornerRadius = 0
+        fontChangePopupBlurView.bounds = bounds
+        fontChangePopupBlurView.effect = effect
     }
     
     func setupFontChangePopupBackView() {
         let bounds = CGRect(x: 0, y: 0, width: 260, height: 150)
+        fontChangePopupBackView.layer.cornerRadius = 0
         fontChangePopupBackView.backgroundColor = .clear
         fontChangePopupBackView.bounds = bounds
     }
@@ -271,17 +296,11 @@ private extension CodeSnippetViewController {
         fontChangeContentView.bounds = bounds
     }
     
-    func setupFontChangePopupBlurView() {
-        let bounds = view.bounds
-        let effect = UIBlurEffect(style: .dark)
-        fontChangePopupBlurView.bounds = bounds
-        fontChangePopupBlurView.effect = effect
-    }
-    
     func setupFontChangeDoneButton() {
         let title = Keys.UI.Button.doneButtonTitle
         fontChangeDoneButton.backgroundColor = .clear
         fontChangeDoneButton.tintColor = codeTintColor
+        fontChangeDoneButton.setTitleColor(codeTintColor, for: .normal)
         fontChangeDoneButton.setTitle(title, for: .normal)
     }
     
@@ -292,6 +311,7 @@ private extension CodeSnippetViewController {
         fontChangeSlider.minimumTrackTintColor = codeTintColor
         fontChangeSlider.minimumValue = minimumValue
         fontChangeSlider.maximumValue = maximumValue
+        fontChangeSlider.tintColor = codeTintColor
         fontChangeSlider.value = codeFontSize
     }
     
@@ -312,46 +332,59 @@ private extension CodeSnippetViewController {
     }
     
     func setCodeContentAppearance(appearanceType: ACBaseAppearanceType = .dark) {
-        let secondaryAlpha: CGFloat
-        let backgroundColor: UIColor
-        let textColor: UIColor
+        let backgroundAlpha: CGFloat!
+        let secondaryAlpha: CGFloat!
+        let backgroundColor: UIColor!
+        let textColor: UIColor!
         switch appearanceType {
         case .light:
+            backgroundAlpha = 0.95
             secondaryAlpha = 0.1
-            backgroundColor = .white.withAlphaComponent(0.95)
+            backgroundColor = .white
             textColor = .black
         case .dark:
+            backgroundAlpha = 0.85
             secondaryAlpha = 0.06
-            backgroundColor = .black.withAlphaComponent(0.85)
+            backgroundColor = .black
             textColor = .white
         case .system:
+            backgroundAlpha = 0.85
             secondaryAlpha = 0.01
-            backgroundColor = .black.withAlphaComponent(0.85)
+            backgroundColor = .black
             textColor = codeTintColor
         }
-        fastContentAppearanceAnimation(textColor: textColor,
-                                       backgroundColor: backgroundColor,
-                                       secondaryAlpha: secondaryAlpha)
+        /**
+         ////////////////////////////////////
+         */
+        let animation = UIViewPropertyAnimator(duration: 0.46, curve: .easeIn)
+        animation.addAnimations { [self] in
+            secondaryCodeBackgroundView.backgroundColor = codeTintColor.withAlphaComponent(secondaryAlpha)
+            codeBackgroundView.backgroundColor = backgroundColor.withAlphaComponent(backgroundAlpha)
+            codeTextView.textColor = textColor
+        }
+        animation.startAnimation()
     }
     
     func animateViewIn(for view: UIView, animationType: ACBaseAnimationType) {
         switch animationType {
         case .present:
+            /**
+             ////////////////////////////////////
+             */
             animatedViewBaseConfiguration(for: view)
-            fastAnimatedViewPresent(for: view)
+            fastAnimation { [self] in
+                fastAnimatedViewSetup(for: view, alpha: 1, transform: 1)
+            }
         case .hide:
-            fastAnimatedViewHide(for: view)
+            /**
+             ////////////////////////////////////
+             */
+            fastAnimation { [self] in
+                fastAnimatedViewSetup(for: view, alpha: 0, transform: 1.2)
+            } completion: {
+                view.removeFromSuperview()
+            }
         }
-    }
-    
-    func fastContentAppearanceAnimation(textColor: UIColor, backgroundColor: UIColor, secondaryAlpha: CGFloat) {
-        let animation = UIViewPropertyAnimator(duration: 0.4, curve: .easeIn) { [self] in
-            let backgroundColor = codeTintColor.withAlphaComponent(secondaryAlpha)
-            secondaryCodeBackgroundView.backgroundColor = backgroundColor
-            codeBackgroundView.backgroundColor = backgroundColor
-            codeTextView.textColor = textColor
-        }
-        animation.startAnimation()
     }
     
     func animatedViewBaseConfiguration(for view: UIView) {
@@ -360,26 +393,6 @@ private extension CodeSnippetViewController {
         backgroundView.addSubview(view)
         view.center = center
         fastAnimatedViewSetup(for: view, alpha: 0, transform: 1.2)
-    }
-    
-    func fastAnimatedViewPresent(for view: UIView) {
-        /**
-         //////////////////
-         */
-        UIView.animate(withDuration: 0.4) { [self] in
-            fastAnimatedViewSetup(for: view, alpha: 1, transform: 1)
-        }
-    }
-    
-    func fastAnimatedViewHide(for view: UIView) {
-        /**
-         //////////////////
-         */
-        UIView.animate(withDuration: 0.4, animations: { [self] in
-            fastAnimatedViewSetup(for: view, alpha: 0, transform: 1.2)
-        }, completion: { _ in
-            view.removeFromSuperview()
-        })
     }
     
     func fastAnimatedViewSetup(for view: UIView, alpha: CGFloat, transform: Double) {

@@ -23,4 +23,12 @@ public extension String {
         let title = self.map { "\($0)" }.joined(separator: separator)
         return title.uppercased()
     }
+    
+    mutating func removeScopes() -> String {
+        /**
+         ////////////////////////////
+         */
+        let edittedName = String(self.dropLast().dropLast())
+        return edittedName
+    }
 }

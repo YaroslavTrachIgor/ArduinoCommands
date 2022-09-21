@@ -15,13 +15,13 @@ public extension CGFloat {
     enum Corners {
         
         //MARK: Static
-        static var baseACSecondaryRounding: CGFloat {
-            return 28.0
+        public static var baseACSecondaryRounding: CGFloat {
+            return 12.0
         }
-        static var baseACRounding: CGFloat {
+        public static var baseACRounding: CGFloat {
             return 20.0
         }
-        static var baseACBigRounding: CGFloat {
+        public static var baseACBigRounding: CGFloat {
             return 28.0
         }
     }

@@ -50,6 +50,8 @@
 		C474CC5427B2B53D00B1FD9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C474CC5227B2B53D00B1FD9A /* LaunchScreen.storyboard */; };
 		C474CC5F27B2B53D00B1FD9A /* ArduinoCommandsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474CC5E27B2B53D00B1FD9A /* ArduinoCommandsTests.swift */; };
 		C474CC6A27B2B53D00B1FD9A /* ArduinoCommandsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474CC6927B2B53D00B1FD9A /* ArduinoCommandsUITests.swift */; };
+		CE177C6B28DA998E00B1B18D /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6A28DA998D00B1B18D /* UISegmentedControlExtensions.swift */; };
+		CE177C6D28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */; };
 		CE2BBCC228B8360000D8F42D /* CodeSnippetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */; };
 		CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56578F287F0D0600947DCB /* ACNetworkManager.swift */; };
 		CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */; };
@@ -131,6 +133,7 @@
 		CEDBC0852860CA6B00C933AF /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */; };
 		CEDBC08C2860D63000C933AF /* onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC08B2860D63000C933AF /* onboarding.json */; };
 		CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */; };
+		CEEC354C28D940F200BF5FC5 /* CodeSnippetUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC354B28D940F200BF5FC5 /* CodeSnippetUIModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +215,8 @@
 		C474CC6527B2B53D00B1FD9A /* ArduinoCommandsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArduinoCommandsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474CC6927B2B53D00B1FD9A /* ArduinoCommandsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCommandsUITests.swift; sourceTree = "<group>"; };
 		C474CC6B27B2B53D00B1FD9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE177C6A28DA998D00B1B18D /* UISegmentedControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExtensions.swift; sourceTree = "<group>"; };
+		CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetViewController.swift; sourceTree = "<group>"; };
 		CE56578F287F0D0600947DCB /* ACNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNetworkManager.swift; sourceTree = "<group>"; };
 		CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNotificationManager.swift; sourceTree = "<group>"; };
@@ -294,6 +299,7 @@
 		CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		CEDBC08B2860D63000C933AF /* onboarding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = onboarding.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		CEEC354B28D940F200BF5FC5 /* CodeSnippetUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetUIModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,10 +415,12 @@
 				CECB4A9A28AB4D4C00278130 /* Representable */,
 				84CCC935281830F1008371F1 /* CALayerExtensions.swift */,
 				CE8C6810289C00CE006C1888 /* CGFloatExtensions.swift */,
+				CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */,
 				849CBE6A27F11F1500DCEBA3 /* UIButtonExtensions.swift */,
 				CE84FAAA2866A35900CE9D4D /* UIColorExtensions.swift */,
 				8464649327E4FE46004B0D12 /* UIFontExtensions.swift */,
 				84A81C0A282FE88C00FBFC7B /* UILabelExtensions.swift */,
+				CE177C6A28DA998D00B1B18D /* UISegmentedControlExtensions.swift */,
 				CE697C69285A0EF10091CCF1 /* UITextViewExtensions.swift */,
 				CE8C6812289C02CE006C1888 /* UIViewExtensions.swift */,
 				CE84FAB1286765BA00CE9D4D /* UIViewControllerExtensions.swift */,
@@ -515,6 +523,7 @@
 		CE2BBCC028B835A000D8F42D /* CodeSnippet */ = {
 			isa = PBXGroup;
 			children = (
+				CEEC354B28D940F200BF5FC5 /* CodeSnippetUIModel.swift */,
 				CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */,
 				CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */,
 			);
@@ -996,6 +1005,7 @@
 				CE78D58B28D5880D0040B4D2 /* CodeSnippetPresenter.swift in Sources */,
 				CECB4A9728AB4BB700278130 /* IntroBackgroundView.swift in Sources */,
 				CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */,
+				CEEC354C28D940F200BF5FC5 /* CodeSnippetUIModel.swift in Sources */,
 				8464649427E4FE46004B0D12 /* UIFontExtensions.swift in Sources */,
 				CE6B0C072884D8AE007F0F63 /* ACBasePresenter.swift in Sources */,
 				CE9235DC28ABD8000037846F /* IntroCloseButton.swift in Sources */,
@@ -1056,6 +1066,7 @@
 				CE8CFE0E28A6FC2200A88586 /* SettingsView.swift in Sources */,
 				CECB4A9928AB4BDC00278130 /* IntroCardView.swift in Sources */,
 				84E4A2F627F24327002F7BFA /* ACActivityManager.swift in Sources */,
+				CE177C6B28DA998E00B1B18D /* UISegmentedControlExtensions.swift in Sources */,
 				CE6C4D9A2869851C00D14AEA /* ACGrayAlertManager.swift in Sources */,
 				CE9235ED28AC9DAC0037846F /* SettingsUIModel.swift in Sources */,
 				CE6EC77D288DE0400020DAFF /* ACGradientType.swift in Sources */,
@@ -1066,6 +1077,7 @@
 				840B9FC628418F2700EA6D47 /* DataExtensions.swift in Sources */,
 				CE6B0C0B28855D61007F0F63 /* ACCustomCollectionViewCell.swift in Sources */,
 				CE78D58928CC59FA0040B4D2 /* NumericExtensions.swift in Sources */,
+				CE177C6D28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift in Sources */,
 				849CBE6B27F11F1600DCEBA3 /* UIButtonExtensions.swift in Sources */,
 				CE9235EB28AC3DD10037846F /* ACSettingsToggleParameterModel.swift in Sources */,
 				8464648527DF83F6004B0D12 /* ACPerson.swift in Sources */,

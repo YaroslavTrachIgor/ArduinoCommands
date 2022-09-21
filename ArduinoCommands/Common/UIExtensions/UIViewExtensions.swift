@@ -16,7 +16,7 @@ public extension UIView {
     /// in oreder to creare an atmosphere of `Glassmorphism`.
     /// - Parameters:
     ///   - width: border width(with a default value of 0.2);
-    ///   - color: border color(with a default white `UIColor`).
+    ///   - color: border color(with a default white value).
     func setFastGlassmorphismBorder(width: CGFloat = 0.2, color: UIColor = .white) {
         let borderColor = color.withAlphaComponent(0.25).cgColor
         layer.borderColor = borderColor

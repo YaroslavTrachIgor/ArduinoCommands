@@ -69,6 +69,7 @@ extension CodeSnippetPresenter: CodeSnippetPresenterProtocol {
     //MARK: Internal
     internal func onViewDidLoad(completion: @escaping (UIColor, Float) -> Void) {
         completion(codeTintColor, codeFontSize)
+        view?.setupCodeContentViewAppearance(appearanceType: .dark)
         view?.setupMainUI()
     }
     
@@ -113,6 +114,7 @@ extension CodeSnippetPresenter: CodeSnippetPresenterProtocol {
         codeTintColor = color
         delegate?.setCodeTintColor(color: color)
         view?.setupMainUI()
+        view?.setupCodeContentViewAppearance(appearanceType: .dark)
     }
     
     internal func onCopyCode() {

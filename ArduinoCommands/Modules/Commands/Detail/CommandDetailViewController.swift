@@ -25,69 +25,12 @@ private extension CommandDetailViewController {
             enum Button {
                 
                 //MARK: Static
-                static let codeSnippetTitle = "Code Snippet"
+                static let goToScreenshotTitle = "Screenshot"
+                static let goToCodeSnippetTitle = "Code Snippet"
             }
         }
     }
 }
-
-private extension UIBarButtonItem {
-
-    //MARK: Private
-    enum Keys {
-        enum UI {
-            enum ImageNames {
-                
-                //MARK: Static
-                static let costomBackItemName = "arrow.backward"
-                static let shareItemName = "square.and.arrow.up"
-                static let copyItemName = "square.on.square"
-            }
-        }
-    }
-}
-
-
-public extension UIBarButtonItem {
-    
-    //MARK: Public
-    func setupFastLightBarButtonItem(imageName: String, imageWeight: UIImage.SymbolWeight = .regular, tintColor: UIColor = .white) {
-        let config = UIImage.SymbolConfiguration(weight: imageWeight)
-        let image = UIImage(systemName: imageName, withConfiguration: config)
-        self.tintColor = tintColor
-        self.image = image
-    }
-    
-    func setupBaseCopyBarButton() {
-        setupFastLightBarButtonItem(imageName: Keys.UI.ImageNames.copyItemName)
-    }
-    
-    func setupBaseShareBarButton() {
-        setupFastLightBarButtonItem(imageName: Keys.UI.ImageNames.shareItemName)
-    }
-    
-    func setupBaseBackBarButton() {
-        setupFastLightBarButtonItem(imageName: Keys.UI.ImageNames.costomBackItemName)
-    }
-}
-
-
-public extension UISegmentedControl {
-    
-    //MARK: Public
-    func setupBaseDetailDarkSegmentedControl() {
-        let attributedFontKey = NSAttributedString.Key.font
-        let attributedForegroundColorKey = NSAttributedString.Key.foregroundColor
-        let segmentedControlBackColor: UIColor = .black.withAlphaComponent(0.25)
-        let font = UIFont.ACFont(ofSize: 12, weight: .bold)
-        self.backgroundColor = segmentedControlBackColor
-        self.selectedSegmentTintColor = backgroundColor
-        self.setTitleTextAttributes([attributedForegroundColorKey: segmentedControlBackColor], for: .selected)
-        self.setTitleTextAttributes([attributedForegroundColorKey: UIColor.white], for: .normal)
-        self.setTitleTextAttributes([attributedFontKey: font], for: .selected)
-    }
-}
-
 
 
 //MARK: - Main command detail ViewController
@@ -203,6 +146,15 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         adsManager.setupCommandDetailAdBunner(for: adBunnerView)
     }
     
+    internal func setupRateManager() {
+        ACRateManager.shared.currentViewController = self
+        ACRateManager.shared.presentRateAlert()
+    }
+    
+    internal func presentActivityVC(activityItems: [Any]) {
+        ACActivityManager.presentVC(activityItems: activityItems, on: self)
+    }
+    
     internal func presentFastImageViewController() {
         let imageVC = FastImageViewController()
         imageVC.image = codeScreenshotImageView.image
@@ -213,15 +165,6 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         let codeSnippetVC = CodeSnippetViewController.instantiate()
         codeSnippetVC.model = model
         navigationController?.pushViewController(codeSnippetVC, animated: true)
-    }
-    
-    internal func setupRateManager() {
-        ACRateManager.shared.currentViewController = self
-        ACRateManager.shared.presentRateAlert()
-    }
-    
-    internal func presentActivityVC(activityItems: [Any]) {
-        ACActivityManager.presentVC(activityItems: activityItems, on: self)
     }
     
     internal func moveToThePreviousViewController() {
@@ -300,7 +243,7 @@ private extension CommandDetailViewController {
     }
     
     func setupCodeSnippetButton() {
-        let title = Keys.UI.Button.codeSnippetTitle
+        let title = Keys.UI.Button.goToCodeSnippetTitle
         let tintColor = Keys.UI.Colors.tintColor
         let attributes = setupCodeSnippetButtonTitleContainer()
         let attributedTitle = AttributedString(title, attributes: attributes)
