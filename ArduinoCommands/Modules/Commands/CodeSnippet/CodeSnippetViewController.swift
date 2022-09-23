@@ -331,6 +331,8 @@ private extension CodeSnippetViewController {
         button.backgroundColor = backgroundColor
     }
     
+    /// This changes Code Content appearance with animation;
+    /// - Parameter appearanceType: case of content appearanc.
     func setCodeContentAppearance(appearanceType: ACBaseAppearanceType = .dark) {
         let backgroundAlpha: CGFloat!
         let secondaryAlpha: CGFloat!
@@ -354,7 +356,10 @@ private extension CodeSnippetViewController {
             textColor = codeTintColor
         }
         /**
-         ////////////////////////////////////
+         In the code below, after we configured all the main variables
+         which would be change depending on the particular content appearance,
+         we create a special animation block,
+         in which all these variables will be substituted under separate views.
          */
         let animation = UIViewPropertyAnimator(duration: 0.46, curve: .easeIn)
         animation.addAnimations { [self] in
@@ -365,11 +370,18 @@ private extension CodeSnippetViewController {
         animation.startAnimation()
     }
     
+    /// This configures fast animation methods
+    /// for hiding or presenting any kind of `UIView`.
+    /// - Parameters:
+    ///   - view: UI element that will be animated;
+    ///   - animationType: kind of animation(present or hide view).
     func animateViewIn(for view: UIView, animationType: ACBaseAnimationType) {
         switch animationType {
         case .present:
             /**
-             ////////////////////////////////////
+             In the code below, we configure the view animation processes for the case of presenting it.
+             Before we animate the view, we use the `animatedViewBaseConfiguration` method,
+             which prepares a UI element for easy future interaction
              */
             animatedViewBaseConfiguration(for: view)
             fastAnimation { [self] in
@@ -377,7 +389,9 @@ private extension CodeSnippetViewController {
             }
         case .hide:
             /**
-             ////////////////////////////////////
+             In the code below, we configure the view animation processes for the case of hiding it.
+             In order to prevent the user from being disturbed by the animated view,
+             we use a `completion` block in which we remove this view from the main superview.
              */
             fastAnimation { [self] in
                 fastAnimatedViewSetup(for: view, alpha: 0, transform: 1.2)

@@ -8,6 +8,15 @@
 import Foundation
 import UIKit
 
+//MARK: - Section Type cases
+enum BasicKnowledgeSectionRow {
+    case links([ACLinkCellModel])
+    case team([ACPersonCellModel])
+    case users([ACUserCellModel])
+    case basics([ACBasicsCellModel])
+}
+
+
 //MARK: - Constants
 public extension ACBasicKnowledgeStorage {
     
@@ -47,10 +56,12 @@ public extension ACBasicKnowledgeStorage {
 //MARK: - BasicKnowledge section content Storage
 public enum ACBasicKnowledgeStorage {
     
-    //MARK: Static
-    /**
-     ////////////////////
-     */
+    //MARK: Statiс
+    /// This fills an array of sections  for `Basic Knowledge` Menu VC.
+    ///
+    /// Such method of configuring sections and tableView
+    /// makes our code much more flexible and convenient for reusing(Data-Driven UI principle).
+    /// - Returns: the sequence of sections.
     static func prepareSections() -> [BasicKnowledgeSectionRow] {
         var sections = [BasicKnowledgeSectionRow]()
         sections.append(.basics(ACBasicKnowledgeStorage.basicsModels))
