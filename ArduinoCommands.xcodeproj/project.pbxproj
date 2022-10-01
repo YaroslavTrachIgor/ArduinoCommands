@@ -52,6 +52,7 @@
 		C474CC6A27B2B53D00B1FD9A /* ArduinoCommandsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474CC6927B2B53D00B1FD9A /* ArduinoCommandsUITests.swift */; };
 		CE177C6B28DA998E00B1B18D /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6A28DA998D00B1B18D /* UISegmentedControlExtensions.swift */; };
 		CE177C6D28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */; };
+		CE177C6F28E11DDC00B1B18D /* ACCommandDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6E28E11DDC00B1B18D /* ACCommandDetails.swift */; };
 		CE2BBCC228B8360000D8F42D /* CodeSnippetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */; };
 		CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56578F287F0D0600947DCB /* ACNetworkManager.swift */; };
 		CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */; };
@@ -217,6 +218,7 @@
 		C474CC6B27B2B53D00B1FD9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE177C6A28DA998D00B1B18D /* UISegmentedControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExtensions.swift; sourceTree = "<group>"; };
 		CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
+		CE177C6E28E11DDC00B1B18D /* ACCommandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommandDetails.swift; sourceTree = "<group>"; };
 		CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetViewController.swift; sourceTree = "<group>"; };
 		CE56578F287F0D0600947DCB /* ACNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNetworkManager.swift; sourceTree = "<group>"; };
 		CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNotificationManager.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				84A81C13282FEBB700FBFC7B /* ACCommand.swift */,
+				CE177C6E28E11DDC00B1B18D /* ACCommandDetails.swift */,
 				84A81C11282FEB9400FBFC7B /* ACCommandsSection.swift */,
 			);
 			path = ACCommands;
@@ -1098,6 +1101,7 @@
 				CE8C681F28A16161006C1888 /* PersonCellUIModel.swift in Sources */,
 				C474CC4A27B2B53B00B1FD9A /* SceneDelegate.swift in Sources */,
 				CE6B0C092884D97B007F0F63 /* ACBaseConfigurableView.swift in Sources */,
+				CE177C6F28E11DDC00B1B18D /* ACCommandDetails.swift in Sources */,
 				CE697C6A285A0EF20091CCF1 /* UITextViewExtensions.swift in Sources */,
 				CE58E2DB28715B21004D5A42 /* CommandDetailPresenter.swift in Sources */,
 				CE9235F328AC9F0E0037846F /* SettingsPreviewCell.swift in Sources */,

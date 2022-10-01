@@ -139,6 +139,19 @@ public enum ACBasicKnowledgeStorage {
         ),
         ACPersonCellModel(
             person: ACPerson(
+                name: "Voloshenko \nUriy",
+                role: "Writer",
+                description: "He was responsible for the analysis information to IDE commands and devices used with them."
+            ),
+            roleIcon: "pencil.circle.fill",
+            tintColor: Constants.TeamSection.contentSecondaryTintColor,
+            backColor: Constants.TeamSection.secondaryBackColor,
+            secondaryColor: Constants.TeamSection.contentSecondaryTintColor,
+            shadowAvailable: false,
+            backImageName: "shape-team-deco-3"
+        ),
+        ACPersonCellModel(
+            person: ACPerson(
                 name: "Lutskiy \nGleb",
                 role: "Designer",
                 description: "He was responsible for supporting the constant design of the directory, writing text to the commands of special libraries."
@@ -162,19 +175,6 @@ public enum ACBasicKnowledgeStorage {
             secondaryColor: Constants.TeamSection.contentSecondaryTintColor,
             shadowAvailable: false,
             backImageName: "shape-team-deco-2"
-        ),
-        ACPersonCellModel(
-            person: ACPerson(
-                name: "Voloshenko \nUriy",
-                role: "Writer",
-                description: "He was responsible for the analysis information to IDE commands and devices used with them."
-            ),
-            roleIcon: "pencil.circle.fill",
-            tintColor: Constants.TeamSection.contentSecondaryTintColor,
-            backColor: Constants.TeamSection.secondaryBackColor,
-            secondaryColor: Constants.TeamSection.contentSecondaryTintColor,
-            shadowAvailable: false,
-            backImageName: "shape-team-deco-3"
         )
     ]
     static let usersModels = [
@@ -187,10 +187,26 @@ public enum ACBasicKnowledgeStorage {
                 iconName: "user-1-icon",
                 dateWhenAdded: Date.from(year: 2019, month: 11, day: 15),
                 secondaryColor: UIColor.systemTeal,
-                roleDescription: "He was responsible for creating a design framework and looking for mistakes of the designers. Moreover, he have done a lot to create special description to libraries of special devices, creating examples of commands using. He became the application founder. He was responsible for creating a design framework and looking for mistakes of the designers. Moreover, he have done a lot to create special description to libraries of special devices.",
+                roleDescription: "He is the founder of ArduinoCommands. He was responsible for creating the basic idea of design, developing and writing code for app. He organized the use of all content and checked its quality. Additionally, he was responsible for the release of ArduinoCommands in the App Store.",
                 extraInfo: "Founder",
                 roleLabelWidth: 104,
                 extraInfoLabelWidth: 92
+            ),
+            tintColor: Constants.UsersSection.contentTintColor
+        ),
+        ACUserCellModel(
+            content: ACUser(
+                name: "Uriy",
+                surname: "Voloshenko",
+                role: "Writer",
+                age: 38,
+                iconName: nil,
+                dateWhenAdded: Date.from(year: 2022, month: 05, day: 05),
+                secondaryColor: Constants.UsersSection.secondaryColor,
+                roleDescription: "He was responsible for analising information on the Internet which concerns Arduino IDE language, commands and devices used with them. Another point to mention is that he found a lot of sites and resources with info which is incredibly important for the App.",
+                extraInfo: "New",
+                roleLabelWidth: 80,
+                extraInfoLabelWidth: 58
             ),
             tintColor: Constants.UsersSection.contentTintColor
         ),
@@ -203,7 +219,7 @@ public enum ACBasicKnowledgeStorage {
                 iconName: "user-3-icon",
                 dateWhenAdded: Date.from(year: 2021, month: 09, day: 30),
                 secondaryColor: Constants.UsersSection.secondaryColor,
-                roleDescription: "He was responsible for maintaining a stable directory design and creating new slides for commands using already mentioned design strategy. Moreover, he helped a lot Yaroslav to write text for commands of libraries for special devices. He was responsible for maintaining a stable directory design and creating new slides for commands using already mentioned design strategy. Moreover, he helped a lot Yaroslav to write text for commands.",
+                roleDescription: "He was responsible for checking maintaining a stable directory design and preparing information about new commands. Moreover, he helped a lot writers to prepare the articles about commands of libraries for special devices.",
                 extraInfo: "",
                 roleLabelWidth: 95,
                 extraInfoLabelWidth: 0
@@ -219,25 +235,9 @@ public enum ACBasicKnowledgeStorage {
                 iconName: "user-2-icon",
                 dateWhenAdded: Date.from(year: 2022, month: 12, day: 10),
                 secondaryColor: Constants.UsersSection.secondaryColor,
-                roleDescription: "She was responsible for editing and creating screenshots of example tasks which Yaroslav was usually preparing using TinkerCad service. She also helped Gleb to create a beautiful and useful presentation. She was responsible for editing and creating screenshots of example tasks which Yaroslav was usually preparing using TinkerCad service. She also helped Gleb to create a beautiful and useful presentation. She was responsible for editing screenshots.",
+                roleDescription: "She was responsible for editing and creating screenshots of example tasks which developers were preparing using Tinkercad service(you can view her work on any Command detail screen).",
                 extraInfo: "New",
                 roleLabelWidth: 95,
-                extraInfoLabelWidth: 58
-            ),
-            tintColor: Constants.UsersSection.contentTintColor
-        ),
-        ACUserCellModel(
-            content: ACUser(
-                name: "Uriy",
-                surname: "Voloshenko",
-                role: "Writer",
-                age: 38,
-                iconName: nil,
-                dateWhenAdded: Date.from(year: 2022, month: 05, day: 05),
-                secondaryColor: Constants.UsersSection.secondaryColor,
-                roleDescription: "He was responsible for analising information which concerns IDE language commands and devices used with them. Another point to mention is that he found a lot of sites with info which is incredibly important for the application. He was responsible for analising information which concerns IDE language commands and devices used with them. Another point to mention is that he found a lot of sites with info which is incredibly important.",
-                extraInfo: "New",
-                roleLabelWidth: 80,
                 extraInfoLabelWidth: 58
             ),
             tintColor: Constants.UsersSection.contentTintColor

@@ -31,7 +31,7 @@ private extension CodeSnippetViewController {
                 //MARK: Static
                 static let footer = "View the code example of Command initalization. This will let you understand the basic case of its usage."
             }
-            enum View {
+            enum Color {
                 
                 //MARK: Static
                 static let backgroundColor = #colorLiteral(red: 0.1044024155, green: 0.1050226167, blue: 0.1131809279, alpha: 1)
@@ -179,7 +179,7 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
         appearanceSegmentedControl.setupBaseDetailDarkSegmentedControl()
         setupCodeContentEditingButton(for: colorPickerGoButton, imageName: Keys.UI.Button.colorPickerGoIcon)
         setupCodeContentEditingButton(for: fontChangeButton, imageName: Keys.UI.Button.fontChangeIcon)
-        view.backgroundColor = Keys.UI.View.backgroundColor
+        view.backgroundColor = Keys.UI.Color.backgroundColor
     }
     
     internal func moveToThePreviousViewController() {
@@ -224,6 +224,7 @@ private extension CodeSnippetViewController {
         let content = uiModel.code(codeFontSize: codeFontSize)
         codeTextView.backgroundColor = .clear
         codeTextView.attributedText = content
+        codeTextView.tintColor = codeTintColor
         codeTextView.textColor = .white
     }
     
@@ -291,7 +292,8 @@ private extension CodeSnippetViewController {
     func setupFontChangeContentView() {
         let bounds = CGRect(x: 0, y: 0, width: 260, height: 55)
         let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
-        fontChangeContentView.backgroundColor = .secondarySystemBackground
+        let backgroundColor = Keys.UI.Color.backgroundColor
+        fontChangeContentView.backgroundColor = backgroundColor
         fontChangeContentView.layer.cornerRadius = cornerRadius
         fontChangeContentView.bounds = bounds
     }
@@ -369,7 +371,26 @@ private extension CodeSnippetViewController {
         }
         animation.startAnimation()
     }
+}
+
+
+//MARK: - ColorPickerViewController delegate extension
+extension CodeSnippetViewController: UIColorPickerViewControllerDelegate {
     
+    //MARK: Internal
+    internal func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        presenter?.setNewTintColor(with: viewController.selectedColor)
+    }
+    
+    internal func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        presenter?.setNewTintColor(with: viewController.selectedColor)
+    }
+}
+
+
+public extension UIViewController {
+    
+    //MARK: Public
     /// This configures fast animation methods
     /// for hiding or presenting any kind of `UIView`.
     /// - Parameters:
@@ -413,19 +434,5 @@ private extension CodeSnippetViewController {
         let transform = CGAffineTransform(scaleX: transform, y: transform)
         view.transform = transform
         view.alpha = alpha
-    }
-}
-
-
-//MARK: - ColorPickerViewController delegate extension
-extension CodeSnippetViewController: UIColorPickerViewControllerDelegate {
-    
-    //MARK: Internal
-    internal func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        presenter?.setNewTintColor(with: viewController.selectedColor)
-    }
-    
-    internal func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        presenter?.setNewTintColor(with: viewController.selectedColor)
     }
 }

@@ -17,7 +17,13 @@ private extension CommandDetailPresenter {
                 
                 //MARK: Static
                 /**
-                 //////////////////
+                 The sense of advertising system in the app
+                 is to display ad sessions and ad blocks depending on the type of article.
+                 Advertising will not be shown if articles are in the first section(`The main Operators`),
+                 in all other cases ads won't be shown.
+
+                 The easiest way to keep track of a section's type is through its header(or subtitle of command).
+                 Therefore, we create a key for this section, which will be the same as in the JSON data file.
                  */
                 static let firstSectionSubtitle = "The main Operators"
             }
@@ -32,6 +38,7 @@ internal protocol CommandDetailPresenterProtocol: ACBasePresenter {
     func onViewScreenshotButton()
     func onViewCodeSnippet()
     func onChangeContentButton(with index: Int)
+    func onCopyDetails(for tag: Int)
     func onShareButton()
     func onBackToMenu()
     func onCopyButton()
@@ -66,7 +73,7 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
          Before we setup Ad Bunner view,
          we need to check that user wants to read an Article from the `Paid` section.
          
-         Using `Command` subtitle we can check:
+         By using `Command` subtitle we can check:
          if it is first section, than we won't present Ad Bunner,
          in other cases we will distract user with Advertisment.
          */
@@ -104,6 +111,22 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         default:
             break
         }
+    }
+    
+    internal func onCopyDetails(for tag: Int) {
+        let contentForCopying: String!
+        switch tag {
+        case 0:
+            contentForCopying = model?.details.syntax!
+        case 1:
+            contentForCopying = model?.details.arguments!
+        case 2:
+            contentForCopying = model?.details.returns!
+        default:
+            contentForCopying = nil
+        }
+        ACGrayAlertManager.presentCopiedAlert(contentType: .content)
+        ACPasteboardManager.copy(contentForCopying)
     }
     
     internal func onCopyButton() {

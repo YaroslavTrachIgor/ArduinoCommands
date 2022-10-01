@@ -12,19 +12,19 @@ import UIKit
 public extension NSString {
     
     //MARK: Public
-    ///
+    /// This one highlights the right parts of the string with the right font.
     /// - Parameters:
-    ///   - boldPartsOfString:
-    ///   - font:
-    ///   - boldFont:
-    /// - Returns:
-    func addBoldText(boldPartsOfString: Array<NSString>, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
+    ///   - boldPartsOfString: array of  parts of string that will be highlighted;
+    ///   - font: normal font of self;
+    ///   - boldFont: new font for needed parts of string;
+    /// - Returns: content with highlited parts of it of type `NSString`.
+    func highlight(partsOfString: Array<NSString>, font: UIFont!, boldFont: UIFont!) -> NSAttributedString {
         let nonBoldFontAttribute = [NSAttributedString.Key.font: font!]
         let boldFontAttribute = [NSAttributedString.Key.font: boldFont!]
         let boldString = NSMutableAttributedString(string: self as String, attributes: nonBoldFontAttribute)
-        let boldCharactersCount = boldPartsOfString.count
+        let boldCharactersCount = partsOfString.count
         for i in 0 ..< boldCharactersCount {
-            let boldCharacter = boldPartsOfString[i] as String
+            let boldCharacter = partsOfString[i] as String
             let range = self.range(of: boldCharacter)
             boldString.addAttributes(boldFontAttribute, range: range)
         }

@@ -80,7 +80,11 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
             let user = ACBasicKnowledgeStorage.usersModels[row]
             let userContent = user.content
             /**
-             /////////////////////////
+             In this section of main Menu, we don't use case constants,
+             because it does the same thing, as in `Users` sections.
+             
+             That's why we get data not from the `.team(...)` case,
+             but from the `BasicKnowledgeStorage`entity.
              */
             view?.presentUserSheetVC(with: userContent)
         case .users(let users):

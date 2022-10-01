@@ -16,6 +16,9 @@ protocol CommandDetailUIModelProtocol {
     var returns: Bool! { get }
     var isUsedWithDevices: Bool! { get }
     var codeScreenImage: UIImage! { get }
+    var syntaxDescription: String! { get }
+    var returnsDescription: String! { get }
+    var argumentsDescription: String! { get }
 }
 
 
@@ -43,11 +46,20 @@ extension CommandDetailUIModel: CommandDetailUIModelProtocol {
     internal var content: String! {
         model?.description
     }
+    internal var isUsedWithDevices: Bool! {
+        model?.isUsedWithDevices
+    }
     internal var returns: Bool! {
         model?.returns
     }
-    internal var isUsedWithDevices: Bool! {
-        model?.isUsedWithDevices
+    internal var syntaxDescription: String! {
+        model?.details.syntax
+    }
+    internal var returnsDescription: String! {
+        model?.details.returns
+    }
+    internal var argumentsDescription: String! {
+        model?.details.arguments
     }
     internal var codeScreenImage: UIImage! {
         let imageName = model?.imageURL!

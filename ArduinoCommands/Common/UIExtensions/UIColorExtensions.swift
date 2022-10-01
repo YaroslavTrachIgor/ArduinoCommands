@@ -21,7 +21,7 @@ public extension UIColor {
 }
 
 
-//MARK: - Fast Theme adaptable Color Initialization
+//MARK: - Fast Theme adaptable Color initialization
 public extension UIColor {
 
     //MARK: Public
@@ -41,7 +41,7 @@ public extension UIColor {
 }
 
 
-//MARK: - Fast hex Color transformation Initialization
+//MARK: - Fast hex Color transformation initialization
 public extension UIColor {
     
     //MARK: Public
@@ -73,7 +73,7 @@ public extension UIColor {
 }
 
 
-//MARK: -
+//MARK: - Fast Color helpful properties for saving to defaults setup extension
 public extension UIColor {
     
     //MARK: Public

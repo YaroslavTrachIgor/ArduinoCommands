@@ -65,7 +65,7 @@ final public class ACRateManager {
     }
     
     func presentRateAlert() {
-        let isNeeded = sessionsCount % 10 == 0
+        let isNeeded = sessionsCount % 12 == 0
         let rateAlert = setupRateAlert()
         /**
          In the code below, before showing an alert that will give the user the opportunity to rate the application,

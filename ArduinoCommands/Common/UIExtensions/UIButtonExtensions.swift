@@ -41,11 +41,28 @@ public extension UIButton {
 extension UIButton {
     
     //MARK: Public
-    func addBlurEffect() {
-        let cornerRadius = frame.height / 2
+    func addBlurEffect(cornerRadius: CGFloat? = nil,
+                       style: UIBlurEffect.Style = .regular) {
+        var corners: CGFloat
+        /**
+         Glassmorphism buttons, for which we use this background blur effect,
+         have capsuled background rounding in most cases.
+         
+         But we cannot set such flexible kind of rounding
+         as a default `cornerRadius` argument value.
+         That's why we set the default value of the argument as `nil`,
+         and if it equals to empty value(nil), than rounding would be capsuled.
+         In the other cases, we can set any needed corner radius.
+         */
+        if cornerRadius == nil {
+            corners = frame.height / 2
+        } else {
+            guard let cornerRadius = cornerRadius else { return }
+            corners = cornerRadius
+        }
         let blur = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         blur.isUserInteractionEnabled = false
-        blur.layer.cornerRadius = cornerRadius
+        blur.layer.cornerRadius = corners
         blur.clipsToBounds = true
         blur.frame = bounds
         insertSubview(blur, at: 0)
@@ -73,7 +90,8 @@ public extension UIButton.Configuration {
         imagePadding = 10
         cornerStyle = .large
         /**
-         In this function, we need to make it possible to not use the `backgroundColor`,
+         In this function, we need to make it possible to use
+         the `backgroundColor` depending on the case of usage,
          because some new button types(for example, `.gray` ones) introduced in iOS 15
          should not be subject to changes in some parameters.
          */

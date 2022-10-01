@@ -19,6 +19,7 @@ public final class ACCommand: Codable {
     var isLibraryMethod: Bool!
     var isUsedWithDevices: Bool!
     var returns: Bool!
+    var details: ACCommandDetails
     
     //MARK: Initialization
     init(name: String!,
@@ -29,7 +30,8 @@ public final class ACCommand: Codable {
          imageURL: String!,
          returns: Bool!,
          isUsedWithDevices: Bool!,
-         isLibraryMethod: Bool!) {
+         isLibraryMethod: Bool!,
+         details: ACCommandDetails) {
         self.name = name
         self.subtitle = subtitle
         self.imageURL = imageURL
@@ -39,5 +41,6 @@ public final class ACCommand: Codable {
         self.isLibraryMethod = isLibraryMethod
         self.isUsedWithDevices = isUsedWithDevices
         self.returns = returns
+        self.details = details
     }
 }

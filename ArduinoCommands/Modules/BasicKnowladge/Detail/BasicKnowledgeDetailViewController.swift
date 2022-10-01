@@ -37,6 +37,11 @@ private extension BasicKnowledgeDetailViewController {
                     static let decoLeftTitle = "IDE"
                 }
             }
+            enum Image {
+                
+                //MARK: Static
+                static let backgroundName = "basic-knowladge-background"
+            }
         }
     }
 }
@@ -128,6 +133,7 @@ extension BasicKnowledgeDetailViewController: ACBaseBasicKnowledgeDetailVCProtoc
         setupDecorationCircleViews()
         setupBottomContentBackView()
         setupBottomContentBackBlurView()
+        setupBottomContentBackImageView()
         leftDecoLabel.setupDecorationRoleLabel(content: Keys.UI.Label.Deco.decoLeftTitle)
         centerDecoLabel.setupDecorationRoleLabel(content: Keys.UI.Label.Deco.decoMiddleTitle, tintColor: .systemTeal)
         rightDecoLabel.setupDecorationRoleLabel(content: Keys.UI.Label.Deco.decoRightTitle, tintColor: .systemPink)
@@ -222,6 +228,14 @@ private extension BasicKnowledgeDetailViewController {
         bottomContentBackBlurView.layer.cornerRadius = cornerRadius
         bottomContentBackBlurView.clipsToBounds = true
         bottomContentBackBlurView.effect = effect
+    }
+    
+    func setupBottomContentBackImageView() {
+        let imageName = Keys.UI.Image.backgroundName
+        let image = UIImage(named: imageName)
+        bottomContentBackImageView.contentMode = .scaleAspectFit
+        bottomContentBackImageView.image = image
+        bottomContentBackImageView.alpha = 0.4
     }
     
     func setupDesignedByLabel() {

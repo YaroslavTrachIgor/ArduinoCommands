@@ -24,9 +24,16 @@ public extension String {
         return title.uppercased()
     }
     
+    /// This removes last two symbols in string.
+    /// - Returns: string without last two characters.
     mutating func removeScopes() -> String {
         /**
-         ////////////////////////////
+         In Code Snippet VCs, we need to bold some particular parts of content.
+         In most cases, these bold parts are command names.
+         But all the command names we can get from our JSON data has `()` ending,
+         and in the code examples these endings are absolutely different.
+         That's why we create a function that can remove a default command neme ending,
+         and nothing wil distract the work of `addBoldText(...)` function.
          */
         let edittedName = String(self.dropLast().dropLast())
         return edittedName

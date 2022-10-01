@@ -33,9 +33,6 @@ extension CodeSnippetUIModel: CodeSnippetUIModelProtocol {
     internal var linesContent: String! {
         var content = String()
         let maxLines = 40
-        /**
-         ////////////
-         */
         for lineNumber in 0...maxLines {
             content = content + " \(lineNumber)"
         }
@@ -51,7 +48,7 @@ extension CodeSnippetUIModel: CodeSnippetUIModelProtocol {
         let commandName = model?.name!.removeScopes()
         let boldPartsOfString = [NSString(string: commandName!)]
         let attributedCode = NSString(string: exampleOfCode!)
-        let attributedContent = attributedCode.addBoldText(boldPartsOfString: boldPartsOfString,
+        let attributedContent = attributedCode.highlight(partsOfString: boldPartsOfString,
                                                            font: font,
                                                            boldFont: boldFont)
         return attributedContent
