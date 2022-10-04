@@ -14,6 +14,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": true,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "setup()",
                     "arguments": "No arguments",
@@ -30,6 +32,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": true,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "loop()",
                     "arguments": "No arguments",
@@ -53,6 +57,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": true,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "pinMode(pin, mode)",
                     "arguments": "pin: pin number to set the mode of.\nmode: INPUT, OUTPUT, or INPUT_PULLUP.",
@@ -69,6 +75,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": true,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "digitalWrite(pin, value)",
                     "arguments": "pin: the Arduino pin number.\nvalue: HIGH or LOW.",
@@ -85,6 +93,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": true,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "digitalRead(pin)",
                     "arguments": "pin: the Arduino pin number you want to read",
@@ -107,6 +117,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": true,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "analogWrite(pin, value)",
                     "arguments": "pin: the Arduino pin to write to.\nvalue: between 0 (always off) and 255 (always on).",
@@ -123,6 +135,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "analogRead(pin)",
                     "arguments": "pin: the name of the analog input pin to read from(A0 to A15).",
@@ -139,6 +153,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "analogReference(type)",
                     "arguments": "type: which type of reference to use.",
@@ -162,6 +178,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "time = millis()",
                     "arguments": "None",
@@ -178,6 +196,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "time = micros()",
                     "arguments": "None",
@@ -194,6 +214,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "delay(ms)",
                     "arguments": "ms: the number of milliseconds to pause. Allowed data types: unsigned long.",
@@ -210,6 +232,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "delayMicroseconds(us)",
                     "arguments": "us: the number of microseconds to pause. Allowed data types: unsigned int.",
@@ -233,6 +257,8 @@
                 "returns": false,
                 "isUsedWithDevices": false,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.begin(speed)",
                     "arguments": "speed: in bits per second (baud). Allowed data types: long.",
@@ -249,6 +275,8 @@
                 "returns": false,
                 "isUsedWithDevices": false,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.end()",
                     "arguments": "No arguments",
@@ -265,6 +293,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.available()",
                     "arguments": "No arguments",
@@ -281,6 +311,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.read()",
                     "arguments": "No arguments",
@@ -297,6 +329,8 @@
                 "returns": false,
                 "isUsedWithDevices": false,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "Serial.flush()",
                     "arguments": "No arguments",
@@ -313,6 +347,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.print(val)",
                     "arguments": "val: the value to print. Allowed data types: any data type.",
@@ -329,6 +365,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.println(val)",
                     "arguments": "val: the value to print. Allowed data types: any data type.",
@@ -345,6 +383,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "Serial.write(val)",
                     "arguments": "val: a value to send as a single byte.",
@@ -361,6 +401,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "Serial.peek()",
                     "arguments": "No arguments",
@@ -384,6 +426,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "servo.attach(pin)",
                     "arguments": "pin: the number of the pin that the servo is attached to.",
@@ -400,6 +444,8 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "servo.write(angle)",
                     "arguments": "angle: the value to write to the servo, from 0 to 180",
@@ -409,13 +455,15 @@
             {
                 "name": "writeMicroseconds()",
                 "subtitle": "Robotics",
-                "description": "Writes a value in microseconds (us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft. On standard servos a parameter value of 1000 is fully counter-clockwise, 2000 is fully clockwise, and 1500 is in the middle. Note that some manufactures do not follow this standard very closely so that servos often respond to values between 700 and 2300. Feel free to increase these endpoints until the servo no longer continues to increase its range. Note however that attempting to drive a servo past its endpoints (often indicated by a growling sound) is a high-current state, and should be avoided. Continuous-rotation servos will respond to the writeMicrosecond function in an analogous manner to the write function.",
+                "description": "Writes a value in microseconds(us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft. On standard servos a parameter value of 1000 is fully counter-clockwise, 2000 is fully clockwise, and 1500 is in the middle. Note that some manufactures do not follow this standard very closely so that servos often respond to values between 700 and 2300. Feel free to increase these endpoints until the servo no longer continues to increase its range. Note however that attempting to drive a servo past its endpoints (often indicated by a growling sound) is a high-current state, and should be avoided. Continuous-rotation servos will respond to the writeMicrosecond function in an analogous manner to the write function.",
                 "baseDescription": "Writes a value in microseconds (us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft.",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nvoid setup() {\n  myservo.attach(9);\n    myservo.writeMicroseconds(1500);\n}\n\nvoid loop() {} ",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "servo.writeMicroseconds(us)",
                     "arguments": "us: the value of the parameter in microseconds (int)",
@@ -432,6 +480,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "servo.read()",
                     "arguments": "No arguments",
@@ -448,6 +498,8 @@
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "servo.attached()",
                     "arguments": "No arguments",
@@ -464,9 +516,72 @@
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "servo.detach()",
                     "arguments": "No arguments",
+                    "returns": "Nothing"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Stepper",
+        "footer": "Allows Arduino boards to control a variety of stepper motors. This library allows you to control unipolar or bipolar stepper motors. To use it you will need a stepper motor, and the appropriate hardware to control it.\n\nTo use this library: #include <Stepper.h>",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "stepper()",
+                "subtitle": "Robotics",
+                "description": "This function creates a new instance of the Stepper class that represents a particular stepper motor attached to your Arduino board. Use it at the top of your sketch, above setup() and loop(). The number of parameters depends on how you’ve wired your motor, either using two or four pins of the Arduino board.",
+                "baseDescription": "This function creates a new instance of the Stepper class that represents a particular stepper motor attached to your Arduino board.",
+                "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "Stepper(steps, pin1, pin2)",
+                    "arguments": "steps: the number of steps in one revolution of your motor.\npin1, pin2: two pins that are attached to the motor.",
+                    "returns": "A new instance of the Stepper motor class."
+                }
+            },
+            {
+                "name": "setSpeed()",
+                "subtitle": "Robotics",
+                "description": "This function sets the motor speed in rotations per minute (RPMs). This function doesn’t make the motor turn, just sets the speed at which it will when you call step().",
+                "baseDescription": "This function sets the motor speed in rotations per minute (RPMs). This function doesn’t make the motor turn, just sets the speed at which it will when you call step().",
+                "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nint servoVal = 0;\n\nvoid setup() { \n    myservo.attach(9);\n    Serial.begin(9600);\n} \n\nvoid loop() {\n    myservo.write(90);\n    servoVal = myservo.read();\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "setSpeed(rpms)",
+                    "arguments": "rpms: the speed at which the motor should turn in rotations per minute (positive long).",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "step()",
+                "subtitle": "Robotics",
+                "description": "This function turns the motor a specific number of steps, at a speed determined by the most recent call to setSpeed(). This function is blocking; that is, it will wait until the motor has finished moving to pass control to the next line in your sketch. For example, if you set the speed to, say, 1 RPM and called step(100) on a 100-step motor, this function would take a full minute to run. For better control, keep the speed high and only go a few steps with each call to step().",
+                "baseDescription": "This function turns the motor a specific number of steps, at a speed determined by the most recent call to setSpeed(). This function is blocking; that is, it will wait until the motor has finished moving to pass control to the next line in your sketch.",
+                "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nvoid setup() {\n  myservo.attach(9);\n    myservo.writeMicroseconds(1500);\n}\n\nvoid loop() {} ",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "step(steps)",
+                    "arguments": "steps: the number of steps to turn the motor. Positive integer to turn one direction, negative integer to turn the other.",
                     "returns": "Nothing"
                 }
             }

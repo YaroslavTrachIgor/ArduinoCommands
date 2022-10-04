@@ -18,7 +18,7 @@ final class OnboardingPresenter {
     
     //MARK: Private
     @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.isOnboardingNeeded)
-    private var isNeededOnboarding = false
+    private var isNeededOnboarding = true
     private weak var view: ACBaseOnboardingViewController?
     
     

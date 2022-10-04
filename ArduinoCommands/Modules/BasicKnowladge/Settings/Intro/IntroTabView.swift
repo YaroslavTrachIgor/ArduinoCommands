@@ -12,12 +12,11 @@ import SwiftUI
 struct IntroTabView: View {
     
     //MARK: Private
-    private var cards: [IntroCardUIModel] {
+    private var cards: [ACIntroCard] {
         return ACIntroStorage.cards
     }
     
-    
-    //MARK: View preparations
+    //MARK: View configuration
     var body: some View {
         VStack {
             TabView {

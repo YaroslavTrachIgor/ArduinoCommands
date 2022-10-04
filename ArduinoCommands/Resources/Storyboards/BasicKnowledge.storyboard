@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KQt-Rt-tg2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KQt-Rt-tg2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,7 +19,7 @@
                         <color key="badgeColor" systemColor="systemIndigoColor"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="evq-p3-w5M">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                         <textAttributes key="largeTitleTextAttributes">
@@ -43,7 +44,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserSheetTableViewCell" rowHeight="320" id="c98-SD-1Ep" customClass="UserSheetTVCell" customModule="ArduinoCommands" customModuleProvider="target">
-                                <rect key="frame" x="20" y="49.5" width="374" height="320"/>
+                                <rect key="frame" x="20" y="55.5" width="374" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c98-SD-1Ep" id="xHv-Vt-8xK">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="320"/>
@@ -885,6 +886,16 @@
                                                                         <color key="textColor" systemColor="systemGray5Color"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OUR TEAM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qk1-Gp-Elz">
+                                                                        <rect key="frame" x="172" y="8" width="65" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="65" id="DHC-tD-wH3"/>
+                                                                            <constraint firstAttribute="height" constant="20" id="NXI-nL-2dq"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="bvd-WM-5Rv" secondAttribute="trailing" constant="16" id="0zd-vI-nA8"/>
@@ -895,9 +906,11 @@
                                                                     <constraint firstItem="bvd-WM-5Rv" firstAttribute="top" secondItem="mB3-cN-eIZ" secondAttribute="bottom" id="GcY-6A-9o6"/>
                                                                     <constraint firstItem="D1E-BX-dhv" firstAttribute="leading" secondItem="vMy-l9-PiP" secondAttribute="trailing" constant="12.5" id="LAh-KQ-dmN"/>
                                                                     <constraint firstAttribute="trailing" secondItem="D1E-BX-dhv" secondAttribute="trailing" constant="13" id="NL1-Oa-wiQ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Qk1-Gp-Elz" secondAttribute="trailing" constant="8" id="Zlf-zb-XWL"/>
                                                                     <constraint firstItem="mB3-cN-eIZ" firstAttribute="top" secondItem="D1E-BX-dhv" secondAttribute="bottom" constant="4" id="awi-hS-lPk"/>
                                                                     <constraint firstItem="D1E-BX-dhv" firstAttribute="top" secondItem="hZd-yE-NzX" secondAttribute="top" constant="10" id="cks-Nh-sRI"/>
                                                                     <constraint firstAttribute="trailing" secondItem="N2T-2C-3vO" secondAttribute="trailing" constant="8" id="kVz-UN-rOT"/>
+                                                                    <constraint firstItem="Qk1-Gp-Elz" firstAttribute="top" secondItem="hZd-yE-NzX" secondAttribute="top" constant="8" id="qyV-D5-2Zu"/>
                                                                     <constraint firstItem="vMy-l9-PiP" firstAttribute="leading" secondItem="hZd-yE-NzX" secondAttribute="leading" constant="14" id="tEh-vM-rzM"/>
                                                                     <constraint firstAttribute="bottom" secondItem="bvd-WM-5Rv" secondAttribute="bottom" id="vyk-r7-k9R"/>
                                                                 </constraints>
@@ -908,6 +921,7 @@
                                                             <connections>
                                                                 <outlet property="decorationBackImageView" destination="N2T-2C-3vO" id="6Xa-Ex-usE"/>
                                                                 <outlet property="decorationImageView" destination="vMy-l9-PiP" id="6YW-oU-M64"/>
+                                                                <outlet property="decorationTeamLabel" destination="Qk1-Gp-Elz" id="bx5-ZO-UjE"/>
                                                                 <outlet property="descriptionTextView" destination="bvd-WM-5Rv" id="or0-sR-70U"/>
                                                                 <outlet property="subtitleLabel" destination="mB3-cN-eIZ" id="DCQ-FK-B4J"/>
                                                                 <outlet property="titleLabel" destination="D1E-BX-dhv" id="cYD-Tm-S5X"/>
@@ -958,23 +972,23 @@
     </scenes>
     <resources>
         <image name="IMAGE 2022-03-16 3:20:59 PM" width="512" height="530"/>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="basic_knowladge_background" width="373" height="642"/>
         <image name="computer-33-2" width="200" height="150"/>
         <image name="doc.text.image" catalog="system" width="115" height="128"/>
-        <image name="link.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="link.circle.fill" catalog="system" width="128" height="123"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="rectangle.portrait.on.rectangle.portrait.fill" catalog="system" width="116" height="128"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="rectangle.portrait.on.rectangle.portrait.fill" catalog="system" width="118" height="128"/>
         <image name="shape-site-deco-1" width="200" height="150"/>
         <image name="shape-team-deco-1" width="200" height="150"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
-        <image name="square.on.square" catalog="system" width="128" height="113"/>
-        <image name="text.alignleft" catalog="system" width="128" height="100"/>
+        <image name="square.on.square" catalog="system" width="128" height="116"/>
+        <image name="text.alignleft" catalog="system" width="128" height="99"/>
         <image name="waves-gradient-ios-11-wallpaper-thumb" width="551" height="310"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

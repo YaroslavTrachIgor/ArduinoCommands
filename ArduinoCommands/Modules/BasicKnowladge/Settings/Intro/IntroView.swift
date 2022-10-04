@@ -10,8 +10,6 @@ import SwiftUI
 
 //MARK: - Main View
 struct IntroView: View {
-    
-    //MARK: View preparations
     var body: some View {
         ZStack {
             IntroTabView()

@@ -71,7 +71,7 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     //MARK: Private
     private let defaults = UserDefaults.standard
     private var sections = [BasicKnowledgeSectionRow]()
-    private var presenter: BasicKnowledgePresenterProtocol {
+    private var presenter: BasicKnowledgePresenterProtocol? {
         return BasicKnowledgePresenter(view: self)
     }
     
@@ -87,7 +87,8 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter.onViewDidLoad(completion: { sections in
+        presenter?.onOnboardingPresent()
+        presenter?.onViewDidLoad(completion: { sections in
             self.sections = sections
         })
     }
@@ -99,7 +100,7 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     
     //MARK: @IBActions
     @IBAction func presentSettingsHostVC(_ sender: Any) {
-        presenter.onPresentSettingsHostVC()
+        presenter?.onPresentSettingsHostVC()
     }
     
     //MARK: Base ViewController logic protocol
@@ -235,7 +236,7 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
     }
     
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.onDidSelectItemAt(for: collectionView.tag, with: indexPath.row)
+        presenter?.onDidSelectItemAt(for: collectionView.tag, with: indexPath.row)
     }
 }
 

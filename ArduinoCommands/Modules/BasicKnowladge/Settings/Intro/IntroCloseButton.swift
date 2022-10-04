@@ -17,7 +17,7 @@ private extension IntroCloseButton {
             enum Button {
                 
                 //MARK: Static
-                static let closeButtonTitle = "Close"
+                static let closeTitle = "Close"
             }
         }
     }
@@ -27,14 +27,15 @@ private extension IntroCloseButton {
 //MARK: - Main View
 struct IntroCloseButton: View {
     
-    //MARK: Public
-    @State var card: IntroCardUIModel
-    
     //MARK: @EnvironmentObject
     @EnvironmentObject var stateHelper: SettingsStateHelper
     
+    //MARK: Private
+    private var tintGradient: Gradient {
+        return ACIntroStorage.Keys.UI.Gradients.tintGradient
+    }
     
-    //MARK: View preparations
+    //MARK: View configuration
     var body: some View {
         VStack {
             Button {
@@ -59,17 +60,14 @@ private extension IntroCloseButton {
         Capsule()
             .stroke(introLinearGradient, lineWidth: 1.3)
     }
-    
     var introCloseButtonTitle: some View {
-        Text(Keys.UI.Button.closeButtonTitle.uppercased())
+        Text(Keys.UI.Button.closeTitle.uppercased())
             .frame(maxWidth: .infinity, alignment: .center)
             .font(.system(size: 13, weight: .medium))
     }
-    
-    //MARK: Reusable
     var introLinearGradient: LinearGradient {
         LinearGradient(
-            gradient: IntroCardUIModel.Keys.UI.Gradients.intoTintColorGradient,
+            gradient: tintGradient,
             startPoint: .leading,
             endPoint: .trailing
         )

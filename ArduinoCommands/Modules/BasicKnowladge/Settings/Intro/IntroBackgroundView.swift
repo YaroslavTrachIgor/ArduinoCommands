@@ -17,7 +17,7 @@ private extension IntroBackgroundView {
             enum Image {
                 
                 //MARK: Static
-                static let introBackgroundName = "intro-background"
+                static let backgroundName = "intro-background"
             }
         }
     }
@@ -26,10 +26,8 @@ private extension IntroBackgroundView {
 
 //MARK: - Main Intro background View
 struct IntroBackgroundView: View {
-    
-    //MARK: View preparations
     var body: some View {
-        Image(Keys.UI.Image.introBackgroundName)
+        Image(Keys.UI.Image.backgroundName)
             .resizable()
             .background(Color(uiColor: .white))
             .aspectRatio(contentMode: .fill)

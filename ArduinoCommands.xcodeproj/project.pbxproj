@@ -124,7 +124,6 @@
 		CEB89DB328A5BF1700EA44FB /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */; };
 		CECB4A8F28AB4AAD00278130 /* ACIntroStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */; };
 		CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */; };
-		CECB4A9328AB4B0900278130 /* IntroCardUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9228AB4B0900278130 /* IntroCardUIModel.swift */; };
 		CECB4A9728AB4BB700278130 /* IntroBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9628AB4BB700278130 /* IntroBackgroundView.swift */; };
 		CECB4A9928AB4BDC00278130 /* IntroCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9828AB4BDC00278130 /* IntroCardView.swift */; };
 		CECB4A9C28AB4D7F00278130 /* ACBaseVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9B28AB4D7F00278130 /* ACBaseVisualEffectView.swift */; };
@@ -291,7 +290,6 @@
 		CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroStorage.swift; sourceTree = "<group>"; };
 		CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroCard.swift; sourceTree = "<group>"; };
-		CECB4A9228AB4B0900278130 /* IntroCardUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCardUIModel.swift; sourceTree = "<group>"; };
 		CECB4A9628AB4BB700278130 /* IntroBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroBackgroundView.swift; sourceTree = "<group>"; };
 		CECB4A9828AB4BDC00278130 /* IntroCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCardView.swift; sourceTree = "<group>"; };
 		CECB4A9B28AB4D7F00278130 /* ACBaseVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseVisualEffectView.swift; sourceTree = "<group>"; };
@@ -530,26 +528,6 @@
 				CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */,
 			);
 			path = CodeSnippet;
-			sourceTree = "<group>";
-		};
-		CE2BBCC428BB020700D8F42D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CE8CFE0F28A89BA300A88586 /* IntroView.swift */,
-				CE8CDAEE28C64F6E001DC8B1 /* IntroTabView.swift */,
-				CECB4A9828AB4BDC00278130 /* IntroCardView.swift */,
-				CE9235DB28ABD8000037846F /* IntroCloseButton.swift */,
-				CECB4A9628AB4BB700278130 /* IntroBackgroundView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CE2BBCC628BB025600D8F42D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CECB4A9228AB4B0900278130 /* IntroCardUIModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		CE2BBCC728BB029D00D8F42D /* View */ = {
@@ -812,8 +790,11 @@
 		CECB4A8A28AB4A1000278130 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				CE2BBCC628BB025600D8F42D /* Model */,
-				CE2BBCC428BB020700D8F42D /* View */,
+				CE8CFE0F28A89BA300A88586 /* IntroView.swift */,
+				CE8CDAEE28C64F6E001DC8B1 /* IntroTabView.swift */,
+				CECB4A9828AB4BDC00278130 /* IntroCardView.swift */,
+				CE9235DB28ABD8000037846F /* IntroCloseButton.swift */,
+				CECB4A9628AB4BB700278130 /* IntroBackgroundView.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -1058,7 +1039,6 @@
 				CE75CFA0287ED5A300BA42DF /* ACAlertManager.swift in Sources */,
 				CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */,
 				CE8CDAEF28C64F6E001DC8B1 /* IntroTabView.swift in Sources */,
-				CECB4A9328AB4B0900278130 /* IntroCardUIModel.swift in Sources */,
 				8464648927E0CFE2004B0D12 /* ACLink.swift in Sources */,
 				CE9235F728ACA9F50037846F /* ACSettingsPreviewModel.swift in Sources */,
 				CE9235E228ABDB610037846F /* ACSettingsStorage.swift in Sources */,
@@ -1289,11 +1269,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Commands;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1312,11 +1295,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Commands;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

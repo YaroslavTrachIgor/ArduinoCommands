@@ -19,6 +19,8 @@ protocol CommandDetailUIModelProtocol {
     var syntaxDescription: String! { get }
     var returnsDescription: String! { get }
     var argumentsDescription: String! { get }
+    var isScreenshotEnabled: Bool! { get }
+    var isCodeSnippetEnabled: Bool! { get }
 }
 
 
@@ -48,6 +50,12 @@ extension CommandDetailUIModel: CommandDetailUIModelProtocol {
     }
     internal var isUsedWithDevices: Bool! {
         model?.isUsedWithDevices
+    }
+    internal var isScreenshotEnabled: Bool! {
+        model?.isScreenshotEnabled
+    }
+    internal var isCodeSnippetEnabled: Bool! {
+        model?.isCodeSnippetEnabled
     }
     internal var returns: Bool! {
         model?.returns

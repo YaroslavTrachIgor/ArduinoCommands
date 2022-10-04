@@ -99,19 +99,11 @@ public enum ACSettingsStorage {
             ),
             ACSettingsContactInfoCellModel(
                 content: ACSettingsContactInfoModel(
-                    link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
+                    link: "https://www.instagram.com/axcigrpvicj/",
                     linkName: "Instagram"
                 ),
                 iconName: "link",
                 tintColor: .systemPink
-            ),
-            ACSettingsContactInfoCellModel(
-                content: ACSettingsContactInfoModel(
-                    link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
-                    linkName: "Twitter"
-                ),
-                iconName: "link",
-                tintColor: .link
             ),
             ACSettingsContactInfoCellModel(
                 content: ACSettingsContactInfoModel(

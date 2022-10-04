@@ -19,6 +19,7 @@ private extension CommandDetailViewController {
                 
                 //MARK: Static
                 static let contentBackViewColor = #colorLiteral(red: 0.06201352924, green: 0.06201352924, blue: 0.06201352924, alpha: 1)
+                static let contentBackColor = #colorLiteral(red: 0.07412604243, green: 0.07412604243, blue: 0.07412604243, alpha: 1)
                 static let backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 static let tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             }
@@ -165,6 +166,16 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         setupContentBackgroundView()
         setupCodeScreenshotImageView()
         setupContentBackgroundBlurView()
+        setupCodeSnippetButton()
+        setupScreenshotButton()
+        setupPresentDetailsButton()
+        setupDetailHeaderLabels()
+        setupDetailDescriptionLabels()
+        setupDetailDescriptionBackViews()
+        setupDetailBackgroundBlurView()
+        setupDetailBackgroundView()
+        setupDetailContentView()
+        setupDetailDoneButton()
         contentSegmentedControl.setupBaseDetailDarkSegmentedControl()
         leftDecorationLabel.setupReturnsDecoLabel(with: uiModel?.returns)
         middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isUsedWithDevices)
@@ -172,14 +183,6 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         costomBackBarButton.setupBaseBackBarButton()
         shareBarButton.setupBaseShareBarButton()
         copyBarButton.setupBaseCopyBarButton()
-        setupCodeSnippetButton()
-        setupScreenshotButton()
-        
-        setupPresentDetailsButton()
-        setupDetailBackgroundBlurView()
-        setupDetailBackgroundView()
-        setupDetailContentView()
-        setupDetail()
     }
     
     internal func changeTextViewContentAnimately(text: String) {
@@ -291,9 +294,6 @@ private extension CommandDetailViewController {
         contentBackgroundView.alpha = 1
     }
     
-    
-    
-    
     func setupDetailBackgroundView() {
         let bounds = CGRect(x: 0, y: 0, width: 340, height: 450)
         detailBackgroundView.layer.cornerRadius = 0
@@ -312,14 +312,27 @@ private extension CommandDetailViewController {
     func setupDetailContentView() {
         let bounds = CGRect(x: 0, y: 0, width: 340, height: 400)
         let cornerRadius = CGFloat.Corners.baseACRounding
+        let contentBackColor = Keys.UI.Colors.contentBackColor
         let contentView = detailBackgroundView.contentView!
-        contentView.backgroundColor = #colorLiteral(red: 0.07412604243, green: 0.07412604243, blue: 0.07412604243, alpha: 1).withAlphaComponent(0.8)
+        contentView.backgroundColor = contentBackColor.withAlphaComponent(0.8)
         contentView.layer.cornerRadius = cornerRadius
         contentView.bounds = bounds
         contentView.setFastGlassmorphismBorder()
     }
     
-    func setupDetail() {
+    func setupDetailDoneButton() {
+        
+        
+        ////// ADD EXTENSION
+        
+        
+        detailBackgroundView.doneButton.tintColor = .white
+        detailBackgroundView.doneButton.backgroundColor = .clear
+        detailBackgroundView.doneButton.setTitle("Close", for: .normal)
+        detailBackgroundView.doneButton.setTitleColor(.white, for: .normal)
+    }
+    
+    func setupDetailHeaderLabels() {
         let headerLabels = [
             detailBackgroundView.syntaxHeaderLabel,
             detailBackgroundView.argumentsHeaderLabel,
@@ -329,11 +342,9 @@ private extension CommandDetailViewController {
             headerLabel?.textColor = .white
             headerLabel?.backgroundColor = .clear
         }
-        
-        detailBackgroundView.syntaxDescriptionLabel.text = uiModel?.syntaxDescription
-        detailBackgroundView.argumentsDescriptionLabel.text = uiModel?.argumentsDescription
-        detailBackgroundView.returnsDescriptionLabel.text = uiModel?.returnsDescription
-        
+    }
+    
+    func setupDetailDescriptionLabels() {
         let descriptionLabels = [
             detailBackgroundView.syntaxDescriptionLabel,
             detailBackgroundView.argumentsDescriptionLabel,
@@ -343,31 +354,32 @@ private extension CommandDetailViewController {
             descriptionLabel?.backgroundColor = .clear
             descriptionLabel?.textColor = .white
         }
-        
+        detailBackgroundView.syntaxDescriptionLabel.text = uiModel?.syntaxDescription
+        detailBackgroundView.argumentsDescriptionLabel.text = uiModel?.argumentsDescription
+        detailBackgroundView.returnsDescriptionLabel.text = uiModel?.returnsDescription
+    }
+    
+    func setupDetailDescriptionBackViews() {
         let descriptionBackgroundViews = [
             detailBackgroundView.syntaxDescriptionBackView,
             detailBackgroundView.argumentsDescriptionBackView,
             detailBackgroundView.returnsDescriptionBackView
         ]
+        let borderColor = UIColor.white.cgColor
         for descriptionBackgroundView in descriptionBackgroundViews {
             descriptionBackgroundView?.backgroundColor = #colorLiteral(red: 0.119350709, green: 0.119350709, blue: 0.119350709, alpha: 1)
             descriptionBackgroundView?.layer.cornerRadius = 8
-            descriptionBackgroundView?.layer.borderColor = UIColor.white.cgColor
             descriptionBackgroundView?.layer.borderWidth = 0.5
+            descriptionBackgroundView?.layer.borderColor = borderColor
         }
-        
-        
-        detailBackgroundView.doneButton.tintColor = .white
-        detailBackgroundView.doneButton.backgroundColor = .clear
-        detailBackgroundView.doneButton.setTitle("Close", for: .normal)
-        detailBackgroundView.doneButton.setTitleColor(.white, for: .normal)
     }
     
     func setupPresentDetailsButton() {
         let imageConfiguration = UIImage.SymbolConfiguration(scale: .default)
         let imageName = Keys.UI.Image.detailsIconName
         let image = UIImage(systemName: imageName, withConfiguration: imageConfiguration)
-        let backgroundColor = #colorLiteral(red: 0.07412604243, green: 0.07412604243, blue: 0.07412604243, alpha: 1).withAlphaComponent(0.15)
+        let contentBackColor = Keys.UI.Colors.contentBackColor
+        let backgroundColor = contentBackColor.withAlphaComponent(0.15)
         let tintColor = Keys.UI.Colors.tintColor
         let strokeColor = tintColor.withAlphaComponent(0.2)
         var configuration = UIButton.Configuration.filled()
@@ -379,39 +391,74 @@ private extension CommandDetailViewController {
         presentDetailsButton.configuration = configuration
     }
     
-    
-    
-    
     func setupScreenshotButton() {
         let title = Keys.UI.Button.goToScreenshotTitle
-        let tintColor = Keys.UI.Colors.backgroundColor
-        let backgroundColor = Keys.UI.Colors.tintColor
+        let baseTintColor = Keys.UI.Colors.tintColor
+        let baseBackgroundColor = Keys.UI.Colors.backgroundColor
+        let isEnabled = uiModel?.isScreenshotEnabled!
+        let backgroundColor: UIColor
+        let tintColor: UIColor
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .large
+        /**
+         In the code below, before we setup needed button properties,
+         we check if this buton for this command enabled
+         through uiModel properties(in this case, if Screenshot enabled).
+         */
+        if isEnabled! {
+            tintColor = baseBackgroundColor
+            backgroundColor = baseTintColor.withAlphaComponent(0.95)
+        } else {
+            tintColor = baseTintColor.withAlphaComponent(0.55)
+            backgroundColor = baseTintColor.withAlphaComponent(0.2)
+        }
         let attributes = setupCodeSnippetButtonTitleContainer(tintColor: tintColor)
         let attributedTitle = AttributedString(title, attributes: attributes)
-        var configuration = UIButton.Configuration.filled()
         configuration.baseBackgroundColor = backgroundColor
+        configuration.baseForegroundColor = tintColor
         configuration.attributedTitle = attributedTitle
-        configuration.cornerStyle = .large
         screenshotButton.configuration = configuration
+        screenshotButton.isEnabled = isEnabled!
     }
     
     func setupCodeSnippetButton() {
         let title = Keys.UI.Button.goToCodeSnippetTitle
-        let tintColor = Keys.UI.Colors.tintColor
+        let baseTintColor = Keys.UI.Colors.tintColor
+        let baseBackgroundColor = Keys.UI.Colors.backgroundColor
+        let contentBackColor = Keys.UI.Colors.contentBackColor
+        let isEnabled = uiModel?.isCodeSnippetEnabled!
+        let backgroundColor: UIColor
+        let strokeColor: UIColor
+        let tintColor: UIColor
+        var configuration = UIButton.Configuration.filled()
+        configuration.background.strokeWidth = 0.45
+        configuration.cornerStyle = .large
+        /**
+         In the code below, before we setup needed button properties,
+         we check if this buton for this command enabled
+         through uiModel properties(in this case, if Code Snippet enabled).
+         */
+        if isEnabled! {
+            tintColor = baseTintColor
+            backgroundColor = contentBackColor.withAlphaComponent(0.95)
+            strokeColor = tintColor.withAlphaComponent(0.2)
+        } else {
+            tintColor = baseBackgroundColor.withAlphaComponent(0.55)
+            backgroundColor = contentBackColor.withAlphaComponent(0.2)
+            strokeColor = tintColor.withAlphaComponent(0.06)
+        }
         let attributes = setupCodeSnippetButtonTitleContainer(tintColor: tintColor)
         let attributedTitle = AttributedString(title, attributes: attributes)
-        let backgroundColor = #colorLiteral(red: 0.07412604243, green: 0.07412604243, blue: 0.07412604243, alpha: 1).withAlphaComponent(0.98)
-        let strokeColor = tintColor.withAlphaComponent(0.2)
-        var configuration = UIButton.Configuration.filled()
         configuration.attributedTitle = attributedTitle
         configuration.baseForegroundColor = tintColor
         configuration.background.backgroundColor = backgroundColor
         configuration.background.strokeColor = strokeColor
-        configuration.background.strokeWidth = 0.45
-        configuration.cornerStyle = .large
         codeSnippetButton.configuration = configuration
+        codeSnippetButton.isEnabled = isEnabled!
     }
     
+    
+    //MARK: Fast methods
     func setupCodeSnippetButtonTitleContainer(tintColor: UIColor) -> AttributeContainer {
         let font = UIFont.systemFont(ofSize: 16.5, weight: .medium)
         var container = AttributeContainer()

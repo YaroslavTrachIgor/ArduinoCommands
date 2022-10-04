@@ -18,6 +18,8 @@ public final class ACCommand: Codable {
     var baseDescription: String!
     var isLibraryMethod: Bool!
     var isUsedWithDevices: Bool!
+    var isScreenshotEnabled: Bool!
+    var isCodeSnippetEnabled: Bool!
     var returns: Bool!
     var details: ACCommandDetails
     
@@ -31,6 +33,8 @@ public final class ACCommand: Codable {
          returns: Bool!,
          isUsedWithDevices: Bool!,
          isLibraryMethod: Bool!,
+         isScreenshotEnabled: Bool!,
+         isCodeSnippetEnabled: Bool!,
          details: ACCommandDetails) {
         self.name = name
         self.subtitle = subtitle
@@ -40,6 +44,8 @@ public final class ACCommand: Codable {
         self.baseDescription = basicDescription
         self.isLibraryMethod = isLibraryMethod
         self.isUsedWithDevices = isUsedWithDevices
+        self.isScreenshotEnabled = isScreenshotEnabled
+        self.isCodeSnippetEnabled = isCodeSnippetEnabled
         self.returns = returns
         self.details = details
     }

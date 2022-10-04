@@ -8,6 +8,22 @@
 import Foundation
 import UIKit
 
+//MARK: - Keys
+private extension PersonCollectionViewCell {
+    
+    //MARK: Keys
+    enum Keys {
+        enum UI {
+            enum Label {
+                
+                //MARK: Static
+                static let decorationTeam = "Our Team"
+            }
+        }
+    }
+}
+
+
 //MARK: - Team section Cell
 final class PersonCollectionViewCell: ACNeumorphicCollectionViewCell {
     
@@ -17,6 +33,7 @@ final class PersonCollectionViewCell: ACNeumorphicCollectionViewCell {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var decorationImageView: UIImageView!
     @IBOutlet weak var decorationBackImageView: UIImageView!
+    @IBOutlet weak var decorationTeamLabel: UILabel!
 }
 
 
@@ -29,6 +46,7 @@ extension PersonCollectionViewCell: ACBaseConfigurableView {
         setupPersonSubtitleLabel(with: data)
         setupPersonDescriptionTextView(with: data)
         setupPersonDecorationImageView(with: data)
+        setupPersonDecorationTeamLabel(with: data)
         setupPersonDecorationBackImageView(with: data)
         setupBasicsCell(shadowAvailable: data.isShadowAvailable,
                         backColor: data.backgroundColor,
@@ -95,5 +113,20 @@ private extension PersonCollectionViewCell {
         decorationBackImageView.tintColor = tintColor
         decorationBackImageView.image = image
         decorationBackImageView.alpha = 0.085
+    }
+    
+    func setupPersonDecorationTeamLabel(with data: PersonCellUIModelProtocol) {
+        let textColor = data.tintColor
+        let backColor = data.subtitleLabelBackColor
+        let cornerRadius = (decorationTeamLabel.frame.height / 2) - 2
+        let content = Keys.UI.Label.decorationTeam.uppercased()
+        let font = UIFont.ACFont(ofSize: 9, weight: .regular)
+        decorationTeamLabel.layer.cornerRadius = cornerRadius
+        decorationTeamLabel.layer.masksToBounds = true
+        decorationTeamLabel.backgroundColor = backColor
+        decorationTeamLabel.textColor = textColor
+        decorationTeamLabel.alpha = 0.55
+        decorationTeamLabel.text = content
+        decorationTeamLabel.font = font
     }
 }
