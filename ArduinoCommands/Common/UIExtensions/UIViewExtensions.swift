@@ -8,6 +8,32 @@
 import Foundation
 import UIKit
 
+//MARK: - Menu Background cases
+public enum MenuBackgroundType {
+    case table
+    case secondary
+    
+}
+
+//MARK: - Setup basic View types
+public extension UIView {
+    
+    //MARK: Public
+    /// This sets the basic needed properties for Menu Views(root VCs with lists)
+    /// in order to observe `DRY` principle.
+    /// - Parameter backgroundType: case of background color.
+    func setupBasicMenuBackgroundView(_ backgroundType: MenuBackgroundType = .table) {
+        switch backgroundType {
+        case .table:
+            backgroundColor = UIColor.ACTable.backgroundColor
+        case .secondary:
+            backgroundColor = .secondarySystemBackground
+        }
+        tintColor = .label
+        alpha = 1
+    }
+}
+
 //MARK: - Fast View methods
 public extension UIView {
     

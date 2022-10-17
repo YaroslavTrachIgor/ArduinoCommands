@@ -9,23 +9,41 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
+    func presentTabBarWithAnimation(alpha: Int)
+    func changeTextViewContentAnimately(text: String)
+    func presentDetailsViews(with animationType: ACBasePresentationType)
+    func enableBarViews(with animationType: ACBasePresentationType)
+    func presentColorPickerViewController()
+    func presentCodeSnippetViewController()
+    func presentFastImageViewController()
+    func setupRateManager()
+    func setupAdBunner()
+}
+
+
+//MARK: - ViewController Delegate protocol
+protocol CommandDetailViewControllerDelegate: AnyObject {
+    func setDetailsTintColor(color: UIColor)
+}
+
+
+//MARK: - Constants
 private extension CommandDetailViewController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
-            enum Colors {
+            enum Label {
                 
                 //MARK: Static
-                static let contentBackViewColor = #colorLiteral(red: 0.06201352924, green: 0.06201352924, blue: 0.06201352924, alpha: 1)
-                static let contentBackColor = #colorLiteral(red: 0.07412604243, green: 0.07412604243, blue: 0.07412604243, alpha: 1)
-                static let backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                static let tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                static let detailColorPickerTitle = "Details Tint Color"
             }
             enum Button {
                 
                 //MARK: Static
+                static let closeTitle = "Close"
                 static let goToScreenshotTitle = "Screenshot"
                 static let goToCodeSnippetTitle = "Code Snippet"
             }
@@ -33,32 +51,15 @@ private extension CommandDetailViewController {
                 
                 //MARK: Static
                 static let detailsIconName = "list.dash"
+                static let colorPickerGoIcon = "circle.hexagongrid"
+                static let copyIcon = "rectangle.portrait.on.rectangle.portrait"
             }
         }
     }
 }
 
 
-//MARK: - Main View
-final class DetailBackgroundView: UIView {
-    
-    //MARK: @IBOutlets
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var syntaxHeaderLabel: UILabel!
-    @IBOutlet weak var syntaxDescriptionLabel: UILabel!
-    @IBOutlet weak var syntaxDescriptionBackView: UIView!
-    @IBOutlet weak var argumentsHeaderLabel: UILabel!
-    @IBOutlet weak var argumentsDescriptionLabel: UILabel!
-    @IBOutlet weak var argumentsDescriptionBackView: UIView!
-    @IBOutlet weak var returnsHeaderLabel: UILabel!
-    @IBOutlet weak var returnsDescriptionLabel: UILabel!
-    @IBOutlet weak var returnsDescriptionBackView: UIView!
-}
-
-
-
-//MARK: - Main command detail ViewController
+//MARK: - Main ViewController
 final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     
     //MARK: Weak
@@ -70,12 +71,13 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     }
     
     //MARK: Private
+    private var detailsTintColor: UIColor!
     private let adsManager = ACGoogleAdsManagar.shared
     private var uiModel: CommandDetailUIModelProtocol? {
         return CommandDetailUIModel(model: model)
     }
     private var presenter: CommandDetailPresenterProtocol? {
-        return CommandDetailPresenter(view: self, model: model)
+        return CommandDetailPresenter(view: self, delegate: self, model: model)
     }
     
     //MARK: @IBOutlets
@@ -98,14 +100,16 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBOutlet private weak var adBunnerView: GADBannerView!
     @IBOutlet private weak var presentDetailsButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
-    @IBOutlet private var detailBackgroundView: DetailBackgroundView!
+    @IBOutlet private weak var detailBackgroundView: CommandDetailBackgroundView!
     
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.onViewDidLoad()
+        presenter?.onViewDidLoad { tintColor in
+            self.detailsTintColor = tintColor
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -139,23 +143,25 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
         presenter?.onBackToMenu()
     }
     
-    @IBAction func hideDetailView(_ sender: Any) {
-        animateViewIn(for: detailBackgroundBlurView, animationType: .hide)
-        animateViewIn(for: detailBackgroundView, animationType: .hide)
+    @IBAction func hideDetails(_ sender: Any) {
+        presenter?.onHideDetails()
     }
     
     @IBAction func presentDetails(_ sender: Any) {
-        animateViewIn(for: detailBackgroundBlurView, animationType: .present)
-        animateViewIn(for: detailBackgroundView, animationType: .present)
+        presenter?.onPresentDetails()
     }
     
     @IBAction func copyDetails(_ sender: UIButton) {
         presenter?.onCopyDetails(for: sender.tag)
     }
+    
+    @IBAction func presentDetailsColorPicker(_ sender: Any) {
+        presenter?.onPresentDetailsColorPicker()
+    }
 }
 
 
-//MARK: - Base ViewController protocol extension
+//MARK: - ViewController protocol extension
 extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol {
     
     //MARK: Internal
@@ -175,7 +181,9 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         setupDetailBackgroundBlurView()
         setupDetailBackgroundView()
         setupDetailContentView()
-        setupDetailDoneButton()
+        setupDetailCopyButtons()
+        detailBackgroundView.changeTintColorButton.setupCodeContentEditingButton(tintColor: detailsTintColor, imageName: Constants.UI.Image.colorPickerGoIcon)
+        detailBackgroundView.doneButton.setupPopupButton(tintColor: detailsTintColor, title: Constants.UI.Button.closeTitle)
         contentSegmentedControl.setupBaseDetailDarkSegmentedControl()
         leftDecorationLabel.setupReturnsDecoLabel(with: uiModel?.returns)
         middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isUsedWithDevices)
@@ -191,6 +199,18 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
     
     internal func presentTabBarWithAnimation(alpha: Int) {
         hideTabBarWithAnimation(alpha: alpha)
+    }
+    
+    internal func presentDetailsViews(with animationType: ACBasePresentationType) {
+        animateViewIn(for: detailBackgroundBlurView, animationType: animationType)
+        animateViewIn(for: detailBackgroundView, animationType: animationType)
+    }
+    
+    internal func enableBarViews(with animationType: ACBasePresentationType) {
+        enableViewIn(or: contentSegmentedControl, animationType: animationType)
+        enableViewIn(or: costomBackBarButton, animationType: animationType)
+        enableViewIn(or: shareBarButton, animationType: animationType)
+        enableViewIn(or: copyBarButton, animationType: animationType)
     }
     
     internal func setupAdBunner() {
@@ -213,6 +233,15 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         presentSheet(with: imageVC, detents: [.large()])
     }
     
+    internal func presentColorPickerViewController() {
+        let title = Constants.UI.Label.detailColorPickerTitle
+        let picker = UIColorPickerViewController()
+        picker.selectedColor = detailsTintColor
+        picker.delegate = self
+        picker.title = title
+        present(picker, animated: true, completion: nil)
+    }
+    
     internal func presentCodeSnippetViewController() {
         let codeSnippetVC = CodeSnippetViewController.instantiate()
         codeSnippetVC.model = model
@@ -221,6 +250,16 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
     
     internal func moveToThePreviousViewController() {
         navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+
+//MARK: - Delegate extension
+extension CommandDetailViewController: CommandDetailViewControllerDelegate {
+    
+    //MARK: Internal
+    internal func setDetailsTintColor(color: UIColor) {
+        detailsTintColor = color
     }
 }
 
@@ -238,7 +277,7 @@ private extension CommandDetailViewController {
     
     func setupTitleLabel() {
         let content = uiModel?.title
-        let tintColor = Keys.UI.Colors.tintColor
+        let tintColor = UIColor.ACDetails.tintColor
         let font = UIFont.ACFont(style: .articleTitle)
         titleLabel.textColor = tintColor
         titleLabel.numberOfLines = 1
@@ -248,7 +287,7 @@ private extension CommandDetailViewController {
     
     func setupSubtitleLabel() {
         let content = uiModel?.subtitle
-        let tintColor = Keys.UI.Colors.tintColor
+        let tintColor = UIColor.ACDetails.tintColor
         let textColor = tintColor.withAlphaComponent(0.9)
         let font = UIFont.ACFont(style: .articleSubtitle)
         subtitleLabel.numberOfLines = 1
@@ -259,7 +298,7 @@ private extension CommandDetailViewController {
     
     func setupContentTextView() {
         let content = uiModel?.content
-        let tintColor = Keys.UI.Colors.tintColor
+        let tintColor = UIColor.ACDetails.tintColor
         let textColor: UIColor = tintColor.withAlphaComponent(0.78)
         let font = UIFont.ACFont(style: .articleContent)
         contentTextView.isScrollEnabled = true
@@ -282,9 +321,9 @@ private extension CommandDetailViewController {
     
     func setupContentBackgroundView() {
         let maskedCorners: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        let backgroundColor = Keys.UI.Colors.contentBackViewColor.withAlphaComponent(0.62)
+        let backgroundColor = UIColor.ACDetails.secondaryBackgroundColor.withAlphaComponent(0.62)
         let cornerRadius = CGFloat.Corners.baseACBigRounding
-        let tintColor = Keys.UI.Colors.tintColor
+        let tintColor = UIColor.ACDetails.tintColor
         contentBackgroundView.layer.maskedCorners = maskedCorners
         contentBackgroundView.layer.cornerRadius = cornerRadius
         contentBackgroundView.layer.masksToBounds = true
@@ -312,39 +351,29 @@ private extension CommandDetailViewController {
     func setupDetailContentView() {
         let bounds = CGRect(x: 0, y: 0, width: 340, height: 400)
         let cornerRadius = CGFloat.Corners.baseACRounding
-        let contentBackColor = Keys.UI.Colors.contentBackColor
+        let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor.withAlphaComponent(0.8)
         let contentView = detailBackgroundView.contentView!
-        contentView.backgroundColor = contentBackColor.withAlphaComponent(0.8)
+        contentView.backgroundColor = contentBackColor
         contentView.layer.cornerRadius = cornerRadius
         contentView.bounds = bounds
         contentView.setFastGlassmorphismBorder()
     }
     
-    func setupDetailDoneButton() {
-        
-        
-        ////// ADD EXTENSION
-        
-        
-        detailBackgroundView.doneButton.tintColor = .white
-        detailBackgroundView.doneButton.backgroundColor = .clear
-        detailBackgroundView.doneButton.setTitle("Close", for: .normal)
-        detailBackgroundView.doneButton.setTitleColor(.white, for: .normal)
-    }
-    
     func setupDetailHeaderLabels() {
+        let textColor = UIColor.ACDetails.tintColor
         let headerLabels = [
             detailBackgroundView.syntaxHeaderLabel,
             detailBackgroundView.argumentsHeaderLabel,
             detailBackgroundView.returnsHeaderLabel
         ]
         for headerLabel in headerLabels {
-            headerLabel?.textColor = .white
+            headerLabel?.textColor = textColor
             headerLabel?.backgroundColor = .clear
         }
     }
     
     func setupDetailDescriptionLabels() {
+        let textColor = UIColor.ACDetails.tintColor
         let descriptionLabels = [
             detailBackgroundView.syntaxDescriptionLabel,
             detailBackgroundView.argumentsDescriptionLabel,
@@ -352,7 +381,7 @@ private extension CommandDetailViewController {
         ]
         for descriptionLabel in descriptionLabels {
             descriptionLabel?.backgroundColor = .clear
-            descriptionLabel?.textColor = .white
+            descriptionLabel?.textColor = textColor
         }
         detailBackgroundView.syntaxDescriptionLabel.text = uiModel?.syntaxDescription
         detailBackgroundView.argumentsDescriptionLabel.text = uiModel?.argumentsDescription
@@ -360,27 +389,41 @@ private extension CommandDetailViewController {
     }
     
     func setupDetailDescriptionBackViews() {
+        let backColor = detailsTintColor.withAlphaComponent(0.05)
+        let borderColor = detailsTintColor.cgColor
         let descriptionBackgroundViews = [
             detailBackgroundView.syntaxDescriptionBackView,
             detailBackgroundView.argumentsDescriptionBackView,
             detailBackgroundView.returnsDescriptionBackView
         ]
-        let borderColor = UIColor.white.cgColor
         for descriptionBackgroundView in descriptionBackgroundViews {
-            descriptionBackgroundView?.backgroundColor = #colorLiteral(red: 0.119350709, green: 0.119350709, blue: 0.119350709, alpha: 1)
+            descriptionBackgroundView?.backgroundColor = backColor
             descriptionBackgroundView?.layer.cornerRadius = 8
-            descriptionBackgroundView?.layer.borderWidth = 0.5
+            descriptionBackgroundView?.layer.borderWidth = 0.8
             descriptionBackgroundView?.layer.borderColor = borderColor
+        }
+    }
+    
+    func setupDetailCopyButtons() {
+        let tintColor = UIColor.ACDetails.tintColor
+        let copyIconConfig = UIImage.SymbolConfiguration(scale: .large)
+        let copyIconName = Constants.UI.Image.copyIcon
+        let copyIcon = UIImage(systemName: copyIconName, withConfiguration: copyIconConfig)
+        let copyButtons = detailBackgroundView.copyButtons!
+        for copyButton in copyButtons {
+            copyButton.backgroundColor = .clear
+            copyButton.tintColor = tintColor
+            copyButton.setImage(copyIcon, for: .normal)
         }
     }
     
     func setupPresentDetailsButton() {
         let imageConfiguration = UIImage.SymbolConfiguration(scale: .default)
-        let imageName = Keys.UI.Image.detailsIconName
+        let imageName = Constants.UI.Image.detailsIconName
         let image = UIImage(systemName: imageName, withConfiguration: imageConfiguration)
-        let contentBackColor = Keys.UI.Colors.contentBackColor
+        let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
         let backgroundColor = contentBackColor.withAlphaComponent(0.15)
-        let tintColor = Keys.UI.Colors.tintColor
+        let tintColor = UIColor.ACDetails.tintColor
         let strokeColor = tintColor.withAlphaComponent(0.2)
         var configuration = UIButton.Configuration.filled()
         configuration.background.backgroundColor = backgroundColor
@@ -392,9 +435,9 @@ private extension CommandDetailViewController {
     }
     
     func setupScreenshotButton() {
-        let title = Keys.UI.Button.goToScreenshotTitle
-        let baseTintColor = Keys.UI.Colors.tintColor
-        let baseBackgroundColor = Keys.UI.Colors.backgroundColor
+        let title = Constants.UI.Button.goToScreenshotTitle
+        let baseTintColor = UIColor.ACDetails.tintColor
+        let baseBackgroundColor = UIColor.ACDetails.backgroundColor
         let isEnabled = uiModel?.isScreenshotEnabled!
         let backgroundColor: UIColor
         let tintColor: UIColor
@@ -422,10 +465,10 @@ private extension CommandDetailViewController {
     }
     
     func setupCodeSnippetButton() {
-        let title = Keys.UI.Button.goToCodeSnippetTitle
-        let baseTintColor = Keys.UI.Colors.tintColor
-        let baseBackgroundColor = Keys.UI.Colors.backgroundColor
-        let contentBackColor = Keys.UI.Colors.contentBackColor
+        let title = Constants.UI.Button.goToCodeSnippetTitle
+        let baseTintColor = UIColor.ACDetails.tintColor
+        let baseBackgroundColor = UIColor.ACDetails.backgroundColor
+        let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
         let isEnabled = uiModel?.isCodeSnippetEnabled!
         let backgroundColor: UIColor
         let strokeColor: UIColor
@@ -465,5 +508,19 @@ private extension CommandDetailViewController {
         container.foregroundColor = tintColor
         container.font = font
         return container
+    }
+}
+
+
+//MARK: - ColorPickerViewController delegate extension
+extension CommandDetailViewController: UIColorPickerViewControllerDelegate {
+    
+    //MARK: Internal
+    internal func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        presenter?.setNewTintColor(with: viewController.selectedColor)
+    }
+    
+    internal func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        presenter?.setNewTintColor(with: viewController.selectedColor)
     }
 }

@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension ACAlertManager {
     
     //MARK: Private
-    enum Keys{
+    enum Constants {
         enum UI {
             enum Action {
                 
@@ -45,7 +45,7 @@ public extension ACAlertManager {
                        message: String?,
                        tintColor: UIColor = .link,
                        on vc: UIViewController) {
-        let dismissActionTitle = Keys.UI.Action.dismissActionTitle
+        let dismissActionTitle = Constants.UI.Action.dismissActionTitle
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: dismissActionTitle, style: .cancel)
         alertVC.addAction(dismissAction)
@@ -58,7 +58,7 @@ public extension ACAlertManager {
                                  tintColor: UIColor = .label,
                                  actionHandler: ((UIAlertAction) -> Void)? = nil,
                                  on vc: UIViewController) {
-        let cancelActionTitle = Keys.UI.Action.cancelActionTitle
+        let cancelActionTitle = Constants.UI.Action.cancelActionTitle
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: actionHandler)
         let continueAction = UIAlertAction(title: cancelActionTitle, style: .cancel)
@@ -80,7 +80,7 @@ public extension ACAlertManager {
                                   actionHandler: ((UIAlertAction) -> Void)? = nil,
                                   tintColor: UIColor = .link,
                                   on vc: UIViewController) {
-        let cancelActionTitle = Keys.UI.Action.cancelActionTitle
+        let cancelActionTitle = Constants.UI.Action.cancelActionTitle
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         let actionSheetAction = UIAlertAction(title: actionTitle, style: .default, handler: actionHandler)
         let cancelAction = UIAlertAction(title: cancelActionTitle, style: .cancel)

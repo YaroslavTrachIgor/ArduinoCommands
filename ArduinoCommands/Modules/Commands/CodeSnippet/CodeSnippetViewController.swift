@@ -8,16 +8,32 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol CodeSnippetViewControllerProtocol: ACBaseDetailViewController {
+    func presentColorPickerViewController()
+    func presentFontChangeViews(with animationType: ACBasePresentationType)
+    func setupCodeContentViewAppearance(appearanceType: ACBaseAppearanceType)
+    func changeCodeTextViewFontSize()
+}
+
+
+//MARK: - ViewController Delegate protocol
+protocol CodeSnippetViewControllerDelegate: AnyObject {
+    func setCodeTintColor(color: UIColor)
+    func setCodeFontSize(size: Float)
+}
+
+
+//MARK: - Constants
 private extension CodeSnippetViewController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Label {
                 
                 //MARK: Static
-                static let colorPickerVCTitle = "Content Tint"
+                static let colorPickerVCTitle = "Snippet Tint Color"
             }
             enum Button {
                 
@@ -31,26 +47,8 @@ private extension CodeSnippetViewController {
                 //MARK: Static
                 static let footer = "View the code example of Command initalization. This will let you understand the basic case of its usage."
             }
-            enum Color {
-                
-                //MARK: Static
-                static let backgroundColor = #colorLiteral(red: 0.1044024155, green: 0.1050226167, blue: 0.1131809279, alpha: 1)
-            }
-        }
-        enum Defaults {
-            
-            //MARK: Static
-            static let codeTintColorKey = "CodeTintColorKey"
-            static let codeFontSize = "CodeFontSizeKey"
         }
     }
-}
-
-
-//MARK: - ViewController delegate protocol
-protocol ACBaseCodeSnippetViewControllerDelegate: AnyObject {
-    func setCodeTintColor(color: UIColor)
-    func setCodeFontSize(size: Float)
 }
 
 
@@ -143,7 +141,7 @@ final class CodeSnippetViewController: UIViewController, ACBaseStoryboarded {
 
 
 //MARK: - Delegate extension
-extension CodeSnippetViewController: ACBaseCodeSnippetViewControllerDelegate {
+extension CodeSnippetViewController: CodeSnippetViewControllerDelegate {
     
     //MARK: Internal
     internal func setCodeTintColor(color: UIColor) {
@@ -156,8 +154,8 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewControllerDelegate {
 }
 
 
-//MARK: - Base ViewController protocol extension
-extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
+//MARK: - ViewController protocol extension
+extension CodeSnippetViewController: CodeSnippetViewControllerProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
@@ -170,16 +168,16 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
         setupFontChangePopupBlurView()
         setupFontChangePopupBackView()
         setupFontChangeContentView()
-        setupFontChangeDoneButton()
         setupFontChangeSlider()
+        fontChangeDoneButton.setupPopupButton(tintColor: codeTintColor, title: Constants.UI.Button.doneButtonTitle)
         copyBarButton.setupBaseCopyBarButton()
         shareBarButton.setupBaseShareBarButton()
         costomBackBarButton.setupBaseBackBarButton()
-        decorationTextView.setupBaseFooterTextView(text: Keys.UI.TextView.footer)
+        decorationTextView.setupBaseFooterTextView(text: Constants.UI.TextView.footer)
         appearanceSegmentedControl.setupBaseDetailDarkSegmentedControl()
-        setupCodeContentEditingButton(for: colorPickerGoButton, imageName: Keys.UI.Button.colorPickerGoIcon)
-        setupCodeContentEditingButton(for: fontChangeButton, imageName: Keys.UI.Button.fontChangeIcon)
-        view.backgroundColor = Keys.UI.Color.backgroundColor
+        colorPickerGoButton.setupCodeContentEditingButton(tintColor: codeTintColor, imageName: Constants.UI.Button.colorPickerGoIcon)
+        fontChangeButton.setupCodeContentEditingButton(tintColor: codeTintColor, imageName: Constants.UI.Button.fontChangeIcon)
+        view.backgroundColor = UIColor.ACDetails.secondaryBackgroundColor
     }
     
     internal func moveToThePreviousViewController() {
@@ -187,7 +185,7 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
     }
     
     internal func presentColorPickerViewController() {
-        let title = Keys.UI.Label.colorPickerVCTitle
+        let title = Constants.UI.Label.colorPickerVCTitle
         let picker = UIColorPickerViewController()
         picker.selectedColor = codeTintColor
         picker.delegate = self
@@ -201,9 +199,16 @@ extension CodeSnippetViewController: ACBaseCodeSnippetViewController {
         codeTextView.font = newFont
     }
     
-    internal func presentFontChangeViews(with animationType: ACBaseAnimationType) {
+    internal func presentFontChangeViews(with animationType: ACBasePresentationType) {
         animateViewIn(for: fontChangePopupBlurView, animationType: animationType)
         animateViewIn(for: fontChangePopupBackView, animationType: animationType)
+    }
+    
+    internal func enableBarViews(with animationType: ACBasePresentationType) {
+        enableViewIn(or: appearanceSegmentedControl, animationType: animationType)
+        enableViewIn(or: costomBackBarButton, animationType: animationType)
+        enableViewIn(or: shareBarButton, animationType: animationType)
+        enableViewIn(or: copyBarButton, animationType: animationType)
     }
     
     internal func setupCodeContentViewAppearance(appearanceType: ACBaseAppearanceType) {
@@ -292,18 +297,10 @@ private extension CodeSnippetViewController {
     func setupFontChangeContentView() {
         let bounds = CGRect(x: 0, y: 0, width: 260, height: 55)
         let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
-        let backgroundColor = Keys.UI.Color.backgroundColor
+        let backgroundColor = UIColor.ACDetails.secondaryBackgroundColor
         fontChangeContentView.backgroundColor = backgroundColor
         fontChangeContentView.layer.cornerRadius = cornerRadius
         fontChangeContentView.bounds = bounds
-    }
-    
-    func setupFontChangeDoneButton() {
-        let title = Keys.UI.Button.doneButtonTitle
-        fontChangeDoneButton.backgroundColor = .clear
-        fontChangeDoneButton.tintColor = codeTintColor
-        fontChangeDoneButton.setTitleColor(codeTintColor, for: .normal)
-        fontChangeDoneButton.setTitle(title, for: .normal)
     }
     
     func setupFontChangeSlider() {
@@ -319,20 +316,6 @@ private extension CodeSnippetViewController {
     
     
     //MARK: Fast Methods
-    func setupCodeContentEditingButton(for button: UIButton, imageName: String) {
-        let borderColor = codeTintColor.cgColor
-        let backgroundColor = codeTintColor.withAlphaComponent(0.1)
-        let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
-        let configuration = UIImage.SymbolConfiguration(scale: .medium)
-        let image = UIImage(systemName: imageName, withConfiguration: configuration)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = borderColor
-        button.layer.cornerRadius = cornerRadius
-        button.tintColor = codeTintColor
-        button.setImage(image, for: .normal)
-        button.backgroundColor = backgroundColor
-    }
-    
     /// This changes Code Content appearance with animation;
     /// - Parameter appearanceType: case of content appearanc.
     func setCodeContentAppearance(appearanceType: ACBaseAppearanceType = .dark) {

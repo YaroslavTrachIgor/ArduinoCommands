@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Main model
-public final class ACSettingsPreviewModel: Identifiable {
+public final class ACSettingsPreview: Identifiable {
     var title: String?
     var iconName: String?
     

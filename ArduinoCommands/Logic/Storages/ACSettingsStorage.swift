@@ -11,18 +11,14 @@ import UIKit
 //MARK: - Settings content Storage
 public enum ACSettingsStorage {
     
-    //MARK: Static
-    static var title = "Settings"
-    
-    
     //MARK: Public
     enum PreviewSection {
         
         //MARK: Static
         static let header = "Preview"
         static let footer = "You can learn the latest Arduino Commands features by viewing by viewing Application Intro."
-        static let content: [ACSettingsPreviewModel] = [
-            ACSettingsPreviewModel(
+        static let content: [ACSettingsPreview] = [
+            ACSettingsPreview(
                 title: "Show Intro",
                 iconName: "eyes"
             )
@@ -31,55 +27,32 @@ public enum ACSettingsStorage {
     enum BasicInfoSection {
         
         //MARK: Static
-        static let header =  "About App"
+        static let header = "About App"
         static let footer = "Basic information about the Application from the App Store."
-        static let content: [ACSettingsBasicInfoModel] = [
-            ACSettingsBasicInfoModel(
+        static let content: [ACSettingsBasicInfo] = [
+            ACSettingsBasicInfo(
                 parameter: "Version",
                 value: "1.0.0"
             ),
-            ACSettingsBasicInfoModel(
+            ACSettingsBasicInfo(
                 parameter: "Category",
                 value: "Education"
             ),
-            ACSettingsBasicInfoModel(
+            ACSettingsBasicInfo(
                 parameter: "Age Category",
                 value: "+12"
             ),
-            ACSettingsBasicInfoModel(
+            ACSettingsBasicInfo(
                 parameter: "Language",
                 value: "English"
             ),
-            ACSettingsBasicInfoModel(
+            ACSettingsBasicInfo(
                 parameter: "Compatibility",
                 value: "iPhone"
             ),
-            ACSettingsBasicInfoModel(
+            ACSettingsBasicInfo(
                 parameter: "Designed",
                 value: "by Trach Yarsolav"
-            )
-        ]
-    }
-    enum ToggleParametersSection {
-        
-        //MARK: Static
-        static let header = "Parameters"
-        static let content: [ACSettingsToggleParameterCellModel] = [
-            ACSettingsToggleParameterCellModel(
-                content: ACSettingsToggleParameterModel(
-                    parameterName: "Allow Notifications",
-                    parameterValue: true
-                ),
-                iconName: "app.badge",
-                tintColor: .systemPurple
-            ),
-            ACSettingsToggleParameterCellModel(
-                content: ACSettingsToggleParameterModel(
-                    parameterName: "Show Ads",
-                    parameterValue: true
-                ),
-                iconName: "a.square.fill",
-                tintColor: .systemGreen
             )
         ]
     }
@@ -87,26 +60,26 @@ public enum ACSettingsStorage {
         
         //MARK: Static
         static let header = "Contact Info"
-        static let footer = "View different Arduino Commands resources, which can help you to learn some more about the App or get a needed help."
-        static let content: [ACSettingsContactInfoCellModel] = [
-            ACSettingsContactInfoCellModel(
-                content: ACSettingsContactInfoModel(
+        static let footer = "View different Arduino Commands resouces, which can help you to learn aome more about the App or get the needed help."
+        static let content: [ACSettingsContactInfoCell] = [
+            ACSettingsContactInfoCell(
+                content: ACSettingsContactInfo(
                     link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
                     linkName: "Website"
                 ),
                 iconName: "globe",
                 tintColor: .systemTeal
             ),
-            ACSettingsContactInfoCellModel(
-                content: ACSettingsContactInfoModel(
+            ACSettingsContactInfoCell(
+                content: ACSettingsContactInfo(
                     link: "https://www.instagram.com/axcigrpvicj/",
                     linkName: "Instagram"
                 ),
                 iconName: "link",
                 tintColor: .systemPink
             ),
-            ACSettingsContactInfoCellModel(
-                content: ACSettingsContactInfoModel(
+            ACSettingsContactInfoCell(
+                content: ACSettingsContactInfo(
                     link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
                     linkName: "Privacy Policy"
                 ),
@@ -114,5 +87,29 @@ public enum ACSettingsStorage {
                 tintColor: .systemIndigo
             )
         ]
+    }
+    enum ParametersSection {
+        
+        //MARK: Static
+        static let header = "Settings"
+        static let footer = "Here you can lock all the unnecessary and unlock the necessary features of Arduino Commands."
+        static let allowsNotificationsCell = ACSettingsParameterCell(
+            content: ACSettingsParameter(
+                name: "Allows Notifications",
+                value: ACSettingsManager.shared.allowsNotifications
+            ),
+            iconName: "app.badge",
+            tintColor: .systemPurple,
+            isEnabled: true
+        )
+        static let removeAdsCell = ACSettingsParameterCell(
+            content: ACSettingsParameter(
+                name: "Remove Ads",
+                value: true
+            ),
+            iconName: "a.square.fill",
+            tintColor: .systemGreen,
+            isEnabled: false
+        )
     }
 }

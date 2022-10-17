@@ -8,29 +8,13 @@
 import Foundation
 import SwiftUI
 
-//MARK: - Keys
-private extension IntroBackgroundView {
-    
-    //MARK: Private
-    enum Keys {
-        enum UI {
-            enum Image {
-                
-                //MARK: Static
-                static let backgroundName = "intro-background"
-            }
-        }
-    }
-}
-
-
-//MARK: - Main Intro background View
+//MARK: - Main View
 struct IntroBackgroundView: View {
     var body: some View {
-        Image(Keys.UI.Image.backgroundName)
+        Image("intro-background")
             .resizable()
             .background(Color(uiColor: .white))
-            .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
+            .padding(.trailing, -70)
     }
 }

@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol AFastImageViewControllerProtocol: ACBaseWithShareViewController {}
+
+
+//MARK: - Constants
 private extension FastImageViewController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum View {
                 enum Colors {
@@ -59,7 +63,7 @@ private extension FastImageViewController {
 }
 
 
-//MARK: - Fast Image preview ViewController
+//MARK: - Main ViewController
 final class FastImageViewController: UIViewController {
 
     //MARK: Weak
@@ -97,8 +101,8 @@ final class FastImageViewController: UIViewController {
 }
 
 
-//MARK: - Base ViewController protocol extension
-extension FastImageViewController: ACBaseFastImageViewControllerProtocol {
+//MARK: - ViewController protocol extension
+extension FastImageViewController: AFastImageViewControllerProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
@@ -109,11 +113,11 @@ extension FastImageViewController: ACBaseFastImageViewControllerProtocol {
         setupCopyImageButton()
         setupButtonsBacKView()
         setupButtonsBackBlurView()
-        decorationTextView.setupBaseFooterTextView(text: Keys.UI.TextView.decoTextViewContent, ofSize: 11.5)
+        decorationTextView.setupBaseFooterTextView(text: Constants.UI.TextView.decoTextViewContent, ofSize: 11.5)
     }
     
     internal func presentActivityVC(activityItems: [Any]) {
-        let tintColor = Keys.UI.View.Colors.backgroundColor
+        let tintColor = Constants.UI.View.Colors.backgroundColor
         ACActivityManager.presentVC(activityItems: activityItems,
                                     tintColor: tintColor,
                                     on: self)
@@ -127,8 +131,8 @@ private extension FastImageViewController {
     
     //MARK: Private
     func setupMainView() {
-        let backColor = Keys.UI.View.Colors.backgroundColor.withAlphaComponent(0.02)
-        let tintColor = Keys.UI.View.Colors.tintColor
+        let backColor = Constants.UI.View.Colors.backgroundColor.withAlphaComponent(0.02)
+        let tintColor = Constants.UI.View.Colors.tintColor
         view.backgroundColor = backColor
         view.tintColor = tintColor
     }
@@ -147,17 +151,17 @@ private extension FastImageViewController {
     }
     
     func setupButtonsBackBlurView() {
-        let cornerRadius = Keys.UI.View.Corners.basicCornerRadius
-        let tintColor = Keys.UI.View.Colors.tintColor
+        let cornerRadius = Constants.UI.View.Corners.basicCornerRadius
+        let tintColor = Constants.UI.View.Colors.tintColor
         buttonsBackBlurView.layer.cornerRadius = cornerRadius
         buttonsBackBlurView.clipsToBounds = true
         buttonsBackBlurView.tintColor = tintColor
     }
     
     func setupButtonsBacKView() {
-        let cornerRadius = Keys.UI.View.Corners.basicCornerRadius
-        let backColor = Keys.UI.View.Colors.buttonsBackColor.withAlphaComponent(0.5)
-        let tintColor = Keys.UI.View.Colors.tintColor
+        let cornerRadius = Constants.UI.View.Corners.basicCornerRadius
+        let backColor = Constants.UI.View.Colors.buttonsBackColor.withAlphaComponent(0.5)
+        let tintColor = Constants.UI.View.Colors.tintColor
         buttonsBacKView.setFastGlassmorphismBorder()
         buttonsBacKView.layer.cornerRadius = cornerRadius
         buttonsBacKView.backgroundColor = backColor
@@ -165,11 +169,11 @@ private extension FastImageViewController {
     }
     
     func setupShareButton() {
-        let title = Keys.UI.Button.Titles.shareTitle
-        let subtitle = Keys.UI.Button.Subtitles.shareSubitle
-        let foregroundColor = Keys.UI.View.Colors.backgroundColor
-        let backgroundColor = Keys.UI.View.Colors.tintColor
-        let imageKey = Keys.UI.Image.shareIcon
+        let title = Constants.UI.Button.Titles.shareTitle
+        let subtitle = Constants.UI.Button.Subtitles.shareSubitle
+        let foregroundColor = Constants.UI.View.Colors.backgroundColor
+        let backgroundColor = Constants.UI.View.Colors.tintColor
+        let imageKey = Constants.UI.Image.shareIcon
         let image = setupFastButtonConfiguredImage(systemName: imageKey, scale: .large)
         let attributedTitle = setupFastAttributedTitle(size: 15,
                                                        weight: .medium,
@@ -189,11 +193,11 @@ private extension FastImageViewController {
     }
     
     func setupCopyImageButton() {
-        let title = Keys.UI.Button.Titles.copyTitle
-        let subtitle = Keys.UI.Button.Subtitles.copySubitle
-        let foregroundColor = Keys.UI.View.Colors.tintColor
-        let backgroundColor = Keys.UI.View.Colors.copyButtonBackColor
-        let imageKey = Keys.UI.Image.copyIcon
+        let title = Constants.UI.Button.Titles.copyTitle
+        let subtitle = Constants.UI.Button.Subtitles.copySubitle
+        let foregroundColor = Constants.UI.View.Colors.tintColor
+        let backgroundColor = Constants.UI.View.Colors.copyButtonBackColor
+        let imageKey = Constants.UI.Image.copyIcon
         let image = setupFastButtonConfiguredImage(systemName: imageKey, scale: .default)
         let attributedTitle = setupFastAttributedTitle(size: 15,
                                                        weight: .medium,

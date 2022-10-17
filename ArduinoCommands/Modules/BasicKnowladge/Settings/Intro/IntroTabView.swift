@@ -16,7 +16,7 @@ struct IntroTabView: View {
         return ACIntroStorage.cards
     }
     
-    //MARK: View configuration
+    //MARK: View Configuration
     var body: some View {
         VStack {
             TabView {

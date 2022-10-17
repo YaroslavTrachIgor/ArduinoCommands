@@ -91,7 +91,7 @@ public extension UIViewController {
 }
 
 
-//MARK: - Fast ViewController animations methods
+//MARK: - Fast ViewController animation methods
 public extension UIViewController {
     
     //MARK: Public
@@ -100,7 +100,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - view: UI element that will be animated;
     ///   - animationType: kind of animation(present or hide view).
-    func animateViewIn(for view: UIView, animationType: ACBaseAnimationType) {
+    func animateViewIn(for view: UIView, animationType: ACBasePresentationType) {
         switch animationType {
         case .present:
             /**
@@ -123,6 +123,28 @@ public extension UIViewController {
             } completion: {
                 view.removeFromSuperview()
             }
+        }
+    }
+    
+    /// This changes the ability to interact with the views of `UIControl` type with animation.
+    /// - Parameters:
+    ///   - view: the view that is on the VC and will be changed;
+    ///   - animationType: case of animation depending on which the `view` properties will changed.
+    func enableViewIn(or view: UIControl, animationType: ACBasePresentationType) {
+        switch animationType {
+        case .present: fastAnimation { view.isEnabled = true }
+        case .hide: fastAnimation { view.isEnabled = false }
+        }
+    }
+    
+    /// This changes the ability to interact with the views of `UIBarItem` type with animation.
+    /// - Parameters:
+    ///   - view: the view that is on the VC and will be changed;
+    ///   - animationType: case of animation depending on which the `view` properties will changed.
+    func enableViewIn(or view: UIBarItem, animationType: ACBasePresentationType) {
+        switch animationType {
+        case .present: fastAnimation { view.isEnabled = true }
+        case .hide: fastAnimation { view.isEnabled = false }
         }
     }
     

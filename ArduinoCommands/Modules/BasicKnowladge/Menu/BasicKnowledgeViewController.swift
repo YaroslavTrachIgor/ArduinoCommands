@@ -11,11 +11,21 @@ import SafariServices
 import SPAlert
 import SwiftUI
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol BasicKnowledgeVCProtocol: ACBaseViewController {
+    func presentOnboardingVC()
+    func presentSettingsHostVC()
+    func presentDetailVC(with model: ACBasics)
+    func presentSiteWithSafari(with model: ACLink)
+    func presentUserSheetVC(with model: ACUser)
+}
+
+
+//MARK: - Constants
 private extension BasicKnowledgeViewController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Segues {
                 
@@ -65,7 +75,7 @@ private extension BasicKnowledgeViewController {
 }
 
 
-//MARK: - Main menu ViewController
+//MARK: - Main ViewController
 final class BasicKnowledgeViewController: UITableViewController, ACBaseViewController {
     
     //MARK: Private
@@ -105,18 +115,18 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     
     //MARK: Base ViewController logic protocol
     internal func setupMainUI() {
-        setupView()
         setupTableView()
         setupNavigationBar()
         setupSectionsUI()
         setupFooterLabel()
         setBlurViewForStatusBar()
+        view.setupBasicMenuBackgroundView(.secondary)
     }
 }
 
 
-//MARK: - Base ViewController protocol extension
-extension BasicKnowledgeViewController: ACBaseBasicKnowledgeVCProtocol {
+//MARK: - ViewController protocol extension
+extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
     
     //MARK: Internal
     internal func presentSettingsHostVC() {
@@ -173,25 +183,25 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
         let section = sections[collectionView.tag]
         switch section {
         case .basics(let rows):
-            let key = Keys.UI.CollectionView.CellKeys.basicsSectionCellKey
+            let key = Constants.UI.CollectionView.CellKeys.basicsSectionCellKey
             let cell = basicsCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! BasicsCollectionViewCell
             let uiModel = BasicsCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell
         case .team(let rows):
-            let key = Keys.UI.CollectionView.CellKeys.teamSectionCellKey
+            let key = Constants.UI.CollectionView.CellKeys.teamSectionCellKey
             let cell = teamCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! PersonCollectionViewCell
             let uiModel = PersonCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell
         case .links(let rows):
-            let key = Keys.UI.CollectionView.CellKeys.siteSectionCellKey
+            let key = Constants.UI.CollectionView.CellKeys.siteSectionCellKey
             let cell = sitesCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! SiteCollectionViewCell
             let uiModel = SiteCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell
         case .users(let rows):
-            let key = Keys.UI.CollectionView.CellKeys.usersSectionCellKey
+            let key = Constants.UI.CollectionView.CellKeys.usersSectionCellKey
             let cell = usersCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! UserCollectionViewCell
             let uiModel = UserCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
@@ -203,13 +213,13 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
         let section = sections[collectionView.tag]
         switch section {
         case .basics(_):
-            return Keys.UI.CollectionView.CellSpacing.insetForBasicsSection
+            return Constants.UI.CollectionView.CellSpacing.insetForBasicsSection
         case .team(_):
-            return Keys.UI.CollectionView.CellSpacing.insetForTeamSection
+            return Constants.UI.CollectionView.CellSpacing.insetForTeamSection
         case .links(_):
-            return Keys.UI.CollectionView.CellSpacing.insetForSitesSection
+            return Constants.UI.CollectionView.CellSpacing.insetForSitesSection
         case .users(_):
-            return Keys.UI.CollectionView.CellSpacing.insetForUsersSection
+            return Constants.UI.CollectionView.CellSpacing.insetForUsersSection
         }
     }
 
@@ -217,22 +227,22 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
         let section = sections[collectionView.tag]
         switch section {
         case .basics(_):
-            return Keys.UI.CollectionView.CellSize.sizeForItemAtBasicsSection
+            return Constants.UI.CollectionView.CellSize.sizeForItemAtBasicsSection
         case .team(_):
-            return Keys.UI.CollectionView.CellSize.sizeForItemAtTeamSection
+            return Constants.UI.CollectionView.CellSize.sizeForItemAtTeamSection
         case .links(_):
-            return Keys.UI.CollectionView.CellSize.sizeForItemAtSitesSection
+            return Constants.UI.CollectionView.CellSize.sizeForItemAtSitesSection
         case .users(_):
-            return Keys.UI.CollectionView.CellSize.sizeForItemAtUsersSection
+            return Constants.UI.CollectionView.CellSize.sizeForItemAtUsersSection
         }
     }
     
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        Keys.UI.CollectionView.MinimumSpacings.minimumInteritemSpacing
+        Constants.UI.CollectionView.MinimumSpacings.minimumInteritemSpacing
     }
     
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        Keys.UI.CollectionView.MinimumSpacings.minimumLineSpacing
+        Constants.UI.CollectionView.MinimumSpacings.minimumLineSpacing
     }
     
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -245,12 +255,6 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
 private extension BasicKnowledgeViewController {
     
     //MARK: Private
-    func setupView() {
-        view.alpha = 1
-        view.tintColor = .label
-        view.backgroundColor = .systemGroupedBackground
-    }
-    
     func setupNavigationBar() {
         let font = UIFont.ACFont(ofSize: 16.0, weight: .bold)
         let titleFontAttributes = [NSAttributedString.Key.font: font]
@@ -288,7 +292,7 @@ private extension BasicKnowledgeViewController {
     
     func setupFooterLabel() {
         let font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        let content = Keys.UI.Label.tableFooter
+        let content = Constants.UI.Label.tableFooter
         footerLabel.backgroundColor = .secondarySystemBackground
         footerLabel.numberOfLines = 0
         footerLabel.textColor = .tertiaryLabel
@@ -315,7 +319,7 @@ private extension BasicKnowledgeViewController {
     
     func setupBasicsHeaderLabel(with headerView: UIView) -> UILabel {
         let labelFont = UIFont.systemFont(ofSize: 14, weight: .regular)
-        let content = Keys.UI.Label.tableHeader.uppercased()
+        let content = Constants.UI.Label.tableHeader.uppercased()
         let labelWidth = headerView.frame.width - 10
         let labelHeight = headerView.frame.height - 10
         let labelFrame = CGRect.init(x: 30, y: -5, width: labelWidth, height: labelHeight)

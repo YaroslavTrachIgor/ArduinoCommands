@@ -15,11 +15,7 @@ private extension ACApplicationCheckManager {
     enum Keys {
         
         //MARK: Static
-        enum Constants {
-            
-            //MARK: Static
-            static let currentVersion = "1.0.0"
-        }
+        static let currentVersion = "1.0.0"
     }
 }
 
@@ -58,7 +54,7 @@ final class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
             switch result {
             case .success(let applicationAPI):
                 guard let version = applicationAPI.version else { return }
-                if version != Keys.Constants.currentVersion && isNeededAlert {
+                if version != Keys.currentVersion && isNeededAlert {
                     guard let completionHandler = completion else { return }
                     DispatchQueue.main.async {
                         completionHandler()

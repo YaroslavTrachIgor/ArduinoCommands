@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Main model
-public final class ACSettingsBasicInfoModel: Identifiable {
+public final class ACSettingsBasicInfo: Identifiable {
     var parameter: String?
     var value: String?
     

@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol OnboardingViewControllerProtocol: ACBaseViewController {
+    func setupContent(with data: OnboardingUIModelProtocol)
+}
+
+
+//MARK: - Constants
 private extension OnboardingViewController {
     
     //MARK: Public
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Button {
                 
@@ -24,7 +30,7 @@ private extension OnboardingViewController {
 }
 
 
-//MARK: - Main Onboarding ViewController
+//MARK: - Main ViewController
 final class OnboardingViewController: UIViewController {
 
     //MARK: Private
@@ -58,8 +64,8 @@ final class OnboardingViewController: UIViewController {
 }
 
 
-//MARK: - Base ViewController protocol extension
-extension OnboardingViewController: ACBaseOnboardingViewController {
+//MARK: - ViewController protocol extension
+extension OnboardingViewController: OnboardingViewControllerProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
@@ -117,7 +123,7 @@ private extension OnboardingViewController {
     }
     
     func setupContinueButton() {
-        let title = Keys.UI.Button.continueButtonTitle
+        let title = Constants.UI.Button.continueButtonTitle
         let attributes = setupContinueButtonTitleContainer()
         let attributedTitle = AttributedString(title, attributes: attributes)
         var config = UIButton.Configuration.filled()

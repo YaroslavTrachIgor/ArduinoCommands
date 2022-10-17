@@ -8,34 +8,17 @@
 import Foundation
 import SwiftUI
 
-//MARK: - Keys
-private extension IntroCloseButton {
-    
-    //MARK: Private
-    enum Keys {
-        enum UI {
-            enum Button {
-                
-                //MARK: Static
-                static let closeTitle = "Close"
-            }
-        }
-    }
-}
-
-
 //MARK: - Main View
 struct IntroCloseButton: View {
     
-    //MARK: @EnvironmentObject
-    @EnvironmentObject var stateHelper: SettingsStateHelper
-    
     //MARK: Private
+    @EnvironmentObject
+    private var stateHelper: SettingsStateHelper
     private var tintGradient: Gradient {
-        return ACIntroStorage.Keys.UI.Gradients.tintGradient
+        return ACIntroStorage.Constants.UI.Gradients.tintGradient
     }
     
-    //MARK: View configuration
+    //MARK: View Configuration
     var body: some View {
         VStack {
             Button {
@@ -61,7 +44,7 @@ private extension IntroCloseButton {
             .stroke(introLinearGradient, lineWidth: 1.3)
     }
     var introCloseButtonTitle: some View {
-        Text(Keys.UI.Button.closeTitle.uppercased())
+        Text("Close".uppercased())
             .frame(maxWidth: .infinity, alignment: .center)
             .font(.system(size: 13, weight: .medium))
     }

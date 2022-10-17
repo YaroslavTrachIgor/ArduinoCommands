@@ -82,7 +82,7 @@
 		CE78D58728CC55270040B4D2 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58628CC55270040B4D2 /* UserDefaultsExtensions.swift */; };
 		CE78D58928CC59FA0040B4D2 /* NumericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58828CC59F90040B4D2 /* NumericExtensions.swift */; };
 		CE78D58B28D5880D0040B4D2 /* CodeSnippetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */; };
-		CE78D58E28D58DDA0040B4D2 /* ACBaseAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58D28D58DDA0040B4D2 /* ACBaseAnimationType.swift */; };
+		CE78D58E28D58DDA0040B4D2 /* ACBasePresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */; };
 		CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */; };
 		CE78D59228D5A0CE0040B4D2 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */; };
 		CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751D28B35ED100B77595 /* StringExtensions.swift */; };
@@ -94,6 +94,7 @@
 		CE84FAAF2867634200CE9D4D /* FastImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84FAAD2867634200CE9D4D /* FastImageViewController.swift */; };
 		CE84FAB02867634200CE9D4D /* FastImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE84FAAE2867634200CE9D4D /* FastImageViewController.xib */; };
 		CE84FAB2286765BA00CE9D4D /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84FAB1286765BA00CE9D4D /* UIViewControllerExtensions.swift */; };
+		CE8A0D3928F113E1004D7DED /* CommandDetailBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8A0D3828F113E1004D7DED /* CommandDetailBackgroundView.swift */; };
 		CE8C6811289C00CF006C1888 /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C6810289C00CE006C1888 /* CGFloatExtensions.swift */; };
 		CE8C6813289C02CE006C1888 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C6812289C02CE006C1888 /* UIViewExtensions.swift */; };
 		CE8C681D28A14D6B006C1888 /* BasicsCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C681C28A14D6B006C1888 /* BasicsCellUIModel.swift */; };
@@ -111,16 +112,17 @@
 		CE9235DC28ABD8000037846F /* IntroCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235DB28ABD8000037846F /* IntroCloseButton.swift */; };
 		CE9235E228ABDB610037846F /* ACSettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E128ABDB610037846F /* ACSettingsStorage.swift */; };
 		CE9235E428AC2CB20037846F /* SettingsStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E328AC2CB20037846F /* SettingsStateHelper.swift */; };
-		CE9235E728AC2E270037846F /* ACSettingsBasicInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E628AC2E270037846F /* ACSettingsBasicInfoModel.swift */; };
-		CE9235E928AC3AD40037846F /* ACSettingsContactInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E828AC3AD40037846F /* ACSettingsContactInfoModel.swift */; };
-		CE9235EB28AC3DD10037846F /* ACSettingsToggleParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235EA28AC3DD10037846F /* ACSettingsToggleParameterModel.swift */; };
-		CE9235ED28AC9DAC0037846F /* SettingsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235EC28AC9DAC0037846F /* SettingsUIModel.swift */; };
+		CE9235E728AC2E270037846F /* ACSettingsBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E628AC2E270037846F /* ACSettingsBasicInfo.swift */; };
+		CE9235E928AC3AD40037846F /* ACSettingsContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E828AC3AD40037846F /* ACSettingsContactInfo.swift */; };
+		CE9235EB28AC3DD10037846F /* ACSettingsParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235EA28AC3DD10037846F /* ACSettingsParameter.swift */; };
 		CE9235EF28AC9EE50037846F /* SettingsViewToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235EE28AC9EE50037846F /* SettingsViewToggleCell.swift */; };
 		CE9235F128AC9EFA0037846F /* SettingsBasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F028AC9EFA0037846F /* SettingsBasicInfoCell.swift */; };
 		CE9235F328AC9F0E0037846F /* SettingsPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */; };
 		CE9235F528AC9F400037846F /* SettingsContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F428AC9F400037846F /* SettingsContactCell.swift */; };
-		CE9235F728ACA9F50037846F /* ACSettingsPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F628ACA9F50037846F /* ACSettingsPreviewModel.swift */; };
+		CE9235F728ACA9F50037846F /* ACSettingsPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F628ACA9F50037846F /* ACSettingsPreview.swift */; };
 		CE99BA8D28BF3493007A7158 /* OnboardingUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */; };
+		CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */; };
+		CE9A6FD228FCEBF400E1EF23 /* ACSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */; };
 		CEB89DB328A5BF1700EA44FB /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */; };
 		CECB4A8F28AB4AAD00278130 /* ACIntroStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */; };
 		CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */; };
@@ -248,7 +250,7 @@
 		CE78D58628CC55270040B4D2 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		CE78D58828CC59F90040B4D2 /* NumericExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericExtensions.swift; sourceTree = "<group>"; };
 		CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetPresenter.swift; sourceTree = "<group>"; };
-		CE78D58D28D58DDA0040B4D2 /* ACBaseAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseAnimationType.swift; sourceTree = "<group>"; };
+		CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBasePresentationType.swift; sourceTree = "<group>"; };
 		CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseAppearanceType.swift; sourceTree = "<group>"; };
 		CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
 		CE7F751D28B35ED100B77595 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		CE84FAAD2867634200CE9D4D /* FastImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastImageViewController.swift; sourceTree = "<group>"; };
 		CE84FAAE2867634200CE9D4D /* FastImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FastImageViewController.xib; sourceTree = "<group>"; };
 		CE84FAB1286765BA00CE9D4D /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		CE8A0D3828F113E1004D7DED /* CommandDetailBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailBackgroundView.swift; sourceTree = "<group>"; };
 		CE8C6810289C00CE006C1888 /* CGFloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
 		CE8C6812289C02CE006C1888 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		CE8C681C28A14D6B006C1888 /* BasicsCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsCellUIModel.swift; sourceTree = "<group>"; };
@@ -277,16 +280,17 @@
 		CE9235DB28ABD8000037846F /* IntroCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCloseButton.swift; sourceTree = "<group>"; };
 		CE9235E128ABDB610037846F /* ACSettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsStorage.swift; sourceTree = "<group>"; };
 		CE9235E328AC2CB20037846F /* SettingsStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStateHelper.swift; sourceTree = "<group>"; };
-		CE9235E628AC2E270037846F /* ACSettingsBasicInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsBasicInfoModel.swift; sourceTree = "<group>"; };
-		CE9235E828AC3AD40037846F /* ACSettingsContactInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsContactInfoModel.swift; sourceTree = "<group>"; };
-		CE9235EA28AC3DD10037846F /* ACSettingsToggleParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsToggleParameterModel.swift; sourceTree = "<group>"; };
-		CE9235EC28AC9DAC0037846F /* SettingsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUIModel.swift; sourceTree = "<group>"; };
+		CE9235E628AC2E270037846F /* ACSettingsBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsBasicInfo.swift; sourceTree = "<group>"; };
+		CE9235E828AC3AD40037846F /* ACSettingsContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsContactInfo.swift; sourceTree = "<group>"; };
+		CE9235EA28AC3DD10037846F /* ACSettingsParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsParameter.swift; sourceTree = "<group>"; };
 		CE9235EE28AC9EE50037846F /* SettingsViewToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewToggleCell.swift; sourceTree = "<group>"; };
 		CE9235F028AC9EFA0037846F /* SettingsBasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBasicInfoCell.swift; sourceTree = "<group>"; };
 		CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPreviewCell.swift; sourceTree = "<group>"; };
 		CE9235F428AC9F400037846F /* SettingsContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContactCell.swift; sourceTree = "<group>"; };
-		CE9235F628ACA9F50037846F /* ACSettingsPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsPreviewModel.swift; sourceTree = "<group>"; };
+		CE9235F628ACA9F50037846F /* ACSettingsPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsPreview.swift; sourceTree = "<group>"; };
 		CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUIModel.swift; sourceTree = "<group>"; };
+		CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellIcon.swift; sourceTree = "<group>"; };
+		CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsManager.swift; sourceTree = "<group>"; };
 		CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroStorage.swift; sourceTree = "<group>"; };
 		CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroCard.swift; sourceTree = "<group>"; };
@@ -533,29 +537,12 @@
 		CE2BBCC728BB029D00D8F42D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE9A6FCE28FAB17B00E1EF23 /* Views */,
+				CE9A6FCD28FAAC1700E1EF23 /* Cells */,
 				CE8CFE0D28A6FC2100A88586 /* SettingsView.swift */,
-				CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */,
-				CE9235F428AC9F400037846F /* SettingsContactCell.swift */,
-				CE9235F028AC9EFA0037846F /* SettingsBasicInfoCell.swift */,
-				CE9235EE28AC9EE50037846F /* SettingsViewToggleCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CE2BBCC828BB02DA00D8F42D /* Helper */ = {
-			isa = PBXGroup;
-			children = (
 				CE9235E328AC2CB20037846F /* SettingsStateHelper.swift */,
 			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		CE2BBCC928BB02E900D8F42D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CE9235EC28AC9DAC0037846F /* SettingsUIModel.swift */,
-			);
-			path = Model;
+			path = View;
 			sourceTree = "<group>";
 		};
 		CE2BBCCE28BEC38100D8F42D /* Resources */ = {
@@ -617,6 +604,7 @@
 				CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */,
 				CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */,
 				CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */,
+				CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -626,6 +614,7 @@
 			children = (
 				CE8C682828A2C503006C1888 /* CommandDetailUIModel.swift */,
 				840B9FBE283F022500EA6D47 /* CommandDetailViewController.swift */,
+				CE8A0D3828F113E1004D7DED /* CommandDetailBackgroundView.swift */,
 				CE58E2DA28715B21004D5A42 /* CommandDetailPresenter.swift */,
 			);
 			path = Detail;
@@ -721,7 +710,7 @@
 		CE78D58C28D58DC60040B4D2 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				CE78D58D28D58DDA0040B4D2 /* ACBaseAnimationType.swift */,
+				CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */,
 				CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */,
 			);
 			path = Enums;
@@ -759,10 +748,10 @@
 		CE99BA8A28BF1EE2007A7158 /* ACSettings */ = {
 			isa = PBXGroup;
 			children = (
-				CE9235E628AC2E270037846F /* ACSettingsBasicInfoModel.swift */,
-				CE9235F628ACA9F50037846F /* ACSettingsPreviewModel.swift */,
-				CE9235E828AC3AD40037846F /* ACSettingsContactInfoModel.swift */,
-				CE9235EA28AC3DD10037846F /* ACSettingsToggleParameterModel.swift */,
+				CE9235E628AC2E270037846F /* ACSettingsBasicInfo.swift */,
+				CE9235F628ACA9F50037846F /* ACSettingsPreview.swift */,
+				CE9235E828AC3AD40037846F /* ACSettingsContactInfo.swift */,
+				CE9235EA28AC3DD10037846F /* ACSettingsParameter.swift */,
 			);
 			path = ACSettings;
 			sourceTree = "<group>";
@@ -777,11 +766,28 @@
 			path = ACCommands;
 			sourceTree = "<group>";
 		};
+		CE9A6FCD28FAAC1700E1EF23 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */,
+				CE9235F428AC9F400037846F /* SettingsContactCell.swift */,
+				CE9235F028AC9EFA0037846F /* SettingsBasicInfoCell.swift */,
+				CE9235EE28AC9EE50037846F /* SettingsViewToggleCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CE9A6FCE28FAB17B00E1EF23 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CECB4A8928AB4A0400278130 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				CE2BBCC828BB02DA00D8F42D /* Helper */,
-				CE2BBCC928BB02E900D8F42D /* Model */,
 				CE2BBCC728BB029D00D8F42D /* View */,
 			);
 			path = List;
@@ -981,8 +987,9 @@
 				CE6EC781288F56650020DAFF /* APIHelper.swift in Sources */,
 				C474CC4827B2B53B00B1FD9A /* AppDelegate.swift in Sources */,
 				CE8C681D28A14D6B006C1888 /* BasicsCellUIModel.swift in Sources */,
+				CE9A6FD228FCEBF400E1EF23 /* ACSettingsManager.swift in Sources */,
 				840B9FC9284193EE00EA6D47 /* ACFilenames.swift in Sources */,
-				CE78D58E28D58DDA0040B4D2 /* ACBaseAnimationType.swift in Sources */,
+				CE78D58E28D58DDA0040B4D2 /* ACBasePresentationType.swift in Sources */,
 				CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */,
 				CE84FAB2286765BA00CE9D4D /* UIViewControllerExtensions.swift in Sources */,
 				CE78D59228D5A0CE0040B4D2 /* NSStringExtensions.swift in Sources */,
@@ -998,7 +1005,7 @@
 				CE6EC788288F57C30020DAFF /* ACApplicationCheckManager.swift in Sources */,
 				8464646F27DE551C004B0D12 /* BasicKnowledgeViewController.swift in Sources */,
 				84A81C10282FEB6800FBFC7B /* CommandsListPresenter.swift in Sources */,
-				CE9235E728AC2E270037846F /* ACSettingsBasicInfoModel.swift in Sources */,
+				CE9235E728AC2E270037846F /* ACSettingsBasicInfo.swift in Sources */,
 				84A81C12282FEB9400FBFC7B /* ACCommandsSection.swift in Sources */,
 				84CCC932281711B6008371F1 /* ACNeumorphicCollectionViewCell.swift in Sources */,
 				CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */,
@@ -1031,6 +1038,7 @@
 				CE6C4D9F286A328E00D14AEA /* ACBasicKnowledgeStorage.swift in Sources */,
 				8464649127E4EEAF004B0D12 /* SiteCollectionViewCell.swift in Sources */,
 				CE6EC78B288F582C0020DAFF /* ACApplication.swift in Sources */,
+				CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */,
 				CE9235E428AC2CB20037846F /* SettingsStateHelper.swift in Sources */,
 				84802A8028217FF3001E45D4 /* CommandsListTVController.swift in Sources */,
 				CE6C4DA1286A63C200D14AEA /* ACURLs.swift in Sources */,
@@ -1040,7 +1048,7 @@
 				CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */,
 				CE8CDAEF28C64F6E001DC8B1 /* IntroTabView.swift in Sources */,
 				8464648927E0CFE2004B0D12 /* ACLink.swift in Sources */,
-				CE9235F728ACA9F50037846F /* ACSettingsPreviewModel.swift in Sources */,
+				CE9235F728ACA9F50037846F /* ACSettingsPreview.swift in Sources */,
 				CE9235E228ABDB610037846F /* ACSettingsStorage.swift in Sources */,
 				8464648727DF85B1004B0D12 /* PersonCollectionViewCell.swift in Sources */,
 				CE84FAA728666FC700CE9D4D /* ACOnboardingHelper.swift in Sources */,
@@ -1051,7 +1059,6 @@
 				84E4A2F627F24327002F7BFA /* ACActivityManager.swift in Sources */,
 				CE177C6B28DA998E00B1B18D /* UISegmentedControlExtensions.swift in Sources */,
 				CE6C4D9A2869851C00D14AEA /* ACGrayAlertManager.swift in Sources */,
-				CE9235ED28AC9DAC0037846F /* SettingsUIModel.swift in Sources */,
 				CE6EC77D288DE0400020DAFF /* ACGradientType.swift in Sources */,
 				CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */,
 				CE58E2D9286FB0AA004D5A42 /* UserSheetPresenter.swift in Sources */,
@@ -1060,16 +1067,17 @@
 				840B9FC628418F2700EA6D47 /* DataExtensions.swift in Sources */,
 				CE6B0C0B28855D61007F0F63 /* ACCustomCollectionViewCell.swift in Sources */,
 				CE78D58928CC59FA0040B4D2 /* NumericExtensions.swift in Sources */,
+				CE8A0D3928F113E1004D7DED /* CommandDetailBackgroundView.swift in Sources */,
 				CE177C6D28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift in Sources */,
 				849CBE6B27F11F1600DCEBA3 /* UIButtonExtensions.swift in Sources */,
-				CE9235EB28AC3DD10037846F /* ACSettingsToggleParameterModel.swift in Sources */,
+				CE9235EB28AC3DD10037846F /* ACSettingsParameter.swift in Sources */,
 				8464648527DF83F6004B0D12 /* ACPerson.swift in Sources */,
 				CE84FAAF2867634200CE9D4D /* FastImageViewController.swift in Sources */,
 				CE2BBCC228B8360000D8F42D /* CodeSnippetViewController.swift in Sources */,
 				CE75CF99287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift in Sources */,
 				CE6EC77F288F56110020DAFF /* ACRequestError.swift in Sources */,
 				CE8C682D28A46C48006C1888 /* BasicKnowledgeDetailUIModel.swift in Sources */,
-				CE9235E928AC3AD40037846F /* ACSettingsContactInfoModel.swift in Sources */,
+				CE9235E928AC3AD40037846F /* ACSettingsContactInfo.swift in Sources */,
 				CE8C682328A1768B006C1888 /* UserCellUIModel.swift in Sources */,
 				84E4A2F827F24366002F7BFA /* UserSheetTVCell.swift in Sources */,
 				CE9235F128AC9EFA0037846F /* SettingsBasicInfoCell.swift in Sources */,
@@ -1265,8 +1273,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Commands;
@@ -1291,8 +1301,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Commands;

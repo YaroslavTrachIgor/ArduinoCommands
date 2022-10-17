@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SPAlert
 
-//MARK: - Keys
+//MARK: - Constants
 private extension UserSheetTVCell {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Image {
                 
@@ -76,9 +76,9 @@ extension UserSheetTVCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
         setupDescriptionTextView(with: data)
         newDecorationLabel.setupDecorationRoleLabel(content: data.extraInfoDescription, tintColor: data.newDecoLabelTintColor)
         roleDecorationLabel.setupDecorationRoleLabel(content: data.roleName)
-        dismissButton.setupDarkBarButton(imageSystemName: Keys.UI.Image.dismissIconName)
-        copyContentButton.setupCostomBarButton(imageSystemName: Keys.UI.Image.shareIconName)
-        shareContentButton.setupCostomBarButton(imageSystemName: Keys.UI.Image.copyIconName)
+        dismissButton.setupDarkBarButton(imageSystemName: Constants.UI.Image.dismissIconName)
+        copyContentButton.setupCostomBarButton(imageSystemName: Constants.UI.Image.shareIconName)
+        shareContentButton.setupCostomBarButton(imageSystemName: Constants.UI.Image.copyIconName)
         rightDecorationLabelWidth.constant = data.rightDecorationLabelWidth
         leftDecorationLabelWidth.constant = data.leftDecorationLabelWidth
         

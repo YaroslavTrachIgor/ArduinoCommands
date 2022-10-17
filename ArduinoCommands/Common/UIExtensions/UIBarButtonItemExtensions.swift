@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension UIBarButtonItem {
 
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum ImageNames {
             
             //MARK: Static
@@ -28,11 +28,11 @@ private extension UIBarButtonItem {
 public extension UIBarButtonItem {
     
     //MARK: Public
-    ///
+    ///This sets up fast settings for BarButtonItems.
     /// - Parameters:
-    ///   - imageName:
-    ///   - imageWeight:
-    ///   - tintColor:
+    ///   - imageName: string image system name or a name from Assets;
+    ///   - imageWeight: cases of how bold our bar item image can be;
+    ///   - tintColor: bar item fill color.
     func setupFastLightBarButtonItem(imageName: String,
                                      imageWeight: UIImage.SymbolWeight = .regular,
                                      tintColor: UIColor = .white) {
@@ -49,14 +49,14 @@ public extension UIBarButtonItem {
     
     //MARK: Public
     func setupBaseCopyBarButton() {
-        setupFastLightBarButtonItem(imageName: Keys.ImageNames.copyItemName)
+        setupFastLightBarButtonItem(imageName: Constants.ImageNames.copyItemName)
     }
     
     func setupBaseShareBarButton() {
-        setupFastLightBarButtonItem(imageName: Keys.ImageNames.shareItemName)
+        setupFastLightBarButtonItem(imageName: Constants.ImageNames.shareItemName)
     }
     
     func setupBaseBackBarButton() {
-        setupFastLightBarButtonItem(imageName: Keys.ImageNames.costomBackItemName)
+        setupFastLightBarButtonItem(imageName: Constants.ImageNames.costomBackItemName)
     }
 }

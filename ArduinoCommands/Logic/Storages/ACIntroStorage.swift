@@ -32,17 +32,22 @@ public enum ACIntroStorage {
 }
 
 
-//MARK: - Keys
+//MARK: - Constants
 public extension ACIntroStorage {
     
     //MARK: Public
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Gradients {
                 
                 //MARK: Static
                 /**
-                 /////////////////////////////////
+                 Arduino Commands `Intro` section has a huge amount
+                 of separate Views which have one single tint color.
+                 
+                 That's why, in order to not repeat initalization of one gradient varible
+                 and to quicly change it if needed, we are initalizating it here
+                 in `ACIntroStorage` file under Constants section to have quick accesst.
                  */
                 static let tintGradient = Gradient(colors: [
                     Color(uiColor: UIColor(hexString: "#fc92a8").withAlphaComponent(0.80)),

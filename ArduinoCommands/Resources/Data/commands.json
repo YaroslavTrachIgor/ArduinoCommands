@@ -164,6 +164,49 @@
         ]
     },
     {
+        "name": "Zero, Due & MKR Family",
+        "footer": "",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "analogReadResolution()",
+                "subtitle": "Zero, Due & MKR Family",
+                "description": "AnalogReadResolution() is an extension of the Analog API for the Zero, Due, MKR family, Nano 33 (BLE and IoT) and Portenta.\n\nSets the size (in bits) of the value returned by analogRead(). It defaults to 10 bits (returns values between 0-1023) for backward compatibility with AVR based boards.\n\nThe Zero, Due, MKR family and Nano 33 (BLE and IoT) boards have 12-bit ADC capabilities that can be accessed by changing the resolution to 12. This will return values from analogRead() between 0 and 4095.\n\nThe Portenta H7 has a 16 bit ADC, which will allow values between 0 and 65535.",
+                "baseDescription": "AnalogReadResolution() is an extension of the Analog API for the Zero, Due, MKR family, Nano 33 (BLE and IoT) and Portenta.",
+                "exampleOfCode": "void setup() {\n   // open a serial connection\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   // read the input on A0 at default resolution (10 bits)\n   // and send it out the serial connection\n   analogReadResolution(10);\n   Serial.print('ADC 10-bit (default) : ');\n   Serial.print(analogRead(A0));\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": false,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "analogReadResolution(bits)",
+                    "arguments": "bits: determines the resolution (in bits) of the value returned by the analogRead() function. You can set this between 1 and 32. You can set resolutions higher than the supported 12 or 16 bits, but values returned by analogRead() will suffer approximation. See the note below for details.",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "analogWriteResolution()",
+                "subtitle": "Zero, Due & MKR Family",
+                "description": "analogWriteResolution() is an extension of the Analog API for the Arduino Due.\n\nanalogWriteResolution() sets the resolution of the analogWrite() function. It defaults to 8 bits (values between 0-255) for backward compatibility with AVR based boards.\n\nIf you set the analogWriteResolution() value to a value higher than your board’s capabilities, the Arduino will discard the extra bits. For example: using the Due with analogWriteResolution(16) on a 12-bit DAC pin, only the first 12 bits of the values passed to analogWrite() will be used and the last 4 bits will be discarded.\n\nIf you set the analogWriteResolution() value to a value lower than your board’s capabilities, the missing bits will be padded with zeros to fill the hardware required size. For example: using the Due with analogWriteResolution(8) on a 12-bit DAC pin, the Arduino will add 4 zero bits to the 8-bit value used in analogWrite() to obtain the 12 bits required.",
+                "baseDescription": "analogWriteResolution() is an extension of the Analog API for the Arduino Due.\n\nanalogWriteResolution() sets the resolution of the analogWrite() function.",
+                "exampleOfCode": "void setup() {\n   // open a serial connection\n   Serial.begin(9600);\n   // make our digital pin an output\n   pinMode(11, OUTPUT);\n}\n\nvoid loop() {\n   // read the input on A0 and map it to a PWM pin\n   // with an attached LED\n\n   int sensorVal = analogRead(A0);\n   Serial.print('Analog Read) : ');\n   Serial.print(sensorVal);\n   // the default PWM resolution\n   analogWriteResolution(8);\n   analogWrite(11, map(sensorVal, 0, 1023, 0, 255));\n   Serial.print(' , 8-bit PWM value : ');\n   Serial.print(map(sensorVal, 0, 1023, 0, 255));\n   delay(5);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": false,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "analogWriteResolution(bits)",
+                    "arguments": "bits: determines the resolution (in bits) of the values used in the analogWrite() function. The value can range from 1 to 32. If you choose a resolution higher or lower than your board’s hardware capabilities, the value used in analogWrite() will be either truncated if it’s too high or padded with zeros if it’s too low. See the note below for details.",
+                    "returns": "Nothing"
+                }
+            }
+        ]
+    },
+    {
         "name": "Working with time",
         "footer": "",
         "headerHeight": 32,
@@ -237,6 +280,49 @@
                 "details": {
                     "syntax": "delayMicroseconds(us)",
                     "arguments": "us: the number of microseconds to pause. Allowed data types: unsigned int.",
+                    "returns": "Nothing"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Random",
+        "footer": "",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "random()",
+                "subtitle": "Random Numbers",
+                "description": "The random function generates pseudo-random numbers. If it is important for a sequence of values generated by random() to differ, on subsequent executions of a sketch, use randomSeed() to initialize the random number generator with a fairly random input, such as analogRead() on an unconnected pin. Conversely, it can occasionally be useful to use pseudo-random sequences that repeat exactly. This can be accomplished by calling randomSeed() with a fixed number, before starting the random sequence. \n\nThe max parameter should be chosen according to the data type of the variable in which the value is stored. In any case, the absolute maximum is bound to the long nature of the value generated (32 bit - 2,147,483,647). Setting max to a higher value won’t generate an error during compilation, but during sketch execution the numbers generated will not be as expected.",
+                "baseDescription": "The random function generates pseudo-random numbers.",
+                "exampleOfCode": "long randNumber;\n\nvoid setup() {\n   Serial.begin(9600);\n   randomSeed(analogRead(0));\n}\n\nvoid loop() {\n   randNumber = random(300);\n   Serial.println(randNumber);\n   randNumber = random(10, 20);\n   Serial.println(randNumber);\n   delay(50);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "random(max); random(min, max)",
+                    "arguments": "min: lower bound of the random value, inclusive (optional).\nmax: upper bound of the random value, exclusive.",
+                    "returns": "A random number between min and max-1. Data type: long."
+                }
+            },
+            {
+                "name": "randomSeed()",
+                "subtitle": "Commands for Working with Time",
+                "description": "This initializes the pseudo-random number generator, causing it to start at an arbitrary point in its random sequence. This sequence, while very long, and random, is always the same.\n\nIf it is important for a sequence of values generated by random() to differ, on subsequent executions of a sketch, use randomSeed() to initialize the random number generator with a fairly random input, such as analogRead() on an unconnected pin.\n\nConversely, it can occasionally be useful to use pseudo-random sequences that repeat exactly. This can be accomplished by calling randomSeed() with a fixed number, before starting the random sequence.\n\nIf the seed is 0, randomSeed(seed) will have no effect.",
+                "baseDescription": "This initializes the pseudo-random number generator, causing it to start at an arbitrary point in its random sequence. This sequence, while very long, and random, is always the same.",
+                "exampleOfCode": "int ledPin = 13; \nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(ledPin, HIGH);\n    delay(1000);\n    digitalWrite(ledPin, LOW);\n    delayMicroseconds(50);\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "randomSeed(seed)",
+                    "arguments": "long randNumber;\n\nvoid setup() {\n   Serial.begin(9600);\n   randomSeed(analogRead(0));\n}\n\nvoid loop() {\n   randNumber = random(300);\n   Serial.println(randNumber);\n   delay(50);\n}",
                     "returns": "Nothing"
                 }
             }
@@ -582,6 +668,373 @@
                 "details": {
                     "syntax": "step(steps)",
                     "arguments": "steps: the number of steps to turn the motor. Positive integer to turn one direction, negative integer to turn the other.",
+                    "returns": "Nothing"
+                }
+            }
+        ]
+    },
+    {
+        "name": "LiquidCrystal",
+        "footer": "This library allows an Arduino board to control LiquidCrystal displays (LCDs) based on the Hitachi HD44780 (or a compatible) chipset, which is found on most text-based LCDs. The library works with in either 4- or 8-bit mode (i.e. using 4 or 8 data lines in addition to the rs, enable, and, optionally, the rw control lines).\n\nTo use this library: #include <LiquidCrystal.h>",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "LiquidCrystal()",
+                "subtitle": "Display",
+                "description": "Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display. begin() needs to be called before any other LCD library commands.",
+                "baseDescription": "Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display. begin() needs to be called before any other LCD library commands.",
+                "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.begin(cols, rows)",
+                    "arguments": "lcd: a variable of type LiquidCrystal\ncols: the number of columns that the display has\nrows: the number of rows that the display has",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "begin()",
+                "subtitle": "Display",
+                "description": "Clears the LCD screen and positions the cursor in the upper-left corner.",
+                "baseDescription": "Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display. begin() needs to be called before any other LCD library commands.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nbyte smiley[8] = {\n   B00000,\n   B10001,\n   B00000,\n   B00000,\n   B10001,\n   B01110,\n   B00000,\n};\n\nvoid setup() {\n   lcd.createChar(0, smiley);\n   lcd.begin(16, 2);  \n   lcd.write(byte(0));\n}\n\nvoid loop() {}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "lcd.begin(cols, rows)",
+                    "arguments": "lcd: a variable of type LiquidCrystal\ncols: the number of columns that the display has\nrows: the number of rows that the display has",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "clear()",
+                "subtitle": "Display",
+                "description": "Clears the LCD screen and positions the cursor in the upper-left corner.",
+                "baseDescription": "Clears the LCD screen and positions the cursor in the upper-left corner.",
+                "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.clear()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "setCursor()",
+                "subtitle": "Display",
+                "description": "Position the LCD cursor; that is, set the location at which subsequent text written to the LCD will be displayed.",
+                "baseDescription": "Position the LCD cursor; that is, set the location at which subsequent text written to the LCD will be displayed.",
+                "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.setCursor(col, row)",
+                    "arguments": "lcd: a variable of type LiquidCrystal\ncol: the column at which to position the cursor (with 0 being the first column)\nrow: the row at which to position the cursor (with 0 being the first row)",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "home()",
+                "subtitle": "Display",
+                "description": "Positions the cursor in the upper-left of the LCD. That is, use that location in outputting subsequent text to the display. To also clear the display, use the clear() function instead.",
+                "baseDescription": "Positions the cursor in the upper-left of the LCD. That is, use that location in outputting subsequent text to the display. To also clear the display, use the clear() function instead.",
+                "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.home()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "write()",
+                "subtitle": "Display",
+                "description": "Write a character to the LCD.",
+                "baseDescription": "Write a character to the LCD.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nbyte smiley[8] = {\n   B00000,\n   B10001,\n   B00000,\n   B00000,\n   B10001,\n   B01110,\n   B00000,\n};\n\nvoid setup() {\n   lcd.createChar(0, smiley);\n   lcd.begin(16, 2);  \n   lcd.write(byte(0));\n}\n\nvoid loop() {}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "lcd.write(data)",
+                    "arguments": "lcd: a variable of type LiquidCrystal\ndata: the character to write to the display",
+                    "returns": "byte write() will return the number of bytes written, though reading that number is optional"
+                }
+            },
+            {
+                "name": "print()",
+                "subtitle": "Display",
+                "description": "Prints text to the LCD.",
+                "baseDescription": "Prints text to the LCD.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "lcd.print(data)",
+                    "arguments": "lcd: a variable of type LiquidCrystal\ndata: the character to write to the display",
+                    "returns": "byte print() will return the number of bytes written, though reading that number is optional"
+                }
+            },
+            {
+                "name": "createChar()",
+                "subtitle": "Display",
+                "description": "Create a custom character (glyph) for use on the LCD. Up to eight characters of 5x8 pixels are supported (numbered 0 to 7). The appearance of each custom character is specified by an array of eight bytes, one for each row. The five least significant bits of each byte determine the pixels in that row. To display a custom character on the screen, write() its number. NB: When referencing custom character “0”, if it is not in a variable, you need to cast it as a byte, otherwise the compiler throws an error.",
+                "baseDescription": "Create a custom character (glyph) for use on the LCD. Up to eight characters of 5x8 pixels are supported (numbered 0 to 7).",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nbyte smiley[8] = {\n   B00000,\n   B10001,\n   B00000,\n   B00000,\n   B10001,\n   B01110,\n   B00000,\n};\n\nvoid setup() {\n   lcd.createChar(0, smiley);\n   lcd.begin(16, 2);  \n   lcd.write(byte(0));\n}\n\nvoid loop() {}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "lcd.createChar(num, data)",
+                    "arguments": "lcd: a variable of type LiquidCrystal\nnum: which character to create (0 to 7)\ndata: the character’s pixel data",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "cursor()",
+                "subtitle": "Display",
+                "description": "Display the LCD cursor: an underscore (line) at the position to which the next character will be written.",
+                "baseDescription": "Display the LCD cursor: an underscore (line) at the position to which the next character will be written.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.cursor()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "noCursor()",
+                "subtitle": "Display",
+                "description": "Hides the LCD cursor.",
+                "baseDescription": "Hides the LCD cursor.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.noCursor()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "blink()",
+                "subtitle": "Display",
+                "description": "Display the blinking LCD cursor. If used in combination with the cursor() function, the result will depend on the particular display.",
+                "baseDescription": "Display the blinking LCD cursor.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.blink()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "noBlink()",
+                "subtitle": "Display",
+                "description": "Turns off the blinking LCD cursor.",
+                "baseDescription": "Turns off the blinking LCD cursor.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.noBlink()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "display()",
+                "subtitle": "Display",
+                "description": "Turns on the LCD display, after it’s been turned off with noDisplay(). This will restore the text (and cursor) that was on the display.",
+                "baseDescription": "Turns on the LCD display, after it’s been turned off with noDisplay().",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.display()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "noDisplay()",
+                "subtitle": "Display",
+                "description": "Turns off the LCD display, without losing the text currently shown on it.",
+                "baseDescription": "Turns off the LCD display, without losing the text currently shown on it.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.noDisplay()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "scrollDisplayLeft()",
+                "subtitle": "Display",
+                "description": "Scrolls the contents of the display (text and cursor) one space to the left.",
+                "baseDescription": "Scrolls the contents of the display (text and cursor) one space to the left.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.scrollDisplayLeft()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "scrollDisplayLeft()",
+                "subtitle": "Display",
+                "description": "Scrolls the contents of the display (text and cursor) one space to the right.",
+                "baseDescription": "Scrolls the contents of the display (text and cursor) one space to the right.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.scrollDisplayRight()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "autoscroll()",
+                "subtitle": "Display",
+                "description": "Turns on automatic scrolling of the LCD. This causes each character output to the display to push previous characters over by one space. If the current text direction is left-to-right (the default), the display scrolls to the left; if the current direction is right-to-left, the display scrolls to the right. This has the effect of outputting each new character to the same location on the LCD.",
+                "baseDescription": "Turns on automatic scrolling of the LCD. This causes each character output to the display to push previous characters over by one space.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.autoscroll()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "noAutoscroll()",
+                "subtitle": "Display",
+                "description": "Turns off automatic scrolling of the LCD.",
+                "baseDescription": "Turns off automatic scrolling of the LCD.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.noAutoscroll()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "leftToRight()",
+                "subtitle": "Display",
+                "description": "Set the direction for text written to the LCD to left-to-right, the default. This means that subsequent characters written to the display will go from left to right, but does not affect previously-output text.",
+                "baseDescription": "Set the direction for text written to the LCD to left-to-right, the default.",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.leftToRight()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                }
+            },
+            {
+                "name": "rightToLeft()",
+                "subtitle": "Display",
+                "description": "Set the direction for text written to the LCD to right-to-left (the default is left-to-right). This means that subsequent characters written to the display will go from right to left, but does not affect previously-output text.",
+                "baseDescription": "Set the direction for text written to the LCD to right-to-left (the default is left-to-right).",
+                "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "lcd.rightToLeft()",
+                    "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
                 }
             }

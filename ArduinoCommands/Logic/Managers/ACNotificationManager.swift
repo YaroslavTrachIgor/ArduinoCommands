@@ -9,11 +9,11 @@ import Foundation
 import UserNotifications
 import SwiftUI
 
-//MARK: - Keys
+//MARK: - Constants
 private extension ACNotificationManager {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum NotificationContent {
             
             //MARK: Static
@@ -82,7 +82,7 @@ public extension ACNotificationManager {
     func sendCommandNotification(with command: ACCommand, for date: Date) {
         let title = command.name!
         let subtitle = command.subtitle!
-        let body = Keys.NotificationContent.commandNotificationBody
+        let body = Constants.NotificationContent.commandNotificationBody
         sendNotification(title: title,
                          subtitle: subtitle,
                          body: body,
@@ -96,8 +96,8 @@ public extension ACNotificationManager {
     
     //MARK: Public
     func presentFailedNotificationSetAlert() {
-        let title = Keys.Alert.Titles.failedAlertTitle
-        let message = Keys.Alert.Messages.failedAlertMessage
+        let title = Constants.Alert.Titles.failedAlertTitle
+        let message = Constants.Alert.Messages.failedAlertMessage
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: 3.5,
@@ -105,8 +105,8 @@ public extension ACNotificationManager {
     }
     
     func presentSuccesedNotificationSetAlert() {
-        let title = Keys.Alert.Titles.successAlertTitle
-        let message = Keys.Alert.Messages.successAlertMessage
+        let title = Constants.Alert.Titles.successAlertTitle
+        let message = Constants.Alert.Messages.successAlertMessage
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: 4,
@@ -120,8 +120,8 @@ private extension ACNotificationManager {
     
     //MARK: Private
     func presentErrorAlert(error: Error?) {
-        let title = Keys.Alert.Titles.failedAlertTitle
-        let message = Keys.Alert.Messages.errorAlertMessage
+        let title = Constants.Alert.Titles.failedAlertTitle
+        let message = Constants.Alert.Messages.errorAlertMessage
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: 5,

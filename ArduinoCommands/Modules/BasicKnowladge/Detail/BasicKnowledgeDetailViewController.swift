@@ -10,11 +10,19 @@ import UIKit
 import SwiftUI
 import StoreKit
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol BasicKnowledgeDetailVCProtocol: ACBaseDetailViewController {
+    func setFastBottomContentViewShadowColor()
+    func presentSafariVC(stringURL: String)
+    func presentTabBarWithAnimation(alpha: Int)
+}
+
+
+//MARK: - Constants
 private extension BasicKnowledgeDetailViewController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Button {
                 
@@ -45,6 +53,7 @@ private extension BasicKnowledgeDetailViewController {
         }
     }
 }
+
 
 //MARK: - Main ViewController
 final class BasicKnowledgeDetailViewController: UIViewController, ACBaseStoryboarded {
@@ -119,8 +128,8 @@ final class BasicKnowledgeDetailViewController: UIViewController, ACBaseStoryboa
 }
 
 
-//MARK: - Base ViewController protocol extension
-extension BasicKnowledgeDetailViewController: ACBaseBasicKnowledgeDetailVCProtocol {
+//MARK: - ViewController protocol extension
+extension BasicKnowledgeDetailViewController: BasicKnowledgeDetailVCProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
@@ -134,9 +143,9 @@ extension BasicKnowledgeDetailViewController: ACBaseBasicKnowledgeDetailVCProtoc
         setupBottomContentBackView()
         setupBottomContentBackBlurView()
         setupBottomContentBackImageView()
-        leftDecoLabel.setupDecorationRoleLabel(content: Keys.UI.Label.Deco.decoLeftTitle)
-        centerDecoLabel.setupDecorationRoleLabel(content: Keys.UI.Label.Deco.decoMiddleTitle, tintColor: .systemTeal)
-        rightDecoLabel.setupDecorationRoleLabel(content: Keys.UI.Label.Deco.decoRightTitle, tintColor: .systemPink)
+        leftDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoLeftTitle)
+        centerDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoMiddleTitle, tintColor: .systemTeal)
+        rightDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoRightTitle, tintColor: .systemPink)
         wikiButton.configuration = setupWikiLinkButtonConfiguration()
     }
     
@@ -171,7 +180,7 @@ private extension BasicKnowledgeDetailViewController {
     //MARK: Private
     func setupHeaderLabel() {
         let font = UIFont.ACFont(style: .header)
-        let content = Keys.UI.Label.Content.header
+        let content = Constants.UI.Label.Content.header
         headerLabel.backgroundColor = .clear
         headerLabel.numberOfLines = 2
         headerLabel.textColor = .black
@@ -191,7 +200,7 @@ private extension BasicKnowledgeDetailViewController {
     
     func setupSubtitleLabel() {
         let font = UIFont.ACFont(style: .articleTitle)
-        let content = Keys.UI.Label.Content.subtitle.uppercased()
+        let content = Constants.UI.Label.Content.subtitle.uppercased()
         subtitleLabel.backgroundColor = .clear
         subtitleLabel.numberOfLines = 2
         subtitleLabel.textColor = .label
@@ -231,7 +240,7 @@ private extension BasicKnowledgeDetailViewController {
     }
     
     func setupBottomContentBackImageView() {
-        let imageName = Keys.UI.Image.backgroundName
+        let imageName = Constants.UI.Image.backgroundName
         let image = UIImage(named: imageName)
         bottomContentBackImageView.contentMode = .scaleAspectFit
         bottomContentBackImageView.image = image
@@ -240,7 +249,7 @@ private extension BasicKnowledgeDetailViewController {
     
     func setupDesignedByLabel() {
         let font = UIFont.ACFont(style: .footer)
-        let content = Keys.UI.Label.Content.designedBy.uppercased()
+        let content = Constants.UI.Label.Content.designedBy.uppercased()
         designedByLabel.backgroundColor = .clear
         designedByLabel.numberOfLines = 1
         designedByLabel.textColor = .systemGray2
@@ -268,7 +277,7 @@ private extension BasicKnowledgeDetailViewController {
     }
     
     func setupWikiLinkButtonAttributedTitle() -> AttributedString {
-        let title = Keys.UI.Button.wikiLinkButtonTitle
+        let title = Constants.UI.Button.wikiLinkButtonTitle
         let font = UIFont.ACFont(ofSize: 12, weight: .bold)
         var attTitle = AttributedString.init(title)
         attTitle.backgroundColor = .black

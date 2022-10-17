@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-//MARK: - Constants
+//MARK: - Keys
 private extension CodeSnippetPresenter {
     
     //MARK: Private
-    enum Constants {
+    enum Keys {
         
         //MARK: Static
         static let defaultCodeTintColor: UIColor = .white
@@ -23,7 +23,7 @@ private extension CodeSnippetPresenter {
 
 //MARK: - Presenter protocol
 protocol CodeSnippetPresenterProtocol {
-    init(view: ACBaseCodeSnippetViewController, delegate: ACBaseCodeSnippetViewControllerDelegate, model: ACCommand)
+    init(view: CodeSnippetViewControllerProtocol, delegate: CodeSnippetViewControllerDelegate, model: ACCommand)
     func onViewDidLoad(completion: @escaping (UIColor, Float) -> Void)
     func onShareCode()
     func onCopyCode()
@@ -42,19 +42,19 @@ final class CodeSnippetPresenter {
     
     //MARK: Private
     @ACBaseUserDefaultsColor(key: UserDefaults.Keys.codeTintColorKey)
-    private var codeTintColor = Constants.defaultCodeTintColor
+    private var codeTintColor = Keys.defaultCodeTintColor
     @ACBaseUserDefaults<Float>(key: UserDefaults.Keys.codeFontSize)
-    private var codeFontSize = Constants.defaultCodeFontSize
+    private var codeFontSize = Keys.defaultCodeFontSize
     
     //MARK: Weak
-    private weak var delegate: ACBaseCodeSnippetViewControllerDelegate?
-    private weak var view: ACBaseCodeSnippetViewController?
+    private weak var delegate: CodeSnippetViewControllerDelegate?
+    private weak var view: CodeSnippetViewControllerProtocol?
     private weak var model: ACCommand?
     
     
     //MARK: Initialization
-    init(view: ACBaseCodeSnippetViewController,
-         delegate: ACBaseCodeSnippetViewControllerDelegate,
+    init(view: CodeSnippetViewControllerProtocol,
+         delegate: CodeSnippetViewControllerDelegate,
          model: ACCommand) {
         self.view = view
         self.model = model
@@ -92,6 +92,8 @@ extension CodeSnippetPresenter: CodeSnippetPresenterProtocol {
     internal func onShareCode() {
         view?.presentActivityVC(activityItems: [model?.exampleOfCode! as Any])
     }
+    
+    
     
     internal func onChangeAppearance(for selectedSegmentIndex: Int) {
         switch selectedSegmentIndex {

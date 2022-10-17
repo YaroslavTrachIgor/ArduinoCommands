@@ -33,9 +33,7 @@ extension CommandsListTVCell: ACBaseConfigurableView {
         rightDecorationLabel.setupReturnsDecoLabel(with: data.returns)
         setupDevicesDecorationLabel(with: data)
         setupMethodDecoLabel(with: data)
-        
-        ///Setup Cell base properties
-        backgroundColor = .tertiarySystemBackground.withAlphaComponent(0.55)
+        backgroundColor = UIColor.ACTable.cellBackgroundColor
     }
 }
 

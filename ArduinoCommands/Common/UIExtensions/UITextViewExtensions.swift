@@ -27,11 +27,13 @@ public extension UITextView {
 public extension UITextView {
     
     //MARK: Public
-    ///
+    /// This configures special TextView type
+    /// that will be used to display little descriptions
+    /// of how some particular features of app work and how to use them.
     /// - Parameters:
-    ///   - text:
-    ///   - ofSize:
-    ///   - appearance: 
+    ///   - text: TextView content;
+    ///   - ofSize: font size;
+    ///   - appearance: appearance case that will be used to detect what kind of text color use.
     func setupBaseFooterTextView(text: String,
                                  ofSize: CGFloat = 13,
                                  appearance: ACBaseAppearanceType = .dark) {
@@ -40,7 +42,7 @@ public extension UITextView {
         case .dark:
             textColor = #colorLiteral(red: 0.9122867584, green: 0.9092650414, blue: 0.9549868703, alpha: 0.6)
         case .light:
-            break
+            textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.15)
         case .system:
             textColor = .tertiaryLabel
         }

@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: - Presenter protocol
 protocol BasicKnowledgeDetailPresenterProtcol: ACBasePresenter {
-    init(view: ACBaseBasicKnowledgeDetailVCProtocol, model: ACBasics)
+    init(view: BasicKnowledgeDetailVCProtocol, model: ACBasics)
     func onChangeAppearance()
     func onViewWillDisappear()
     func onCopyContent()
@@ -23,12 +23,12 @@ protocol BasicKnowledgeDetailPresenterProtcol: ACBasePresenter {
 final class BasicKnowledgeDetailPresenter {
     
     //MARK: Private
-    private weak var view: ACBaseBasicKnowledgeDetailVCProtocol?
+    private weak var view: BasicKnowledgeDetailVCProtocol?
     private weak var model: ACBasics?
     
     
     //MARK: Initionalizate
-    init(view: ACBaseBasicKnowledgeDetailVCProtocol, model: ACBasics) {
+    init(view: BasicKnowledgeDetailVCProtocol, model: ACBasics) {
         self.model = model
         self.view = view
     }

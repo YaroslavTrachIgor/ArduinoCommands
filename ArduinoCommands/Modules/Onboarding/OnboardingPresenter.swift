@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: - Presenter protocol
 internal protocol OnboardingPresenterProtocol: ACBasePresenter {
-    init(view: ACBaseOnboardingViewController)
+    init(view: OnboardingViewControllerProtocol)
 }
 
 
@@ -19,11 +19,11 @@ final class OnboardingPresenter {
     //MARK: Private
     @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.isOnboardingNeeded)
     private var isNeededOnboarding = true
-    private weak var view: ACBaseOnboardingViewController?
+    private weak var view: OnboardingViewControllerProtocol?
     
     
     //MARK: Initialization
-    init(view: ACBaseOnboardingViewController) {
+    init(view: OnboardingViewControllerProtocol) {
         self.view = view
     }
 }

@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension BasicsCollectionViewCell {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Button {
                 
                 //MARK: Static
-                static let continueButtonTitle = "Continue"
-                static let continueButtonSubtitle = "3 Weeks Free"
+                static let continueTitle = "Continue"
+                static let continueSubtitle = "3 Weeks Free"
             }
         }
     }
@@ -98,7 +98,7 @@ private extension BasicsCollectionViewCell {
     }
     
     func setupContinueButtonAttributedTitle(with data: BasicsCellUIModelProtocol) -> AttributedString {
-        let title = Keys.UI.Button.continueButtonTitle
+        let title = Constants.UI.Button.continueTitle
         let textColor = data.tintColor
         let font = UIFont.ACFont(ofSize: 12.7, weight: .bold)
         var attTitle = AttributedString.init(title)
@@ -109,7 +109,7 @@ private extension BasicsCollectionViewCell {
     }
     
     func setupContinueButtonAttributedSubtitle(with data: BasicsCellUIModelProtocol) -> AttributedString {
-        let title = Keys.UI.Button.continueButtonSubtitle
+        let title = Constants.UI.Button.continueSubtitle
         let textColor = data.tintColor
         let font = UIFont.ACFont(ofSize: 11.1)
         var attSubtitle = AttributedString.init(title)

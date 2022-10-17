@@ -9,11 +9,20 @@ import Foundation
 import GoogleMobileAds
 import UIKit
 
-//MARK: - Keys
+//MARK: - Keys & Constants
 private extension ACGoogleAdsManagar {
     
     //MARK: Private
     enum Keys {
+        enum AdUnitIds {
+            
+            //MARK: Static
+            static let commandsDetailScreenshotInterstitial = "ca-app-pub-8702634561077907/4929099649"
+            static let commandsDetailInterstitial = "ca-app-pub-8702634561077907/5371318316"
+            static let commandsDetailAdBunner = "ca-app-pub-8702634561077907/2128494727"
+        }
+    }
+    enum Constants {
         enum UI {
             enum Alert {
                 enum AdLoadFailedAlert {
@@ -23,13 +32,6 @@ private extension ACGoogleAdsManagar {
                     static let message = "Failed to load Advertisement Screen on time. You can try one more time or Check the quality of your Internet Connection."
                 }
             }
-        }
-        enum AdUnitIds {
-            
-            //MARK: Static
-            static let commandsDetailScreenshotInterstitial = "ca-app-pub-8702634561077907/4929099649"
-            static let commandsDetailInterstitial = "ca-app-pub-8702634561077907/5371318316"
-            static let commandsDetailAdBunner = "ca-app-pub-8702634561077907/2128494727"
         }
     }
 }
@@ -100,8 +102,8 @@ public extension ACGoogleAdsManagar {
     
     //MARK: Public
     func presentAdLoadFailedAlertController() {
-        let title = Keys.UI.Alert.AdLoadFailedAlert.title
-        let message = Keys.UI.Alert.AdLoadFailedAlert.message
+        let title = Constants.UI.Alert.AdLoadFailedAlert.title
+        let message = Constants.UI.Alert.AdLoadFailedAlert.message
         ACAlertManager.shared.presentSimple(title: title,
                                             message: message,
                                             tintColor: .label,

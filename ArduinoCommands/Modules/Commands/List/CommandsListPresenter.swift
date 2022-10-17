@@ -10,9 +10,9 @@ import UIKit
 
 //MARK: - Presenter protocol
 internal protocol CommandsListPresenterProtocol {
-    init(view: ACBaseCommandsListTableViewController, models: [ACCommandsSection]?)
+    init(view: CommandsListTableViewControllerProtocol, models: [ACCommandsSection]?)
     func onViewDidLoad(completionHandler: (([ACCommandsSection]) -> Void))
-    func onRemindRowAction(currentCommand: ACCommand, for date: Date)
+    func onRemindRowAction(currentCommand: ACCommand)
     func onShareRowAction(currentCommand: ACCommand)
     func onDidSelectRow(with sender: IndexPath)
     func onAdLooadFail()
@@ -23,12 +23,12 @@ internal protocol CommandsListPresenterProtocol {
 final class CommandsListPresenter {
     
     //MARK: Private
-    private weak var view: ACBaseCommandsListTableViewController?
+    private weak var view: CommandsListTableViewControllerProtocol?
     private var models: [ACCommandsSection]?
     
     
     //MARK: Initialization
-    init(view: ACBaseCommandsListTableViewController,
+    init(view: CommandsListTableViewControllerProtocol,
          models: [ACCommandsSection]? = ACAPIManager.parseCommandsSectionsJsonContent()) {
         self.models = models
         self.view = view
@@ -86,12 +86,18 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
         }
     }
     
-    internal func onRemindRowAction(currentCommand: ACCommand, for date: Date) {
-        if ACNotificationManager.shared.notificationsEnabled {
-            ACNotificationManager.shared.sendCommandNotification(with: currentCommand, for: date)
-            ACNotificationManager.shared.presentSuccesedNotificationSetAlert()
+    internal func onRemindRowAction(currentCommand: ACCommand) {
+        if ACSettingsManager.shared.allowsNotifications {
+            view?.presentReminderSetupAlert(with: currentCommand, completion: { date in
+                if ACNotificationManager.shared.notificationsEnabled {
+                    ACNotificationManager.shared.sendCommandNotification(with: currentCommand, for: date)
+                    ACNotificationManager.shared.presentSuccesedNotificationSetAlert()
+                } else {
+                    ACNotificationManager.shared.presentFailedNotificationSetAlert()
+                }
+            })
         } else {
-            ACNotificationManager.shared.presentFailedNotificationSetAlert()
+            ACGrayAlertManager.present(title: "Notifications Disabled", message: "You can unlock Notifications in the app's Settings.", duration: 8, preset: .custom(UIImage(systemName: "text.alignleft")!))
         }
     }
 }

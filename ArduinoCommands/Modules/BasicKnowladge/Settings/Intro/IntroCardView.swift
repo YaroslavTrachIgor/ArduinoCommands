@@ -16,10 +16,10 @@ struct IntroCardView: View {
     
     //MARK: Private
     private var tintGradient: Gradient {
-        return ACIntroStorage.Keys.UI.Gradients.tintGradient
+        return ACIntroStorage.Constants.UI.Gradients.tintGradient
     }
     
-    //MARK: View configuration
+    //MARK: View Configuration
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 16) {

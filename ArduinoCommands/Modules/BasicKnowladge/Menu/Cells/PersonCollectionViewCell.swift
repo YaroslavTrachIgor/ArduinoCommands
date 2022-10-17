@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension PersonCollectionViewCell {
     
-    //MARK: Keys
-    enum Keys {
+    //MARK: Private
+    enum Constants {
         enum UI {
             enum Label {
                 
@@ -119,7 +119,7 @@ private extension PersonCollectionViewCell {
         let textColor = data.tintColor
         let backColor = data.subtitleLabelBackColor
         let cornerRadius = (decorationTeamLabel.frame.height / 2) - 2
-        let content = Keys.UI.Label.decorationTeam.uppercased()
+        let content = Constants.UI.Label.decorationTeam.uppercased()
         let font = UIFont.ACFont(ofSize: 9, weight: .regular)
         decorationTeamLabel.layer.cornerRadius = cornerRadius
         decorationTeamLabel.layer.masksToBounds = true

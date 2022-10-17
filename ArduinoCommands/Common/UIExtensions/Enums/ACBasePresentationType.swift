@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Base AnimationType cases
-public enum ACBaseAnimationType {
+public enum ACBasePresentationType {
     case present
     case hide
 }

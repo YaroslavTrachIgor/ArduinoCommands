@@ -34,6 +34,28 @@ public extension UIButton {
         backgroundColor = .black
         tintColor = .white
     }
+    
+    func setupCodeContentEditingButton(tintColor: UIColor = .white,
+                                       imageName: String) {
+        let borderColor = tintColor.cgColor
+        let backgroundColor = tintColor.withAlphaComponent(0.1)
+        let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
+        let configuration = UIImage.SymbolConfiguration(scale: .medium)
+        let image = UIImage(systemName: imageName, withConfiguration: configuration)
+        self.tintColor = tintColor
+        self.backgroundColor = backgroundColor
+        layer.borderWidth = 0.8
+        layer.borderColor = borderColor
+        layer.cornerRadius = cornerRadius
+        setImage(image, for: .normal)
+    }
+    
+    func setupPopupButton(tintColor: UIColor = .white, title: String) {
+        self.tintColor = tintColor
+        self.backgroundColor = .clear
+        setTitle(title, for: .normal)
+        setTitleColor(tintColor, for: .normal)
+    }
 }
 
 

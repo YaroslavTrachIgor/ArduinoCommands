@@ -11,11 +11,21 @@ import GoogleMobileAds
 import UIKit
 import Network
 
-//MARK: - Keys
+//MARK: - Main ViewController protocol
+protocol CommandsListTableViewControllerProtocol: ACBaseWithShareViewController {
+    func presentAdlnterstitial(completion: @escaping ACBaseCompletionHandler)
+    func presentAdAlertController(completion: @escaping ACBaseCompletionHandler)
+    func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void))
+    func presentAdLoadFailedAlertController()
+    func presentDetailVC(for indexPath: IndexPath)
+}
+
+
+//MARK: - Constants
 private extension CommandsListTVController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Segues {
                
@@ -72,7 +82,7 @@ private extension CommandsListTVController {
 }
 
 
-//MARK: - Main commands list ViewController
+//MARK: - Main ViewController
 final class CommandsListTVController: UITableViewController, ACBaseViewController {
 
     //MARK: Private
@@ -139,28 +149,28 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellKey = Keys.UI.TableViewCell.commandCellId
+        let cellKey = Constants.UI.TableViewCell.commandCellId
         let cell = tableView.dequeueReusableCell(withIdentifier: cellKey, for: indexPath) as! CommandsListTVCell
         let row = indexPath.row
         let section = indexPath.section
         let model = neededSections()[section].commands[row]
-        let viewModel = CommandsListTVCellUIModel(model: model)
-        cell.configure(with: viewModel)
+        let uiModel = CommandsListTVCellUIModel(model: model)
+        cell.configure(with: uiModel)
         return cell
     }
 }
 
 
-//MARK: - Base ViewController protocol extension
-extension CommandsListTVController: ACBaseCommandsListTableViewController {
+//MARK: - ViewController protocol extension
+extension CommandsListTVController: CommandsListTableViewControllerProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
-        setupView()
         setupTableView()
         setupNavigationBar()
         setupSearchController()
         setBlurViewForStatusBar()
+        view.setupBasicMenuBackgroundView(.table)
     }
     
     internal func presentAdLoadFailedAlertController() {
@@ -177,22 +187,46 @@ extension CommandsListTVController: ACBaseCommandsListTableViewController {
     }
     
     internal func presentActivityVC(activityItems: [Any]) {
-        let tintColor = Keys.UI.RowAction.shareActionBackgroundColor
+        let tintColor = Constants.UI.RowAction.shareActionBackgroundColor
         ACActivityManager.presentVC(activityItems: activityItems,
                                     tintColor: tintColor,
                                     on: self)
     }
     
     internal func presentAdAlertController(completion: @escaping (() -> Void)) {
-        let title = Keys.UI.Alert.AdAlert.title
-        let message = Keys.UI.Alert.AdAlert.message
-        let actionTitle = Keys.UI.Alert.AdAlert.presentAdActionTitle
+        let title = Constants.UI.Alert.AdAlert.title
+        let message = Constants.UI.Alert.AdAlert.message
+        let actionTitle = Constants.UI.Alert.AdAlert.presentAdActionTitle
         ACAlertManager.shared.presentSimpleWithAction(title: title,
                                                       message: message,
                                                       actionTitle: actionTitle,
                                                       actionHandler: { _ in
             completion()
         }, on: self)
+    }
+    
+    internal func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void)) {
+        let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
+        let reminderDatePicker = setupReminderDatePicker()
+        let title = Constants.UI.Alert.ReminderAlert.title
+        let message = Constants.UI.Alert.ReminderAlert.message
+        let attributedTitleKey = Constants.UI.Alert.ReminderAlert.attributedTitleKeyPath
+        let cancelActionTitle = Constants.UI.Alert.ReminderAlert.cancelActionTitle
+        let setDateActionTitle = Constants.UI.Alert.ReminderAlert.setDateActionTitle
+        let titleFont = UIFont.ACFont(ofSize: 14, weight: .bold)
+        let titleAttributes = [NSAttributedString.Key.font: titleFont]
+        let attributedTitle = NSAttributedString(string: title, attributes: titleAttributes)
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .default)
+        let setDateAction = UIAlertAction(title: setDateActionTitle, style: .cancel, handler: { _ in
+            completion(reminderDatePicker.date)
+        })
+        alertController.view.tintColor = remindActionBackColor
+        alertController.addAction(setDateAction)
+        alertController.addAction(cancelAction)
+        alertController.setValue(attributedTitle, forKeyPath: attributedTitleKey)
+        alertController.view.addSubview(reminderDatePicker)
+        present(alertController, animated: true, completion: nil)
     }
     
     internal func presentDetailVC(for indexPath: IndexPath) {
@@ -209,17 +243,11 @@ extension CommandsListTVController: ACBaseCommandsListTableViewController {
 //MARK: - Main methods
 private extension CommandsListTVController {
     
-    //MARK: Private
-    func setupView() {
-        view.alpha = 1
-        view.tintColor = .label
-        view.backgroundColor = .systemGroupedBackground
-    }
-    
+    //MARK: Privat
     func setupNavigationBar() {
         let font = UIFont.ACFont(ofSize: 16.0, weight: .bold)
         let titleFontAttributes = [NSAttributedString.Key.font: font]
-        let backIndicatorImageName = Keys.UI.Image.backButtonImageName
+        let backIndicatorImageName = Constants.UI.Image.backButtonImageName
         let backIndicatorImage = UIImage.init(systemName: backIndicatorImageName)
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = backIndicatorImage
         navigationController?.navigationBar.backIndicatorImage = backIndicatorImage
@@ -231,8 +259,8 @@ private extension CommandsListTVController {
     }
     
     func setupSearchController() {
-        let placeholder = Keys.UI.SearchBar.searchBarPlaceholder
-        let iconName = Keys.UI.Image.searchBarIconImageName
+        let placeholder = Constants.UI.SearchBar.searchBarPlaceholder
+        let iconName = Constants.UI.Image.searchBarIconImageName
         let iconImageConfig = UIImage.SymbolConfiguration(weight: .regular)
         let iconImage = UIImage(systemName: iconName, withConfiguration: iconImageConfig)
         searchController.searchBar.searchTextField.leftView?.tintColor = .tertiaryLabel
@@ -266,7 +294,7 @@ private extension CommandsListTVController {
     }
     
     func setupReminderDatePicker() -> UIDatePicker {
-        let remindActionBackColor = Keys.UI.RowAction.remindActionBackgroundColor
+        let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
         let reminderDatePicker = UIDatePicker()
         reminderDatePicker.timeZone = NSTimeZone.local
         reminderDatePicker.frame = CGRect(x: -15, y: 55, width: 270, height: 60)
@@ -274,33 +302,9 @@ private extension CommandsListTVController {
         return reminderDatePicker
     }
     
-    func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void)) {
-        let remindActionBackColor = Keys.UI.RowAction.remindActionBackgroundColor
-        let reminderDatePicker = setupReminderDatePicker()
-        let title = Keys.UI.Alert.ReminderAlert.title
-        let message = Keys.UI.Alert.ReminderAlert.message
-        let attributedTitleKey = Keys.UI.Alert.ReminderAlert.attributedTitleKeyPath
-        let cancelActionTitle = Keys.UI.Alert.ReminderAlert.cancelActionTitle
-        let setDateActionTitle = Keys.UI.Alert.ReminderAlert.setDateActionTitle
-        let titleFont = UIFont.ACFont(ofSize: 14, weight: .bold)
-        let titleAttributes = [NSAttributedString.Key.font: titleFont]
-        let attributedTitle = NSAttributedString(string: title, attributes: titleAttributes)
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: cancelActionTitle, style: .default)
-        let setDateAction = UIAlertAction(title: setDateActionTitle, style: .cancel, handler: { _ in
-            completion(reminderDatePicker.date)
-        })
-        alertController.view.tintColor = remindActionBackColor
-        alertController.addAction(setDateAction)
-        alertController.addAction(cancelAction)
-        alertController.setValue(attributedTitle, forKeyPath: attributedTitleKey)
-        alertController.view.addSubview(reminderDatePicker)
-        present(alertController, animated: true, completion: nil)
-    }
-    
     func setupShareRowAction(command: ACCommand) -> UIContextualAction {
-        let shareActionBackColor = Keys.UI.RowAction.shareActionBackgroundColor
-        let shareActionIconName = Keys.UI.Image.shareActionName
+        let shareActionBackColor = Constants.UI.RowAction.shareActionBackgroundColor
+        let shareActionIconName = Constants.UI.Image.shareActionName
         let shareAction = UIContextualAction(style: .normal, title: nil) { [self] _, _, _ in
             presenter.onShareRowAction(currentCommand: command)
         }
@@ -311,12 +315,10 @@ private extension CommandsListTVController {
     }
     
     func setupRemindRowAction(command: ACCommand) -> UIContextualAction {
-        let remindActionBackColor = Keys.UI.RowAction.remindActionBackgroundColor
-        let remindActionIconName = Keys.UI.Image.remindActionName
+        let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
+        let remindActionIconName = Constants.UI.Image.remindActionName
         let remindAction = UIContextualAction(style: .normal, title: nil) { [self] _, _, _ in
-            presentReminderSetupAlert(with: command, completion: { [self] date in
-                presenter.onRemindRowAction(currentCommand: command, for: date)
-            })
+            presenter.onRemindRowAction(currentCommand: command)
         }
         remindAction.backgroundColor = remindActionBackColor
         remindAction.image = UIImage(systemName: remindActionIconName,
@@ -392,7 +394,7 @@ private extension CommandsListTVController {
 }
 
 
-//MARK: SearchResultsUpdating protocol
+//MARK: - SearchResultsUpdating protocol
 extension CommandsListTVController: UISearchResultsUpdating {
     
     //MARK: Internal
@@ -403,7 +405,7 @@ extension CommandsListTVController: UISearchResultsUpdating {
 }
 
 
-//MARK: GAD Delegate protocol extension
+//MARK: - GAD Delegate protocol extension
 extension CommandsListTVController: GADFullScreenContentDelegate {
     
     //MARK: Internal

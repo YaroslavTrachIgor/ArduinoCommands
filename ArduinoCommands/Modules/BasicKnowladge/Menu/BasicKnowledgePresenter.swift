@@ -14,7 +14,7 @@ typealias ACBasicKnowledgePresenterCompletionHandler = (([BasicKnowledgeSectionR
 
 //MARK: - Presenter protocol
 internal protocol BasicKnowledgePresenterProtocol {
-    init(view: ACBaseBasicKnowledgeVCProtocol, sections: [BasicKnowledgeSectionRow])
+    init(view: BasicKnowledgeVCProtocol, sections: [BasicKnowledgeSectionRow])
     func onViewDidLoad(completion: @escaping ACBasicKnowledgePresenterCompletionHandler)
     func onDidSelectItemAt(for tag: Int, with row: Int)
     func onPresentSettingsHostVC()
@@ -29,11 +29,11 @@ final class BasicKnowledgePresenter {
     @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.isOnboardingNeeded)
     private var isNeededOnboarding = true
     private var sections: [BasicKnowledgeSectionRow]?
-    private weak var view: ACBaseBasicKnowledgeVCProtocol?
+    private weak var view: BasicKnowledgeVCProtocol?
     
     
     //MARK: Initionalizate
-    init(view: ACBaseBasicKnowledgeVCProtocol,
+    init(view: BasicKnowledgeVCProtocol,
          sections: [BasicKnowledgeSectionRow] = ACBasicKnowledgeStorage.prepareSections()) {
         self.sections = sections
         self.view = view

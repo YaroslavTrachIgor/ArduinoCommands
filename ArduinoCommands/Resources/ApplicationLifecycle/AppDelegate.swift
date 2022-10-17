@@ -36,16 +36,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: Internal
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupTabBerItemBasicAppearance()
-        setupTabBerBasicAppearance()
-        setupNavBarBasicAppearance()
-        setupUserNotificationCenter()
-        setupSearchBarBasicAppearance()
-        setupPageControlBasicAppearance()
-        ACNotificationManager.shared.requestAuthorization()
-        ACGoogleAdsManagar.shared.startGoogleAds()
-        ACNetworkManager.shared.startMonitoring()
-        ACRateManager.shared.startCounting()
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            ACNotificationManager.shared.requestAuthorization()
+            ACGoogleAdsManagar.shared.startGoogleAds()
+            ACNetworkManager.shared.startMonitoring()
+            ACRateManager.shared.startCounting()
+        }
+        DispatchQueue.main.async { [self] in
+            setupTabBerItemBasicAppearance()
+            setupTabBerBasicAppearance()
+            setupNavBarBasicAppearance()
+            setupUserNotificationCenter()
+            setupSearchBarBasicAppearance()
+            setupPageControlBasicAppearance()
+        }
         return true
     }
 

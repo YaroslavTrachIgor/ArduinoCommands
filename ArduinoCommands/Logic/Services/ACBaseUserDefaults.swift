@@ -15,11 +15,13 @@ public extension UserDefaults {
     enum Keys {
         
         //MARK: Static
+        static let allowsNotifications = "AllowsNotificationsKey"
         static let isOnboardingNeeded = "IsNeededToBeOpenedKey"
         static let sessionsCountKey = "SessionsCountKey"
         static let checkVersionKey = "CheckVersionKey"
-        static let codeTintColorKey = "CodeTintColorKey"
         static let codeFontSize = "CodeFontSizeKey"
+        static let codeTintColorKey = "CodeTintColorKey"
+        static let detailsTintColorrKey = "DetailsTintColorrKey"
     }
 }
 

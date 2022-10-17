@@ -9,11 +9,11 @@ import Foundation
 import StoreKit
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension ACRateManager {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Alert {
                 enum RateAlert {
@@ -84,11 +84,11 @@ private extension ACRateManager {
     
     //MARK: Private
     func setupRateAlert() -> UIAlertController {
-        let title = Keys.UI.Alert.RateAlert.title
-        let message = Keys.UI.Alert.RateAlert.message
-        let noActionTitle = Keys.UI.Alert.RateAlert.noActionTitle
-        let yesActionTitle = Keys.UI.Alert.RateAlert.yesActionTitle
-        let dismissActionTitle = Keys.UI.Alert.RateAlert.dismissActionTitle
+        let title = Constants.UI.Alert.RateAlert.title
+        let message = Constants.UI.Alert.RateAlert.message
+        let noActionTitle = Constants.UI.Alert.RateAlert.noActionTitle
+        let yesActionTitle = Constants.UI.Alert.RateAlert.yesActionTitle
+        let dismissActionTitle = Constants.UI.Alert.RateAlert.dismissActionTitle
         let rateAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let noAlert = UIAlertAction(title: noActionTitle, style: .default) { [weak self] _ in
             self?.presentThanksAlert()
@@ -110,8 +110,8 @@ private extension ACRateManager {
     }
     
     func presentThanksAlert() {
-        let title = Keys.UI.Alert.ThanksAlert.title
-        let message = Keys.UI.Alert.ThanksAlert.message
+        let title = Constants.UI.Alert.ThanksAlert.title
+        let message = Constants.UI.Alert.ThanksAlert.message
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: 2,

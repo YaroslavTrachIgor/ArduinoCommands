@@ -9,11 +9,11 @@ import Foundation
 import SPAlert
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension ACGrayAlertManager {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum CopiedAlert {
                 
@@ -58,16 +58,16 @@ extension ACGrayAlertManager {
     
     //MARK: Static
     static func presentCopiedAlert(contentType: ACPasteboardManager.ContentType = .content) {
-        let title = Keys.UI.CopiedAlert.title
-        let message = contentType.rawValue + Keys.UI.CopiedAlert.message
+        let title = Constants.UI.CopiedAlert.title
+        let message = contentType.rawValue + Constants.UI.CopiedAlert.message
         ACGrayAlertManager.present(title: title, message: message)
     }
     
     static func presentNewVersionAlert() {
-        let title = Keys.UI.NewVersionAlert.title
-        let message = Keys.UI.NewVersionAlert.message
-        let cornerRadius = Keys.UI.NewVersionAlert.cornerRadius
-        let presetImage = UIImage(systemName: Keys.UI.NewVersionAlert.presetImageName)!
+        let title = Constants.UI.NewVersionAlert.title
+        let message = Constants.UI.NewVersionAlert.message
+        let cornerRadius = Constants.UI.NewVersionAlert.cornerRadius
+        let presetImage = UIImage(systemName: Constants.UI.NewVersionAlert.presetImageName)!
         ACGrayAlertManager.present(title: title, message: message, cornerRadius: cornerRadius, preset: .custom(presetImage))
     }
 }

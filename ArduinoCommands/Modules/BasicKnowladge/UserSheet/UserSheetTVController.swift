@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension UserSheetTVController {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum UI {
             enum Label {
                 
@@ -62,12 +62,12 @@ final class UserSheetTVController: UITableViewController, ACBaseStoryboarded {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Keys.UI.TableView.numberOfSections
+        Constants.UI.TableView.numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let uiModel = UserSheetTVCellUIModel(model: model!)
-        let key = Keys.UI.TableViewCell.userSheetCellKey
+        let key = Constants.UI.TableViewCell.userSheetCellKey
         let cell = tableView.dequeueReusableCell(withIdentifier: key, for: indexPath) as! UserSheetTVCell
         cell.configure(with: uiModel)
         cell.tableViewController = self
@@ -81,8 +81,8 @@ private extension UserSheetTVController {
     
     //MARK: Private
     func setupTableView() {
-        let rowHeight = Keys.UI.TableView.rowHeight
-        let sectionHeaderHeight = Keys.UI.TableView.sectionHeaderHeight
+        let rowHeight = Constants.UI.TableView.rowHeight
+        let sectionHeaderHeight = Constants.UI.TableView.sectionHeaderHeight
         let backgroundView = setupTableBackView()
         tableView.rowHeight = rowHeight
         tableView.backgroundColor = .clear
@@ -132,7 +132,7 @@ private extension UserSheetTVController {
     }
     
     func setupBasicsHeaderLabel(with headerView: UIView) -> UILabel {
-        let content = Keys.UI.Label.headerLabelContent.uppercased()
+        let content = Constants.UI.Label.headerLabelContent.uppercased()
         let labelFont = UIFont.ACFont(ofSize: 12, weight: .bold)
         let labelWidth = headerView.frame.width - 10
         let labelHeight = headerView.frame.height - 10

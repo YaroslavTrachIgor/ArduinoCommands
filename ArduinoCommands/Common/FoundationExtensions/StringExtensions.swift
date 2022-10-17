@@ -13,7 +13,7 @@ public extension String {
     //MARK: Public
     /// This puts spaces between string characters.
     /// - Returns: prapared `NavigationItem` String title in capital letters.
-    mutating func transformInTitle() -> String {
+    func transformInTitle() -> String {
         /**
          Due to the special features of the application font style(`Hiragino Mincho ProN`)
          we add small spaces between characters.

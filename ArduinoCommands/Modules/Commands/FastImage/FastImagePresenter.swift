@@ -10,7 +10,7 @@ import UIKit
 
 //MARK: - Presenter protocol
 internal protocol FastImagePresenterProtocol: ACBasePresenter {
-    init(view: ACBaseFastImageViewControllerProtocol, image: UIImage)
+    init(view: AFastImageViewControllerProtocol, image: UIImage)
     func onShareButton()
     func onCopyButton()
 }
@@ -20,12 +20,12 @@ internal protocol FastImagePresenterProtocol: ACBasePresenter {
 final class FastImagePresenter {
     
     //MARK: Private
-    private weak var view: ACBaseFastImageViewControllerProtocol?
+    private weak var view: AFastImageViewControllerProtocol?
     private weak var image: UIImage?
     
     
     //MARK: Initialization
-    init(view: ACBaseFastImageViewControllerProtocol, image: UIImage) {
+    init(view: AFastImageViewControllerProtocol, image: UIImage) {
         self.view = view
         self.image = image
     }

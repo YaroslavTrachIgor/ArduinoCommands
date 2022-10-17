@@ -12,6 +12,29 @@ import UIKit
 public extension UIColor {
     
     //MARK: Public
+    enum ACDetails {
+        
+        //MARK: Static
+        public static var backgroundColor: UIColor {
+            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+        public static var secondaryBackgroundColor: UIColor {
+            return #colorLiteral(red: 0.07412604243, green: 0.07412604243, blue: 0.07412604243, alpha: 1)
+        }
+        public static var tintColor: UIColor {
+            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+    }
+    enum ACTable {
+        
+        //MARK: Static
+        public static var backgroundColor: UIColor {
+            return .systemGroupedBackground
+        }
+        public static var cellBackgroundColor: UIColor {
+            return .tertiarySystemBackground.withAlphaComponent(0.55)
+        }
+    }
     enum ACShadow {
         
         //MARK: Static

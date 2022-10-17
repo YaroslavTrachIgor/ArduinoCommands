@@ -20,6 +20,7 @@ private extension UIFont {
     }
 }
 
+
 //MARK: - Font weight cases
 public extension UIFont {
     

@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-//MARK: - Keys
+//MARK: - Constants
 private extension UILabel {
     
     //MARK: Private
-    enum Keys {
+    enum Constants {
         enum DecorationLabels {
             enum Content {
                 
@@ -71,32 +71,32 @@ public extension UILabel {
     
     //MARK: Public
     func setupMethodDecoLabel(with needed: Bool! = true) {
-        let content = Keys.DecorationLabels.Content.method
-        let tintColor = Keys.DecorationLabels.Colors.method
+        let content = Constants.DecorationLabels.Content.method
+        let tintColor = Constants.DecorationLabels.Colors.method
         setupDecorationRoleLabel(content: content, tintColor: tintColor)
     }
     
     func setupLibraryDecoLabel(with needed: Bool! = true) {
-        let content = Keys.DecorationLabels.Content.library
-        let tintColor = Keys.DecorationLabels.Colors.library
+        let content = Constants.DecorationLabels.Content.library
+        let tintColor = Constants.DecorationLabels.Colors.library
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
     
     func setupReturnsDecoLabel(with needed: Bool!) {
-        let content = Keys.DecorationLabels.Content.returns
-        let tintColor = Keys.DecorationLabels.Colors.returns
+        let content = Constants.DecorationLabels.Content.returns
+        let tintColor = Constants.DecorationLabels.Colors.returns
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
     
     func setupDevicesDecoLabel(with needed: Bool!) {
-        let content = Keys.DecorationLabels.Content.devices
-        let tintColor = Keys.DecorationLabels.Colors.devices
+        let content = Constants.DecorationLabels.Content.devices
+        let tintColor = Constants.DecorationLabels.Colors.devices
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
     
     func setupInitialDecoLabel(with needed: Bool!) {
-        let content = Keys.DecorationLabels.Content.initial
-        let tintColor = Keys.DecorationLabels.Colors.initial
+        let content = Constants.DecorationLabels.Content.initial
+        let tintColor = Constants.DecorationLabels.Colors.initial
         setupDecorationRoleLabel(content: content, tintColor: tintColor, with: needed)
     }
 }

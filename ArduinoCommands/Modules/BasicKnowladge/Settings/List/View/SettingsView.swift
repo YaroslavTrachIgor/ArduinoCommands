@@ -11,81 +11,98 @@ import SwiftUI
 //MARK: - Main View
 struct SettingsView: View {
     
-    //MARK: @EnvironmentObject
-    @EnvironmentObject var appState: SettingsStateHelper
-    
-    //MARK: @State
-    @State private var isRootActive: Bool = false
-    
     //MARK: Private
-    private var uiModel: SettingsUIModelProtocol {
-        return SettingsUIModel()
-    }
+    @State
+    private var isRootActive: Bool = false
+    @EnvironmentObject
+    private var steteHelper: SettingsStateHelper
     
-    
-    //MARK: Main View
+    //MARK: View Configuration
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
                 Form {
-                    Section(header: Text(uiModel.previewSectionHeader),
-                            footer: Text(uiModel.previewSectionFooter)) {
-                        NavigationLink(destination: IntroView(), isActive: $isRootActive) {
-                            ForEach(uiModel.previewSectionContent) { previewCell in
-                                SettingsPreviewCell(
-                                    title: previewCell.title!,
-                                    iconName: previewCell.iconName!
-                                )
-                            }
-                        }
-                        .isDetailLink(false)
-                    }
-                    Section(header: Text(uiModel.parametersSectionHeader)) {
-                        ForEach(uiModel.parametersSectionContent) { toggleCell in
-                            SettingsViewToggleCell(
-                                iconName: toggleCell.iconName!,
-                                tintColor: toggleCell.tintColor!,
-                                parameterName: toggleCell.content.parameterName!,
-                                parameterValue: toggleCell.content.parameterValue!
-                            )
-                        }
-                    }
-                    Section(header: Text(uiModel.contactInfoSectionHeader),
-                            footer: Text(uiModel.contactInfoSectionFooter)) {
-                        ForEach(uiModel.contactInfoSectionContent) { contactInfoCell in
-                            SettingsContactCell(
-                                link: contactInfoCell.content.link!,
-                                linkName: contactInfoCell.content.linkName!,
-                                iconName: contactInfoCell.iconName!,
-                                tintColor: contactInfoCell.tintColor!
-                            )
-                        }
-                    }
-                    Section(header: Text(uiModel.aboutAppSectionHeader),
-                            footer: Text(uiModel.aboutAppSectionFooter)) {
-                        ForEach(uiModel.aboutAppSectionContent) { basicInfoCell in
-                            SettingsBasicInfoCell(
-                                parameter: basicInfoCell.parameter!,
-                                value: basicInfoCell.value!
-                            )
-                        }
-                    }
+                    settingsPreviewSection
+                    settingsContactInfoSection
+                    settingsParametersSection
+                    settingsAboutAppSection
                 }
             }
-            .onReceive(appState.$movedToRoot) { moveToDashboard in
-                if moveToDashboard {
-                    isRootActive = false
-                    appState.movedToRoot = false
-                }
+            .padding(.top, -15)
+            .navigationBarTitle("Settings".transformInTitle(), displayMode: .inline)
+            .onReceive(steteHelper.$movedToRoot) { willBeMovedToRoot in
+                setMenuScreenStete(wirh: willBeMovedToRoot)
             }
-            .listStyle(InsetListStyle())
-            .padding(.top, -35)
-            .navigationBarTitle(uiModel.title, displayMode: .inline)
             .configureNavigationBar {
-                $0.navigationBar.backgroundColor = .systemGroupedBackground
-                $0.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                $0.navigationBar.shadowImage = UIImage()
+                configureNavigationBar(for: $0.navigationBar)
             }
+        }
+    }
+}
+
+
+//MARK: - Main properties
+private extension SettingsView {
+    
+    //MARK: Private
+    var settingsPreviewSection: some View {
+        Section(header: Text(ACSettingsStorage.PreviewSection.header.uppercased()),
+                footer: Text(ACSettingsStorage.PreviewSection.footer)) {
+            NavigationLink(destination: IntroView(), isActive: $isRootActive) {
+                ForEach(ACSettingsStorage.PreviewSection.content) { item in
+                    SettingsPreviewCell(item: item)
+                }
+            }
+            .isDetailLink(false)
+        }
+    }
+    var settingsContactInfoSection: some View {
+        Section(header: Text(ACSettingsStorage.ContactInfoSection.header.uppercased()),
+                footer: Text(ACSettingsStorage.ContactInfoSection.footer)) {
+            ForEach(ACSettingsStorage.ContactInfoSection.content) { item in
+                SettingsContactCell(item: item)
+            }
+        }
+    }
+    var settingsParametersSection: some View {
+        Section(header: Text(ACSettingsStorage.ParametersSection.header.uppercased()),
+                footer: Text(ACSettingsStorage.ParametersSection.footer)) {
+            SettingsParameterCell(isOn: ACSettingsManager.shared.allowsNotifications,
+                                  item: ACSettingsStorage.ParametersSection.allowsNotificationsCell) { isOn in
+                ACSettingsManager.shared.allowsNotifications = isOn
+            }
+            SettingsParameterCell(isOn: true,
+                                  item: ACSettingsStorage.ParametersSection.removeAdsCell,
+                                  onDisappear: nil)
+        }
+    }
+    var settingsAboutAppSection: some View {
+        Section(header: Text(ACSettingsStorage.BasicInfoSection.header.uppercased()),
+                footer: Text(ACSettingsStorage.BasicInfoSection.footer)) {
+            ForEach(ACSettingsStorage.BasicInfoSection.content) { item in
+                SettingsBasicInfoCell(item: item)
+            }
+        }
+    }
+}
+
+
+//MARK: - Main methods
+private extension SettingsView {
+    
+    //MARK: Private
+    func configureNavigationBar(for navigationBar: UINavigationBar) {
+        let shadowImage = UIImage()
+        let backgroundColor = UIColor.ACTable.backgroundColor
+        navigationBar.setBackgroundImage(shadowImage, for: .default)
+        navigationBar.backgroundColor = backgroundColor
+        navigationBar.shadowImage = shadowImage
+    }
+    
+    func setMenuScreenStete(wirh willBeMovedToRoot: Bool) {
+        if willBeMovedToRoot {
+            isRootActive = false
+            steteHelper.movedToRoot = false
         }
     }
 }
