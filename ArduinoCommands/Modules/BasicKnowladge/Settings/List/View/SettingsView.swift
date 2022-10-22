@@ -13,9 +13,7 @@ struct SettingsView: View {
     
     //MARK: Private
     @State
-    private var isRootActive: Bool = false
-    @EnvironmentObject
-    private var steteHelper: SettingsStateHelper
+    private var introSheetPresented = false
     
     //MARK: View Configuration
     var body: some View {
@@ -30,9 +28,6 @@ struct SettingsView: View {
             }
             .padding(.top, -15)
             .navigationBarTitle("Settings".transformInTitle(), displayMode: .inline)
-            .onReceive(steteHelper.$movedToRoot) { willBeMovedToRoot in
-                setMenuScreenStete(wirh: willBeMovedToRoot)
-            }
             .configureNavigationBar {
                 configureNavigationBar(for: $0.navigationBar)
             }
@@ -48,12 +43,15 @@ private extension SettingsView {
     var settingsPreviewSection: some View {
         Section(header: Text(ACSettingsStorage.PreviewSection.header.uppercased()),
                 footer: Text(ACSettingsStorage.PreviewSection.footer)) {
-            NavigationLink(destination: IntroView(), isActive: $isRootActive) {
-                ForEach(ACSettingsStorage.PreviewSection.content) { item in
-                    SettingsPreviewCell(item: item)
+            ForEach(ACSettingsStorage.PreviewSection.content) { item in
+                SettingsPreviewCell(item: item)
+                .onTapGesture {
+                    introSheetPresented.toggle()
+                }
+                .sheet(isPresented: $introSheetPresented) {
+                    IntroView()
                 }
             }
-            .isDetailLink(false)
         }
     }
     var settingsContactInfoSection: some View {
@@ -97,12 +95,5 @@ private extension SettingsView {
         navigationBar.setBackgroundImage(shadowImage, for: .default)
         navigationBar.backgroundColor = backgroundColor
         navigationBar.shadowImage = shadowImage
-    }
-    
-    func setMenuScreenStete(wirh willBeMovedToRoot: Bool) {
-        if willBeMovedToRoot {
-            isRootActive = false
-            steteHelper.movedToRoot = false
-        }
     }
 }

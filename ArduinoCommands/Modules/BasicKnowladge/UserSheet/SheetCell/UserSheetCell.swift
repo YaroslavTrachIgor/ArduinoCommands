@@ -10,7 +10,7 @@ import UIKit
 import SPAlert
 
 //MARK: - Constants
-private extension UserSheetTVCell {
+private extension UserSheetCell {
     
     //MARK: Private
     enum Constants {
@@ -27,15 +27,15 @@ private extension UserSheetTVCell {
 }
 
 
-//MARK: - User sheet TableView Cell
-final class UserSheetTVCell: UITableViewCell {
+//MARK: - Main Cell
+final class UserSheetCell: UITableViewCell {
     
     //MARK: Weak
     weak var tableViewController: UITableViewController!
     
     //MARK: Private
-    private var presenter: UserSheetPresenterProtocol? {
-        return UserSheetPresenter(view: self, content: descriptionTextView.text!)
+    private var presenter: UserSheetCellPresenterProtocol? {
+        return UserSheetCellPresenter(view: self, content: descriptionTextView.text!)
     }
     
     //MARK: @IBOutlets
@@ -67,10 +67,10 @@ final class UserSheetTVCell: UITableViewCell {
 
 
 //MARK: - ConfigurableView protocol extension
-extension UserSheetTVCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
+extension UserSheetCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
     
     //MARK: Internal
-    internal func configure(with data: UserSheetTVCellUIModelProtocol) {
+    internal func configure(with data: UserSheetCellUIModelProtocol) {
         setupDateLabel(with: data)
         setupTitleLabel(with: data)
         setupDescriptionTextView(with: data)
@@ -81,8 +81,6 @@ extension UserSheetTVCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
         shareContentButton.setupCostomBarButton(imageSystemName: Constants.UI.Image.copyIconName)
         rightDecorationLabelWidth.constant = data.rightDecorationLabelWidth
         leftDecorationLabelWidth.constant = data.leftDecorationLabelWidth
-        
-        ///Setup Cell base properties
         backgroundColor = .clear
     }
     
@@ -99,10 +97,10 @@ extension UserSheetTVCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
 
 
 //MARK: - Main methods
-private extension UserSheetTVCell {
+private extension UserSheetCell {
 
     //MARK: Private
-    func setupDateLabel(with data: UserSheetTVCellUIModelProtocol) {
+    func setupDateLabel(with data: UserSheetCellUIModelProtocol) {
         let textColor: UIColor = .tertiaryLabel.withAlphaComponent(0.4)
         let content = data.dateDescription
         let font = UIFont.ACFont(style: .footer)
@@ -113,7 +111,7 @@ private extension UserSheetTVCell {
         dateLabel.font = font
     }
     
-    func setupTitleLabel(with data: UserSheetTVCellUIModelProtocol) {
+    func setupTitleLabel(with data: UserSheetCellUIModelProtocol) {
         let content = data.title
         let font = UIFont.ACFont(ofSize: 20, weight: .bold)
         titleLabel.numberOfLines = 2
@@ -122,7 +120,7 @@ private extension UserSheetTVCell {
         titleLabel.font = font
     }
     
-    func setupDescriptionTextView(with data: UserSheetTVCellUIModelProtocol) {
+    func setupDescriptionTextView(with data: UserSheetCellUIModelProtocol) {
         let textColor: UIColor = .label.withAlphaComponent(0.55)
         let content = data.content
         let font = UIFont.ACFont(style: .articleContent)

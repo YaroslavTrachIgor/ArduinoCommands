@@ -130,8 +130,7 @@ extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
     
     //MARK: Internal
     internal func presentSettingsHostVC() {
-        let settingsState = SettingsStateHelper()
-        let rootView = SettingsView().environmentObject(settingsState)
+        let rootView = SettingsView()
         let controller = UIHostingController(rootView: rootView)
         presentSheet(with: controller)
     }
@@ -147,7 +146,7 @@ extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
     }
     
     internal func presentUserSheetVC(with data: ACUser) {
-        let usersSheetVC = UserSheetTVController.instantiate()
+        let usersSheetVC = UserSheetListController.instantiate()
         usersSheetVC.model = data
         presentSheet(with: usersSheetVC, detents: [.medium()])
     }

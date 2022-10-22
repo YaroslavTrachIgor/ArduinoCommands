@@ -20,6 +20,7 @@ struct SettingsPreviewCell: View {
             previewCellIcon
             previewCellTitle
             Spacer()
+            previewCellLinkIcon
         }
     }
 }
@@ -39,5 +40,10 @@ private extension SettingsPreviewCell {
             .font(.system(size: 16, weight: .medium))
             .foregroundColor(Color(.label))
             .padding(.leading, 4)
+    }
+    var previewCellLinkIcon: some View {
+        Image(systemName: "chevron.up")
+            .font(.system(size: 14, weight: .semibold, design: .rounded))
+            .foregroundColor(Color(uiColor: .separator))
     }
 }

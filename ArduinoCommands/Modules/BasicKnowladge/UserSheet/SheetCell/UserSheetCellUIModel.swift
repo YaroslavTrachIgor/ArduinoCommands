@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 //MARK: - Cell ViewModel protocol
-protocol UserSheetTVCellUIModelProtocol {
+protocol UserSheetCellUIModelProtocol {
     init(model: ACUser)
     var title: String! { get }
     var content: String! { get }
@@ -23,7 +23,7 @@ protocol UserSheetTVCellUIModelProtocol {
 
 
 //MARK: - Cell ViewModel
-public final class UserSheetTVCellUIModel {
+public final class UserSheetCellUIModel {
     
     //MARK: Private
     private var model: ACUser?
@@ -36,7 +36,7 @@ public final class UserSheetTVCellUIModel {
 
 
 //MARK: - Cell ViewModel protocol extension
-extension UserSheetTVCellUIModel: UserSheetTVCellUIModelProtocol {
+extension UserSheetCellUIModel: UserSheetCellUIModelProtocol {
     
     //MARK: Internal
     internal var title: String! {

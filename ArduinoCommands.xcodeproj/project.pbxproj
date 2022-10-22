@@ -24,7 +24,7 @@
 		8464648F27E4EE90004B0D12 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464648E27E4EE8F004B0D12 /* UserCollectionViewCell.swift */; };
 		8464649127E4EEAF004B0D12 /* SiteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464649027E4EEAF004B0D12 /* SiteCollectionViewCell.swift */; };
 		8464649427E4FE46004B0D12 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464649327E4FE46004B0D12 /* UIFontExtensions.swift */; };
-		8464649627E8B5F4004B0D12 /* UserSheetTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464649527E8B5F4004B0D12 /* UserSheetTVController.swift */; };
+		8464649627E8B5F4004B0D12 /* UserSheetListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464649527E8B5F4004B0D12 /* UserSheetListController.swift */; };
 		846CE6452844432300C083D6 /* MockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CE6442844432300C083D6 /* MockedViewController.swift */; };
 		846CE6472844435600C083D6 /* MockedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CE6462844435600C083D6 /* MockedPresenter.swift */; };
 		84802A8028217FF3001E45D4 /* CommandsListTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84802A7F28217FF3001E45D4 /* CommandsListTVController.swift */; };
@@ -41,7 +41,7 @@
 		84CCC934281713F2008371F1 /* ACNeumorphicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CCC933281713F2008371F1 /* ACNeumorphicButton.swift */; };
 		84CCC936281830F1008371F1 /* CALayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CCC935281830F1008371F1 /* CALayerExtensions.swift */; };
 		84E4A2F627F24327002F7BFA /* ACActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4A2F527F24326002F7BFA /* ACActivityManager.swift */; };
-		84E4A2F827F24366002F7BFA /* UserSheetTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4A2F727F24366002F7BFA /* UserSheetTVCell.swift */; };
+		84E4A2F827F24366002F7BFA /* UserSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4A2F727F24366002F7BFA /* UserSheetCell.swift */; };
 		C474CC4827B2B53B00B1FD9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474CC4727B2B53B00B1FD9A /* AppDelegate.swift */; };
 		C474CC4A27B2B53B00B1FD9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474CC4927B2B53B00B1FD9A /* SceneDelegate.swift */; };
 		C474CC4C27B2B53B00B1FD9A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474CC4B27B2B53B00B1FD9A /* MainTabBarController.swift */; };
@@ -56,7 +56,7 @@
 		CE2BBCC228B8360000D8F42D /* CodeSnippetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */; };
 		CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56578F287F0D0600947DCB /* ACNetworkManager.swift */; };
 		CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */; };
-		CE58E2D9286FB0AA004D5A42 /* UserSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D8286FB0AA004D5A42 /* UserSheetPresenter.swift */; };
+		CE58E2D9286FB0AA004D5A42 /* UserSheetCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */; };
 		CE58E2DB28715B21004D5A42 /* CommandDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2DA28715B21004D5A42 /* CommandDetailPresenter.swift */; };
 		CE697C6A285A0EF20091CCF1 /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE697C69285A0EF10091CCF1 /* UITextViewExtensions.swift */; };
 		CE6B0C072884D8AE007F0F63 /* ACBasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6B0C062884D8AE007F0F63 /* ACBasePresenter.swift */; };
@@ -103,7 +103,7 @@
 		CE8C682328A1768B006C1888 /* UserCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C682228A1768A006C1888 /* UserCellUIModel.swift */; };
 		CE8C682628A2BD12006C1888 /* CommandsListTVCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C682528A2BD12006C1888 /* CommandsListTVCellUIModel.swift */; };
 		CE8C682928A2C503006C1888 /* CommandDetailUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C682828A2C503006C1888 /* CommandDetailUIModel.swift */; };
-		CE8C682B28A36861006C1888 /* UserSheetTVCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C682A28A36861006C1888 /* UserSheetTVCellUIModel.swift */; };
+		CE8C682B28A36861006C1888 /* UserSheetCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C682A28A36861006C1888 /* UserSheetCellUIModel.swift */; };
 		CE8C682D28A46C48006C1888 /* BasicKnowledgeDetailUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C682C28A46C48006C1888 /* BasicKnowledgeDetailUIModel.swift */; };
 		CE8CDAEF28C64F6E001DC8B1 /* IntroTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CDAEE28C64F6E001DC8B1 /* IntroTabView.swift */; };
 		CE8CFE0B28A5E2EC00A88586 /* ACBaseStoryboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CFE0A28A5E2EC00A88586 /* ACBaseStoryboarded.swift */; };
@@ -111,7 +111,6 @@
 		CE8CFE1028A89BA400A88586 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8CFE0F28A89BA300A88586 /* IntroView.swift */; };
 		CE9235DC28ABD8000037846F /* IntroCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235DB28ABD8000037846F /* IntroCloseButton.swift */; };
 		CE9235E228ABDB610037846F /* ACSettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E128ABDB610037846F /* ACSettingsStorage.swift */; };
-		CE9235E428AC2CB20037846F /* SettingsStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E328AC2CB20037846F /* SettingsStateHelper.swift */; };
 		CE9235E728AC2E270037846F /* ACSettingsBasicInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E628AC2E270037846F /* ACSettingsBasicInfo.swift */; };
 		CE9235E928AC3AD40037846F /* ACSettingsContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235E828AC3AD40037846F /* ACSettingsContactInfo.swift */; };
 		CE9235EB28AC3DD10037846F /* ACSettingsParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235EA28AC3DD10037846F /* ACSettingsParameter.swift */; };
@@ -123,6 +122,8 @@
 		CE99BA8D28BF3493007A7158 /* OnboardingUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */; };
 		CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */; };
 		CE9A6FD228FCEBF400E1EF23 /* ACSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */; };
+		CE9A6FD429029ECD00E1EF23 /* IntroStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD329029ECD00E1EF23 /* IntroStateHelper.swift */; };
+		CE9A6FD9290371F200E1EF23 /* UserSheetListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */; };
 		CEB89DB328A5BF1700EA44FB /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */; };
 		CECB4A8F28AB4AAD00278130 /* ACIntroStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */; };
 		CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */; };
@@ -186,7 +187,7 @@
 		8464648E27E4EE8F004B0D12 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		8464649027E4EEAF004B0D12 /* SiteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteCollectionViewCell.swift; sourceTree = "<group>"; };
 		8464649327E4FE46004B0D12 /* UIFontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
-		8464649527E8B5F4004B0D12 /* UserSheetTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetTVController.swift; sourceTree = "<group>"; };
+		8464649527E8B5F4004B0D12 /* UserSheetListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetListController.swift; sourceTree = "<group>"; };
 		846CE6442844432300C083D6 /* MockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedViewController.swift; sourceTree = "<group>"; };
 		846CE6462844435600C083D6 /* MockedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedPresenter.swift; sourceTree = "<group>"; };
 		84802A7F28217FF3001E45D4 /* CommandsListTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandsListTVController.swift; sourceTree = "<group>"; };
@@ -202,7 +203,7 @@
 		84CCC933281713F2008371F1 /* ACNeumorphicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNeumorphicButton.swift; sourceTree = "<group>"; };
 		84CCC935281830F1008371F1 /* CALayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtensions.swift; sourceTree = "<group>"; };
 		84E4A2F527F24326002F7BFA /* ACActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACActivityManager.swift; sourceTree = "<group>"; };
-		84E4A2F727F24366002F7BFA /* UserSheetTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetTVCell.swift; sourceTree = "<group>"; };
+		84E4A2F727F24366002F7BFA /* UserSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetCell.swift; sourceTree = "<group>"; };
 		C474CC4427B2B53B00B1FD9A /* ArduinoCommands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArduinoCommands.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474CC4727B2B53B00B1FD9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C474CC4927B2B53B00B1FD9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -223,7 +224,7 @@
 		CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetViewController.swift; sourceTree = "<group>"; };
 		CE56578F287F0D0600947DCB /* ACNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNetworkManager.swift; sourceTree = "<group>"; };
 		CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNotificationManager.swift; sourceTree = "<group>"; };
-		CE58E2D8286FB0AA004D5A42 /* UserSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetPresenter.swift; sourceTree = "<group>"; };
+		CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetCellPresenter.swift; sourceTree = "<group>"; };
 		CE58E2DA28715B21004D5A42 /* CommandDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailPresenter.swift; sourceTree = "<group>"; };
 		CE697C69285A0EF10091CCF1 /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
 		CE697C88285B243E0091CCF1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -271,7 +272,7 @@
 		CE8C682228A1768A006C1888 /* UserCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellUIModel.swift; sourceTree = "<group>"; };
 		CE8C682528A2BD12006C1888 /* CommandsListTVCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandsListTVCellUIModel.swift; sourceTree = "<group>"; };
 		CE8C682828A2C503006C1888 /* CommandDetailUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailUIModel.swift; sourceTree = "<group>"; };
-		CE8C682A28A36861006C1888 /* UserSheetTVCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetTVCellUIModel.swift; sourceTree = "<group>"; };
+		CE8C682A28A36861006C1888 /* UserSheetCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetCellUIModel.swift; sourceTree = "<group>"; };
 		CE8C682C28A46C48006C1888 /* BasicKnowledgeDetailUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeDetailUIModel.swift; sourceTree = "<group>"; };
 		CE8CDAEE28C64F6E001DC8B1 /* IntroTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroTabView.swift; sourceTree = "<group>"; };
 		CE8CFE0A28A5E2EC00A88586 /* ACBaseStoryboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseStoryboarded.swift; sourceTree = "<group>"; };
@@ -279,7 +280,6 @@
 		CE8CFE0F28A89BA300A88586 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		CE9235DB28ABD8000037846F /* IntroCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCloseButton.swift; sourceTree = "<group>"; };
 		CE9235E128ABDB610037846F /* ACSettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsStorage.swift; sourceTree = "<group>"; };
-		CE9235E328AC2CB20037846F /* SettingsStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStateHelper.swift; sourceTree = "<group>"; };
 		CE9235E628AC2E270037846F /* ACSettingsBasicInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsBasicInfo.swift; sourceTree = "<group>"; };
 		CE9235E828AC3AD40037846F /* ACSettingsContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsContactInfo.swift; sourceTree = "<group>"; };
 		CE9235EA28AC3DD10037846F /* ACSettingsParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsParameter.swift; sourceTree = "<group>"; };
@@ -291,6 +291,8 @@
 		CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUIModel.swift; sourceTree = "<group>"; };
 		CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellIcon.swift; sourceTree = "<group>"; };
 		CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsManager.swift; sourceTree = "<group>"; };
+		CE9A6FD329029ECD00E1EF23 /* IntroStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroStateHelper.swift; sourceTree = "<group>"; };
+		CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetListPresenter.swift; sourceTree = "<group>"; };
 		CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroStorage.swift; sourceTree = "<group>"; };
 		CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroCard.swift; sourceTree = "<group>"; };
@@ -540,7 +542,6 @@
 				CE9A6FCE28FAB17B00E1EF23 /* Views */,
 				CE9A6FCD28FAAC1700E1EF23 /* Cells */,
 				CE8CFE0D28A6FC2100A88586 /* SettingsView.swift */,
-				CE9235E328AC2CB20037846F /* SettingsStateHelper.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -655,10 +656,8 @@
 		CE56AF2E287623F60077D3A6 /* UserSheet */ = {
 			isa = PBXGroup;
 			children = (
-				8464649527E8B5F4004B0D12 /* UserSheetTVController.swift */,
-				CE8C682A28A36861006C1888 /* UserSheetTVCellUIModel.swift */,
-				84E4A2F727F24366002F7BFA /* UserSheetTVCell.swift */,
-				CE58E2D8286FB0AA004D5A42 /* UserSheetPresenter.swift */,
+				CE9A6FD72902A40800E1EF23 /* SheetList */,
+				CE9A6FD62902A40000E1EF23 /* SheetCell */,
 			);
 			path = UserSheet;
 			sourceTree = "<group>";
@@ -785,6 +784,36 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CE9A6FD529029F8D00E1EF23 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE8CDAEE28C64F6E001DC8B1 /* IntroTabView.swift */,
+				CECB4A9828AB4BDC00278130 /* IntroCardView.swift */,
+				CE9235DB28ABD8000037846F /* IntroCloseButton.swift */,
+				CECB4A9628AB4BB700278130 /* IntroBackgroundView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE9A6FD62902A40000E1EF23 /* SheetCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C682A28A36861006C1888 /* UserSheetCellUIModel.swift */,
+				84E4A2F727F24366002F7BFA /* UserSheetCell.swift */,
+				CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */,
+			);
+			path = SheetCell;
+			sourceTree = "<group>";
+		};
+		CE9A6FD72902A40800E1EF23 /* SheetList */ = {
+			isa = PBXGroup;
+			children = (
+				8464649527E8B5F4004B0D12 /* UserSheetListController.swift */,
+				CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */,
+			);
+			path = SheetList;
+			sourceTree = "<group>";
+		};
 		CECB4A8928AB4A0400278130 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,11 +825,9 @@
 		CECB4A8A28AB4A1000278130 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				CE9A6FD529029F8D00E1EF23 /* Views */,
 				CE8CFE0F28A89BA300A88586 /* IntroView.swift */,
-				CE8CDAEE28C64F6E001DC8B1 /* IntroTabView.swift */,
-				CECB4A9828AB4BDC00278130 /* IntroCardView.swift */,
-				CE9235DB28ABD8000037846F /* IntroCloseButton.swift */,
-				CECB4A9628AB4BB700278130 /* IntroBackgroundView.swift */,
+				CE9A6FD329029ECD00E1EF23 /* IntroStateHelper.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -981,7 +1008,7 @@
 			files = (
 				CE6C4D9C286A2C0A00D14AEA /* FastImagePresenter.swift in Sources */,
 				CE7F752028B42A0700B77595 /* ACBaseUserDefaults.swift in Sources */,
-				CE8C682B28A36861006C1888 /* UserSheetTVCellUIModel.swift in Sources */,
+				CE8C682B28A36861006C1888 /* UserSheetCellUIModel.swift in Sources */,
 				CE83D690286982DD009DFFA8 /* ACPasteboardManager.swift in Sources */,
 				C474CC4C27B2B53B00B1FD9A /* MainTabBarController.swift in Sources */,
 				CE6EC781288F56650020DAFF /* APIHelper.swift in Sources */,
@@ -1012,6 +1039,7 @@
 				CE75CF9E287DF0E800BA42DF /* ACGoogleAdsManagar.swift in Sources */,
 				CE8CFE1028A89BA400A88586 /* IntroView.swift in Sources */,
 				CEDBC080285B291100C933AF /* ACAPIManager.swift in Sources */,
+				CE9A6FD9290371F200E1EF23 /* UserSheetListPresenter.swift in Sources */,
 				8464647327DEA1BB004B0D12 /* ACBasics.swift in Sources */,
 				8464647127DEA1A3004B0D12 /* BasicKnowledgePresenter.swift in Sources */,
 				CE8C6811289C00CF006C1888 /* CGFloatExtensions.swift in Sources */,
@@ -1033,13 +1061,12 @@
 				CE78D58728CC55270040B4D2 /* UserDefaultsExtensions.swift in Sources */,
 				84CCC934281713F2008371F1 /* ACNeumorphicButton.swift in Sources */,
 				CE8C682928A2C503006C1888 /* CommandDetailUIModel.swift in Sources */,
-				8464649627E8B5F4004B0D12 /* UserSheetTVController.swift in Sources */,
+				8464649627E8B5F4004B0D12 /* UserSheetListController.swift in Sources */,
 				8464648C27E3549E004B0D12 /* ACUser.swift in Sources */,
 				CE6C4D9F286A328E00D14AEA /* ACBasicKnowledgeStorage.swift in Sources */,
 				8464649127E4EEAF004B0D12 /* SiteCollectionViewCell.swift in Sources */,
 				CE6EC78B288F582C0020DAFF /* ACApplication.swift in Sources */,
 				CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */,
-				CE9235E428AC2CB20037846F /* SettingsStateHelper.swift in Sources */,
 				84802A8028217FF3001E45D4 /* CommandsListTVController.swift in Sources */,
 				CE6C4DA1286A63C200D14AEA /* ACURLs.swift in Sources */,
 				CE9235EF28AC9EE50037846F /* SettingsViewToggleCell.swift in Sources */,
@@ -1061,7 +1088,7 @@
 				CE6C4D9A2869851C00D14AEA /* ACGrayAlertManager.swift in Sources */,
 				CE6EC77D288DE0400020DAFF /* ACGradientType.swift in Sources */,
 				CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */,
-				CE58E2D9286FB0AA004D5A42 /* UserSheetPresenter.swift in Sources */,
+				CE58E2D9286FB0AA004D5A42 /* UserSheetCellPresenter.swift in Sources */,
 				8464648F27E4EE90004B0D12 /* UserCollectionViewCell.swift in Sources */,
 				CE8CFE0B28A5E2EC00A88586 /* ACBaseStoryboarded.swift in Sources */,
 				840B9FC628418F2700EA6D47 /* DataExtensions.swift in Sources */,
@@ -1079,7 +1106,7 @@
 				CE8C682D28A46C48006C1888 /* BasicKnowledgeDetailUIModel.swift in Sources */,
 				CE9235E928AC3AD40037846F /* ACSettingsContactInfo.swift in Sources */,
 				CE8C682328A1768B006C1888 /* UserCellUIModel.swift in Sources */,
-				84E4A2F827F24366002F7BFA /* UserSheetTVCell.swift in Sources */,
+				84E4A2F827F24366002F7BFA /* UserSheetCell.swift in Sources */,
 				CE9235F128AC9EFA0037846F /* SettingsBasicInfoCell.swift in Sources */,
 				CE8C6813289C02CE006C1888 /* UIViewExtensions.swift in Sources */,
 				CE84FAA928666FE200CE9D4D /* ACOnboardingSection.swift in Sources */,
@@ -1088,6 +1115,7 @@
 				CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */,
 				CE8C681F28A16161006C1888 /* PersonCellUIModel.swift in Sources */,
 				C474CC4A27B2B53B00B1FD9A /* SceneDelegate.swift in Sources */,
+				CE9A6FD429029ECD00E1EF23 /* IntroStateHelper.swift in Sources */,
 				CE6B0C092884D97B007F0F63 /* ACBaseConfigurableView.swift in Sources */,
 				CE177C6F28E11DDC00B1B18D /* ACCommandDetails.swift in Sources */,
 				CE697C6A285A0EF20091CCF1 /* UITextViewExtensions.swift in Sources */,

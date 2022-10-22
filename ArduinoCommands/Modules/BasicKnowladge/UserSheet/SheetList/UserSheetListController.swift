@@ -8,8 +8,14 @@
 import Foundation
 import UIKit
 
+//MARK: - Main ViewController protocol
+protocol UserSheetListControllerProtcol: ACBaseViewController {
+    func updateTableViewBackground()
+}
+
+
 //MARK: - Constants
-private extension UserSheetTVController {
+private extension UserSheetListController {
     
     //MARK: Private
     enum Constants {
@@ -36,25 +42,31 @@ private extension UserSheetTVController {
 }
 
 
-//MARK: - Main User profile sheet TableViewController
-final class UserSheetTVController: UITableViewController, ACBaseStoryboarded {
+//MARK: - Main ViewController
+final class UserSheetListController: UITableViewController, ACBaseStoryboarded {
     
     //MARK: Weak
     weak var model: ACUser?
+    
+    //MARK: Private
+    private var presenter: UserSheetListPresenterProtocol? {
+        return UserSheetListPresenter(view: self)
+    }
     
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTableView()
+        presenter?.onViewDidLoad()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
         
-        tableView.reloadData()
+        presenter?.onChangeAppearance()
     }
+    
     
     //MARK: TableView protocols
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -66,9 +78,9 @@ final class UserSheetTVController: UITableViewController, ACBaseStoryboarded {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let uiModel = UserSheetTVCellUIModel(model: model!)
+        let uiModel = UserSheetCellUIModel(model: model!)
         let key = Constants.UI.TableViewCell.userSheetCellKey
-        let cell = tableView.dequeueReusableCell(withIdentifier: key, for: indexPath) as! UserSheetTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: key, for: indexPath) as! UserSheetCell
         cell.configure(with: uiModel)
         cell.tableViewController = self
         return cell
@@ -76,8 +88,24 @@ final class UserSheetTVController: UITableViewController, ACBaseStoryboarded {
 }
 
 
+//MARK: - ViewController protocol extension
+extension UserSheetListController: UserSheetListControllerProtcol {
+    
+    //MARK: Internal
+    internal func setupMainUI() {
+        setupTableView()
+        view.backgroundColor = .clear
+    }
+    
+    internal func updateTableViewBackground() {
+        tableView.backgroundColor = .clear
+        tableView.backgroundView = setupTableBackView()
+    }
+}
+
+
 //MARK: - Main methods
-private extension UserSheetTVController {
+private extension UserSheetListController {
     
     //MARK: Private
     func setupTableView() {

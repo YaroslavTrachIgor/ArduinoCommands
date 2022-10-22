@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - Presenter protocol
-protocol UserSheetPresenterProtocol {
+protocol UserSheetCellPresenterProtocol {
     init(view: ACBaseUserSheetCellProtocol, content: String)
     func onCopyButton()
     func onShareButton()
@@ -17,7 +17,7 @@ protocol UserSheetPresenterProtocol {
 
 
 //MARK: - Main Presenter
-final class UserSheetPresenter {
+final class UserSheetCellPresenter {
     
     //MARK: Private
     private weak var view: ACBaseUserSheetCellProtocol?
@@ -33,7 +33,7 @@ final class UserSheetPresenter {
 
 
 //MARK: - Presenter protocol extension
-extension UserSheetPresenter: UserSheetPresenterProtocol {
+extension UserSheetCellPresenter: UserSheetCellPresenterProtocol {
     
     //MARK: Internal
     internal func onDismissButton() {

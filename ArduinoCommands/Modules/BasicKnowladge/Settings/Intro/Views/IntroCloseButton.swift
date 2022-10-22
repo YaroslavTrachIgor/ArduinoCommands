@@ -13,7 +13,7 @@ struct IntroCloseButton: View {
     
     //MARK: Private
     @EnvironmentObject
-    private var stateHelper: SettingsStateHelper
+    private var stateHelper: IntroStateHelper
     private var tintGradient: Gradient {
         return ACIntroStorage.Constants.UI.Gradients.tintGradient
     }
@@ -22,7 +22,7 @@ struct IntroCloseButton: View {
     var body: some View {
         VStack {
             Button {
-                moveToRoot()
+                dismiss()
             } label: {
                 introLinearGradient
                     .mask(introCloseButtonTitle)
@@ -62,7 +62,7 @@ private extension IntroCloseButton {
 private extension IntroCloseButton {
     
     //MARK: Private
-    func moveToRoot() {
-        stateHelper.movedToRoot = true
+    func dismiss() {
+        stateHelper.viewIsHidden = true
     }
 }

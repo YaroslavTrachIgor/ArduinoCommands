@@ -15,6 +15,6 @@ struct IntroBackgroundView: View {
             .resizable()
             .background(Color(uiColor: .white))
             .ignoresSafeArea()
-            .padding(.trailing, -70)
+            .padding(.trailing, -80)
     }
 }
