@@ -70,20 +70,21 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
          then we show ads, but only then the Detail screen with the Article.
          In other cases, we immediately show the screen with the Article.
          */
-        switch indexPath.section {
-        case 0:
-            view?.presentDetailVC(for: indexPath)
-        default:
-            if ACNetworkManager.shared.isConnected {
-                view?.presentAdAlertController { [self] in
-                    view?.presentAdlnterstitial { [self] in
-                        view?.presentDetailVC(for: indexPath)
-                    }
-                }
-            } else {
-                view?.presentAdLoadFailedAlertController()
-            }
-        }
+//        switch indexPath.section {
+//        case 0:
+//            view?.presentDetailVC(for: indexPath)
+//        default:
+//            if ACNetworkManager.shared.isConnected {
+//                view?.presentAdAlertController { [self] in
+//                    view?.presentAdlnterstitial { [self] in
+//                        view?.presentDetailVC(for: indexPath)
+//                    }
+//                }
+//            } else {
+//                view?.presentAdLoadFailedAlertController()
+//            }
+//        }
+        view?.presentDetailVC(for: indexPath)
     }
     
     internal func onRemindRowAction(currentCommand: ACCommand) {

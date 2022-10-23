@@ -69,9 +69,9 @@ private extension SettingsView {
                                   item: ACSettingsStorage.ParametersSection.allowsNotificationsCell) { isOn in
                 ACSettingsManager.shared.allowsNotifications = isOn
             }
-            SettingsParameterCell(isOn: true,
-                                  item: ACSettingsStorage.ParametersSection.removeAdsCell,
-                                  onDisappear: nil)
+//            SettingsParameterCell(isOn: true,
+//                                  item: ACSettingsStorage.ParametersSection.removeAdsCell,
+//                                  onDisappear: nil)
         }
     }
     var settingsAboutAppSection: some View {
