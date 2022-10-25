@@ -16,7 +16,7 @@ public enum ACSettingsStorage {
         
         //MARK: Static
         static let header = "Preview"
-        static let footer = "You can learn the latest Arduino Commands features by viewing by viewing Application Intro."
+        static let footer = "In this section, you can learn the latest Arduino Commands features by viewing App Intro."
         static let content: [ACSettingsPreview] = [
             ACSettingsPreview(
                 title: "Show Intro",
@@ -28,7 +28,7 @@ public enum ACSettingsStorage {
         
         //MARK: Static
         static let header = "About App"
-        static let footer = "Basic information about the Application from the App Store."
+        static let footer = "In this section, you can view the Basic information about the App, which also exists the App Store."
         static let content: [ACSettingsBasicInfo] = [
             ACSettingsBasicInfo(
                 parameter: "Version",
@@ -60,16 +60,16 @@ public enum ACSettingsStorage {
         
         //MARK: Static
         static let header = "Contact Info"
-        static let footer = "View different Arduino Commands resouces, which can help you to learn aome more about the App or get the needed help."
+        static let footer = "View different Arduino Commands resouces, which can help you to learn some more about the App or get the needed help."
         static let content: [ACSettingsContactInfoCell] = [
-            ACSettingsContactInfoCell(
-                content: ACSettingsContactInfo(
-                    link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
-                    linkName: "Website"
-                ),
-                iconName: "globe",
-                tintColor: .systemTeal
-            ),
+//            ACSettingsContactInfoCell(
+//                content: ACSettingsContactInfo(
+//                    link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
+//                    linkName: "Website"
+//                ),
+//                iconName: "globe",
+//                tintColor: .systemTeal
+//            ),
             ACSettingsContactInfoCell(
                 content: ACSettingsContactInfo(
                     link: "https://www.instagram.com/axcigrpvicj/",
@@ -92,7 +92,7 @@ public enum ACSettingsStorage {
         
         //MARK: Static
         static let header = "Settings"
-        static let footer = "Here you can lock all the unnecessary and unlock the necessary features of Arduino Commands."
+        static let footer = "In this section, you can lock all the unnecessary and unlock the needed features of Arduino Commands."
         static let allowsNotificationsCell = ACSettingsParameterCell(
             content: ACSettingsParameter(
                 name: "Allows Notifications",

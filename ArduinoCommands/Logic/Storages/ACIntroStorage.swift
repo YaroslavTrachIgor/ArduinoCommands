@@ -16,7 +16,7 @@ public enum ACIntroStorage {
         ACIntroCard(
             title: "Learn \npractice \nand read.",
             subtitle: "More than 50 articles",
-            content: "You can read and learn a lot of information about Arduino IDE, Wring programming framework every day. All articles are presented in a clear and accessible language."
+            content: "You can read and learn a lot of new things about Arduino IDE and Wring programming framework. All the articles use a clear and accessible language. All Articles are available for reading Offline."
         ),
         ACIntroCard(
             title: "Screenshots, \ncode snippets, \ncustomization.",
@@ -26,7 +26,7 @@ public enum ACIntroStorage {
         ACIntroCard(
             title: "Use \nlinks for \nfull immersion.",
             subtitle: "Learn Anywhere",
-            content: "In the Resources section, you can find a bunch of links to Internet sites with more information about the programming language for creating Arduino programs."
+            content: "In the Resources section, you can find a bunch of links to the Webpages with more information about the programming language for creating Arduino programs."
         )
     ]
 }

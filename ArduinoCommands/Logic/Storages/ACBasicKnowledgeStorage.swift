@@ -128,7 +128,7 @@ public enum ACBasicKnowledgeStorage {
             person: ACPerson(
                 name: "Trach \nYaroslav",
                 role: "Developer",
-                description: "He was responsible for creating a design framework, creating examples of projects with special functions."
+                description: "He was responsible for creating a design framework, creating task examples, and publishing the App in the App Store."
             ),
             roleIcon: "bookmark.circle.fill",
             tintColor: Constants.TeamSection.secondaryTintColor,
@@ -167,7 +167,7 @@ public enum ACBasicKnowledgeStorage {
             person: ACPerson(
                 name: "Uriy \nVoloshen",
                 role: "Writer",
-                description: "He was responsible for the analysis information to IDE commands and devices used with them."
+                description: "He was responsible for the analysis information about IDE commands and devices used with them."
             ),
             roleIcon: "pencil.circle.fill",
             tintColor: Constants.TeamSection.contentSecondaryTintColor,
@@ -180,14 +180,14 @@ public enum ACBasicKnowledgeStorage {
     static let usersModels = [
         ACUserCellModel(
             content: ACUser(
-                name: "Yarich",
+                name: "Yaroslav",
                 surname: "Trach",
                 role: "Developer",
                 age: 21,
                 iconName: "user-1-icon",
                 dateWhenAdded: Date.from(year: 2019, month: 11, day: 15),
                 secondaryColor: UIColor.systemTeal,
-                roleDescription: "He is the founder of ArduinoCommands. He was responsible for creating the basic idea of design, developing and writing code for app. He organized the use of all content and checked its quality. Additionally, he was responsible for the release of ArduinoCommands in the App Store.",
+                roleDescription: "Yaroslav Trach was the founder of Arduino Commands - Electronics. He was responsible for creating the basic idea of design, developing and writing code for App. He organized the use of all content and checked its quality. Furthermore, he was responsible for the release of ArduinoCommands in the App Store.",
                 extraInfo: "Founder",
                 roleLabelWidth: 104,
                 extraInfoLabelWidth: 92
@@ -203,7 +203,7 @@ public enum ACBasicKnowledgeStorage {
                 iconName: "user-3-icon",
                 dateWhenAdded: Date.from(year: 2021, month: 09, day: 30),
                 secondaryColor: Constants.UsersSection.secondaryColor,
-                roleDescription: "He was responsible for checking maintaining a stable directory design and preparing information about new commands. Moreover, he helped a lot writers to prepare the articles about commands of libraries for special devices.",
+                roleDescription: "Gleb Lutsky was responsible for checking the stable design of the App and preparing information about library commands.",
                 extraInfo: "",
                 roleLabelWidth: 95,
                 extraInfoLabelWidth: 0
@@ -219,7 +219,7 @@ public enum ACBasicKnowledgeStorage {
                 iconName: "user-2-icon",
                 dateWhenAdded: Date.from(year: 2022, month: 12, day: 10),
                 secondaryColor: Constants.UsersSection.secondaryColor,
-                roleDescription: "She was responsible for editing and creating screenshots of example tasks which developers were preparing using Tinkercad service(you can view her work on any Command detail screen).",
+                roleDescription: "She was responsible for editing and creating screenshots of example tasks which developers were preparing using Tinkercad service(you can view her work on any Command Detailed screen that also gives you an opportunity to see the screenshot of usage).",
                 extraInfo: "New",
                 roleLabelWidth: 95,
                 extraInfoLabelWidth: 58
@@ -235,7 +235,7 @@ public enum ACBasicKnowledgeStorage {
                 iconName: nil,
                 dateWhenAdded: Date.from(year: 2022, month: 05, day: 05),
                 secondaryColor: Constants.UsersSection.secondaryColor,
-                roleDescription: "He was responsible for analising information on the Internet which concerns Arduino IDE language, commands and devices used with them. Another point to mention is that he found a lot of sites and resources with info which is incredibly important for the App.",
+                roleDescription: "Uriy Voloshenko was responsible for analising information on the Internet which concerns the Arduino IDE programming language, commands and devices used with them. Additionally, he prepared a bunch of sites and resources with content about the Arduino platform which was incredibly important for the App.",
                 extraInfo: "New",
                 roleLabelWidth: 80,
                 extraInfoLabelWidth: 58

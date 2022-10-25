@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 //MARK: - Main ViewController protocol
 protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
@@ -97,7 +97,7 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBOutlet private weak var screenshotBlurView: UIVisualEffectView!
     @IBOutlet private weak var screenshotButton: UIButton!
     @IBOutlet private weak var codeSnippetButton: UIButton!
-    @IBOutlet private weak var adBunnerView: GADBannerView!
+    //@IBOutlet private weak var adBunnerView: GADBannerView!
     @IBOutlet private weak var presentDetailsButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
     @IBOutlet private weak var detailBackgroundView: CommandDetailBackgroundView!
@@ -214,8 +214,8 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
     }
     
     internal func setupAdBunner() {
-        adsManager.rootViewController = self
-        adsManager.setupCommandDetailAdBunner(for: adBunnerView)
+//        adsManager.rootViewController = self
+//        adsManager.setupCommandDetailAdBunner(for: adBunnerView)
     }
     
     internal func setupRateManager() {
