@@ -18,7 +18,7 @@ private extension BasicsCollectionViewCell {
                 
                 //MARK: Static
                 static let continueTitle = "Continue"
-                static let continueSubtitle = "3 Weeks Free"
+                static let continueSubtitle = "to Learn More..."
             }
         }
     }
