@@ -15,6 +15,8 @@ public enum ACURLs {
         
         //MARK: Static
         static let applicationAPI = "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo/arduinoCommandsInfo.json"
+        static let devicesImagesAPIFirstPart = "https://api.unsplash.com/search/photos?page=1&per_page=50&query="
+        static let devicesImagesAPISecondPart = "&client_id=xiglQ07MdBqYYf-RUAd73pHEslxlZlNRJlfsK0pEtMY"
     }
     enum Materials {
         

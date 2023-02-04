@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ArduinoCommandsDynamicNotificationsWidgetExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,6 +34,29 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C474CC4327B2B53B00B1FD9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C474CC5927B2B53D00B1FD9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C474CC6427B2B53D00B1FD9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CEB71F23291650C600B82B86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

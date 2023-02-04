@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import OpenAIKit
 //import GoogleMobileAds
 
 //MARK: - Main ViewController protocol
@@ -15,6 +16,7 @@ protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
     func changeTextViewContentAnimately(text: String)
     func presentDetailsViews(with animationType: ACBasePresentationType)
     func enableBarViews(with animationType: ACBasePresentationType)
+    func presentDeviceImagesCollectionViewController()
     func presentColorPickerViewController()
     func presentCodeSnippetViewController()
     func presentFastImageViewController()
@@ -50,8 +52,9 @@ private extension CommandDetailViewController {
             enum Image {
                 
                 //MARK: Static
-                static let detailsIconName = "list.dash"
+                static let detailsIcon = "list.dash"
                 static let colorPickerGoIcon = "circle.hexagongrid"
+                static let deviceIcon = "externaldrive.badge.plus"
                 static let copyIcon = "rectangle.portrait.on.rectangle.portrait"
             }
         }
@@ -79,6 +82,16 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     private var presenter: CommandDetailPresenterProtocol? {
         return CommandDetailPresenter(view: self, delegate: self, model: model)
     }
+    private lazy var imagesCollactionViewLayout: UICollectionViewLayout = {
+        let width = view.frame.size.width / 4
+        let itemSize = CGSize(width: width, height: width)
+        let layout: UICollectionViewFlowLayout = .init()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 1
+        layout.itemSize = itemSize
+        return layout
+    }()
     
     //MARK: @IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
@@ -99,6 +112,7 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBOutlet private weak var codeSnippetButton: UIButton!
     //@IBOutlet private weak var adBunnerView: GADBannerView!
     @IBOutlet private weak var presentDetailsButton: UIButton!
+    @IBOutlet private weak var presentDeviceImagesButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
     @IBOutlet private weak var detailBackgroundView: CommandDetailBackgroundView!
     
@@ -155,6 +169,10 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
         presenter?.onCopyDetails(for: sender.tag)
     }
     
+    @IBAction func presentDeviceImages(_ sender: Any) {
+        presenter?.onPresentDeviceImages()
+    }
+    
     @IBAction func presentDetailsColorPicker(_ sender: Any) {
         presenter?.onPresentDetailsColorPicker()
     }
@@ -174,7 +192,6 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         setupContentBackgroundBlurView()
         setupCodeSnippetButton()
         setupScreenshotButton()
-        setupPresentDetailsButton()
         setupDetailHeaderLabels()
         setupDetailDescriptionLabels()
         setupDetailDescriptionBackViews()
@@ -182,6 +199,12 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         setupDetailBackgroundView()
         setupDetailContentView()
         setupDetailCopyButtons()
+        presentDetailsButton.setupDetailsButton(with: Constants.UI.Image.detailsIcon)
+        
+        presentDeviceImagesButton.setupDetailsButton(with: Constants.UI.Image.deviceIcon)
+        presentDeviceImagesButton.isEnabled = model.device.enablePhotos
+        
+        
         detailBackgroundView.changeTintColorButton.setupCodeContentEditingButton(tintColor: detailsTintColor, imageName: Constants.UI.Image.colorPickerGoIcon)
         detailBackgroundView.doneButton.setupPopupButton(tintColor: detailsTintColor, title: Constants.UI.Button.closeTitle)
         contentSegmentedControl.setupBaseDetailDarkSegmentedControl()
@@ -240,6 +263,12 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         picker.delegate = self
         picker.title = title
         present(picker, animated: true, completion: nil)
+    }
+    
+    internal func presentDeviceImagesCollectionViewController() {
+        let deviceImagesVC = DeviceImagesCollectionViewController(collectionViewLayout: imagesCollactionViewLayout)
+        deviceImagesVC.device = model.device
+        navigationController?.pushViewController(deviceImagesVC, animated: true)
     }
     
     internal func presentCodeSnippetViewController() {
@@ -415,23 +444,6 @@ private extension CommandDetailViewController {
             copyButton.tintColor = tintColor
             copyButton.setImage(copyIcon, for: .normal)
         }
-    }
-    
-    func setupPresentDetailsButton() {
-        let imageConfiguration = UIImage.SymbolConfiguration(scale: .default)
-        let imageName = Constants.UI.Image.detailsIconName
-        let image = UIImage(systemName: imageName, withConfiguration: imageConfiguration)
-        let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
-        let backgroundColor = contentBackColor.withAlphaComponent(0.15)
-        let tintColor = UIColor.ACDetails.tintColor
-        let strokeColor = tintColor.withAlphaComponent(0.2)
-        var configuration = UIButton.Configuration.filled()
-        configuration.background.backgroundColor = backgroundColor
-        configuration.background.strokeColor = strokeColor
-        configuration.background.strokeWidth = 0.45
-        configuration.cornerStyle = .large
-        configuration.image = image
-        presentDetailsButton.configuration = configuration
     }
     
     func setupScreenshotButton() {

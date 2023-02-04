@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xok-Hh-b09">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xok-Hh-b09">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -300,6 +300,18 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                             <action selector="presentDetails:" destination="Hgb-v4-hGC" eventType="touchUpInside" id="uD2-ZG-6nf"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkF-aA-2vT">
+                                        <rect key="frame" x="306" y="20" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="QVE-J4-1Rp"/>
+                                            <constraint firstAttribute="width" constant="40" id="dZg-Qs-LTv"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="externaldrive.badge.plus" catalog="system"/>
+                                        <connections>
+                                            <action selector="presentDeviceImages:" destination="Hgb-v4-hGC" eventType="touchUpInside" id="lfa-42-fhE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -314,10 +326,12 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     <constraint firstAttribute="trailing" secondItem="Og4-0k-EfJ" secondAttribute="trailing" constant="25" id="Ohg-tb-cgn"/>
                                     <constraint firstItem="JiT-9e-9Lf" firstAttribute="top" secondItem="nVR-1E-ohd" secondAttribute="bottom" constant="10" id="QpK-tD-Aa4"/>
                                     <constraint firstItem="6eR-OI-7wV" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="22" id="S7b-Ul-8hw"/>
+                                    <constraint firstItem="8fu-VL-jI8" firstAttribute="leading" secondItem="rkF-aA-2vT" secondAttribute="trailing" constant="8" id="UF7-91-pyC"/>
                                     <constraint firstItem="Og4-0k-EfJ" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="25" id="aaX-si-2cf"/>
                                     <constraint firstItem="6eR-OI-7wV" firstAttribute="top" secondItem="JiT-9e-9Lf" secondAttribute="bottom" constant="5" id="fWN-wy-fDx"/>
                                     <constraint firstItem="SWZ-L8-trd" firstAttribute="leading" secondItem="hHn-kK-Ir9" secondAttribute="trailing" constant="8" id="hPC-Ds-6n8"/>
                                     <constraint firstItem="JiT-9e-9Lf" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="25" id="hSS-oM-16y"/>
+                                    <constraint firstItem="rkF-aA-2vT" firstAttribute="top" secondItem="JHV-F2-L63" secondAttribute="top" constant="20" id="mpJ-Ht-XyV"/>
                                     <constraint firstAttribute="trailing" secondItem="8fu-VL-jI8" secondAttribute="trailing" constant="20" id="ph0-MV-ZRs"/>
                                     <constraint firstItem="nVR-1E-ohd" firstAttribute="top" secondItem="Og4-0k-EfJ" secondAttribute="bottom" constant="4" id="tgR-nK-YPt"/>
                                     <constraint firstAttribute="bottom" secondItem="6eR-OI-7wV" secondAttribute="bottom" constant="100" id="yl6-eL-KXn"/>
@@ -419,6 +433,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                         <outlet property="leftDecorationLabel" destination="SWZ-L8-trd" id="KLz-c1-vAZ"/>
                         <outlet property="middleDecorationLabel" destination="hHn-kK-Ir9" id="9aV-18-OG1"/>
                         <outlet property="presentDetailsButton" destination="8fu-VL-jI8" id="Xo2-Fm-XGa"/>
+                        <outlet property="presentDeviceImagesButton" destination="rkF-aA-2vT" id="6TN-k5-wbq"/>
                         <outlet property="rightDecotationLabel" destination="JiT-9e-9Lf" id="fDn-tM-SwO"/>
                         <outlet property="screenshotBlurView" destination="Y40-W4-Nk9" id="ABI-JG-2Hl"/>
                         <outlet property="screenshotButton" destination="amP-k9-I3l" id="Uqp-d9-M01"/>
@@ -891,7 +906,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     </connections>
                                 </slider>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textformat.size" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-JA-isg">
-                                    <rect key="frame" x="10" y="20.999999999999996" width="20" height="14.000000000000004"/>
+                                    <rect key="frame" x="10" y="20" width="20" height="14.5"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="cCs-c8-Cj2"/>
@@ -900,7 +915,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textformat.size" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ybu-fW-758">
-                                    <rect key="frame" x="220" y="3.3333333333333321" width="30" height="49"/>
+                                    <rect key="frame" x="220" y="2.5" width="30" height="49.5"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="Yyv-Ny-7cW"/>
@@ -923,7 +938,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud3-2j-5N8">
-                            <rect key="frame" x="97.666666666666686" y="115" width="65" height="30"/>
+                            <rect key="frame" x="97.5" y="115" width="65" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="65" id="Aum-mo-IFI"/>
                                 <constraint firstAttribute="height" constant="30" id="PBA-aQ-ycu"/>
@@ -952,6 +967,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="command-detail-background" width="327" height="559"/>
+        <image name="externaldrive.badge.plus" catalog="system" width="128" height="91"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="list.dash.header.rectangle" catalog="system" width="128" height="93"/>
         <image name="rectangle.portrait.on.rectangle.portrait" catalog="system" width="118" height="128"/>

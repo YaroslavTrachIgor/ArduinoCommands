@@ -43,9 +43,56 @@ public extension UIView {
     /// - Parameters:
     ///   - width: border width(with a default value of 0.2);
     ///   - color: border color(with a default white value).
-    func setFastGlassmorphismBorder(width: CGFloat = 0.2, color: UIColor = .white) {
+    func setFastGlassmorphismBorder(width: CGFloat = 0.2,
+                                    color: UIColor = .white) {
         let borderColor = color.withAlphaComponent(0.25).cgColor
         layer.borderColor = borderColor
         layer.borderWidth = width
+    }
+    
+    /// This sets up special rounding buttons with blured background.
+    /// The function is usually used in `UICollectionViewController` files as a
+    /// costom view for `UIBarButtonItem`.
+    /// - Parameters:
+    ///   - action: @objc method that will be called when button is tapped;
+    ///   - width: button's width;
+    ///   - height: button's height;
+    ///   - imageName: optional button's image system icon name;
+    ///   - title: optional button title;
+    ///   - vc: target;
+    func setupFastImageCollectionViewBarView(action: Selector?,
+                                             width: CGFloat = 35,
+                                             height: CGFloat = 35,
+                                             imageName: String?,
+                                             title: String?,
+                                             for vc: UIViewController) {
+        let viewFrame = CGRect(x: 0, y: 0, width: width, height: height)
+        frame = viewFrame
+        
+        /**
+         We cannot use `UIButton` as a costom view for `UIBarButtonItem`.
+         That's why we, first of all, set up view's frame(see the code above) and then add the button as a subview.
+         */
+        let button = UIButton.init(type: .system)
+        button.frame = self.frame
+
+        let autoresizingMask: UIView.AutoresizingMask = [.flexibleWidth, .flexibleHeight]
+        let backgroundColor: UIColor = .systemGray2.withAlphaComponent(0.08)
+        let buttonHeight = button.frame.height / 2
+        button.addBlurEffect(cornerRadius: buttonHeight, style: .regular)
+        button.backgroundColor = backgroundColor
+        button.layer.cornerRadius = buttonHeight
+        button.autoresizesSubviews = true
+        button.autoresizingMask = autoresizingMask
+        button.tintColor = .white
+        
+        if title != nil { button.setTitle(title, for: .normal) }
+        if action != nil { button.addTarget(vc, action: action!, for: .touchUpInside) }
+        if imageName != nil {
+            let imageConfiguration = UIImage.SymbolConfiguration(scale: .medium)
+            let image = UIImage(systemName: imageName!)?.withConfiguration(imageConfiguration)
+            button.setImage(image, for: .normal)
+        }
+        addSubview(button)
     }
 }

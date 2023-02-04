@@ -32,7 +32,6 @@
 		849CBE6B27F11F1600DCEBA3 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CBE6A27F11F1500DCEBA3 /* UIButtonExtensions.swift */; };
 		84A81C0B282FE88C00FBFC7B /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81C0A282FE88C00FBFC7B /* UILabelExtensions.swift */; };
 		84A81C0E282FEB3900FBFC7B /* CommandsListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81C0D282FEB3900FBFC7B /* CommandsListTVCell.swift */; };
-		84A81C10282FEB6800FBFC7B /* CommandsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81C0F282FEB6800FBFC7B /* CommandsListPresenter.swift */; };
 		84A81C12282FEB9400FBFC7B /* ACCommandsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81C11282FEB9400FBFC7B /* ACCommandsSection.swift */; };
 		84A81C14282FEBB700FBFC7B /* ACCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81C13282FEBB700FBFC7B /* ACCommand.swift */; };
 		84BB5D6A2845828A00CE1AA2 /* ACBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BB5D692845828A00CE1AA2 /* ACBaseViewController.swift */; };
@@ -54,6 +53,7 @@
 		CE177C6D28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */; };
 		CE177C6F28E11DDC00B1B18D /* ACCommandDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE177C6E28E11DDC00B1B18D /* ACCommandDetails.swift */; };
 		CE2BBCC228B8360000D8F42D /* CodeSnippetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */; };
+		CE47EBDA29446EC800A19E0B /* ACCommandsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47EBD929446EC800A19E0B /* ACCommandsManager.swift */; };
 		CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56578F287F0D0600947DCB /* ACNetworkManager.swift */; };
 		CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */; };
 		CE58E2D9286FB0AA004D5A42 /* UserSheetCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */; };
@@ -66,6 +66,10 @@
 		CE6C4D9C286A2C0A00D14AEA /* FastImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C4D9B286A2C0A00D14AEA /* FastImagePresenter.swift */; };
 		CE6C4D9F286A328E00D14AEA /* ACBasicKnowledgeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C4D9E286A328E00D14AEA /* ACBasicKnowledgeStorage.swift */; };
 		CE6C4DA1286A63C200D14AEA /* ACURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C4DA0286A63C200D14AEA /* ACURLs.swift */; };
+		CE6E9B572953F3C200632249 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE6E9B562953F3C200632249 /* OpenAIKit */; };
+		CE6E9B5A29590D1400632249 /* DeviceImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6E9B5829590D1300632249 /* DeviceImagesCollectionViewController.swift */; };
+		CE6E9B5B29590D1400632249 /* DeviceImagesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6E9B5929590D1400632249 /* DeviceImagesCollectionViewController.xib */; };
+		CE6E9B5D29599C7400632249 /* DeviceImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6E9B5C29599C7300632249 /* DeviceImageCollectionViewCell.swift */; };
 		CE6EC77D288DE0400020DAFF /* ACGradientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EC77C288DE0400020DAFF /* ACGradientType.swift */; };
 		CE6EC77F288F56110020DAFF /* ACRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EC77E288F56110020DAFF /* ACRequestError.swift */; };
 		CE6EC781288F56650020DAFF /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EC780288F56650020DAFF /* APIHelper.swift */; };
@@ -73,6 +77,11 @@
 		CE6EC786288F571D0020DAFF /* JSONDecoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EC785288F571D0020DAFF /* JSONDecoderExtensions.swift */; };
 		CE6EC788288F57C30020DAFF /* ACApplicationCheckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EC787288F57C30020DAFF /* ACApplicationCheckManager.swift */; };
 		CE6EC78B288F582C0020DAFF /* ACApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EC78A288F582C0020DAFF /* ACApplication.swift */; };
+		CE7038A0298EB71E00FE4928 /* DeviceImagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70389F298EB71E00FE4928 /* DeviceImagesPresenter.swift */; };
+		CE7038A2298EB79600FE4928 /* ACImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A1298EB79600FE4928 /* ACImageDownloader.swift */; };
+		CE7038A4298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A3298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift */; };
+		CE7038A7298EBE8C00FE4928 /* ACDeviceImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A6298EBE8C00FE4928 /* ACDeviceImageResult.swift */; };
+		CE7038A9298EBEA100FE4928 /* ACDeviceImageURl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A8298EBEA100FE4928 /* ACDeviceImageURl.swift */; };
 		CE75CF8F2879F85D00BA42DF /* ACRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */; };
 		CE75CF91287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF90287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift */; };
 		CE75CF99287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF98287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift */; };
@@ -85,6 +94,7 @@
 		CE78D58E28D58DDA0040B4D2 /* ACBasePresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */; };
 		CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */; };
 		CE78D59228D5A0CE0040B4D2 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */; };
+		CE7B452D296040E9001C1B25 /* ACDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B452C296040E9001C1B25 /* ACDevice.swift */; };
 		CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751D28B35ED100B77595 /* StringExtensions.swift */; };
 		CE7F752028B42A0700B77595 /* ACBaseUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */; };
 		CE83D690286982DD009DFFA8 /* ACPasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */; };
@@ -124,6 +134,16 @@
 		CE9A6FD228FCEBF400E1EF23 /* ACSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */; };
 		CE9A6FD429029ECD00E1EF23 /* IntroStateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD329029ECD00E1EF23 /* IntroStateHelper.swift */; };
 		CE9A6FD9290371F200E1EF23 /* UserSheetListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */; };
+		CEB71F25291650C700B82B86 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE697C88285B243E0091CCF1 /* WidgetKit.framework */; };
+		CEB71F26291650C700B82B86 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE697C8A285B243E0091CCF1 /* SwiftUI.framework */; };
+		CEB71F29291650C700B82B86 /* WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB71F28291650C700B82B86 /* WidgetBundle.swift */; };
+		CEB71F2B291650C700B82B86 /* WidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB71F2A291650C700B82B86 /* WidgetLiveActivity.swift */; };
+		CEB71F2D291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB71F2C291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift */; };
+		CEB71F2F291650CF00B82B86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB71F2E291650CF00B82B86 /* Assets.xcassets */; };
+		CEB71F33291650CF00B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEB71F24291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CEB71F3B291652C400B82B86 /* CommandsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A81C0F282FEB6800FBFC7B /* CommandsListPresenter.swift */; };
+		CEB71F402916F5B300B82B86 /* commands.json in Resources */ = {isa = PBXBuildFile; fileRef = 840B9FC328416E0B00EA6D47 /* commands.json */; };
+		CEB71F482917011700B82B86 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464649327E4FE46004B0D12 /* UIFontExtensions.swift */; };
 		CEB89DB328A5BF1700EA44FB /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */; };
 		CECB4A8F28AB4AAD00278130 /* ACIntroStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */; };
 		CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */; };
@@ -131,12 +151,17 @@
 		CECB4A9928AB4BDC00278130 /* IntroCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9828AB4BDC00278130 /* IntroCardView.swift */; };
 		CECB4A9C28AB4D7F00278130 /* ACBaseVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9B28AB4D7F00278130 /* ACBaseVisualEffectView.swift */; };
 		CECB4A9E28AB4E2000278130 /* ACBaseNavigationConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB4A9D28AB4E2000278130 /* ACBaseNavigationConfigurationViewController.swift */; };
+		CECE1A19294DBAA60021D899 /* WidgetLiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */; };
+		CECE1A1E294DBB6D0021D899 /* WidjetCommandPreviewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */; };
+		CECE1A22294DBBB70021D899 /* WidjetCommandPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */; };
+		CECE1A29294E74FA0021D899 /* CommandTypeRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */; };
 		CEDBC080285B291100C933AF /* ACAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC07F285B291100C933AF /* ACAPIManager.swift */; };
 		CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */; };
 		CEDBC0852860CA6B00C933AF /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */; };
 		CEDBC08C2860D63000C933AF /* onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC08B2860D63000C933AF /* onboarding.json */; };
 		CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */; };
 		CEEC354C28D940F200BF5FC5 /* CodeSnippetUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEC354B28D940F200BF5FC5 /* CodeSnippetUIModel.swift */; };
+		CEEDA5A62931FF1600F25C02 /* ACCommandType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDA5A52931FF1600F25C02 /* ACCommandType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +179,13 @@
 			remoteGlobalIDString = C474CC4327B2B53B00B1FD9A;
 			remoteInfo = ArduinoCommands;
 		};
+		CEB71F31291650CF00B82B86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C474CC3C27B2B53B00B1FD9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEB71F23291650C600B82B86;
+			remoteInfo = ArduinoCommandsDynamicNotificationsWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -163,6 +195,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				CEB71F33291650CF00B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +255,7 @@
 		CE177C6C28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		CE177C6E28E11DDC00B1B18D /* ACCommandDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommandDetails.swift; sourceTree = "<group>"; };
 		CE2BBCC128B8360000D8F42D /* CodeSnippetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetViewController.swift; sourceTree = "<group>"; };
+		CE47EBD929446EC800A19E0B /* ACCommandsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommandsManager.swift; sourceTree = "<group>"; };
 		CE56578F287F0D0600947DCB /* ACNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNetworkManager.swift; sourceTree = "<group>"; };
 		CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNotificationManager.swift; sourceTree = "<group>"; };
 		CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetCellPresenter.swift; sourceTree = "<group>"; };
@@ -236,6 +270,9 @@
 		CE6C4D9B286A2C0A00D14AEA /* FastImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastImagePresenter.swift; sourceTree = "<group>"; };
 		CE6C4D9E286A328E00D14AEA /* ACBasicKnowledgeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBasicKnowledgeStorage.swift; sourceTree = "<group>"; };
 		CE6C4DA0286A63C200D14AEA /* ACURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACURLs.swift; sourceTree = "<group>"; };
+		CE6E9B5829590D1300632249 /* DeviceImagesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceImagesCollectionViewController.swift; sourceTree = "<group>"; };
+		CE6E9B5929590D1400632249 /* DeviceImagesCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceImagesCollectionViewController.xib; sourceTree = "<group>"; };
+		CE6E9B5C29599C7300632249 /* DeviceImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE6EC77C288DE0400020DAFF /* ACGradientType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACGradientType.swift; sourceTree = "<group>"; };
 		CE6EC77E288F56110020DAFF /* ACRequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACRequestError.swift; sourceTree = "<group>"; };
 		CE6EC780288F56650020DAFF /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
@@ -243,6 +280,11 @@
 		CE6EC785288F571D0020DAFF /* JSONDecoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtensions.swift; sourceTree = "<group>"; };
 		CE6EC787288F57C30020DAFF /* ACApplicationCheckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACApplicationCheckManager.swift; sourceTree = "<group>"; };
 		CE6EC78A288F582C0020DAFF /* ACApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACApplication.swift; sourceTree = "<group>"; };
+		CE70389F298EB71E00FE4928 /* DeviceImagesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceImagesPresenter.swift; sourceTree = "<group>"; };
+		CE7038A1298EB79600FE4928 /* ACImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACImageDownloader.swift; sourceTree = "<group>"; };
+		CE7038A3298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDeviceImagesAPIResponse.swift; sourceTree = "<group>"; };
+		CE7038A6298EBE8C00FE4928 /* ACDeviceImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDeviceImageResult.swift; sourceTree = "<group>"; };
+		CE7038A8298EBEA100FE4928 /* ACDeviceImageURl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDeviceImageURl.swift; sourceTree = "<group>"; };
 		CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACRateManager.swift; sourceTree = "<group>"; };
 		CE75CF90287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeDetailViewController.swift; sourceTree = "<group>"; };
 		CE75CF98287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeDetailPresenter.swift; sourceTree = "<group>"; };
@@ -254,6 +296,7 @@
 		CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBasePresentationType.swift; sourceTree = "<group>"; };
 		CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseAppearanceType.swift; sourceTree = "<group>"; };
 		CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
+		CE7B452C296040E9001C1B25 /* ACDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDevice.swift; sourceTree = "<group>"; };
 		CE7F751D28B35ED100B77595 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseUserDefaults.swift; sourceTree = "<group>"; };
 		CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPasteboardManager.swift; sourceTree = "<group>"; };
@@ -293,6 +336,14 @@
 		CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsManager.swift; sourceTree = "<group>"; };
 		CE9A6FD329029ECD00E1EF23 /* IntroStateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroStateHelper.swift; sourceTree = "<group>"; };
 		CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetListPresenter.swift; sourceTree = "<group>"; };
+		CEB71F24291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ArduinoCommandsDynamicNotificationsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEB71F28291650C700B82B86 /* WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBundle.swift; sourceTree = "<group>"; };
+		CEB71F2A291650C700B82B86 /* WidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLiveActivity.swift; sourceTree = "<group>"; };
+		CEB71F2C291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoCommandsDynamicNotificationsWidget.swift; sourceTree = "<group>"; };
+		CEB71F2E291650CF00B82B86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEB71F30291650CF00B82B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEB71F462916FFA300B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ArduinoCommandsDynamicNotificationsWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
+		CEB71F472916FFB300B82B86 /* ArduinoCommandsDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ArduinoCommandsDebug.entitlements; sourceTree = "<group>"; };
 		CEB89DB228A5BF1700EA44FB /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		CECB4A8E28AB4AAD00278130 /* ACIntroStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroStorage.swift; sourceTree = "<group>"; };
 		CECB4A9028AB4ADC00278130 /* ACIntroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACIntroCard.swift; sourceTree = "<group>"; };
@@ -300,12 +351,17 @@
 		CECB4A9828AB4BDC00278130 /* IntroCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCardView.swift; sourceTree = "<group>"; };
 		CECB4A9B28AB4D7F00278130 /* ACBaseVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseVisualEffectView.swift; sourceTree = "<group>"; };
 		CECB4A9D28AB4E2000278130 /* ACBaseNavigationConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseNavigationConfigurationViewController.swift; sourceTree = "<group>"; };
+		CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLiveActivityAttributes.swift; sourceTree = "<group>"; };
+		CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreviewStorage.swift; sourceTree = "<group>"; };
+		CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreview.swift; sourceTree = "<group>"; };
+		CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTypeRectangle.swift; sourceTree = "<group>"; };
 		CEDBC07F285B291100C933AF /* ACAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAPIManager.swift; sourceTree = "<group>"; };
 		CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		CEDBC08B2860D63000C933AF /* onboarding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = onboarding.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		CEEC354B28D940F200BF5FC5 /* CodeSnippetUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSnippetUIModel.swift; sourceTree = "<group>"; };
+		CEEDA5A52931FF1600F25C02 /* ACCommandType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommandType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +371,7 @@
 			files = (
 				CE75CF9C287D97E400BA42DF /* GoogleMobileAds in Frameworks */,
 				849CBE6927F0F30800DCEBA3 /* SPAlert in Frameworks */,
+				CE6E9B572953F3C200632249 /* OpenAIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +386,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEB71F21291650C600B82B86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEB71F26291650C700B82B86 /* SwiftUI.framework in Frameworks */,
+				CEB71F25291650C700B82B86 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +516,7 @@
 				CE56AF24287621EE0077D3A6 /* Detail */,
 				CE2BBCC028B835A000D8F42D /* CodeSnippet */,
 				CE56AF29287622640077D3A6 /* FastImage */,
+				CE70389E298D7F7200FE4928 /* DeviceImages */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -478,9 +545,11 @@
 		C474CC3B27B2B53B00B1FD9A = {
 			isa = PBXGroup;
 			children = (
+				CEB71F462916FFA300B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtensionDebug.entitlements */,
 				C474CC4627B2B53B00B1FD9A /* ArduinoCommands */,
 				C474CC5D27B2B53D00B1FD9A /* ArduinoCommandsTests */,
 				C474CC6827B2B53D00B1FD9A /* ArduinoCommandsUITests */,
+				CEB71F27291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget */,
 				CE697C87285B243E0091CCF1 /* Frameworks */,
 				C474CC4527B2B53B00B1FD9A /* Products */,
 			);
@@ -492,6 +561,7 @@
 				C474CC4427B2B53B00B1FD9A /* ArduinoCommands.app */,
 				C474CC5A27B2B53D00B1FD9A /* ArduinoCommandsTests.xctest */,
 				C474CC6527B2B53D00B1FD9A /* ArduinoCommandsUITests.xctest */,
+				CEB71F24291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -499,6 +569,7 @@
 		C474CC4627B2B53B00B1FD9A /* ArduinoCommands */ = {
 			isa = PBXGroup;
 			children = (
+				CEB71F472916FFB300B82B86 /* ArduinoCommandsDebug.entitlements */,
 				8464647E27DF6101004B0D12 /* Common */,
 				CE2BBCD028BEC48100D8F42D /* Logic */,
 				CE2BBCCF28BEC40400D8F42D /* Modules */,
@@ -534,16 +605,6 @@
 				CE78D58A28D5880D0040B4D2 /* CodeSnippetPresenter.swift */,
 			);
 			path = CodeSnippet;
-			sourceTree = "<group>";
-		};
-		CE2BBCC728BB029D00D8F42D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CE9A6FCE28FAB17B00E1EF23 /* Views */,
-				CE9A6FCD28FAAC1700E1EF23 /* Cells */,
-				CE8CFE0D28A6FC2100A88586 /* SettingsView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CE2BBCCE28BEC38100D8F42D /* Resources */ = {
@@ -597,6 +658,8 @@
 				84E4A2F527F24326002F7BFA /* ACActivityManager.swift */,
 				CE75CF9F287ED5A300BA42DF /* ACAlertManager.swift */,
 				CE6EC787288F57C30020DAFF /* ACApplicationCheckManager.swift */,
+				CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */,
+				CE47EBD929446EC800A19E0B /* ACCommandsManager.swift */,
 				CE6EC77C288DE0400020DAFF /* ACGradientType.swift */,
 				CE6C4D992869851C00D14AEA /* ACGrayAlertManager.swift */,
 				CE75CF9D287DF0E700BA42DF /* ACGoogleAdsManagar.swift */,
@@ -675,7 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				CE6EC783288F56F60020DAFF /* ACApplicationAPIClient.swift */,
-				CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */,
+				CE7038A1298EB79600FE4928 /* ACImageDownloader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -694,6 +757,27 @@
 				CE6EC78A288F582C0020DAFF /* ACApplication.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CE70389E298D7F7200FE4928 /* DeviceImages */ = {
+			isa = PBXGroup;
+			children = (
+				CE6E9B5929590D1400632249 /* DeviceImagesCollectionViewController.xib */,
+				CE6E9B5829590D1300632249 /* DeviceImagesCollectionViewController.swift */,
+				CE6E9B5C29599C7300632249 /* DeviceImageCollectionViewCell.swift */,
+				CE70389F298EB71E00FE4928 /* DeviceImagesPresenter.swift */,
+			);
+			path = DeviceImages;
+			sourceTree = "<group>";
+		};
+		CE7038A5298EBE7100FE4928 /* ACDeviceImage */ = {
+			isa = PBXGroup;
+			children = (
+				CE7038A3298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift */,
+				CE7038A6298EBE8C00FE4928 /* ACDeviceImageResult.swift */,
+				CE7038A8298EBEA100FE4928 /* ACDeviceImageURl.swift */,
+			);
+			path = ACDeviceImage;
 			sourceTree = "<group>";
 		};
 		CE75CF92287D5F8B00BA42DF /* Detail */ = {
@@ -758,9 +842,12 @@
 		CE99BA8B28BF2440007A7158 /* ACCommands */ = {
 			isa = PBXGroup;
 			children = (
+				CE7038A5298EBE7100FE4928 /* ACDeviceImage */,
 				84A81C13282FEBB700FBFC7B /* ACCommand.swift */,
+				CEEDA5A52931FF1600F25C02 /* ACCommandType.swift */,
 				CE177C6E28E11DDC00B1B18D /* ACCommandDetails.swift */,
 				84A81C11282FEB9400FBFC7B /* ACCommandsSection.swift */,
+				CE7B452C296040E9001C1B25 /* ACDevice.swift */,
 			);
 			path = ACCommands;
 			sourceTree = "<group>";
@@ -814,10 +901,27 @@
 			path = SheetList;
 			sourceTree = "<group>";
 		};
+		CEB71F27291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				CECE1A14294DB9F50021D899 /* Bundle */,
+				CECE1A15294DBA070021D899 /* LiveActivity */,
+				CECE1A25294E71390021D899 /* Storage */,
+				CECE1A1F294DBB950021D899 /* Model */,
+				CECE1A26294E74C50021D899 /* View */,
+				CEB71F2C291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift */,
+				CEB71F2E291650CF00B82B86 /* Assets.xcassets */,
+				CEB71F30291650CF00B82B86 /* Info.plist */,
+			);
+			path = ArduinoCommandsDynamicNotificationsWidget;
+			sourceTree = "<group>";
+		};
 		CECB4A8928AB4A0400278130 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				CE2BBCC728BB029D00D8F42D /* View */,
+				CE9A6FCE28FAB17B00E1EF23 /* Views */,
+				CE9A6FCD28FAAC1700E1EF23 /* Cells */,
+				CE8CFE0D28A6FC2100A88586 /* SettingsView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -839,6 +943,47 @@
 				CECB4A9D28AB4E2000278130 /* ACBaseNavigationConfigurationViewController.swift */,
 			);
 			path = Representable;
+			sourceTree = "<group>";
+		};
+		CECE1A14294DB9F50021D899 /* Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				CEB71F28291650C700B82B86 /* WidgetBundle.swift */,
+			);
+			path = Bundle;
+			sourceTree = "<group>";
+		};
+		CECE1A15294DBA070021D899 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */,
+				CEB71F2A291650C700B82B86 /* WidgetLiveActivity.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		CECE1A1F294DBB950021D899 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CECE1A25294E71390021D899 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		CECE1A26294E74C50021D899 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CEDBC0862860D54B00C933AF /* Onboarding */ = {
@@ -876,11 +1021,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				CEB71F32291650CF00B82B86 /* PBXTargetDependency */,
 			);
 			name = ArduinoCommands;
 			packageProductDependencies = (
 				849CBE6827F0F30800DCEBA3 /* SPAlert */,
 				CE75CF9B287D97E400BA42DF /* GoogleMobileAds */,
+				CE6E9B562953F3C200632249 /* OpenAIKit */,
 			);
 			productName = ArduinoCommands;
 			productReference = C474CC4427B2B53B00B1FD9A /* ArduinoCommands.app */;
@@ -922,13 +1069,30 @@
 			productReference = C474CC6527B2B53D00B1FD9A /* ArduinoCommandsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CEB71F23291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEB71F34291650CF00B82B86 /* Build configuration list for PBXNativeTarget "ArduinoCommandsDynamicNotificationsWidgetExtension" */;
+			buildPhases = (
+				CEB71F20291650C600B82B86 /* Sources */,
+				CEB71F21291650C600B82B86 /* Frameworks */,
+				CEB71F22291650C600B82B86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArduinoCommandsDynamicNotificationsWidgetExtension;
+			productName = ArduinoCommandsDynamicNotificationsWidgetExtension;
+			productReference = CEB71F24291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C474CC3C27B2B53B00B1FD9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					C474CC4327B2B53B00B1FD9A = {
@@ -941,6 +1105,9 @@
 					C474CC6427B2B53D00B1FD9A = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = C474CC4327B2B53B00B1FD9A;
+					};
+					CEB71F23291650C600B82B86 = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
@@ -956,6 +1123,7 @@
 			packageReferences = (
 				849CBE6727F0F30800DCEBA3 /* XCRemoteSwiftPackageReference "SPAlert" */,
 				CE75CF9A287D97E400BA42DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				CE6E9B552953F3C200632249 /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 			);
 			productRefGroup = C474CC4527B2B53B00B1FD9A /* Products */;
 			projectDirPath = "";
@@ -964,6 +1132,7 @@
 				C474CC4327B2B53B00B1FD9A /* ArduinoCommands */,
 				C474CC5927B2B53D00B1FD9A /* ArduinoCommandsTests */,
 				C474CC6427B2B53D00B1FD9A /* ArduinoCommandsUITests */,
+				CEB71F23291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -973,6 +1142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6E9B5B29590D1400632249 /* DeviceImagesCollectionViewController.xib in Resources */,
 				C474CC5427B2B53D00B1FD9A /* LaunchScreen.storyboard in Resources */,
 				C474CC5127B2B53D00B1FD9A /* Assets.xcassets in Resources */,
 				840B9FC428416E0C00EA6D47 /* commands.json in Resources */,
@@ -996,6 +1166,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEB71F22291650C600B82B86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEB71F2F291650CF00B82B86 /* Assets.xcassets in Resources */,
+				CEB71F402916F5B300B82B86 /* commands.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,15 +1210,16 @@
 				CECB4A8F28AB4AAD00278130 /* ACIntroStorage.swift in Sources */,
 				CE6EC788288F57C30020DAFF /* ACApplicationCheckManager.swift in Sources */,
 				8464646F27DE551C004B0D12 /* BasicKnowledgeViewController.swift in Sources */,
-				84A81C10282FEB6800FBFC7B /* CommandsListPresenter.swift in Sources */,
 				CE9235E728AC2E270037846F /* ACSettingsBasicInfo.swift in Sources */,
 				84A81C12282FEB9400FBFC7B /* ACCommandsSection.swift in Sources */,
+				CEB71F3B291652C400B82B86 /* CommandsListPresenter.swift in Sources */,
 				84CCC932281711B6008371F1 /* ACNeumorphicCollectionViewCell.swift in Sources */,
 				CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */,
 				CE75CF9E287DF0E800BA42DF /* ACGoogleAdsManagar.swift in Sources */,
 				CE8CFE1028A89BA400A88586 /* IntroView.swift in Sources */,
 				CEDBC080285B291100C933AF /* ACAPIManager.swift in Sources */,
 				CE9A6FD9290371F200E1EF23 /* UserSheetListPresenter.swift in Sources */,
+				CE7038A7298EBE8C00FE4928 /* ACDeviceImageResult.swift in Sources */,
 				8464647327DEA1BB004B0D12 /* ACBasics.swift in Sources */,
 				8464647127DEA1A3004B0D12 /* BasicKnowledgePresenter.swift in Sources */,
 				CE8C6811289C00CF006C1888 /* CGFloatExtensions.swift in Sources */,
@@ -1053,6 +1233,7 @@
 				CE84FAAB2866A35900CE9D4D /* UIColorExtensions.swift in Sources */,
 				CE75CF91287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift in Sources */,
 				84BB5D6A2845828A00CE1AA2 /* ACBaseViewController.swift in Sources */,
+				CE7038A4298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift in Sources */,
 				CE8C682128A16DEE006C1888 /* SiteCellUIModel.swift in Sources */,
 				CE75CF8F2879F85D00BA42DF /* ACRateManager.swift in Sources */,
 				8464647B27DEA2B2004B0D12 /* BasicsCollectionViewCell.swift in Sources */,
@@ -1062,12 +1243,14 @@
 				84CCC934281713F2008371F1 /* ACNeumorphicButton.swift in Sources */,
 				CE8C682928A2C503006C1888 /* CommandDetailUIModel.swift in Sources */,
 				8464649627E8B5F4004B0D12 /* UserSheetListController.swift in Sources */,
+				CE6E9B5A29590D1400632249 /* DeviceImagesCollectionViewController.swift in Sources */,
 				8464648C27E3549E004B0D12 /* ACUser.swift in Sources */,
 				CE6C4D9F286A328E00D14AEA /* ACBasicKnowledgeStorage.swift in Sources */,
 				8464649127E4EEAF004B0D12 /* SiteCollectionViewCell.swift in Sources */,
 				CE6EC78B288F582C0020DAFF /* ACApplication.swift in Sources */,
 				CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */,
 				84802A8028217FF3001E45D4 /* CommandsListTVController.swift in Sources */,
+				CE47EBDA29446EC800A19E0B /* ACCommandsManager.swift in Sources */,
 				CE6C4DA1286A63C200D14AEA /* ACURLs.swift in Sources */,
 				CE9235EF28AC9EE50037846F /* SettingsViewToggleCell.swift in Sources */,
 				CECB4A9C28AB4D7F00278130 /* ACBaseVisualEffectView.swift in Sources */,
@@ -1081,6 +1264,7 @@
 				CE84FAA728666FC700CE9D4D /* ACOnboardingHelper.swift in Sources */,
 				84CCC92F28171039008371F1 /* ACNeumorphicShadowManeger.swift in Sources */,
 				CE6EC784288F56F60020DAFF /* ACApplicationAPIClient.swift in Sources */,
+				CEEDA5A62931FF1600F25C02 /* ACCommandType.swift in Sources */,
 				CE8CFE0E28A6FC2200A88586 /* SettingsView.swift in Sources */,
 				CECB4A9928AB4BDC00278130 /* IntroCardView.swift in Sources */,
 				84E4A2F627F24327002F7BFA /* ACActivityManager.swift in Sources */,
@@ -1112,15 +1296,20 @@
 				CE84FAA928666FE200CE9D4D /* ACOnboardingSection.swift in Sources */,
 				840B9FBF283F022600EA6D47 /* CommandDetailViewController.swift in Sources */,
 				84A81C0E282FEB3900FBFC7B /* CommandsListTVCell.swift in Sources */,
+				CE7B452D296040E9001C1B25 /* ACDevice.swift in Sources */,
 				CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */,
 				CE8C681F28A16161006C1888 /* PersonCellUIModel.swift in Sources */,
 				C474CC4A27B2B53B00B1FD9A /* SceneDelegate.swift in Sources */,
 				CE9A6FD429029ECD00E1EF23 /* IntroStateHelper.swift in Sources */,
+				CE7038A9298EBEA100FE4928 /* ACDeviceImageURl.swift in Sources */,
 				CE6B0C092884D97B007F0F63 /* ACBaseConfigurableView.swift in Sources */,
 				CE177C6F28E11DDC00B1B18D /* ACCommandDetails.swift in Sources */,
+				CE7038A2298EB79600FE4928 /* ACImageDownloader.swift in Sources */,
 				CE697C6A285A0EF20091CCF1 /* UITextViewExtensions.swift in Sources */,
+				CE6E9B5D29599C7400632249 /* DeviceImageCollectionViewCell.swift in Sources */,
 				CE58E2DB28715B21004D5A42 /* CommandDetailPresenter.swift in Sources */,
 				CE9235F328AC9F0E0037846F /* SettingsPreviewCell.swift in Sources */,
+				CE7038A0298EB71E00FE4928 /* DeviceImagesPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1142,6 +1331,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEB71F20291650C600B82B86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CECE1A22294DBBB70021D899 /* WidjetCommandPreview.swift in Sources */,
+				CECE1A19294DBAA60021D899 /* WidgetLiveActivityAttributes.swift in Sources */,
+				CEB71F2D291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift in Sources */,
+				CECE1A29294E74FA0021D899 /* CommandTypeRectangle.swift in Sources */,
+				CEB71F2B291650C700B82B86 /* WidgetLiveActivity.swift in Sources */,
+				CEB71F482917011700B82B86 /* UIFontExtensions.swift in Sources */,
+				CEB71F29291650C700B82B86 /* WidgetBundle.swift in Sources */,
+				CECE1A1E294DBB6D0021D899 /* WidjetCommandPreviewStorage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1154,6 +1358,11 @@
 			isa = PBXTargetDependency;
 			target = C474CC4327B2B53B00B1FD9A /* ArduinoCommands */;
 			targetProxy = C474CC6627B2B53D00B1FD9A /* PBXContainerItemProxy */;
+		};
+		CEB71F32291650CF00B82B86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEB71F23291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension */;
+			targetProxy = CEB71F31291650CF00B82B86 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1228,7 +1437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1284,7 +1493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC ";
@@ -1314,7 +1523,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1342,7 +1551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1435,6 +1644,66 @@
 			};
 			name = Release;
 		};
+		CEB71F35291650CF00B82B86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = 59C6H8HQ42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArduinoCommandsDynamicNotificationsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ArduinoCommandsDynamicNotificationsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands.ArduinoCommandsDynamicNotificationsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CEB71F36291650CF00B82B86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1;
+				DEVELOPMENT_TEAM = 59C6H8HQ42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArduinoCommandsDynamicNotificationsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ArduinoCommandsDynamicNotificationsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands.ArduinoCommandsDynamicNotificationsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1474,6 +1743,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		CEB71F34291650CF00B82B86 /* Build configuration list for PBXNativeTarget "ArduinoCommandsDynamicNotificationsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEB71F35291650CF00B82B86 /* Debug */,
+				CEB71F36291650CF00B82B86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1483,6 +1761,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
+			};
+		};
+		CE6E9B552953F3C200632249 /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marcodotio/OpenAIKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		CE75CF9A287D97E400BA42DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
@@ -1500,6 +1786,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 849CBE6727F0F30800DCEBA3 /* XCRemoteSwiftPackageReference "SPAlert" */;
 			productName = SPAlert;
+		};
+		CE6E9B562953F3C200632249 /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE6E9B552953F3C200632249 /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
 		};
 		CE75CF9B287D97E400BA42DF /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -36,7 +36,7 @@ private extension BasicKnowledgeViewController {
                 
                 //MARK: Static
                 static let tableHeader = "Resources"
-                static let tableFooter = "Arduino Commands - Electronics © 2022 \n All rights reserved."
+                static let tableFooter = "Arduino Commands © 2022 \n All rights reserved."
             }
             enum CollectionView {
                 enum CellKeys {

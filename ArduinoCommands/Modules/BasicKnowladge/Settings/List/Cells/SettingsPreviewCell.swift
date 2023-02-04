@@ -37,13 +37,13 @@ private extension SettingsPreviewCell {
     }
     var previewCellTitle: some View {
         Text(item.title!)
-            .font(.system(size: 16, weight: .medium))
+            .font(.system(size: 16, weight: .regular))
             .foregroundColor(Color(.label))
             .padding(.leading, 4)
     }
     var previewCellLinkIcon: some View {
         Image(systemName: "chevron.up")
             .font(.system(size: 14, weight: .semibold, design: .rounded))
-            .foregroundColor(Color(uiColor: .separator))
+            .foregroundColor(Color(uiColor: .systemGray2))
     }
 }

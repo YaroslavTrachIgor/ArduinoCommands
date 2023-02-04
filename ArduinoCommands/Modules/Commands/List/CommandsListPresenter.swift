@@ -8,10 +8,24 @@
 import Foundation
 import UIKit
 
+//MARK: - Keys
+private extension CommandsListPresenter {
+    
+    //MARK: Private
+    enum Keys {
+        
+        //MARK: Static
+        static let filteredSectionHeaderTitle: String = "Filtered Commands"
+        static let filteredSectionHeaderHeight: Int = 40
+    }
+}
+
+
 //MARK: - Presenter protocol
 internal protocol CommandsListPresenterProtocol {
-    init(view: CommandsListTableViewControllerProtocol, models: [ACCommandsSection]?)
+    init(view: CommandsListTableViewControllerProtocol, manager: ACCommandsManagerProtocol)
     func onViewDidLoad(completionHandler: (([ACCommandsSection]) -> Void))
+    func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [ACCommandsSection]
     func onRemindRowAction(currentCommand: ACCommand)
     func onShareRowAction(currentCommand: ACCommand)
     func onDidSelectRow(with sender: IndexPath)
@@ -24,13 +38,13 @@ final class CommandsListPresenter {
     
     //MARK: Private
     private weak var view: CommandsListTableViewControllerProtocol?
-    private var models: [ACCommandsSection]?
+    private var manager: ACCommandsManagerProtocol
     
     
     //MARK: Initialization
     init(view: CommandsListTableViewControllerProtocol,
-         models: [ACCommandsSection]? = ACAPIManager.parseCommandsSectionsJsonContent()) {
-        self.models = models
+         manager: ACCommandsManagerProtocol = ACCommandsManager.shared) {
+        self.manager = manager
         self.view = view
     }
 }
@@ -42,7 +56,7 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
     //MARK: Internal
     internal func onViewDidLoad(completionHandler: (([ACCommandsSection]) -> Void)) {
         view?.setupMainUI()
-        completionHandler(models!)
+        completionHandler(manager.orderedCommandSections())
     }
     
     internal func onShareRowAction(currentCommand: ACCommand) {
@@ -98,7 +112,61 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
                 }
             })
         } else {
-            ACGrayAlertManager.present(title: "Notifications Disabled", message: "You can unlock Notifications in the app's Settings.", duration: 8, preset: .custom(UIImage(systemName: "text.alignleft")!))
+            view?.presentNotificationsDisabledAlert()
+        }
+    }
+    
+    /// This prepares a section with filtered by the user preferences commands.
+    /// This section appears on the Commands List VC immediately after the user taps on the search bar.
+    /// - Parameters:
+    ///   - searchText: text that the user inputs into the search bar;
+    ///   - scopeTitle: scope button title(segmented control under the search bar);
+    /// - Returns: a section with filtered by the user preferences commands.
+    internal func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [ACCommandsSection] {
+        let name = Keys.filteredSectionHeaderTitle
+        let headerHeight = Keys.filteredSectionHeaderHeight
+        let filteredCommands = filteredCommands(by: scopeTitle, with: searchText)
+        let filteredSection = [ACCommandsSection(
+            name: name,
+            footer: nil,
+            headerHeight: headerHeight,
+            commands: filteredCommands)
+        ]
+        return filteredSection
+    }
+}
+
+
+//MARK: - Main methods
+private extension CommandsListPresenter {
+    
+    //MARK: Private
+    /// This prepares commands by their type using methods from the `ACCommandManager`
+    /// and the text that the user enters into the searchBar.
+    /// - Parameters:
+    ///   - typeName: command type case rowvalue;
+    ///   - searchText: text that the user inputs into the search bar;
+    /// - Returns: an array of commands filtered by the user preferences.
+    private func filteredCommands(by typeName: String, with searchText: String) -> [ACCommand] {
+        let neededRows: [ACCommand] = {
+            switch typeName {
+            case ACCommandType.all.rawValue:
+                return manager.unfilteredCommands()
+            case ACCommandType.libraries.rawValue:
+                return manager.commandsFromLibraries()
+            case ACCommandType.forDevices.rawValue:
+                return manager.commandsForDevices()
+            case ACCommandType.returns.rawValue:
+                return manager.commandsThatReturn()
+            default:
+                return []
+            }
+        }()
+        return neededRows.filter { row in
+            let rowName = row.name.lowercased()
+            let searchedText = searchText.lowercased()
+            let searchedRow = rowName.contains(searchText)
+            return searchedRow
         }
     }
 }

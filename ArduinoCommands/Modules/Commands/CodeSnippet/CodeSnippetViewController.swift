@@ -13,6 +13,7 @@ protocol CodeSnippetViewControllerProtocol: ACBaseDetailViewController {
     func presentColorPickerViewController()
     func presentFontChangeViews(with animationType: ACBasePresentationType)
     func setupCodeContentViewAppearance(appearanceType: ACBaseAppearanceType)
+    func enableBarViews(with animationType: ACBasePresentationType)
     func changeCodeTextViewFontSize()
 }
 

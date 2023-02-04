@@ -37,7 +37,7 @@ private extension SettingsContactCell {
     }
     var contactCellTitle: some View {
         Text(item.content.linkName!)
-            .font(.system(size: 16, weight: .medium))
+            .font(.system(size: 16, weight: .regular))
             .foregroundColor(Color(.label))
             .padding(.leading, 4)
     }

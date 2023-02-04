@@ -18,6 +18,28 @@ protocol UserCellUIModelProtocol {
 }
 
 
+//MARK: - Constants
+private extension UserCellUIModel {
+    
+    //MARK: Private
+    enum Constants {
+        enum UI {
+            enum Image {
+                
+                //MARK: Static
+                static let userImageIcon = "person.circle.fill"
+            }
+            enum Color {
+                
+                //MARK: Static
+                static let titleBackColorAlphaComponent = 0.16
+                static let userIconBackColorAlphaComponent = 0.5
+            }
+        }
+    }
+}
+
+
 //MARK: - Cell ViewModel
 public struct UserCellUIModel {
     
@@ -37,10 +59,16 @@ extension UserCellUIModel: UserCellUIModelProtocol {
         model?.tintColor!
     }
     internal var titleBackgroundColor: UIColor! {
-        model?.tintColor!.withAlphaComponent(0.16)
+        let tintColor = model?.tintColor!
+        let alphaComponent = Constants.UI.Color.titleBackColorAlphaComponent
+        let titleBackgroundColor = tintColor?.withAlphaComponent(alphaComponent)
+        return titleBackgroundColor
     }
     internal var userIconImageBackViewTintColor: CGColor! {
-        model?.tintColor!.withAlphaComponent(0.5).cgColor
+        let tintColor = model?.tintColor!
+        let alphaComponent = Constants.UI.Color.userIconBackColorAlphaComponent
+        let userIconImageBackViewTintColor = tintColor?.withAlphaComponent(alphaComponent) as! CGColor
+        return userIconImageBackViewTintColor
     }
     internal var userIconImage: UIImage! {
         /**
@@ -48,16 +76,13 @@ extension UserCellUIModel: UserCellUIModelProtocol {
          If it is true, we will make icon equal to person system icon `personCircleIconName`.
          In the another case, we will get `model` icon image.
          */
-        
-        //////////////////// ADD Constants
-        
         if model?.content.iconName != nil {
             let basicImageSystemName = model?.content.iconName!
             let basicImage = UIImage(named: basicImageSystemName!)
             return basicImage
         } else {
             let tintColor = model?.tintColor!
-            let basicImageSystemName = "person.circle.fill"
+            let basicImageSystemName = Constants.UI.Image.userImageIcon
             let config = UIImage.SymbolConfiguration(hierarchicalColor: tintColor!)
             let basicImage = UIImage(systemName: basicImageSystemName, withConfiguration: config)!
             return basicImage

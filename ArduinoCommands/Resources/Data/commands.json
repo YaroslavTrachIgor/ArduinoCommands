@@ -20,6 +20,10 @@
                     "syntax": "setup()",
                     "arguments": "No arguments",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             },
             {
@@ -38,6 +42,10 @@
                     "syntax": "loop()",
                     "arguments": "No arguments",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             }
         ]
@@ -63,6 +71,10 @@
                     "syntax": "pinMode(pin, mode)",
                     "arguments": "pin: pin number to set the mode of.\nmode: INPUT, OUTPUT, or INPUT_PULLUP.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             },
             {
@@ -81,6 +93,10 @@
                     "syntax": "digitalWrite(pin, value)",
                     "arguments": "pin: the Arduino pin number.\nvalue: HIGH or LOW.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             },
             {
@@ -99,6 +115,10 @@
                     "syntax": "digitalRead(pin)",
                     "arguments": "pin: the Arduino pin number you want to read",
                     "returns": "HIGH or LOW"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             }
         ]
@@ -123,6 +143,10 @@
                     "syntax": "analogWrite(pin, value)",
                     "arguments": "pin: the Arduino pin to write to.\nvalue: between 0 (always off) and 255 (always on).",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             },
             {
@@ -141,6 +165,10 @@
                     "syntax": "analogRead(pin)",
                     "arguments": "pin: the name of the analog input pin to read from(A0 to A15).",
                     "returns": "The analog reading on the pin. Data type: int."
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             },
             {
@@ -159,6 +187,10 @@
                     "syntax": "analogReference(type)",
                     "arguments": "type: which type of reference to use.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "Arduino",
+                    "enablePhotos": true
                 }
             }
         ]
@@ -184,6 +216,10 @@
                     "syntax": "analogReadResolution(bits)",
                     "arguments": "bits: determines the resolution (in bits) of the value returned by the analogRead() function. You can set this between 1 and 32. You can set resolutions higher than the supported 12 or 16 bits, but values returned by analogRead() will suffer approximation. See the note below for details.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -202,6 +238,10 @@
                     "syntax": "analogWriteResolution(bits)",
                     "arguments": "bits: determines the resolution (in bits) of the values used in the analogWrite() function. The value can range from 1 to 32. If you choose a resolution higher or lower than your board’s hardware capabilities, the value used in analogWrite() will be either truncated if it’s too high or padded with zeros if it’s too low. See the note below for details.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             }
         ]
@@ -227,6 +267,10 @@
                     "syntax": "time = millis()",
                     "arguments": "None",
                     "returns": "Number of milliseconds passed since the program started. Data type: unsigned long."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -245,6 +289,10 @@
                     "syntax": "time = micros()",
                     "arguments": "None",
                     "returns": "Returns the number of microseconds since the Arduino board began running the current program. Data type: unsigned long."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -263,6 +311,10 @@
                     "syntax": "delay(ms)",
                     "arguments": "ms: the number of milliseconds to pause. Allowed data types: unsigned long.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -281,6 +333,10 @@
                     "syntax": "delayMicroseconds(us)",
                     "arguments": "us: the number of microseconds to pause. Allowed data types: unsigned int.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             }
         ]
@@ -306,6 +362,10 @@
                     "syntax": "random(max); random(min, max)",
                     "arguments": "min: lower bound of the random value, inclusive (optional).\nmax: upper bound of the random value, exclusive.",
                     "returns": "A random number between min and max-1. Data type: long."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -324,6 +384,10 @@
                     "syntax": "randomSeed(seed)",
                     "arguments": "long randNumber;\n\nvoid setup() {\n   Serial.begin(9600);\n   randomSeed(analogRead(0));\n}\n\nvoid loop() {\n   randNumber = random(300);\n   Serial.println(randNumber);\n   delay(50);\n}",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             }
         ]
@@ -349,6 +413,10 @@
                     "syntax": "Serial.begin(speed)",
                     "arguments": "speed: in bits per second (baud). Allowed data types: long.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -367,6 +435,10 @@
                     "syntax": "Serial.end()",
                     "arguments": "No arguments",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -385,6 +457,10 @@
                     "syntax": "Serial.available()",
                     "arguments": "No arguments",
                     "returns": "The number of bytes available to read."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -403,6 +479,10 @@
                     "syntax": "Serial.read()",
                     "arguments": "No arguments",
                     "returns": "The first byte of incoming serial data available(or -1 if no data is available). Data type: int."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -421,6 +501,10 @@
                     "syntax": "Serial.flush()",
                     "arguments": "No arguments",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -439,6 +523,10 @@
                     "syntax": "Serial.print(val)",
                     "arguments": "val: the value to print. Allowed data types: any data type.",
                     "returns": "The number of bytes written, though reading that number is optional."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -457,6 +545,10 @@
                     "syntax": "Serial.println(val)",
                     "arguments": "val: the value to print. Allowed data types: any data type.",
                     "returns": "The number of bytes written, though reading that number is optional."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -475,6 +567,10 @@
                     "syntax": "Serial.write(val)",
                     "arguments": "val: a value to send as a single byte.",
                     "returns": "The number of bytes written, though reading that number is optional."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -493,6 +589,10 @@
                     "syntax": "Serial.peek()",
                     "arguments": "No arguments",
                     "returns": "The first byte of incoming serial data available(or -1 if no data is available)."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             }
         ]
@@ -518,6 +618,10 @@
                     "syntax": "servo.attach(pin)",
                     "arguments": "pin: the number of the pin that the servo is attached to.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": true
                 }
             },
             {
@@ -536,6 +640,10 @@
                     "syntax": "servo.write(angle)",
                     "arguments": "angle: the value to write to the servo, from 0 to 180",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": true
                 }
             },
             {
@@ -554,6 +662,10 @@
                     "syntax": "servo.writeMicroseconds(us)",
                     "arguments": "us: the value of the parameter in microseconds (int)",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": true
                 }
             },
             {
@@ -572,6 +684,10 @@
                     "syntax": "servo.read()",
                     "arguments": "No arguments",
                     "returns": "The angle of the servo, from 0 to 180 degrees."
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": true
                 }
             },
             {
@@ -590,6 +706,10 @@
                     "syntax": "servo.attached()",
                     "arguments": "No arguments",
                     "returns": "True if the servo is attached to pin; false otherwise."
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": true
                 }
             },
             {
@@ -608,6 +728,10 @@
                     "syntax": "servo.detach()",
                     "arguments": "No arguments",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": true
                 }
             }
         ]
@@ -633,6 +757,10 @@
                     "syntax": "Stepper(steps, pin1, pin2)",
                     "arguments": "steps: the number of steps in one revolution of your motor.\npin1, pin2: two pins that are attached to the motor.",
                     "returns": "A new instance of the Stepper motor class."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -651,6 +779,10 @@
                     "syntax": "setSpeed(rpms)",
                     "arguments": "rpms: the speed at which the motor should turn in rotations per minute (positive long).",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -669,6 +801,10 @@
                     "syntax": "step(steps)",
                     "arguments": "steps: the number of steps to turn the motor. Positive integer to turn one direction, negative integer to turn the other.",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             }
         ]
@@ -694,6 +830,10 @@
                     "syntax": "lcd.begin(cols, rows)",
                     "arguments": "lcd: a variable of type LiquidCrystal\ncols: the number of columns that the display has\nrows: the number of rows that the display has",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -712,6 +852,10 @@
                     "syntax": "lcd.begin(cols, rows)",
                     "arguments": "lcd: a variable of type LiquidCrystal\ncols: the number of columns that the display has\nrows: the number of rows that the display has",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -730,6 +874,10 @@
                     "syntax": "lcd.clear()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -748,6 +896,10 @@
                     "syntax": "lcd.setCursor(col, row)",
                     "arguments": "lcd: a variable of type LiquidCrystal\ncol: the column at which to position the cursor (with 0 being the first column)\nrow: the row at which to position the cursor (with 0 being the first row)",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -766,6 +918,10 @@
                     "syntax": "lcd.home()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -784,6 +940,10 @@
                     "syntax": "lcd.write(data)",
                     "arguments": "lcd: a variable of type LiquidCrystal\ndata: the character to write to the display",
                     "returns": "byte write() will return the number of bytes written, though reading that number is optional"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -802,6 +962,10 @@
                     "syntax": "lcd.print(data)",
                     "arguments": "lcd: a variable of type LiquidCrystal\ndata: the character to write to the display",
                     "returns": "byte print() will return the number of bytes written, though reading that number is optional"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -820,6 +984,10 @@
                     "syntax": "lcd.createChar(num, data)",
                     "arguments": "lcd: a variable of type LiquidCrystal\nnum: which character to create (0 to 7)\ndata: the character’s pixel data",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -838,6 +1006,10 @@
                     "syntax": "lcd.cursor()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -856,6 +1028,10 @@
                     "syntax": "lcd.noCursor()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -874,6 +1050,10 @@
                     "syntax": "lcd.blink()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -892,6 +1072,10 @@
                     "syntax": "lcd.noBlink()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -910,6 +1094,10 @@
                     "syntax": "lcd.display()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -928,6 +1116,10 @@
                     "syntax": "lcd.noDisplay()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -946,6 +1138,10 @@
                     "syntax": "lcd.scrollDisplayLeft()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -964,6 +1160,10 @@
                     "syntax": "lcd.scrollDisplayRight()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -982,6 +1182,10 @@
                     "syntax": "lcd.autoscroll()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -1000,6 +1204,10 @@
                     "syntax": "lcd.noAutoscroll()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -1018,6 +1226,10 @@
                     "syntax": "lcd.leftToRight()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             },
             {
@@ -1036,6 +1248,10 @@
                     "syntax": "lcd.rightToLeft()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
                     "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
                 }
             }
         ]

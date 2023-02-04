@@ -22,6 +22,7 @@ public final class ACCommand: Codable {
     var isCodeSnippetEnabled: Bool!
     var returns: Bool!
     var details: ACCommandDetails
+    var device: ACDevice
     
     //MARK: Initialization
     init(name: String!,
@@ -35,7 +36,8 @@ public final class ACCommand: Codable {
          isLibraryMethod: Bool!,
          isScreenshotEnabled: Bool!,
          isCodeSnippetEnabled: Bool!,
-         details: ACCommandDetails) {
+         details: ACCommandDetails,
+         device: ACDevice) {
         self.name = name
         self.subtitle = subtitle
         self.imageURL = imageURL
@@ -48,5 +50,6 @@ public final class ACCommand: Codable {
         self.isCodeSnippetEnabled = isCodeSnippetEnabled
         self.returns = returns
         self.details = details
+        self.device = device
     }
 }

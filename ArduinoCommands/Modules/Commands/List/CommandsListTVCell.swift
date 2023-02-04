@@ -11,6 +11,8 @@ import UIKit
 //MARK: - Command preview Cell
 final class CommandsListTVCell: UITableViewCell {
     
+    var uiModel: CommandsListTVCellUIModelProtocol?
+    
     //MARK: @IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -27,12 +29,16 @@ extension CommandsListTVCell: ACBaseConfigurableView {
     
     //MARK: Internal
     internal func configure(with data: CommandsListTVCellUIModelProtocol) {
-        setupCommandCellTitleLabel(with: data)
-        setupCommandCellSubtitleLabel(with: data)
-        setupCommandCellContentTextView(with: data)
-        rightDecorationLabel.setupReturnsDecoLabel(with: data.returns)
-        setupDevicesDecorationLabel(with: data)
-        setupMethodDecoLabel(with: data)
+        uiModel = data
+        ///ADD UIMODEL INITIALIZATION AS A PRIVATE VARIBLE IN ALL FILES
+        
+        
+        setupCommandCellTitleLabel()
+        setupCommandCellSubtitleLabel()
+        setupCommandCellContentTextView()
+        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returns)
+        setupDevicesDecorationLabel()
+        setupMethodDecoLabel()
         backgroundColor = UIColor.ACTable.cellBackgroundColor
     }
 }
@@ -42,17 +48,17 @@ extension CommandsListTVCell: ACBaseConfigurableView {
 private extension CommandsListTVCell {
     
     //MARK: Private
-    func setupCommandCellTitleLabel(with data: CommandsListTVCellUIModelProtocol) {
-        let content = data.title
+    func setupCommandCellTitleLabel() {
+        let content = uiModel?.title
         let font = UIFont.ACFont(style: .articleTitle)
         titleLabel.textColor = .label
         titleLabel.text = content
         titleLabel.font = font
     }
     
-    func setupCommandCellSubtitleLabel(with data: CommandsListTVCellUIModelProtocol) {
+    func setupCommandCellSubtitleLabel() {
         let textColor: UIColor = .label.withAlphaComponent(0.95)
-        let content = data.subtitle
+        let content = uiModel?.subtitle
         let font = UIFont.ACFont(style: .articleSubtitle)
         subtitleLabel.numberOfLines = 1
         subtitleLabel.textColor = textColor
@@ -60,9 +66,9 @@ private extension CommandsListTVCell {
         subtitleLabel.font = font
     }
     
-    func setupCommandCellContentTextView(with data: CommandsListTVCellUIModelProtocol) {
+    func setupCommandCellContentTextView() {
         let textColor: UIColor = .label.withAlphaComponent(0.65)
-        let content = data.previewContent
+        let content = uiModel?.previewContent
         let font = UIFont.ACFont(style: .articlePreview)
         contentTextView.isSelectable = false
         contentTextView.isEditable = false
@@ -71,19 +77,18 @@ private extension CommandsListTVCell {
         contentTextView.font = font
     }
     
-    func setupDevicesDecorationLabel(with data: CommandsListTVCellUIModelProtocol) {
-        let isUsedWithDevices = data.isUsedWithDevices
-        if data.isFirstSection {
+    func setupDevicesDecorationLabel() {
+        let isUsedWithDevices = uiModel?.isUsedWithDevices
+        if uiModel!.isFirstSection {
             middleDecorationLabel.setupInitialDecoLabel(with: isUsedWithDevices)
-            middleLabelWidth.constant = 74
         } else {
             middleDecorationLabel.setupDevicesDecoLabel(with: isUsedWithDevices)
-            middleLabelWidth.constant = 82
         }
+        middleLabelWidth.constant = uiModel!.middleLabelWidth
     }
     
-    func setupMethodDecoLabel(with data: CommandsListTVCellUIModelProtocol) {
-        if data.isLibraryMethod {
+    func setupMethodDecoLabel() {
+        if uiModel!.isLibraryMethod {
             leftDecorationLabel.setupLibraryDecoLabel()
         } else {
             leftDecorationLabel.setupMethodDecoLabel()

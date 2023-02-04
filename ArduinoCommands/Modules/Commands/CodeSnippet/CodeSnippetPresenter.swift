@@ -81,19 +81,17 @@ extension CodeSnippetPresenter: CodeSnippetPresenterProtocol {
         view?.moveToThePreviousViewController()
     }
     
-    internal func onPresentChangeFontPopover() {
-        view?.presentFontChangeViews(with: .present)
-    }
-    
-    internal func onFontChangeEndEditing() {
-        view?.presentFontChangeViews(with: .hide)
-    }
-    
     internal func onShareCode() {
         view?.presentActivityVC(activityItems: [model?.exampleOfCode! as Any])
     }
     
+    internal func onPresentChangeFontPopover() {
+        animateFontChange(presentationType: .present)
+    }
     
+    internal func onFontChangeEndEditing() {
+        animateFontChange(presentationType: .hide)
+    }
     
     internal func onChangeAppearance(for selectedSegmentIndex: Int) {
         switch selectedSegmentIndex {
@@ -122,5 +120,22 @@ extension CodeSnippetPresenter: CodeSnippetPresenterProtocol {
     internal func onCopyCode() {
         ACPasteboardManager.copy((model?.exampleOfCode!)!)
         ACGrayAlertManager.presentCopiedAlert(contentType: .code)
+    }
+}
+
+
+//MARK: - Main methods
+private extension CodeSnippetPresenter {
+    
+    //MARK: Private
+    func animateFontChange(presentationType: ACBasePresentationType) {
+        switch presentationType {
+        case .present:
+            view?.presentFontChangeViews(with: .present)
+            view?.enableBarViews(with: .hide)
+        case .hide:
+            view?.presentFontChangeViews(with: .hide)
+            view?.enableBarViews(with: .present)
+        }
     }
 }

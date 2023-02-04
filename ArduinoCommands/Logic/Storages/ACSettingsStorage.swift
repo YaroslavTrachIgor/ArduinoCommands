@@ -28,11 +28,11 @@ public enum ACSettingsStorage {
         
         //MARK: Static
         static let header = "About App"
-        static let footer = "In this section, you can view the Basic information about the App, which also exists the App Store."
+        static let footer = "In this section, you can view the basic information about the App, which also exists on App Store."
         static let content: [ACSettingsBasicInfo] = [
             ACSettingsBasicInfo(
                 parameter: "Version",
-                value: "1.0.0"
+                value: "1.1.0"
             ),
             ACSettingsBasicInfo(
                 parameter: "Category",
@@ -62,14 +62,6 @@ public enum ACSettingsStorage {
         static let header = "Contact Info"
         static let footer = "View different Arduino Commands resouces, which can help you to learn some more about the App or get the needed help."
         static let content: [ACSettingsContactInfoCell] = [
-//            ACSettingsContactInfoCell(
-//                content: ACSettingsContactInfo(
-//                    link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
-//                    linkName: "Website"
-//                ),
-//                iconName: "globe",
-//                tintColor: .systemTeal
-//            ),
             ACSettingsContactInfoCell(
                 content: ACSettingsContactInfo(
                     link: "https://www.instagram.com/axcigrpvicj/",
@@ -91,11 +83,11 @@ public enum ACSettingsStorage {
     enum ParametersSection {
         
         //MARK: Static
-        static let header = "Settings"
+        static let header = "Parameters"
         static let footer = "In this section, you can lock all the unnecessary and unlock the needed features of Arduino Commands."
         static let allowsNotificationsCell = ACSettingsParameterCell(
             content: ACSettingsParameter(
-                name: "Allows Notifications",
+                name: "Allow Notifications",
                 value: ACSettingsManager.shared.allowsNotifications
             ),
             iconName: "app.badge",

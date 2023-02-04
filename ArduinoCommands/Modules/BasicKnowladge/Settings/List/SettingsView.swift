@@ -21,8 +21,8 @@ struct SettingsView: View {
             VStack(alignment: .center, spacing: 0) {
                 Form {
                     settingsPreviewSection
-                    settingsContactInfoSection
                     settingsParametersSection
+                    settingsContactInfoSection
                     settingsAboutAppSection
                 }
             }
@@ -69,9 +69,6 @@ private extension SettingsView {
                                   item: ACSettingsStorage.ParametersSection.allowsNotificationsCell) { isOn in
                 ACSettingsManager.shared.allowsNotifications = isOn
             }
-//            SettingsParameterCell(isOn: true,
-//                                  item: ACSettingsStorage.ParametersSection.removeAdsCell,
-//                                  onDisappear: nil)
         }
     }
     var settingsAboutAppSection: some View {

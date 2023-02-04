@@ -16,17 +16,6 @@ private extension CommandDetailPresenter {
         
         //MARK: Static
         static let defaultDetailsTintColor: UIColor = .white
-        
-        /**
-         The sense of advertising system in the app
-         is to display ad sessions and ad blocks depending on the type of article.
-         Advertising will not be shown if articles are in the first section(`The main Operators`),
-         in all other cases ads won't be shown.
-
-         The easiest way to keep track of a section's type is through its header(or subtitle of command).
-         Therefore, we create a key for this section, which will be the same as in the JSON data file.
-         */
-        static let firstSectionSubtitle = "The main Operators"
     }
 }
 
@@ -43,6 +32,7 @@ internal protocol CommandDetailPresenterProtocol {
     func onChangeContentButton(with index: Int)
     func onCopyDetails(for tag: Int)
     func onHideDetails()
+    func onPresentDeviceImages()
     func onPresentDetails()
     func onShareButton()
     func onBackToMenu()
@@ -78,20 +68,9 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
     //MARK: Internal
     internal func onViewDidLoad(completion: @escaping (UIColor) -> Void) {
         completion(detailsTintColor)
-        view?.setupMainUI()
+        refreshView()
         view?.setupRateManager()
         view?.presentTabBarWithAnimation(alpha: 0)
-        /**
-         Before we setup Ad Bunner view,
-         we need to check that user wants to read an Article from the `Paid` section.
-         
-         By using `Command` subtitle we can check:
-         if it is first section, than we won't present Ad Bunner,
-         in other cases we will distract user with Advertisment.
-         */
-        if model?.subtitle != Keys.firstSectionSubtitle {
-            view?.setupAdBunner()
-        }
     }
     
     internal func onViewDidDisappear() {
@@ -110,28 +89,26 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         view?.presentCodeSnippetViewController()
     }
     
-    internal func onShareButton() {
-        view?.presentActivityVC(activityItems: [model?.description! as Any])
+    internal func onPresentDetailsColorPicker() {
+        view?.presentColorPickerViewController()
     }
     
-    internal func onHideDetails() {
-        view?.presentDetailsViews(with: .hide)
-        view?.enableBarViews(with: .present)
+    internal func onPresentDeviceImages() {
+        view?.presentDeviceImagesCollectionViewController()
     }
     
     internal func onPresentDetails() {
-        view?.presentDetailsViews(with: .present)
-        view?.enableBarViews(with: .hide)
+        animateDetails(presentationType: .present)
     }
     
-    internal func onPresentDetailsColorPicker() {
-        view?.presentColorPickerViewController()
+    internal func onHideDetails() {
+        animateDetails(presentationType: .hide)
     }
     
     internal func setNewTintColor(with color: UIColor) {
         detailsTintColor = color
         delegate?.setDetailsTintColor(color: color)
-        view?.setupMainUI()
+        refreshView()
     }
     
     internal func onChangeContentButton(with index: Int) {
@@ -157,12 +134,55 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         default:
             contentForCopying = nil
         }
-        ACGrayAlertManager.presentCopiedAlert(contentType: .content)
-        ACPasteboardManager.copy(contentForCopying)
+        copy(contentForCopying, contentType: .content)
     }
     
     internal func onCopyButton() {
-        ACGrayAlertManager.presentCopiedAlert(contentType: .article)
-        ACPasteboardManager.copy((model?.description!)!)
+        copy(model?.description!, contentType: .article)
+    }
+    
+    internal func onShareButton() {
+        view?.presentActivityVC(activityItems: [model?.description! as Any])
+    }
+}
+
+
+//MARK: - Main methods
+private extension CommandDetailPresenter {
+    
+    //MARK: Private
+    func refreshView() {
+        view?.setupMainUI()
+        animateDetails(presentationType: .hide)
+    }
+    
+    func setupAdBunner() {
+        /**
+         Before we setup Ad Bunner view, we need to check if the user wants to read
+         an article from the paid sections.
+         
+         By using Command subtitle we can check:
+         if it is the first section, than we won't present any Ad screens or bunners,
+         in the other cases we will distract user with Advertisments.
+         */
+        if model?.subtitle != ACCommandsSection.Keys.firstSectionSubtitle {
+            view?.setupAdBunner()
+        }
+    }
+    
+    func animateDetails(presentationType: ACBasePresentationType) {
+        switch presentationType {
+        case .present:
+            view?.presentDetailsViews(with: .present)
+            view?.enableBarViews(with: .hide)
+        case .hide:
+            view?.presentDetailsViews(with: .hide)
+            view?.enableBarViews(with: .present)
+        }
+    }
+    
+    func copy(_ content: String!, contentType: ACPasteboardManager.ContentType) {
+        ACGrayAlertManager.presentCopiedAlert(contentType: contentType)
+        ACPasteboardManager.copy(content)
     }
 }

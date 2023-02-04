@@ -1,0 +1,38 @@
+[
+ {
+ "name": "setup()",
+ "subtitle": "The main Operators",
+ "description": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board. The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
+ "baseDescription": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
+ "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+ "imageURL": "Снимок экрана 2022-02-09 в 2.33.23 AM",
+ "returns": false,
+ "isUsedWithDevices": true,
+ "isLibraryMethod": false,
+ "isScreenshotEnabled": true,
+ "isCodeSnippetEnabled": true,
+ "details": {
+ "syntax": "setup()",
+ "arguments": "No arguments",
+ "returns": "Nothing"
+ }
+ },
+ {
+ "name": "loop()",
+ "subtitle": "The main Operators",
+ "description": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board. After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
+ "basicDescription": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
+ "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+ "imageURL": "Снимок экрана 2022-02-09 в 2.33.41 AM",
+ "returns": false,
+ "isUsedWithDevices": true,
+ "isLibraryMethod": false,
+ "isScreenshotEnabled": true,
+ "isCodeSnippetEnabled": true,
+ "details": {
+ "syntax": "loop()",
+ "arguments": "No arguments",
+ "returns": "Nothing"
+ }
+ }
+ ]

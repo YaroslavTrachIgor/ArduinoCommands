@@ -49,7 +49,7 @@ private extension SettingsParameterCell {
     }
     var toggleCellTitle: some View {
         Text(item.content.name!)
-            .font(.system(size: 16, weight: .medium))
+            .font(.system(size: 16, weight: .regular))
             .foregroundColor(Color(.label))
             .padding(.leading, 4)
     }

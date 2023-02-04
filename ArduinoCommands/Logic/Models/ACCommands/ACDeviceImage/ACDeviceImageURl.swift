@@ -1,0 +1,13 @@
+//
+//  ACDeviceImageURl.swift
+//  ArduinoCommands
+//
+//  Created by User on 04.02.2023.
+//
+
+import Foundation
+
+//MARK: - Main Model
+struct ACDeviceImageURl: Codable {
+    let regular: String
+}

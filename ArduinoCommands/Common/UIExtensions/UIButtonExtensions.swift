@@ -56,6 +56,22 @@ public extension UIButton {
         setTitle(title, for: .normal)
         setTitleColor(tintColor, for: .normal)
     }
+    
+    func setupDetailsButton(with imageName: String) {
+        let imageConfiguration = UIImage.SymbolConfiguration(scale: .default)
+        let image = UIImage(systemName: imageName, withConfiguration: imageConfiguration)
+        let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
+        let backgroundColor = contentBackColor.withAlphaComponent(0.15)
+        let tintColor = UIColor.ACDetails.tintColor
+        let strokeColor = tintColor.withAlphaComponent(0.2)
+        var configuration = UIButton.Configuration.filled()
+        configuration.background.backgroundColor = backgroundColor
+        configuration.background.strokeColor = strokeColor
+        configuration.background.strokeWidth = 0.45
+        configuration.cornerStyle = .large
+        configuration.image = image
+        self.configuration = configuration
+    }
 }
 
 

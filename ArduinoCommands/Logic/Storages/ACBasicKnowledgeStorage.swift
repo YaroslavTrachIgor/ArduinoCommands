@@ -293,10 +293,10 @@ public enum ACBasicKnowledgeStorage {
                 name: "All-arduino.ru",
                 link: ACURLs.Materials.allArduino
             ),
-            tintColor: Constants.LinksSection.contentSecondaryTintColor,
-            backColor: Constants.LinksSection.secondaryBackColor,
+            tintColor: Constants.LinksSection.secondaryTintColor,
+            backColor: Constants.LinksSection.contentTintColor,
             secondaryColor: Constants.LinksSection.contentSecondaryTintColor,
-            shadowAvailable: false,
+            shadowAvailable: true,
             decorationBackImageName: "shape-site-deco-3"
         )
     ]

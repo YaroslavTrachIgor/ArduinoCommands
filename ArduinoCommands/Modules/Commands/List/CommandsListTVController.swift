@@ -17,6 +17,7 @@ protocol CommandsListTableViewControllerProtocol: ACBaseWithShareViewController 
     func presentAdAlertController(completion: @escaping ACBaseCompletionHandler)
     func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void))
     func presentAdLoadFailedAlertController()
+    func presentNotificationsDisabledAlert()
     func presentDetailVC(for indexPath: IndexPath)
 }
 
@@ -47,6 +48,12 @@ private extension CommandsListTVController {
                     static let setDateActionTitle = "Select"
                     static let attributedTitleKeyPath = "attributedTitle"
                 }
+                enum NotificationsDisabledAlert {
+                    
+                    //MARK: Static
+                    static let title = "Notifications Disabled"
+                    static let message = "You can unlock Notifications in the app's Settings."
+                }
                 enum AdAlert {
                     
                     //MARK: Static
@@ -59,6 +66,7 @@ private extension CommandsListTVController {
             enum Image {
                 
                 //MARK: Static
+                static let notifiactionsDisabledIconName = "text.alignleft"
                 static let favoritesBarItemIconName = "text.badge.star"
                 static let searchBarIconImageName = "magnifyingglass"
                 static let backButtonImageName = "arrow.left"
@@ -205,6 +213,17 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         }, on: self)
     }
     
+    internal func presentNotificationsDisabledAlert() {
+        let title = Constants.UI.Alert.NotificationsDisabledAlert.title
+        let message = Constants.UI.Alert.NotificationsDisabledAlert.message
+        let iconName = Constants.UI.Image.notifiactionsDisabledIconName
+        let iconImage = UIImage(systemName: iconName)!
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   duration: 8,
+                                   preset: .custom(iconImage))
+    }
+    
     internal func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void)) {
         let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
         let reminderDatePicker = setupReminderDatePicker()
@@ -259,6 +278,7 @@ private extension CommandsListTVController {
     }
     
     func setupSearchController() {
+        let scopeButtonTitles = ACCommandType.allNames
         let placeholder = Constants.UI.SearchBar.searchBarPlaceholder
         let iconName = Constants.UI.Image.searchBarIconImageName
         let iconImageConfig = UIImage.SymbolConfiguration(weight: .regular)
@@ -268,13 +288,9 @@ private extension CommandsListTVController {
         searchController.searchBar.searchTextField.textAlignment = .left
         searchController.searchBar.tintColor = .label
         searchController.searchBar.placeholder = placeholder
+        searchController.searchBar.scopeButtonTitles = scopeButtonTitles
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        
-        
-        searchController.searchBar.scopeButtonTitles = ["All", "For Devices", "Returns", "Libraries"]
-    
-        
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -335,59 +351,6 @@ private extension CommandsListTVController {
         }
     }
     
-    func filterSections(for searchBar: UISearchBar!) {
-        var rows: [ACCommand] = .init()
-        for section in sections {
-            for command in section.commands {
-                rows.append(command)
-            }
-        }
-        
-        let neededRows: [ACCommand] = {
-            let scopeTitle = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-            switch scopeTitle {
-            case "All":
-                return rows
-            case "Libraries":
-                var libraryRows: [ACCommand] = .init()
-                for row in rows {
-                    if row.isLibraryMethod {
-                        libraryRows.append(row)
-                    }
-                }
-                return libraryRows
-            case "For Devices":
-                var forDevices: [ACCommand] = .init()
-                for row in rows {
-                    if row.isUsedWithDevices {
-                        forDevices.append(row)
-                    }
-                }
-                return forDevices
-            case "Returns":
-                var functions: [ACCommand] = .init()
-                for row in rows {
-                    if row.returns {
-                        functions.append(row)
-                    }
-                }
-                return functions
-            default:
-                return []
-            }
-        }()
-        
-        
-        let filteredCommands = neededRows.filter { row in
-            let content = row.name!.lowercased()
-            let searchedContent = searchBar.text!.lowercased()
-            let filteredContent = content.contains(searchedContent)
-            return filteredContent
-        }
-        filteredSections = [ACCommandsSection(name: "Filtered Commands", footer: nil, headerHeight: 40, commands: filteredCommands)]
-        tableView.reloadData()
-    }
-    
     func setupBasicCellContextMenuImageIcon() -> UIImage.SymbolConfiguration {
         return UIImage.SymbolConfiguration(pointSize: 0, weight: .regular, scale: .large)
     }
@@ -400,7 +363,11 @@ extension CommandsListTVController: UISearchResultsUpdating {
     //MARK: Internal
     internal func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        filterSections(for: searchBar)
+        let searchText = searchBar.text!
+        let scopeTitle = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        let filteredSection = presenter.filteredRowsWithScopes(for: searchText, with: scopeTitle)
+        filteredSections = filteredSection
+        tableView.reloadData()
     }
 }
 
