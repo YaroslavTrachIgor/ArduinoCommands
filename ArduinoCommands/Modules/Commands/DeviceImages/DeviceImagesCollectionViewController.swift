@@ -26,6 +26,11 @@ private extension DeviceImagesCollectionViewController {
                 //MARK: Static
                 static let baseInset: CGFloat = 0
             }
+            enum BarButtonItem {
+                
+                //MARK: Static
+                static let barTitle = "Devices Images"
+            }
             enum CollectionViewCell {
                 
                 //MARK: Static
@@ -101,6 +106,7 @@ extension DeviceImagesCollectionViewController: DeviceImagesCollectionViewContro
     //MARK: Internal
     internal func setupMainUI() {
         setupCollectionView()
+        setupBarTitleItem()
         setupBackBarButtonItem()
         view.backgroundColor = .secondarySystemGroupedBackground
     }
@@ -142,6 +148,18 @@ private extension DeviceImagesCollectionViewController {
                                                            title: nil,
                                                            for: self)
         let backBarButton = UIBarButtonItem.init(customView: backButtonView)
-        navigationItem.leftBarButtonItem = backBarButton
+        navigationItem.leftBarButtonItems = [backBarButton]
+    }
+    
+    func setupBarTitleItem() {
+        let barTitleView = UIView()
+        let title = Constants.UI.BarButtonItem.barTitle
+        barTitleView.setupFastImageCollectionViewBarView(action: nil,
+                                                         width: 100,
+                                                         imageName: nil,
+                                                         title: title,
+                                                         for: self)
+        let barTitleButton = UIBarButtonItem.init(customView: barTitleView)
+        navigationItem.rightBarButtonItems = [barTitleButton]
     }
 }
