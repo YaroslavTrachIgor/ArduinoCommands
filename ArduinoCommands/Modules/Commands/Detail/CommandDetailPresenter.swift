@@ -17,6 +17,14 @@ private extension CommandDetailPresenter {
         //MARK: Static
         static let defaultDetailsTintColor: UIColor = .white
     }
+    enum Constants {
+        enum ImagesLoadFailAlert {
+            
+            //MARK: Static
+            static let title = "Poor Network Connection"
+            static let message = "Failed to load Devices Images because of the Poor Network Connection. Please, check your Wifi network connection or try restarting the app."
+        }
+    }
 }
 
 
@@ -69,6 +77,7 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
     internal func onViewDidLoad(completion: @escaping (UIColor) -> Void) {
         completion(detailsTintColor)
         refreshView()
+        setupAdBunner()
         view?.setupRateManager()
         view?.presentTabBarWithAnimation(alpha: 0)
     }
@@ -184,5 +193,11 @@ private extension CommandDetailPresenter {
     func copy(_ content: String!, contentType: ACPasteboardManager.ContentType) {
         ACGrayAlertManager.presentCopiedAlert(contentType: contentType)
         ACPasteboardManager.copy(content)
+    }
+    
+    func presentImagesLoadFailMessage() {
+        let title = Constants.ImagesLoadFailAlert.title
+        let message = Constants.ImagesLoadFailAlert.message
+        ACGrayAlertManager.present(title: title, message: message)
     }
 }

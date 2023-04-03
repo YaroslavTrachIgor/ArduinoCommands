@@ -36,16 +36,40 @@ protocol ACImageDownloaderProtocol {
 //MARK: - Main Images Downloader API Client
 final public class ACImageDownloader: APIHelper, ACImageDownloaderProtocol {
     
+    //MARK: Private
+    private var cache = ACCache.defaults
+    
     //MARK: Internal
     internal func downloadImage(completion: @escaping ACImageDownloaderCompletionHandler) {
-        self.get { [weak self] result in
-            switch result {
-            case .success(let data):
-                completion(UIImage(data: data))
-            case .failure(let error):
-                self?.showErrorMessage(with: error)
+        guard let stringURL = self.url?.absoluteString else { return }
+        if let cachedImage = cache.getImage(forKey: stringURL)  {
+            completion(cachedImage)
+        } else {
+            Task {
+                do {
+                    let data = try await self.getImageData()
+                    guard let image = UIImage(data: data) else { return }
+                    cache.saveImage(image: image, forKey: stringURL)
+                    await MainActor.run {
+                        completion(image)
+                    }
+                } catch {
+                    showErrorMessage(with: error)
+                }
             }
         }
+    }
+    
+    //MARK: Private
+    private func getImageData() async throws -> Data {
+        guard let url = self.url else {
+            throw ACRequestError.invalidURLError
+        }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.isValidStatusCode else {
+            throw ACRequestError.invalidDataError
+        }
+        return data
     }
 }
 

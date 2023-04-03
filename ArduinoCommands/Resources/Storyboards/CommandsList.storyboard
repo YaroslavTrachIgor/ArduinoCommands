@@ -217,7 +217,7 @@
                                 <rect key="frame" x="0.0" y="250" width="414" height="646"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-OI-7wV">
-                                        <rect key="frame" x="22" y="104" width="370" height="442"/>
+                                        <rect key="frame" x="22" y="104" width="370" height="462"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Stops program execution for the number of milliseconds specified in the parameter (1000 milliseconds in 1 second). It is not recommended to use this function for events longer than 10 milliseconds, as during stop, no port manipulation, no sensor reading, no math operation can be done. 
 
@@ -312,13 +312,22 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                             <action selector="presentDeviceImages:" destination="Hgb-v4-hGC" eventType="touchUpInside" id="lfa-42-fhE"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2T-6Z-A9E" customClass="GADBannerView">
+                                        <rect key="frame" x="25" y="566" width="364" height="45"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="cTX-ZW-Vjc"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="nVR-1E-ohd" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="25" id="0cn-hx-zGw"/>
                                     <constraint firstItem="hHn-kK-Ir9" firstAttribute="top" secondItem="nVR-1E-ohd" secondAttribute="bottom" constant="10" id="12E-nE-jxz"/>
+                                    <constraint firstItem="e2T-6Z-A9E" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="25" id="1GD-Hk-y9l"/>
                                     <constraint firstItem="8fu-VL-jI8" firstAttribute="top" secondItem="JHV-F2-L63" secondAttribute="top" constant="20" id="3dg-uE-IHw"/>
                                     <constraint firstAttribute="trailing" secondItem="nVR-1E-ohd" secondAttribute="trailing" constant="25" id="4wb-fC-0bw"/>
+                                    <constraint firstItem="e2T-6Z-A9E" firstAttribute="centerX" secondItem="JHV-F2-L63" secondAttribute="centerX" id="CAE-pQ-L64"/>
                                     <constraint firstItem="hHn-kK-Ir9" firstAttribute="leading" secondItem="JiT-9e-9Lf" secondAttribute="trailing" constant="8" id="F53-C2-OxP"/>
                                     <constraint firstItem="SWZ-L8-trd" firstAttribute="top" secondItem="nVR-1E-ohd" secondAttribute="bottom" constant="10" id="G1m-ah-vrk"/>
                                     <constraint firstAttribute="trailing" secondItem="6eR-OI-7wV" secondAttribute="trailing" constant="22" id="Glj-2W-2Uv"/>
@@ -327,14 +336,16 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     <constraint firstItem="JiT-9e-9Lf" firstAttribute="top" secondItem="nVR-1E-ohd" secondAttribute="bottom" constant="10" id="QpK-tD-Aa4"/>
                                     <constraint firstItem="6eR-OI-7wV" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="22" id="S7b-Ul-8hw"/>
                                     <constraint firstItem="8fu-VL-jI8" firstAttribute="leading" secondItem="rkF-aA-2vT" secondAttribute="trailing" constant="8" id="UF7-91-pyC"/>
+                                    <constraint firstItem="e2T-6Z-A9E" firstAttribute="top" secondItem="6eR-OI-7wV" secondAttribute="bottom" id="a5U-Bo-8xu"/>
                                     <constraint firstItem="Og4-0k-EfJ" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="25" id="aaX-si-2cf"/>
+                                    <constraint firstAttribute="bottom" secondItem="e2T-6Z-A9E" secondAttribute="bottom" constant="35" id="fQ2-uM-owW"/>
                                     <constraint firstItem="6eR-OI-7wV" firstAttribute="top" secondItem="JiT-9e-9Lf" secondAttribute="bottom" constant="5" id="fWN-wy-fDx"/>
                                     <constraint firstItem="SWZ-L8-trd" firstAttribute="leading" secondItem="hHn-kK-Ir9" secondAttribute="trailing" constant="8" id="hPC-Ds-6n8"/>
                                     <constraint firstItem="JiT-9e-9Lf" firstAttribute="leading" secondItem="JHV-F2-L63" secondAttribute="leading" constant="25" id="hSS-oM-16y"/>
                                     <constraint firstItem="rkF-aA-2vT" firstAttribute="top" secondItem="JHV-F2-L63" secondAttribute="top" constant="20" id="mpJ-Ht-XyV"/>
                                     <constraint firstAttribute="trailing" secondItem="8fu-VL-jI8" secondAttribute="trailing" constant="20" id="ph0-MV-ZRs"/>
                                     <constraint firstItem="nVR-1E-ohd" firstAttribute="top" secondItem="Og4-0k-EfJ" secondAttribute="bottom" constant="4" id="tgR-nK-YPt"/>
-                                    <constraint firstAttribute="bottom" secondItem="6eR-OI-7wV" secondAttribute="bottom" constant="100" id="yl6-eL-KXn"/>
+                                    <constraint firstAttribute="trailing" secondItem="e2T-6Z-A9E" secondAttribute="trailing" constant="25" id="uxW-ic-zaO"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3F-qE-yE7">
@@ -420,6 +431,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="adBunnerView" destination="e2T-6Z-A9E" id="2Za-9m-sbz"/>
                         <outlet property="codeScreenshotImageView" destination="OwA-pV-CRH" id="F8B-9p-uEt"/>
                         <outlet property="codeSnippetButton" destination="t3F-qE-yE7" id="sac-2z-rx1"/>
                         <outlet property="contentBackgroundBlurView" destination="yvB-Ky-mYV" id="Afp-c9-ef2"/>

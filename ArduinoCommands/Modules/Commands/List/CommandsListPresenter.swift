@@ -21,15 +21,19 @@ private extension CommandsListPresenter {
 }
 
 
+//MARK: - Commands List base completion Handler
+typealias ACCommandsListBaseCompletionHandler = ([ACCommandsSection]) -> Void
+
+
 //MARK: - Presenter protocol
 internal protocol CommandsListPresenterProtocol {
     init(view: CommandsListTableViewControllerProtocol, manager: ACCommandsManagerProtocol)
-    func onViewDidLoad(completionHandler: (([ACCommandsSection]) -> Void))
+    func onViewDidLoad(completionHandler: ACCommandsListBaseCompletionHandler)
     func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [ACCommandsSection]
-    func onRemindRowAction(currentCommand: ACCommand)
-    func onShareRowAction(currentCommand: ACCommand)
-    func onDidSelectRow(with sender: IndexPath)
-    func onAdLooadFail()
+    func onDidSelectRow(section: Int, row: Int)
+    func onRemindRowAction(for command: ACCommand)
+    func onShareRowAction(for command: ACCommand)
+    func onDidFailPresentAd(with error: Error)
 }
 
 
@@ -54,27 +58,17 @@ final class CommandsListPresenter {
 extension CommandsListPresenter: CommandsListPresenterProtocol {
     
     //MARK: Internal
-    internal func onViewDidLoad(completionHandler: (([ACCommandsSection]) -> Void)) {
+    internal func onViewDidLoad(completionHandler: ACCommandsListBaseCompletionHandler) {
         view?.setupMainUI()
         completionHandler(manager.orderedCommandSections())
     }
     
-    internal func onShareRowAction(currentCommand: ACCommand) {
-        let content =
-        """
-        \(currentCommand.name!)
-        \(currentCommand.subtitle!)
-        
-        \(currentCommand.description!)
-        """
+    internal func onShareRowAction(for command: ACCommand) {
+        let content = setupSharedContent(for: command)
         view?.presentActivityVC(activityItems: [content])
     }
     
-    internal func onAdLooadFail() {
-        view?.presentAdLoadFailedAlertController()
-    }
-    
-    internal func onDidSelectRow(with indexPath: IndexPath) {
+    internal func onDidSelectRow(section: Int, row: Int) {
         /**
          Before we show the Screen with ads,
          we need to make sure that the user wants to view content that is beyond the limit(not in the `Operators` section).
@@ -84,28 +78,24 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
          then we show ads, but only then the Detail screen with the Article.
          In other cases, we immediately show the screen with the Article.
          */
-//        switch indexPath.section {
-//        case 0:
-//            view?.presentDetailVC(for: indexPath)
-//        default:
-//            if ACNetworkManager.shared.isConnected {
-//                view?.presentAdAlertController { [self] in
-//                    view?.presentAdlnterstitial { [self] in
-//                        view?.presentDetailVC(for: indexPath)
-//                    }
-//                }
-//            } else {
-//                view?.presentAdLoadFailedAlertController()
-//            }
-//        }
-        view?.presentDetailVC(for: indexPath)
+        switch section {
+        case 0:
+            break
+        default:
+            view?.presentAdlnterstitial()
+        }
+        view?.presentDetailVC(section: section, row: row)
     }
     
-    internal func onRemindRowAction(currentCommand: ACCommand) {
+    func onDidFailPresentAd(with error: Error) {
+        view?.presentAdLoadFailAlertController(error: error)
+    }
+    
+    internal func onRemindRowAction(for command: ACCommand) {
         if ACSettingsManager.shared.allowsNotifications {
-            view?.presentReminderSetupAlert(with: currentCommand, completion: { date in
+            view?.presentReminderSetupAlert(with: command, completion: { date in
                 if ACNotificationManager.shared.notificationsEnabled {
-                    ACNotificationManager.shared.sendCommandNotification(with: currentCommand, for: date)
+                    ACNotificationManager.shared.sendCommandNotification(with: command, for: date)
                     ACNotificationManager.shared.presentSuccesedNotificationSetAlert()
                 } else {
                     ACNotificationManager.shared.presentFailedNotificationSetAlert()
@@ -147,7 +137,7 @@ private extension CommandsListPresenter {
     ///   - typeName: command type case rowvalue;
     ///   - searchText: text that the user inputs into the search bar;
     /// - Returns: an array of commands filtered by the user preferences.
-    private func filteredCommands(by typeName: String, with searchText: String) -> [ACCommand] {
+    func filteredCommands(by typeName: String, with searchText: String) -> [ACCommand] {
         let neededRows: [ACCommand] = {
             switch typeName {
             case ACCommandType.all.rawValue:
@@ -165,8 +155,26 @@ private extension CommandsListPresenter {
         return neededRows.filter { row in
             let rowName = row.name.lowercased()
             let searchedText = searchText.lowercased()
-            let searchedRow = rowName.contains(searchText)
+            /**
+             Before filtering, we need to lowercase the text user inputs because commands' names
+             in the `commands` JSON file can start from capital letter or lowe case.
+             */
+            let searchedRow = rowName.contains(searchedText)
             return searchedRow
         }
+    }
+    
+    /// This prepares the content for every basic `ACComand` model
+    /// that will be shared via `UIActivityViewController`.
+    /// - Parameters:
+    ///   - command: a model from which a title, subtitle, and description for the result valur would be taken.
+    /// - Returns: multiline string structure.
+    func setupSharedContent(for command: ACCommand) -> String {
+        return """
+        \(command.name!)
+        \(command.subtitle!)
+        
+        \(command.description!)
+        """
     }
 }

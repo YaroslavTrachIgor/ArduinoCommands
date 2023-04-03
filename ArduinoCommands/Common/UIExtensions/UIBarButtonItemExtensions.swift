@@ -24,6 +24,18 @@ private extension UIBarButtonItem {
 }
 
 
+//MARK: - Setup base BarButtonItem types
+public extension UIBarButtonItem {
+    
+    //MARK: Static
+    ///This sets up fast settings for BarButtonItems.
+    /// - Returns: /////////////////////////////////////////////////////
+    static func spacer() -> UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+    }
+}
+
+
 //MARK: - Fast BarButtonItem methods
 public extension UIBarButtonItem {
     

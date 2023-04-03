@@ -22,10 +22,18 @@ private extension DeviceImagesPresenter {
     }
 }
 
+
+//MARK: - Base Comletion Handler
+typealias DeviceImagesFetchComletionHandler = (([URL]) -> Void)
+
+
 //MARK: - Presenter protocol
 protocol DeviceImagesPresenterProtocol {
-    func onViewDidLoad(completion: @escaping (([UIImage]) -> ()))
+    func onViewDidLoad(completion: @escaping DeviceImagesFetchComletionHandler)
+    func onChooseCollectionViewLayout(with index: Int)
     func onViewSafeAreaInsetsDidChange()
+    func onExpandGallery(with hasTappedOnExpandGallery: inout Bool)
+    func onDidSelect(for row: Int)
     func onDismiss()
 }
 
@@ -36,7 +44,7 @@ final class DeviceImagesPresenter {
     //MARK: Private
     private weak var view: DeviceImagesCollectionViewControllerProtocol?
     private weak var model: ACDevice?
-    private var deviceImages = [UIImage]()
+    private var deviceImagesURLs = [URL]()
     
     
     //MARK: Initionalizate
@@ -51,11 +59,27 @@ final class DeviceImagesPresenter {
 extension DeviceImagesPresenter: DeviceImagesPresenterProtocol {
     
     //MARK: Internal
-    internal func onViewDidLoad(completion: @escaping (([UIImage]) -> ())) {
+    internal func onViewDidLoad(completion: @escaping DeviceImagesFetchComletionHandler) {
         view?.setupMainUI()
-        fetchImages(completion: { [self] in
-            completion(deviceImages)
+        fetchImages(completion: { urls in
+            completion(urls)
         })
+        if !ACNetworkManager.shared.isConnected {
+            view?.presentFetchingErrorAlert()
+        }
+    }
+    
+    internal func onExpandGallery(with isGalleryExpanded: inout Bool) {
+        if isGalleryExpanded {
+            changeGalleryFrame(index: 0)
+        } else {
+            changeGalleryFrame(index: 2)
+        }
+        isGalleryExpanded.toggle()
+    }
+    
+    internal func onChooseCollectionViewLayout(with index: Int) {
+        view?.setNewCollectionViewLayout(with: index)
     }
     
     internal func onViewSafeAreaInsetsDidChange() {
@@ -65,6 +89,17 @@ extension DeviceImagesPresenter: DeviceImagesPresenterProtocol {
     internal func onDismiss() {
         view?.presentPreviousViewController()
     }
+    
+    internal func onDidSelect(for row: Int) {
+        fetchImages { urls in
+            let url = urls[row]
+            let imageDownloader = ACImageDownloader(url: url)
+            imageDownloader.downloadImage { [self] image in
+                guard let image = image else { return }
+                self.view?.presentFullImageViewController(with: image)
+            }
+        }
+    }
 }
 
 
@@ -72,40 +107,52 @@ extension DeviceImagesPresenter: DeviceImagesPresenterProtocol {
 private extension DeviceImagesPresenter {
     
     //MARK: Private
-    func fetchImages(completion: @escaping ACBaseCompletionHandler) {
+    func fetchImages(completion: @escaping DeviceImagesFetchComletionHandler) {
         guard let deviceName = model?.name else { return }
         let stringURL = ACURLs.API.devicesImagesAPIFirstPart + deviceName + ACURLs.API.devicesImagesAPISecondPart
         let url = URL(string: stringURL)
         let helper = APIHelper(url: url)
-        helper.get { [weak self] result in
-            switch result {
-            case .success(let data):
-                do {
-                    let jsonResults = try JSONDecoder().decode(ACDeviceImagesAPIResponse.self, from: data)
-                    for jsonResult in jsonResults.results! {
-                        guard let stringURL = jsonResult.urls?.regular else { return }
-                        guard let url = URL(string: stringURL) else { return }
-                        let imageDownloader = ACImageDownloader(url: url)
-                        imageDownloader.downloadImage { image in
-                            DispatchQueue.main.async {
-                                self?.deviceImages.append(image!)
-                                self?.view?.reloadCollectionView()
-                                completion()
-                            }
-                        }
-                    }
-                } catch {
-                    self?.showErrorMessage(with: error)
+        Task {
+            do {
+                /**
+                 In the code below, we create an instance of `APIHelper` object
+                 that will help us to fetch all the URLs of images of Arduino Devices.
+                 
+                 Pay attension to the fact that this method only parses URLs of the pictures,
+                 and does not fill CollectionView cells with images.
+                 Each ImageView in `DeviceImageCollectionViewCell` will be configured by itself
+                 in the `configure` method.
+                 */
+                let data = try await helper.get()
+                let jsonResults = try JSONDecoder().decode(ACDeviceImagesAPIResponse.self, from: data)
+                for jsonResult in jsonResults.results! {
+                    guard let stringURL = jsonResult.urls?.regular else { return }
+                    guard let url = URL(string: stringURL) else { return }
+                    self.deviceImagesURLs.append(url)
                 }
-            case .failure(let error):
-                self?.showErrorMessage(with: error)
+                /**
+                 In the code below, we need to be certain that UI will be updated from the Main Thread.
+                 That's why, we use `MainActor` to reload Device Images CollectionView data
+                 and to throw the URLs array.
+                 */
+                await MainActor.run {
+                    completion(deviceImagesURLs)
+                    view?.reloadCollectionView()
+                }
+            } catch {
+                await showErrorMessage(with: error)
             }
         }
     }
     
-    func showErrorMessage(with error: Error) {
+    @MainActor func showErrorMessage(with error: Error) {
         let title = Keys.ErrorMessage.title
         let message = Keys.ErrorMessage.message + error.localizedDescription
-        ACGrayAlertManager.present(title: title, message: message)
+        ACGrayAlertManager.present(title: title, message: message, preset: .error)
+    }
+    
+    func changeGalleryFrame(index: Int) {
+        view?.setNewCollectionViewLayout(with: index)
+        view?.setNewGallerySegmentIndex(index: index)
     }
 }

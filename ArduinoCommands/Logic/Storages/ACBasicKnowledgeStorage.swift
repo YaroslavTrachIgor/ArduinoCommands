@@ -246,17 +246,6 @@ public enum ACBasicKnowledgeStorage {
     static let sitesModels = [
         ACLinkCellModel(
             content: ACLink(
-                name: "Arduino.ru",
-                link: ACURLs.Materials.arduinoRu
-            ),
-            tintColor: Constants.LinksSection.secondaryTintColor,
-            backColor: Constants.LinksSection.contentTintColor,
-            secondaryColor: Constants.LinksSection.contentSecondaryTintColor,
-            shadowAvailable: true,
-            decorationBackImageName: "shape-site-deco"
-        ),
-        ACLinkCellModel(
-            content: ACLink(
                 name: "Arduino.cc",
                 link: ACURLs.Materials.arduinoCc
             ),
@@ -287,17 +276,6 @@ public enum ACBasicKnowledgeStorage {
             secondaryColor: Constants.LinksSection.contentSecondaryTintColor,
             shadowAvailable: true,
             decorationBackImageName: "shape-site-deco-2"
-        ),
-        ACLinkCellModel(
-            content: ACLink(
-                name: "All-arduino.ru",
-                link: ACURLs.Materials.allArduino
-            ),
-            tintColor: Constants.LinksSection.secondaryTintColor,
-            backColor: Constants.LinksSection.contentTintColor,
-            secondaryColor: Constants.LinksSection.contentSecondaryTintColor,
-            shadowAvailable: true,
-            decorationBackImageName: "shape-site-deco-3"
         )
     ]
 }

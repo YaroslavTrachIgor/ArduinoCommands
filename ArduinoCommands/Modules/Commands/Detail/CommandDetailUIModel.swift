@@ -13,14 +13,15 @@ protocol CommandDetailUIModelProtocol {
     var title: String! { get }
     var subtitle: String! { get }
     var content: String! { get }
-    var returns: Bool! { get }
-    var isUsedWithDevices: Bool! { get }
+    var returnsLabelIsHidden: Bool! { get }
+    var isDevicesLabelEnabled: Bool! { get }
     var codeScreenImage: UIImage! { get }
     var syntaxDescription: String! { get }
     var returnsDescription: String! { get }
     var argumentsDescription: String! { get }
-    var isScreenshotEnabled: Bool! { get }
-    var isCodeSnippetEnabled: Bool! { get }
+    var isScreenshotButtonEnabled: Bool! { get }
+    var isCodeSnippetButtonEnabled: Bool! { get }
+    var isDevicesImagesButtonEnabled: Bool! { get }
 }
 
 
@@ -48,16 +49,19 @@ extension CommandDetailUIModel: CommandDetailUIModelProtocol {
     internal var content: String! {
         model?.description
     }
-    internal var isUsedWithDevices: Bool! {
+    internal var isDevicesLabelEnabled: Bool! {
         model?.isUsedWithDevices
     }
-    internal var isScreenshotEnabled: Bool! {
+    internal var isScreenshotButtonEnabled: Bool! {
         model?.isScreenshotEnabled
     }
-    internal var isCodeSnippetEnabled: Bool! {
+    internal var isDevicesImagesButtonEnabled: Bool! {
+        model?.device.enablePhotos
+    }
+    internal var isCodeSnippetButtonEnabled: Bool! {
         model?.isCodeSnippetEnabled
     }
-    internal var returns: Bool! {
+    internal var returnsLabelIsHidden: Bool! {
         model?.returns
     }
     internal var syntaxDescription: String! {

@@ -14,6 +14,7 @@ protocol CodeSnippetViewControllerProtocol: ACBaseDetailViewController {
     func presentFontChangeViews(with animationType: ACBasePresentationType)
     func setupCodeContentViewAppearance(appearanceType: ACBaseAppearanceType)
     func enableBarViews(with animationType: ACBasePresentationType)
+    func resetAppearanceSegmentedControl()
     func changeCodeTextViewFontSize()
 }
 
@@ -183,6 +184,10 @@ extension CodeSnippetViewController: CodeSnippetViewControllerProtocol {
     
     internal func moveToThePreviousViewController() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    internal func resetAppearanceSegmentedControl() {
+        appearanceSegmentedControl.selectedSegmentIndex = 0
     }
     
     internal func presentColorPickerViewController() {

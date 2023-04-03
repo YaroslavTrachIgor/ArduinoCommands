@@ -40,9 +40,6 @@ private extension ACGoogleAdsManagar {
 //MARK: - Manager for fast AdScreens presenting
 final public class ACGoogleAdsManagar {
     
-    //MARK: Weak
-    weak var rootViewController: UIViewController!
-    
     //MARK: Static
     static var shared = ACGoogleAdsManagar()
     
@@ -70,9 +67,9 @@ public extension ACGoogleAdsManagar {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
     
-    func setupCommandDetailAdBunner(for bunner: GADBannerView) {
+    func setupCommandDetailAdBunner(for bunner: GADBannerView, rootVC: UIViewController) {
         let adUnitID = Keys.AdUnitIds.commandsDetailAdBunner
-        fastAdBunnerSetup(for: bunner, adUnitID: adUnitID)
+        fastAdBunnerSetup(for: bunner, adUnitID: adUnitID, rootVC: rootVC)
     }
     
     func setupCommandDetailnterstitialAd(delegate: GADFullScreenContentDelegate) {
@@ -91,8 +88,8 @@ public extension ACGoogleAdsManagar {
 public extension ACGoogleAdsManagar {
     
     //MARK: Public
-    func presentCommandDetailnterstitialAd(completion: @escaping (() -> Void)) {
-        fastPresentOfAdInterstitialScreen(for: commandsDetailInterstitial); completion()
+    func presentCommandDetailnterstitialAd(completion: @escaping (() -> Void), rootVC: UIViewController) {
+        fastPresentOfAdInterstitialScreen(for: commandsDetailInterstitial, rootVC: rootVC); completion()
     }
 }
 
@@ -102,12 +99,12 @@ public extension ACGoogleAdsManagar {
     
     //MARK: Public
     func presentAdLoadFailedAlertController() {
-        let title = Constants.UI.Alert.AdLoadFailedAlert.title
-        let message = Constants.UI.Alert.AdLoadFailedAlert.message
-        ACAlertManager.shared.presentSimple(title: title,
-                                            message: message,
-                                            tintColor: .label,
-                                            on: rootViewController)
+//        let title = Constants.UI.Alert.AdLoadFailedAlert.title
+//        let message = Constants.UI.Alert.AdLoadFailedAlert.message
+//        ACAlertManager.shared.presentSimple(title: title,
+//                                            message: message,
+//                                            tintColor: .label,
+//                                            on: rootViewController)
     }
 }
 
@@ -119,9 +116,9 @@ private extension ACGoogleAdsManagar {
     /// This checks for preparation and presents GoogleMobileAds interstitial Screen.
     /// - Parameters:
     ///   - interstitial: GoogleAds screen example.
-    func fastPresentOfAdInterstitialScreen(for interstitial: GADInterstitialAd?) {
+    func fastPresentOfAdInterstitialScreen(for interstitial: GADInterstitialAd?, rootVC: UIViewController) {
         if interstitial != nil {
-            interstitial!.present(fromRootViewController: rootViewController)
+            interstitial!.present(fromRootViewController: rootVC)
         }
     }
     
@@ -129,10 +126,10 @@ private extension ACGoogleAdsManagar {
     /// - Parameters:
     ///   - bunner: GoogleAds bunner example.
     ///   - adUnitID: special bunner Unit ID.
-    func fastAdBunnerSetup(for bunner: GADBannerView, adUnitID: String) {
+    func fastAdBunnerSetup(for bunner: GADBannerView, adUnitID: String, rootVC: UIViewController) {
         let request = GADRequest()
         bunner.adUnitID = adUnitID
-        bunner.rootViewController = rootViewController
+        bunner.rootViewController = rootVC
         bunner.load(request)
     }
 }

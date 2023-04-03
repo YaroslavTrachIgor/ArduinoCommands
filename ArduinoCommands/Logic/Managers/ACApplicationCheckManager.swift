@@ -15,7 +15,7 @@ private extension ACApplicationCheckManager {
     enum Keys {
         
         //MARK: Static
-        static let currentVersion = "1.0.0"
+        static let currentVersion = "1.3.1"
     }
 }
 
@@ -50,9 +50,9 @@ final class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
     /// The function is used in `BasicKnowledgePresenter` file.
     /// - Parameter completion: this is the handler which we will use to do some UI stuff.
     func checkVersion(completion: ACBaseCompletionHandler? = nil) {
-        service.getApplicationResponse { [self] result in
-            switch result {
-            case .success(let applicationAPI):
+        Task {
+            do {
+                let applicationAPI = try await service.getApplicationResponse()
                 guard let version = applicationAPI.version else { return }
                 if version != Keys.currentVersion && isNeededAlert {
                     guard let completionHandler = completion else { return }
@@ -66,8 +66,8 @@ final class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
                      */
                     isNeededAlert.toggle()
                 }
-            case .failure(_):
-                break
+            } catch {
+                return
             }
         }
     }

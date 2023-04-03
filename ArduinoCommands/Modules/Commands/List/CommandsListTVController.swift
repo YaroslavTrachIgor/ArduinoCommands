@@ -13,12 +13,11 @@ import Network
 
 //MARK: - Main ViewController protocol
 protocol CommandsListTableViewControllerProtocol: ACBaseWithShareViewController {
-    func presentAdlnterstitial(completion: @escaping ACBaseCompletionHandler)
-    func presentAdAlertController(completion: @escaping ACBaseCompletionHandler)
+    func presentAdlnterstitial()
+    func presentAdLoadFailAlertController(error: Error)
     func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void))
-    func presentAdLoadFailedAlertController()
     func presentNotificationsDisabledAlert()
-    func presentDetailVC(for indexPath: IndexPath)
+    func presentDetailVC(section: Int, row: Int)
 }
 
 
@@ -54,11 +53,11 @@ private extension CommandsListTVController {
                     static let title = "Notifications Disabled"
                     static let message = "You can unlock Notifications in the app's Settings."
                 }
-                enum AdAlert {
+                enum AdErrorAlert {
                     
                     //MARK: Static
-                    static let title = "Articles Limit"
-                    static let message = "Articles which are not in the Operators section are available only in the Paid version of Arduino Commands. You can watch the Advertisement and read the Article you need."
+                    static let title = "Failed to load Ad"
+                    static let message = "Detailed error code: "
                     static let cancelActionTitle = "Cancel"
                     static let presentAdActionTitle = "Watch"
                 }
@@ -94,14 +93,17 @@ private extension CommandsListTVController {
 final class CommandsListTVController: UITableViewController, ACBaseViewController {
 
     //MARK: Private
-    private let adsManager = ACGoogleAdsManagar.shared
     private let searchController = UISearchController(searchResultsController: nil)
     private var isSearchBarEmpty: Bool { searchController.searchBar.text?.isEmpty ?? true }
     private var isFiltering: Bool { searchController.isActive && !isSearchBarEmpty }
+    private var interstitial: GADInterstitialAd?
     private lazy var filteredSections = [ACCommandsSection]()
-    private var sections = [ACCommandsSection]() 
+    private var sections = [ACCommandsSection]()
     private var presenter: CommandsListPresenterProtocol {
-        CommandsListPresenter(view: self)
+        return CommandsListPresenter(view: self)
+    }
+    private var adsClient: ACCommandsListAdsClientProtocol? {
+        return ACCommandsListAdsClient()
     }
     
     
@@ -133,7 +135,7 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.onDidSelectRow(with: indexPath)
+        presenter.onDidSelectRow(section: indexPath.section, row: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -175,23 +177,16 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
     //MARK: Internal
     internal func setupMainUI() {
         setupTableView()
+        setupInterstitial()
         setupNavigationBar()
         setupSearchController()
         setBlurViewForStatusBar()
         view.setupBasicMenuBackgroundView(.table)
     }
     
-    internal func presentAdLoadFailedAlertController() {
-        adsManager.rootViewController = self
-        adsManager.presentAdLoadFailedAlertController()
-    }
-    
-    internal func presentAdlnterstitial(completion: @escaping (() -> Void)) {
-        adsManager.rootViewController = self
-        adsManager.setupCommandDetailnterstitialAd(delegate: self)
-        adsManager.presentCommandDetailnterstitialAd {
-            completion()
-        }
+    internal func presentAdlnterstitial() {
+        //guard let interstitial = interstitial else { return }
+        //adsClient?.presentCommandDetailnterstitialAd(interstitial: interstitial, on: self)
     }
     
     internal func presentActivityVC(activityItems: [Any]) {
@@ -201,16 +196,13 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
                                     on: self)
     }
     
-    internal func presentAdAlertController(completion: @escaping (() -> Void)) {
-        let title = Constants.UI.Alert.AdAlert.title
-        let message = Constants.UI.Alert.AdAlert.message
-        let actionTitle = Constants.UI.Alert.AdAlert.presentAdActionTitle
-        ACAlertManager.shared.presentSimpleWithAction(title: title,
-                                                      message: message,
-                                                      actionTitle: actionTitle,
-                                                      actionHandler: { _ in
-            completion()
-        }, on: self)
+    internal func presentAdLoadFailAlertController(error: Error) {
+        let errorDescription = String(describing: error)
+        let title = Constants.UI.Alert.AdErrorAlert.title
+        let message = Constants.UI.Alert.AdErrorAlert.message + errorDescription
+        ACAlertManager.shared.presentSimple(title: title,
+                                            message: message,
+                                            on: self)
     }
     
     internal func presentNotificationsDisabledAlert() {
@@ -248,10 +240,8 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         present(alertController, animated: true, completion: nil)
     }
     
-    internal func presentDetailVC(for indexPath: IndexPath) {
+    internal func presentDetailVC(section: Int, row: Int) {
         let detailVC = CommandDetailViewController.instantiate()
-        let section = indexPath.section
-        let row = indexPath.row
         let model = neededSections()[section].commands[row]
         detailVC.model = model
         navigationController?.pushViewController(detailVC, animated: true)
@@ -322,7 +312,7 @@ private extension CommandsListTVController {
         let shareActionBackColor = Constants.UI.RowAction.shareActionBackgroundColor
         let shareActionIconName = Constants.UI.Image.shareActionName
         let shareAction = UIContextualAction(style: .normal, title: nil) { [self] _, _, _ in
-            presenter.onShareRowAction(currentCommand: command)
+            presenter.onShareRowAction(for: command)
         }
         shareAction.backgroundColor = shareActionBackColor
         shareAction.image = UIImage(systemName: shareActionIconName,
@@ -334,13 +324,20 @@ private extension CommandsListTVController {
         let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
         let remindActionIconName = Constants.UI.Image.remindActionName
         let remindAction = UIContextualAction(style: .normal, title: nil) { [self] _, _, _ in
-            presenter.onRemindRowAction(currentCommand: command)
+            presenter.onRemindRowAction(for: command)
         }
         remindAction.backgroundColor = remindActionBackColor
         remindAction.image = UIImage(systemName: remindActionIconName,
                                      withConfiguration: setupBasicCellContextMenuImageIcon())
         return remindAction
     }
+    
+    func setupInterstitial() {
+        //adsClient?.setupCommandDetailnterstitialAd(delegate: self, completion: { interstitial in
+        //    self.interstitial = interstitial
+        //})
+    }
+    
     
     //MARK: Fast methods
     func neededSections() -> [ACCommandsSection] {
@@ -352,7 +349,9 @@ private extension CommandsListTVController {
     }
     
     func setupBasicCellContextMenuImageIcon() -> UIImage.SymbolConfiguration {
-        return UIImage.SymbolConfiguration(pointSize: 0, weight: .regular, scale: .large)
+        return UIImage.SymbolConfiguration(pointSize: 0,
+                                           weight: .regular,
+                                           scale: .large)
     }
 }
 
@@ -364,7 +363,8 @@ extension CommandsListTVController: UISearchResultsUpdating {
     internal func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let searchText = searchBar.text!
-        let scopeTitle = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        let scopeIndex = searchBar.selectedScopeButtonIndex
+        let scopeTitle = searchBar.scopeButtonTitles![scopeIndex]
         let filteredSection = presenter.filteredRowsWithScopes(for: searchText, with: scopeTitle)
         filteredSections = filteredSection
         tableView.reloadData()
@@ -377,6 +377,6 @@ extension CommandsListTVController: GADFullScreenContentDelegate {
     
     //MARK: Internal
     internal func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-        presenter.onAdLooadFail()
+        presenter.onDidFailPresentAd(with: error)
     }
 }

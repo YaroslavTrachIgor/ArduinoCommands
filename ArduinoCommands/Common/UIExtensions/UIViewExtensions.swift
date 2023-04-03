@@ -64,6 +64,7 @@ public extension UIView {
                                              width: CGFloat = 35,
                                              height: CGFloat = 35,
                                              imageName: String?,
+                                             font: UIFont?,
                                              title: String?,
                                              for vc: UIViewController) {
         let viewFrame = CGRect(x: 0, y: 0, width: width, height: height)
@@ -75,9 +76,9 @@ public extension UIView {
          */
         let button = UIButton.init(type: .system)
         button.frame = self.frame
-
+        
         let autoresizingMask: UIView.AutoresizingMask = [.flexibleWidth, .flexibleHeight]
-        let backgroundColor: UIColor = .systemGray2.withAlphaComponent(0.08)
+        let backgroundColor: UIColor = .systemGray.withAlphaComponent(0.5)
         let buttonHeight = button.frame.height / 2
         button.addBlurEffect(cornerRadius: buttonHeight, style: .regular)
         button.backgroundColor = backgroundColor
@@ -85,13 +86,21 @@ public extension UIView {
         button.autoresizesSubviews = true
         button.autoresizingMask = autoresizingMask
         button.tintColor = .white
-        
-        if title != nil { button.setTitle(title, for: .normal) }
+        /**
+         In the code below,
+         */
+        if font != nil {
+            button.titleLabel?.font = font
+        }
+        if title != nil {
+            button.setTitle(title, for: .normal)
+        }
         if action != nil { button.addTarget(vc, action: action!, for: .touchUpInside) }
         if imageName != nil {
-            let imageConfiguration = UIImage.SymbolConfiguration(scale: .medium)
-            let image = UIImage(systemName: imageName!)?.withConfiguration(imageConfiguration)
-            button.setImage(image, for: .normal)
+            let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 0, weight: .medium, scale: .medium)
+            let image = UIImage(systemName: imageName!)
+            let configuratedImage = image?.withConfiguration(imageConfiguration)
+            button.setImage(configuratedImage, for: .normal)
         }
         addSubview(button)
     }

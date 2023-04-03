@@ -115,6 +115,7 @@ extension CodeSnippetPresenter: CodeSnippetPresenterProtocol {
         delegate?.setCodeTintColor(color: color)
         view?.setupMainUI()
         view?.setupCodeContentViewAppearance(appearanceType: .dark)
+        view?.resetAppearanceSegmentedControl()
     }
     
     internal func onCopyCode() {

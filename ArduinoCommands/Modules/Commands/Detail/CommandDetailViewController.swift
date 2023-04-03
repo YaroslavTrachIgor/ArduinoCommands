@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import OpenAIKit
-//import GoogleMobileAds
+import GoogleMobileAds
 
 //MARK: - Main ViewController protocol
 protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
@@ -74,24 +74,16 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     }
     
     //MARK: Private
-    private var detailsTintColor: UIColor!
-    private let adsManager = ACGoogleAdsManagar.shared
     private var uiModel: CommandDetailUIModelProtocol? {
         return CommandDetailUIModel(model: model)
     }
     private var presenter: CommandDetailPresenterProtocol? {
         return CommandDetailPresenter(view: self, delegate: self, model: model)
     }
-    private lazy var imagesCollactionViewLayout: UICollectionViewLayout = {
-        let width = view.frame.size.width / 4
-        let itemSize = CGSize(width: width, height: width)
-        let layout: UICollectionViewFlowLayout = .init()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 1
-        layout.itemSize = itemSize
-        return layout
-    }()
+    private var adsClient: ACCommandDetailAdsClientProtocol? {
+        return ACCommandDetailAdsClient()
+    }
+    private var detailsTintColor: UIColor!
     
     //MARK: @IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
@@ -110,7 +102,7 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBOutlet private weak var screenshotBlurView: UIVisualEffectView!
     @IBOutlet private weak var screenshotButton: UIButton!
     @IBOutlet private weak var codeSnippetButton: UIButton!
-    //@IBOutlet private weak var adBunnerView: GADBannerView!
+    @IBOutlet private weak var adBunnerView: GADBannerView!
     @IBOutlet private weak var presentDetailsButton: UIButton!
     @IBOutlet private weak var presentDeviceImagesButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
@@ -199,21 +191,21 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         setupDetailBackgroundView()
         setupDetailContentView()
         setupDetailCopyButtons()
+        setupPresentDeviceImagesButton()
         presentDetailsButton.setupDetailsButton(with: Constants.UI.Image.detailsIcon)
-        
-        presentDeviceImagesButton.setupDetailsButton(with: Constants.UI.Image.deviceIcon)
-        presentDeviceImagesButton.isEnabled = model.device.enablePhotos
-        
-        
         detailBackgroundView.changeTintColorButton.setupCodeContentEditingButton(tintColor: detailsTintColor, imageName: Constants.UI.Image.colorPickerGoIcon)
         detailBackgroundView.doneButton.setupPopupButton(tintColor: detailsTintColor, title: Constants.UI.Button.closeTitle)
         contentSegmentedControl.setupBaseDetailDarkSegmentedControl()
-        leftDecorationLabel.setupReturnsDecoLabel(with: uiModel?.returns)
-        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isUsedWithDevices)
+        leftDecorationLabel.setupReturnsDecoLabel(with: uiModel?.returnsLabelIsHidden)
+        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled)
         rightDecotationLabel.setupMethodDecoLabel()
         costomBackBarButton.setupBaseBackBarButton()
         shareBarButton.setupBaseShareBarButton()
         copyBarButton.setupBaseCopyBarButton()
+    }
+    
+    internal func setupAdBunner() {
+        //adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
     }
     
     internal func changeTextViewContentAnimately(text: String) {
@@ -234,11 +226,6 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         enableViewIn(or: costomBackBarButton, animationType: animationType)
         enableViewIn(or: shareBarButton, animationType: animationType)
         enableViewIn(or: copyBarButton, animationType: animationType)
-    }
-    
-    internal func setupAdBunner() {
-//        adsManager.rootViewController = self
-//        adsManager.setupCommandDetailAdBunner(for: adBunnerView)
     }
     
     internal func setupRateManager() {
@@ -266,7 +253,9 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
     }
     
     internal func presentDeviceImagesCollectionViewController() {
-        let deviceImagesVC = DeviceImagesCollectionViewController(collectionViewLayout: imagesCollactionViewLayout)
+        let width = view.frame.size.width / 4 - 1
+        let layout: UICollectionViewFlowLayout = .setupBasicGalleryFlowLayout(width: width)
+        let deviceImagesVC = DeviceImagesCollectionViewController(collectionViewLayout: layout)
         deviceImagesVC.device = model.device
         navigationController?.pushViewController(deviceImagesVC, animated: true)
     }
@@ -362,6 +351,13 @@ private extension CommandDetailViewController {
         contentBackgroundView.alpha = 1
     }
     
+    func setupPresentDeviceImagesButton() {
+        let isEnabled = uiModel?.isDevicesImagesButtonEnabled
+        let icon = Constants.UI.Image.deviceIcon
+        presentDeviceImagesButton.setupDetailsButton(with: icon)
+        presentDeviceImagesButton.isEnabled = isEnabled!
+    }
+    
     func setupDetailBackgroundView() {
         let bounds = CGRect(x: 0, y: 0, width: 340, height: 450)
         detailBackgroundView.layer.cornerRadius = 0
@@ -450,7 +446,7 @@ private extension CommandDetailViewController {
         let title = Constants.UI.Button.goToScreenshotTitle
         let baseTintColor = UIColor.ACDetails.tintColor
         let baseBackgroundColor = UIColor.ACDetails.backgroundColor
-        let isEnabled = uiModel?.isScreenshotEnabled!
+        let isEnabled = uiModel?.isScreenshotButtonEnabled!
         let backgroundColor: UIColor
         let tintColor: UIColor
         var configuration = UIButton.Configuration.filled()
@@ -481,7 +477,7 @@ private extension CommandDetailViewController {
         let baseTintColor = UIColor.ACDetails.tintColor
         let baseBackgroundColor = UIColor.ACDetails.backgroundColor
         let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
-        let isEnabled = uiModel?.isCodeSnippetEnabled!
+        let isEnabled = uiModel?.isCodeSnippetButtonEnabled!
         let backgroundColor: UIColor
         let strokeColor: UIColor
         let tintColor: UIColor

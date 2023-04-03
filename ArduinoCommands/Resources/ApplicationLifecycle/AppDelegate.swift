@@ -7,7 +7,7 @@
 
 import Foundation
 import UserNotifications
-import GoogleMobileAds
+//import GoogleMobileAds
 import UIKit
 
 //MARK: - Application delegate Keys
@@ -36,10 +36,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: Internal
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         DispatchQueue.global(qos: .userInteractive).async {
+            //GADMobileAds.sharedInstance().start(completionHandler: nil)
             ACNotificationManager.shared.requestAuthorization()
-            ACGoogleAdsManagar.shared.startGoogleAds()
             ACNetworkManager.shared.startMonitoring()
             ACRateManager.shared.startCounting()
         }

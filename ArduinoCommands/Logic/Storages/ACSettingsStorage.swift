@@ -32,7 +32,7 @@ public enum ACSettingsStorage {
         static let content: [ACSettingsBasicInfo] = [
             ACSettingsBasicInfo(
                 parameter: "Version",
-                value: "1.1.0"
+                value: "1.3.0"
             ),
             ACSettingsBasicInfo(
                 parameter: "Category",
