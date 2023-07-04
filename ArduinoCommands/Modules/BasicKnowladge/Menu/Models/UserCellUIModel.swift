@@ -67,7 +67,7 @@ extension UserCellUIModel: UserCellUIModelProtocol {
     internal var userIconImageBackViewTintColor: CGColor! {
         let tintColor = model?.tintColor!
         let alphaComponent = Constants.UI.Color.userIconBackColorAlphaComponent
-        let userIconImageBackViewTintColor = tintColor?.withAlphaComponent(alphaComponent) as! CGColor
+        let userIconImageBackViewTintColor = (tintColor?.withAlphaComponent(alphaComponent))!.cgColor
         return userIconImageBackViewTintColor
     }
     internal var userIconImage: UIImage! {

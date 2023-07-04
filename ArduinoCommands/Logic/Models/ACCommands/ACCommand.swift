@@ -53,3 +53,25 @@ public final class ACCommand: Codable {
         self.device = device
     }
 }
+
+
+//MARK: - Fast methods
+public extension ACCommand {
+    
+    /// This prepares the content for every basic `ACComand` model
+    /// that will be shared via `UIActivityViewController`.
+    /// - Returns: multiline string structure.
+    func shared() -> String {
+        let dKeyword = isUsedWithDevices   ? "#Devices"             : ""
+        let lKeyword = isLibraryMethod     ? "#Devices"             : ""
+        let rKeyword = returns             ? "#Returns"             : ""
+        return """
+        \(name!)
+        \(subtitle!)
+        
+        Keywords: #Method \(lKeyword) \(dKeyword) \(rKeyword)
+        
+        \(description!)
+        """
+    }
+}

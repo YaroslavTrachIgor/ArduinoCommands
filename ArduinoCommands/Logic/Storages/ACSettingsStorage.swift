@@ -61,8 +61,8 @@ public enum ACSettingsStorage {
         //MARK: Static
         static let header = "Contact Info"
         static let footer = "View different Arduino Commands resouces, which can help you to learn some more about the App or get the needed help."
-        static let content: [ACSettingsContactInfoCell] = [
-            ACSettingsContactInfoCell(
+        static let content: [ACSettingsContactInfoUIModel] = [
+            ACSettingsContactInfoUIModel(
                 content: ACSettingsContactInfo(
                     link: "https://www.instagram.com/axcigrpvicj/",
                     linkName: "Instagram"
@@ -70,7 +70,7 @@ public enum ACSettingsStorage {
                 iconName: "link",
                 tintColor: .systemPink
             ),
-            ACSettingsContactInfoCell(
+            ACSettingsContactInfoUIModel(
                 content: ACSettingsContactInfo(
                     link: "https://yaroslavtrachigor.github.io/ArduinoCommandsInfo",
                     linkName: "Privacy Policy"
@@ -85,16 +85,16 @@ public enum ACSettingsStorage {
         //MARK: Static
         static let header = "Parameters"
         static let footer = "In this section, you can lock all the unnecessary and unlock the needed features of Arduino Commands."
-        static let allowsNotificationsCell = ACSettingsParameterCell(
+        static let allowsNotificationsCell = ACSettingsParameterUIModel(
             content: ACSettingsParameter(
                 name: "Allow Notifications",
-                value: ACSettingsManager.shared.allowsNotifications
+                value: ACSettingsManager.shared.allowNotifications
             ),
             iconName: "app.badge",
             tintColor: .systemPurple,
             isEnabled: true
         )
-        static let removeAdsCell = ACSettingsParameterCell(
+        static let removeAdsCell = ACSettingsParameterUIModel(
             content: ACSettingsParameter(
                 name: "Remove Ads",
                 value: true

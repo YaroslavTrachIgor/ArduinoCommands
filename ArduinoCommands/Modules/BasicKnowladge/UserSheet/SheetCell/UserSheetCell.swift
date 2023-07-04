@@ -34,6 +34,7 @@ final class UserSheetCell: UITableViewCell {
     weak var tableViewController: UITableViewController!
     
     //MARK: Private
+    private var uiModel: UserSheetCellUIModelProtocol?
     private var presenter: UserSheetCellPresenterProtocol? {
         return UserSheetCellPresenter(view: self, content: descriptionTextView.text!)
     }
@@ -71,16 +72,17 @@ extension UserSheetCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
     
     //MARK: Internal
     internal func configure(with data: UserSheetCellUIModelProtocol) {
-        setupDateLabel(with: data)
-        setupTitleLabel(with: data)
-        setupDescriptionTextView(with: data)
-        newDecorationLabel.setupDecorationRoleLabel(content: data.extraInfoDescription, tintColor: data.newDecoLabelTintColor)
-        roleDecorationLabel.setupDecorationRoleLabel(content: data.roleName)
+        uiModel = data
+        setupDateLabel()
+        setupTitleLabel()
+        setupDescriptionTextView()
         dismissButton.setupDarkBarButton(imageSystemName: Constants.UI.Image.dismissIconName)
         copyContentButton.setupCostomBarButton(imageSystemName: Constants.UI.Image.shareIconName)
         shareContentButton.setupCostomBarButton(imageSystemName: Constants.UI.Image.copyIconName)
-        rightDecorationLabelWidth.constant = data.rightDecorationLabelWidth
-        leftDecorationLabelWidth.constant = data.leftDecorationLabelWidth
+        newDecorationLabel.setupDecorationRoleLabel(content: uiModel!.extraInfoDescription, tintColor: uiModel!.newDecoLabelTintColor)
+        roleDecorationLabel.setupDecorationRoleLabel(content: uiModel!.roleName)
+        rightDecorationLabelWidth.constant = uiModel!.rightDecorationLabelWidth
+        leftDecorationLabelWidth.constant = uiModel!.leftDecorationLabelWidth
         backgroundColor = .clear
     }
     
@@ -100,9 +102,9 @@ extension UserSheetCell: ACBaseUserSheetCellProtocol, ACBaseConfigurableView {
 private extension UserSheetCell {
 
     //MARK: Private
-    func setupDateLabel(with data: UserSheetCellUIModelProtocol) {
+    func setupDateLabel() {
         let textColor: UIColor = .tertiaryLabel.withAlphaComponent(0.4)
-        let content = data.dateDescription
+        let content = uiModel?.dateDescription
         let font = UIFont.ACFont(style: .footer)
         dateLabel.numberOfLines = 1
         dateLabel.backgroundColor = .clear
@@ -111,8 +113,8 @@ private extension UserSheetCell {
         dateLabel.font = font
     }
     
-    func setupTitleLabel(with data: UserSheetCellUIModelProtocol) {
-        let content = data.title
+    func setupTitleLabel() {
+        let content = uiModel?.title
         let font = UIFont.ACFont(ofSize: 20, weight: .bold)
         titleLabel.numberOfLines = 2
         titleLabel.textColor = .label
@@ -120,9 +122,9 @@ private extension UserSheetCell {
         titleLabel.font = font
     }
     
-    func setupDescriptionTextView(with data: UserSheetCellUIModelProtocol) {
+    func setupDescriptionTextView() {
         let textColor: UIColor = .label.withAlphaComponent(0.55)
-        let content = data.content
+        let content = uiModel?.content
         let font = UIFont.ACFont(style: .articleContent)
         descriptionTextView.tintColor = .systemIndigo
         descriptionTextView.textColor = textColor

@@ -15,25 +15,25 @@ private extension CommandsListPresenter {
     enum Keys {
         
         //MARK: Static
-        static let filteredSectionHeaderTitle: String = "Filtered Commands"
-        static let filteredSectionHeaderHeight: Int = 40
+        static let filteredSectionHeaderHeight = 40
+        static let filteredSectionHeaderTitle = "Filtered Commands"
     }
 }
 
 
 //MARK: - Commands List base completion Handler
-typealias ACCommandsListBaseCompletionHandler = ([ACCommandsSection]) -> Void
+typealias CommandsListUIBaseCompletionHandler = ([CommandsSectionUIModel]) -> Void
 
 
 //MARK: - Presenter protocol
-internal protocol CommandsListPresenterProtocol {
-    init(view: CommandsListTableViewControllerProtocol, manager: ACCommandsManagerProtocol)
-    func onViewDidLoad(completionHandler: ACCommandsListBaseCompletionHandler)
-    func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [ACCommandsSection]
-    func onDidSelectRow(section: Int, row: Int)
-    func onRemindRowAction(for command: ACCommand)
-    func onShareRowAction(for command: ACCommand)
+protocol CommandsListPresenterProtocol {
+    init(view: CommandsListTableViewControllerProtocol, service: ACCommandsAPIClientProtocol)
+    func onViewDidLoad(completionHandler: CommandsListUIBaseCompletionHandler)
+    func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [CommandsSectionUIModel]
+    func onRemindRowAction(for command: CommandUIModel)
+    func onShareRowAction(for command: CommandUIModel)
     func onDidFailPresentAd(with error: Error)
+    func onDidSelectRow(id: String)
 }
 
 
@@ -42,13 +42,13 @@ final class CommandsListPresenter {
     
     //MARK: Private
     private weak var view: CommandsListTableViewControllerProtocol?
-    private var manager: ACCommandsManagerProtocol
+    private var service: ACCommandsAPIClientProtocol!
     
     
     //MARK: Initialization
     init(view: CommandsListTableViewControllerProtocol,
-         manager: ACCommandsManagerProtocol = ACCommandsManager.shared) {
-        self.manager = manager
+         service: ACCommandsAPIClientProtocol = ACCommandsAPIClient(fileName: ACFilenames.commandsListFile)) {
+        self.service = service
         self.view = view
     }
 }
@@ -58,47 +58,54 @@ final class CommandsListPresenter {
 extension CommandsListPresenter: CommandsListPresenterProtocol {
     
     //MARK: Internal
-    internal func onViewDidLoad(completionHandler: ACCommandsListBaseCompletionHandler) {
+    internal func onViewDidLoad(completionHandler: CommandsListUIBaseCompletionHandler) {
         view?.setupMainUI()
-        completionHandler(manager.orderedCommandSections())
+        let sections = setupCommandsListSections()
+        let uiSections = CommandsListFormatter.convert(sections)
+        completionHandler(uiSections)
     }
     
-    internal func onShareRowAction(for command: ACCommand) {
-        let content = setupSharedContent(for: command)
-        view?.presentActivityVC(activityItems: [content])
+    internal func onDidSelectRow(id: String) {
+        ////**
+        /// Before we show the Screen with ads,
+        /// we need to make sure that the user wants to view content that is beyond the limit(not in the `Operators` section).
+        /// For this we will use the `sender` argument from the TableView.
+        ////*
+        /// If it's not the first section (not the `Operators` section),
+        /// then we show ads, but only then the Detail screen with the Article.
+        /// In other cases, we immediately show the screen with the Article.
+        /// */
+        ///switch section {
+        ///case 0:
+        ///    break
+        ///default:
+        ///    view?.presentAdlnterstitial()
+        ///}
+        view?.presentDetailVC(with: selectModel(by: id)!)
     }
     
-    internal func onDidSelectRow(section: Int, row: Int) {
-        /**
-         Before we show the Screen with ads,
-         we need to make sure that the user wants to view content that is beyond the limit(not in the `Operators` section).
-         For this we will use the `sender` argument from the TableView.
-         
-         If it's not the first section(not the `Operators` section),
-         then we show ads, but only then the Detail screen with the Article.
-         In other cases, we immediately show the screen with the Article.
-         */
-        switch section {
-        case 0:
-            break
-        default:
-            view?.presentAdlnterstitial()
-        }
-        view?.presentDetailVC(section: section, row: row)
-    }
-    
-    func onDidFailPresentAd(with error: Error) {
+    internal func onDidFailPresentAd(with error: Error) {
         view?.presentAdLoadFailAlertController(error: error)
     }
     
-    internal func onRemindRowAction(for command: ACCommand) {
-        if ACSettingsManager.shared.allowsNotifications {
-            view?.presentReminderSetupAlert(with: command, completion: { date in
-                if ACNotificationManager.shared.notificationsEnabled {
-                    ACNotificationManager.shared.sendCommandNotification(with: command, for: date)
-                    ACNotificationManager.shared.presentSuccesedNotificationSetAlert()
+    internal func onShareRowAction(for command: CommandUIModel) {
+        guard let id = command.content else { return }
+        guard let model = selectModel(by: id) else { return }
+        let activityItems = [model.shared]
+        view?.presentActivityVC(activityItems: activityItems)
+    }
+    
+    internal func onRemindRowAction(for command: CommandUIModel) {
+        if ACSettingsManager.shared.allowNotifications {
+            view?.presentReminderSetupAlert(with: command, completion: { [self] date in
+                guard let model = selectModel(by: command.content) else { return }
+                let notificationsManager: ACNotificationManager = .shared
+                if notificationsManager.notificationsEnabled {
+                    notificationsManager.sendCommandNotification(with: model, date: date)
+                    
+                    ACGrayAlertManager.presentSuccesedNotificationSetAlert()
                 } else {
-                    ACNotificationManager.shared.presentFailedNotificationSetAlert()
+                    ACGrayAlertManager.presentFailedNotificationSetAlert()
                 }
             })
         } else {
@@ -110,19 +117,20 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
     /// This section appears on the Commands List VC immediately after the user taps on the search bar.
     /// - Parameters:
     ///   - searchText: text that the user inputs into the search bar;
-    ///   - scopeTitle: scope button title(segmented control under the search bar);
+    ///   - scopeTitle: scope button title (segmented control under the search bar);
     /// - Returns: a section with filtered by the user preferences commands.
-    internal func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [ACCommandsSection] {
+    internal func filteredRowsWithScopes(for searchText: String, with scopeTitle: String) -> [CommandsSectionUIModel] {
         let name = Keys.filteredSectionHeaderTitle
         let headerHeight = Keys.filteredSectionHeaderHeight
         let filteredCommands = filteredCommands(by: scopeTitle, with: searchText)
-        let filteredSection = [ACCommandsSection(
+        let filteredSections = [ACCommandsSection(
             name: name,
             footer: nil,
             headerHeight: headerHeight,
             commands: filteredCommands)
         ]
-        return filteredSection
+        let filteredUISections = CommandsListFormatter.convert(filteredSections)
+        return filteredUISections
     }
 }
 
@@ -141,13 +149,13 @@ private extension CommandsListPresenter {
         let neededRows: [ACCommand] = {
             switch typeName {
             case ACCommandType.all.rawValue:
-                return manager.unfilteredCommands()
+                return service.unfilteredCommands()
             case ACCommandType.libraries.rawValue:
-                return manager.commandsFromLibraries()
+                return service.commandsFromLibraries()
             case ACCommandType.forDevices.rawValue:
-                return manager.commandsForDevices()
+                return service.commandsForDevices()
             case ACCommandType.returns.rawValue:
-                return manager.commandsThatReturn()
+                return service.commandsThatReturn()
             default:
                 return []
             }
@@ -155,26 +163,30 @@ private extension CommandsListPresenter {
         return neededRows.filter { row in
             let rowName = row.name.lowercased()
             let searchedText = searchText.lowercased()
-            /**
-             Before filtering, we need to lowercase the text user inputs because commands' names
-             in the `commands` JSON file can start from capital letter or lowe case.
-             */
             let searchedRow = rowName.contains(searchedText)
             return searchedRow
         }
     }
     
-    /// This prepares the content for every basic `ACComand` model
-    /// that will be shared via `UIActivityViewController`.
-    /// - Parameters:
-    ///   - command: a model from which a title, subtitle, and description for the result valur would be taken.
-    /// - Returns: multiline string structure.
-    func setupSharedContent(for command: ACCommand) -> String {
-        return """
-        \(command.name!)
-        \(command.subtitle!)
-        
-        \(command.description!)
-        """
+    /// This fetches command sections models and shows alert message if fetching failed.
+    /// - Returns: a list of ordered command section models.
+    func setupCommandsListSections() -> [ACCommandsSection] {
+        let sections = service.orderedCommandSections()
+        if  sections.isEmpty {
+            view?.presentCommandsListLoadFailedAlert()
+        }
+        return sections
+    }
+    
+    /// This finds the true Command model using its UI model.
+    /// - Parameter id: identifier by which the model can be dermined.
+    /// - Returns: Command model of type `ACCommand`.
+    ///
+    /// At the moment, identifier is a description of the command but, in the future,
+    //TODO: Add special Command IDs to commands.json
+    func selectModel(by id: String) -> ACCommand? {
+        let models = service.unfilteredCommands()
+        guard let model = models.first(where: { $0.description == id }) else { return nil }
+        return model
     }
 }

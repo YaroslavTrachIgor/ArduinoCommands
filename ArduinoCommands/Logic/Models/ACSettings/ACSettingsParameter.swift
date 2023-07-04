@@ -23,8 +23,8 @@ public final class ACSettingsParameter {
 }
 
 
-//MARK: - Cell model
-public final class ACSettingsParameterCell: Identifiable {
+//MARK: - UI model
+public final class ACSettingsParameterUIModel: Identifiable {
     var content: ACSettingsParameter
     let iconName: String?
     let tintColor: UIColor?

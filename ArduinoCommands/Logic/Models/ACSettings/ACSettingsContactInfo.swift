@@ -22,8 +22,8 @@ public final class ACSettingsContactInfo {
 }
 
 
-//MARK: - Cell model
-public final class ACSettingsContactInfoCell: Identifiable {
+//MARK: - UI model
+public final class ACSettingsContactInfoUIModel: Identifiable {
     var content: ACSettingsContactInfo
     var iconName: String?
     var tintColor: UIColor?

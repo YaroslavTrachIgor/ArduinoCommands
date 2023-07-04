@@ -12,8 +12,8 @@ import UIKit
 protocol SiteCellUIModelProtocol {
     var title: String! { get }
     var subtitle: String! { get }
-    var isShadowAvailable: Bool! { get }
     var siteLinkTitle: String! { get }
+    var isShadowAvailable: Bool! { get }
     var siteLinkTextColor: UIColor! { get }
     var decorationImage: UIImage! { get }
     var decorationBackImage: UIImage! { get }
@@ -21,6 +21,31 @@ protocol SiteCellUIModelProtocol {
     var tintColor: UIColor! { get }
     var secondaryBackColor: UIColor! { get }
     var secondaryTintColor: UIColor! { get }
+}
+
+
+//MARK: - Constants
+private extension SiteCellUIModel {
+    
+    //MARK: Private
+    enum Constants {
+        enum Label {
+            
+            //MARK: Static
+            static let siteLinkTitle = "Site Link"
+        }
+        enum Image {
+            
+            //MARK: Static
+            static let decorationImageName = "link.circle.fill"
+        }
+        enum Color {
+            
+            //MARK: Static
+            static let filledLabelBackColorName = "SiteFilledLabelBackColor"
+            static let secondaryLabelBackColorName = "SiteLinkLabelBackColor"
+        }
+    }
 }
 
 
@@ -45,9 +70,6 @@ extension SiteCellUIModel: SiteCellUIModelProtocol {
     internal var isShadowAvailable: Bool! {
         model?.shadowAvailable!
     }
-    internal var siteLinkTitle: String! {
-        "Site Link"
-    }
     internal var backgroundColor: UIColor! {
         model?.backColor!
     }
@@ -57,11 +79,14 @@ extension SiteCellUIModel: SiteCellUIModelProtocol {
     internal var secondaryBackColor: UIColor! {
         model?.secondaryColor!
     }
+    internal var siteLinkTitle: String! {
+        Constants.Label.siteLinkTitle
+    }
     internal var siteLinkTextColor: UIColor! {
         /**
-         In some cases(when Site link Cell is filled) we need to use
+         In some cases *(for instance, when Site link Cell is filled)* we need to use
          special tint and background colors.
-         
+
          For using the right values we check Cell type with `shadowAvailable` model property,
          because only filled items have special colorful shadow.
          */
@@ -72,26 +97,24 @@ extension SiteCellUIModel: SiteCellUIModelProtocol {
         }
     }
     internal var decorationImage: UIImage! {
-        let image: UIImage!
-        let imageName = "link.circle.fill"
+        let imageName = Constants.Image.decorationImageName
         if isShadowAvailable {
-            image = UIImage(systemName: imageName)
-            return image
+            return UIImage(systemName: imageName)
         } else {
-            let config = UIImage.SymbolConfiguration(hierarchicalColor: tintColor)
-            image = UIImage(systemName: imageName, withConfiguration: config)
+            let hierarchicalColor = model?.tintColor!
+            let decorationImageConfig = UIImage.SymbolConfiguration(hierarchicalColor: hierarchicalColor!)
+            let decorationImage = UIImage(systemName: imageName, withConfiguration: decorationImageConfig)
+            return decorationImage
         }
-        return image
     }
     internal var secondaryTintColor: UIColor! {
-        /**
-         Add Constants///////////////////////////////
-         */
-        let filledLabelBackColor = #colorLiteral(red: 0.999948442, green: 0.7708298564, blue: 0.4927771688, alpha: 1)
-        let secondaryLabelBackColor = UIColor(named: "SiteLinkLabelBackColor")!.withAlphaComponent(0.65)
         if isShadowAvailable {
+            let filledLabelBackColorName = Constants.Color.filledLabelBackColorName
+            let filledLabelBackColor = UIColor(named: filledLabelBackColorName)
             return filledLabelBackColor
         } else {
+            let secondaryLabelBackColorName = Constants.Color.secondaryLabelBackColorName
+            let secondaryLabelBackColor = UIColor(named: secondaryLabelBackColorName)
             return secondaryLabelBackColor
         }
     }

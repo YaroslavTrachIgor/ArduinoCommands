@@ -47,29 +47,15 @@ final public class ACImageDownloader: APIHelper, ACImageDownloaderProtocol {
         } else {
             Task {
                 do {
-                    let data = try await self.getImageData()
+                    let data = try await self.get()
                     guard let image = UIImage(data: data) else { return }
                     cache.saveImage(image: image, forKey: stringURL)
-                    await MainActor.run {
-                        completion(image)
-                    }
+                    await MainActor.run { completion(image) }
                 } catch {
                     showErrorMessage(with: error)
                 }
             }
         }
-    }
-    
-    //MARK: Private
-    private func getImageData() async throws -> Data {
-        guard let url = self.url else {
-            throw ACRequestError.invalidURLError
-        }
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.isValidStatusCode else {
-            throw ACRequestError.invalidDataError
-        }
-        return data
     }
 }
 

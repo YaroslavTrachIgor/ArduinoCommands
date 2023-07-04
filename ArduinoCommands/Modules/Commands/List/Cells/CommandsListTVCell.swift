@@ -11,7 +11,8 @@ import UIKit
 //MARK: - Command preview Cell
 final class CommandsListTVCell: UITableViewCell {
     
-    var uiModel: CommandsListTVCellUIModelProtocol?
+    //MARK: Private
+    private var uiModel: CommandUIModel?
     
     //MARK: @IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -28,15 +29,12 @@ final class CommandsListTVCell: UITableViewCell {
 extension CommandsListTVCell: ACBaseConfigurableView {
     
     //MARK: Internal
-    internal func configure(with data: CommandsListTVCellUIModelProtocol) {
+    internal func configure(with data: CommandUIModel) {
         uiModel = data
-        ///ADD UIMODEL INITIALIZATION AS A PRIVATE VARIBLE IN ALL FILES
-        
-        
         setupCommandCellTitleLabel()
         setupCommandCellSubtitleLabel()
         setupCommandCellContentTextView()
-        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returns)
+        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returnsLabelIsHidden)
         setupDevicesDecorationLabel()
         setupMethodDecoLabel()
         backgroundColor = UIColor.ACTable.cellBackgroundColor
@@ -78,20 +76,19 @@ private extension CommandsListTVCell {
     }
     
     func setupDevicesDecorationLabel() {
-        let isUsedWithDevices = uiModel?.isUsedWithDevices
-        if uiModel!.isFirstSection {
-            middleDecorationLabel.setupInitialDecoLabel(with: isUsedWithDevices)
-        } else {
-            middleDecorationLabel.setupDevicesDecoLabel(with: isUsedWithDevices)
-        }
+        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled)
         middleLabelWidth.constant = uiModel!.middleLabelWidth
+        
+        if uiModel!.isInitialMethod {
+            middleDecorationLabel.setupInitialDecoLabel(with: uiModel?.isDevicesLabelEnabled)
+        }
     }
     
     func setupMethodDecoLabel() {
-        if uiModel!.isLibraryMethod {
+        leftDecorationLabel.setupMethodDecoLabel()
+        
+        if uiModel!.isLibraryMethodLabelFirst {
             leftDecorationLabel.setupLibraryDecoLabel()
-        } else {
-            leftDecorationLabel.setupMethodDecoLabel()
         }
     }
 }

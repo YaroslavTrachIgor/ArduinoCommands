@@ -25,7 +25,7 @@ final public class ACNeumorphicShadowManeger {
     }
     
     //MARK: Public
-    func setupShadowStyles(setupCostomStyle: (() -> Void)?) {
+    func setupShadowStyles(setupCostomStyle: (() -> Void)? = nil) {
         view.clipsToBounds = false
         view.layer.cornerCurve = .continuous
         /**

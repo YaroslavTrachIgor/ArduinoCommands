@@ -13,7 +13,7 @@ struct IntroView: View {
     
     //MARK: Private
     @StateObject
-    private var stateHelper = IntroStateHelper()
+    private var viewModel = IntroViewModel()
     @Environment(\.presentationMode)
     private var presentationMode
     
@@ -25,8 +25,8 @@ struct IntroView: View {
         .background(IntroBackgroundView())
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        .environmentObject(stateHelper)
-        .onReceive(stateHelper.$viewIsHidden, perform: { isPresenting in
+        .environmentObject(viewModel)
+        .onReceive(viewModel.$viewIsHidden, perform: { isPresenting in
             hideIntro(if: isPresenting)
         })
     }
@@ -40,7 +40,8 @@ private extension IntroView {
     func hideIntro(if isPresenting: Bool) {
         if isPresenting {
             presentationMode.wrappedValue.dismiss()
-            stateHelper.viewIsHidden = false
+            viewModel.viewIsHidden = false
         }
     }
 }
+

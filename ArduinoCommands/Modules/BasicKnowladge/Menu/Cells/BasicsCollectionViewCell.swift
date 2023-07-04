@@ -28,6 +28,9 @@ private extension BasicsCollectionViewCell {
 //MARK: - Basics section Cell
 final class BasicsCollectionViewCell: ACNeumorphicCollectionViewCell {
     
+    //MARK: Private
+    private var uiModel: BasicsCellUIModelProtocol?
+    
     //MARK: @IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleTextView: UITextView!
@@ -41,13 +44,14 @@ extension BasicsCollectionViewCell: ACBaseConfigurableView {
     
     //MARK: Internal
     internal func configure(with data: BasicsCellUIModelProtocol) {
-        continueButton.configuration = setupContinueButtonConfiguration(with: data)
-        setupBasicsSubtitleLabel(with: data)
-        setupBasicsTitleLabel(with: data)
-        setupDecorationImageView(with: data)
-        setupBasicsCell(shadowAvailable: data.isShadowAvailable,
-                        backColor: data.backgroundColor,
-                        secondatyColor: data.secondaryColor,
+        uiModel = data
+        continueButton.configuration = setupContinueButtonConfiguration()
+        setupBasicsSubtitleLabel()
+        setupBasicsTitleLabel()
+        setupDecorationImageView()
+        setupBasicsCell(shadowAvailable: uiModel?.isShadowAvailable,
+                        backColor: uiModel?.backgroundColor,
+                        secondatyColor: uiModel?.secondaryColor,
                         gradientType: .upwards)
     }
 }
@@ -57,10 +61,10 @@ extension BasicsCollectionViewCell: ACBaseConfigurableView {
 private extension BasicsCollectionViewCell {
 
     //MARK: Private
-    func setupBasicsTitleLabel(with data: BasicsCellUIModelProtocol) {
+    func setupBasicsTitleLabel() {
         let font = UIFont.ACFont(style: .cellTitle)
-        let content = data.title
-        let textColor = data.tintColor
+        let content = uiModel?.title
+        let textColor = uiModel?.tintColor
         titleLabel.backgroundColor = .clear
         titleLabel.numberOfLines = 2
         titleLabel.textColor = textColor
@@ -68,28 +72,28 @@ private extension BasicsCollectionViewCell {
         titleLabel.font = font
     }
     
-    func setupBasicsSubtitleLabel(with data: BasicsCellUIModelProtocol) {
+    func setupBasicsSubtitleLabel() {
         let font = UIFont.ACFont(style: .cellContent)
-        let content = data.previewDescription
-        let textColor = data.tintColor
+        let content = uiModel?.previewDescription
+        let textColor = uiModel?.tintColor
         subtitleTextView.backgroundColor = .clear
         subtitleTextView.textColor = textColor
         subtitleTextView.text = content
         subtitleTextView.font = font
     }
     
-    func setupDecorationImageView(with data: BasicsCellUIModelProtocol) {
-        let image = data.decorationImage
+    func setupDecorationImageView() {
+        let image = uiModel?.decorationImage
         decorationImageView.alpha = 0.65
         decorationImageView.image = image
         decorationImageView.contentMode = .scaleAspectFit
     }
     
-    func setupContinueButtonConfiguration(with data: BasicsCellUIModelProtocol) -> UIButton.Configuration {
+    func setupContinueButtonConfiguration() -> UIButton.Configuration {
         var config: UIButton.Configuration = .borderedTinted()
-        let attributedTitle = setupContinueButtonAttributedTitle(with: data)
-        let attributedSubitle = setupContinueButtonAttributedSubtitle(with: data)
-        let baseBackgroundColor = data.tintColor
+        let attributedTitle = setupContinueButtonAttributedTitle()
+        let attributedSubitle = setupContinueButtonAttributedSubtitle()
+        let baseBackgroundColor = uiModel?.tintColor
         config.baseBackgroundColor = baseBackgroundColor
         config.attributedSubtitle = attributedSubitle
         config.attributedTitle = attributedTitle
@@ -97,9 +101,9 @@ private extension BasicsCollectionViewCell {
         return config
     }
     
-    func setupContinueButtonAttributedTitle(with data: BasicsCellUIModelProtocol) -> AttributedString {
+    func setupContinueButtonAttributedTitle() -> AttributedString {
         let title = Constants.UI.Button.continueTitle
-        let textColor = data.tintColor
+        let textColor = uiModel?.tintColor
         let font = UIFont.ACFont(ofSize: 12.7, weight: .bold)
         var attTitle = AttributedString.init(title)
         attTitle.foregroundColor = textColor
@@ -108,9 +112,9 @@ private extension BasicsCollectionViewCell {
         return attTitle
     }
     
-    func setupContinueButtonAttributedSubtitle(with data: BasicsCellUIModelProtocol) -> AttributedString {
+    func setupContinueButtonAttributedSubtitle() -> AttributedString {
         let title = Constants.UI.Button.continueSubtitle
-        let textColor = data.tintColor
+        let textColor = uiModel?.tintColor
         let font = UIFont.ACFont(ofSize: 11.1)
         var attSubtitle = AttributedString.init(title)
         attSubtitle.foregroundColor = textColor

@@ -9,7 +9,7 @@ import Foundation
 import GoogleMobileAds
 
 //MARK: - Keys
-private extension ACCommandDetailAdsClient {
+private extension CommandDetailAdsClient {
     
     //MARK: Private
     enum Keys {
@@ -23,13 +23,13 @@ private extension ACCommandDetailAdsClient {
 
 
 //MARK: - Ads manager protocol
-protocol ACCommandDetailAdsClientProtocol {
+protocol CommandDetailAdsClientProtocol {
     func setupCommandDetailAdBunner(for bunner: GADBannerView, on vc: UIViewController)
 }
 
 
 //MARK: - Main Ads manager
-final public class ACCommandDetailAdsClient: ACAdsManagar, ACCommandDetailAdsClientProtocol {
+final public class CommandDetailAdsClient: ACAdsManagar, CommandDetailAdsClientProtocol {
     
     //MARK: Internal
     /// Setup GoogleMobileAds Bunner.

@@ -24,6 +24,24 @@ protocol PersonCellUIModelProtocol {
 }
 
 
+//MARK: - Constants
+private extension PersonCellUIModel {
+    
+    //MARK: Private
+    enum Constants {
+        enum Color {
+            
+            //MARK: Static
+            static let decorationTintColorName = "DecorationTintColor"
+            static let decorationSecondaryTintColorName = "DecorationSecondaryTintColor"
+            
+            static let subtitleBackColorName = "SubtitleBackColor"
+            static let subtitleSecondaryColorName = "SubtitleBackSecondaryColor"
+        }
+    }
+}
+
+
 //MARK: - Cell ViewModel
 public struct PersonCellUIModel {
     
@@ -48,6 +66,37 @@ extension PersonCellUIModel: PersonCellUIModelProtocol {
     internal var isShadowAvailable: Bool! {
         model?.shadowAvailable!
     }
+    internal var backgroundColor: UIColor! {
+        model?.backColor!
+    }
+    internal var tintColor: UIColor! {
+        model?.tintColor!
+    }
+    internal var secondaryColor: UIColor! {
+        model?.secondaryColor!
+    }
+    internal var decorationImageViewTintColor: UIColor! {
+        if isShadowAvailable {
+            let mainColorName = Constants.Color.decorationTintColorName
+            let mainColor = UIColor(named: mainColorName)
+            return mainColor
+        } else {
+            let secondaryColorName = Constants.Color.decorationSecondaryTintColorName
+            let secondaryColor = UIColor(named: secondaryColorName)
+            return secondaryColor
+        }
+    }
+    internal var subtitleLabelBackColor: UIColor! {
+        if isShadowAvailable {
+            let mainColorName = Constants.Color.subtitleBackColorName
+            let mainColor = UIColor(named: mainColorName)
+            return mainColor
+        } else {
+            let secondaryColorName = Constants.Color.subtitleSecondaryColorName
+            let secondaryColor = UIColor(named: secondaryColorName)
+            return secondaryColor
+        }
+    }
     internal var decorationIconImage: UIImage! {
         let roleIconImageConfig = UIImage.SymbolConfiguration(weight: .medium)
         let roleIconImageName = model?.roleIcon
@@ -58,31 +107,5 @@ extension PersonCellUIModel: PersonCellUIModelProtocol {
         let decorationBackImageName = model?.backImageName!
         let decorationBackImage = UIImage(named: decorationBackImageName!)
         return decorationBackImage
-    }
-    internal var decorationImageViewTintColor: UIColor! {
-        /**
-         ADD Constants
-         */
-        if isShadowAvailable {
-            return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 0.603795841)
-        } else {
-            return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 0.4)
-        }
-    }
-    internal var subtitleLabelBackColor: UIColor! {
-        if isShadowAvailable {
-            return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 0.3308882555)
-        } else {
-            return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 0.09748937338)
-        }
-    }
-    internal var backgroundColor: UIColor! {
-        model?.backColor!
-    }
-    internal var tintColor: UIColor! {
-        model?.tintColor!
-    }
-    internal var secondaryColor: UIColor! {
-        model?.secondaryColor!
     }
 }

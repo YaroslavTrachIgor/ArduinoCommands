@@ -12,6 +12,7 @@ import GoogleMobileAds
 
 //MARK: - Main ViewController protocol
 protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
+    func show(model: CommandDetailUIModel!)
     func presentTabBarWithAnimation(alpha: Int)
     func changeTextViewContentAnimately(text: String)
     func presentDetailsViews(with animationType: ACBasePresentationType)
@@ -65,8 +66,8 @@ private extension CommandDetailViewController {
 //MARK: - Main ViewController
 final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     
-    //MARK: Weak
-    weak var model: ACCommand!
+    //MARK: Internal
+    var model: ACCommand!
     
     //MARK: Static
     static var storyboardName: String {
@@ -74,14 +75,12 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     }
     
     //MARK: Private
-    private var uiModel: CommandDetailUIModelProtocol? {
-        return CommandDetailUIModel(model: model)
-    }
+    private var uiModel: CommandDetailUIModel?
     private var presenter: CommandDetailPresenterProtocol? {
         return CommandDetailPresenter(view: self, delegate: self, model: model)
     }
-    private var adsClient: ACCommandDetailAdsClientProtocol? {
-        return ACCommandDetailAdsClient()
+    private var adsClient: CommandDetailAdsClientProtocol? {
+        return CommandDetailAdsClient()
     }
     private var detailsTintColor: UIColor!
     
@@ -107,9 +106,13 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBOutlet private weak var presentDeviceImagesButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
     @IBOutlet private weak var detailBackgroundView: CommandDetailBackgroundView!
-    
+
     
     //MARK: Lifecycle
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -175,37 +178,37 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
 extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol {
     
     //MARK: Internal
-    internal func setupMainUI() {
+    internal func show(model: CommandDetailUIModel!) {
+        self.uiModel = model
         setupTitleLabel()
         setupSubtitleLabel()
         setupContentTextView()
         setupContentBackgroundView()
+        setupDetailDescriptionLabels()
+        leftDecorationLabel.setupReturnsDecoLabel(with: uiModel?.returnsLabelIsHidden)
+        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled)
+        setupPresentDeviceImagesButton()
         setupCodeScreenshotImageView()
-        setupContentBackgroundBlurView()
         setupCodeSnippetButton()
         setupScreenshotButton()
+    }
+    
+    internal func setupMainUI() {
+        setupContentBackgroundBlurView()
         setupDetailHeaderLabels()
-        setupDetailDescriptionLabels()
         setupDetailDescriptionBackViews()
         setupDetailBackgroundBlurView()
         setupDetailBackgroundView()
         setupDetailContentView()
         setupDetailCopyButtons()
-        setupPresentDeviceImagesButton()
         presentDetailsButton.setupDetailsButton(with: Constants.UI.Image.detailsIcon)
         detailBackgroundView.changeTintColorButton.setupCodeContentEditingButton(tintColor: detailsTintColor, imageName: Constants.UI.Image.colorPickerGoIcon)
         detailBackgroundView.doneButton.setupPopupButton(tintColor: detailsTintColor, title: Constants.UI.Button.closeTitle)
         contentSegmentedControl.setupBaseDetailDarkSegmentedControl()
-        leftDecorationLabel.setupReturnsDecoLabel(with: uiModel?.returnsLabelIsHidden)
-        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled)
         rightDecotationLabel.setupMethodDecoLabel()
         costomBackBarButton.setupBaseBackBarButton()
         shareBarButton.setupBaseShareBarButton()
         copyBarButton.setupBaseCopyBarButton()
-    }
-    
-    internal func setupAdBunner() {
-        //adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
     }
     
     internal func changeTextViewContentAnimately(text: String) {
@@ -214,6 +217,10 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
     
     internal func presentTabBarWithAnimation(alpha: Int) {
         hideTabBarWithAnimation(alpha: alpha)
+    }
+    
+    internal func setupAdBunner() {
+        ///adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
     }
     
     internal func presentDetailsViews(with animationType: ACBasePresentationType) {
@@ -259,6 +266,9 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         deviceImagesVC.device = model.device
         navigationController?.pushViewController(deviceImagesVC, animated: true)
     }
+    
+    //MARK: CREATE FABRIC to ommit models in views and initialized presenters
+    
     
     internal func presentCodeSnippetViewController() {
         let codeSnippetVC = CodeSnippetViewController.instantiate()
@@ -454,7 +464,7 @@ private extension CommandDetailViewController {
         /**
          In the code below, before we setup needed button properties,
          we check if this buton for this command enabled
-         through uiModel properties(in this case, if Screenshot enabled).
+         through UI model properties (in this case, if Screenshot Enabled).
          */
         if isEnabled! {
             tintColor = baseBackgroundColor
@@ -477,7 +487,7 @@ private extension CommandDetailViewController {
         let baseTintColor = UIColor.ACDetails.tintColor
         let baseBackgroundColor = UIColor.ACDetails.backgroundColor
         let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
-        let isEnabled = uiModel?.isCodeSnippetButtonEnabled!
+        let isEnabled = uiModel?.isCodeSnippetButtonEnabled
         let backgroundColor: UIColor
         let strokeColor: UIColor
         let tintColor: UIColor
@@ -487,7 +497,7 @@ private extension CommandDetailViewController {
         /**
          In the code below, before we setup needed button properties,
          we check if this buton for this command enabled
-         through uiModel properties(in this case, if Code Snippet enabled).
+         through UI model properties (in this case, if Code Snippet Enabled).
          */
         if isEnabled! {
             tintColor = baseTintColor

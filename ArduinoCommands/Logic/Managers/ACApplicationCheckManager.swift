@@ -53,12 +53,10 @@ final class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
         Task {
             do {
                 let applicationAPI = try await service.getApplicationResponse()
-                guard let version = applicationAPI.version else { return }
+                guard let version = applicationAPI?.version else { return }
                 if version != Keys.currentVersion && isNeededAlert {
                     guard let completionHandler = completion else { return }
-                    DispatchQueue.main.async {
-                        completionHandler()
-                    }
+                    await MainActor.run { completionHandler() }
                     /**
                      After New Version alert was shown,
                      we need to set a new value for the special bool marker,

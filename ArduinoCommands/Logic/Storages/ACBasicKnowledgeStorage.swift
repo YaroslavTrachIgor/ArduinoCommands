@@ -57,7 +57,7 @@ public extension ACBasicKnowledgeStorage {
 public enum ACBasicKnowledgeStorage {
     
     //MARK: Statiс
-    /// This fills an array of sections  for `Basic Knowledge` Menu VC.
+    /// This fills an array of sections  of `BasicKnowledge` Menu VC.
     ///
     /// Such method of configuring sections and tableView
     /// makes our code much more flexible and convenient for reusing(Data-Driven UI principle).

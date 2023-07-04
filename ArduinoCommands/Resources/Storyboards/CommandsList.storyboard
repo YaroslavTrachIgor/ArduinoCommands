@@ -147,7 +147,7 @@
         <!--L i s t-->
         <scene sceneID="qGI-mL-Jdw">
             <objects>
-                <navigationController id="xok-Hh-b09" sceneMemberID="viewController">
+                <navigationController id="xok-Hh-b09" customClass="CommandsNavigationController" customModule="ArduinoCommands" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="L i s t" image="list.dash.header.rectangle" catalog="system" id="6mK-TH-j9E"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dJE-eb-I4u">
                         <rect key="frame" x="0.0" y="48" width="414" height="96"/>

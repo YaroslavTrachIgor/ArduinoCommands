@@ -24,13 +24,13 @@ public class ACNeumorphicCollectionViewCell: ACCustomCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        shadowManeger.setupShadowStyles(setupCostomStyle: nil)
+        shadowManeger.setupShadowStyles()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        shadowManeger.setupShadowStyles(setupCostomStyle: nil)
+        shadowManeger.setupShadowStyles()
     }
     
     //MARK: Lifecycle

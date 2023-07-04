@@ -37,7 +37,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: Internal
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DispatchQueue.global(qos: .userInteractive).async {
-            //GADMobileAds.sharedInstance().start(completionHandler: nil)
+            ///GADMobileAds.sharedInstance().start(completionHandler: nil)
             ACNotificationManager.shared.requestAuthorization()
             ACNetworkManager.shared.startMonitoring()
             ACRateManager.shared.startCounting()
@@ -46,7 +46,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             setupTabBerItemBasicAppearance()
             setupTabBerBasicAppearance()
             setupNavBarBasicAppearance()
-            setupUserNotificationCenter()
+            setupNotificationCenter()
             setupSearchBarBasicAppearance()
             setupPageControlBasicAppearance()
         }
@@ -77,7 +77,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     
     //MARK: Private
-    func setupUserNotificationCenter() {
+    func setupNotificationCenter() {
         UNUserNotificationCenter.current().delegate = self
     }
     

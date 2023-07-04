@@ -14,24 +14,11 @@ private extension ACNotificationManager {
     
     //MARK: Private
     enum Constants {
-        enum NotificationContent {
-            
-            //MARK: Static
-            static let commandNotificationBody = "Do not forget that you have set a reminder for this command, so open the app as soon as possible and continue your learning!"
-        }
-        enum Alert {
-            enum Titles {
+        enum UI {
+            enum CommandNotification {
                 
                 //MARK: Static
-                static let failedAlertTitle = "Not available"
-                static let successAlertTitle = "Success"
-            }
-            enum Messages {
-                
-                //MARK: Static
-                static let errorAlertMessage = "The notifications have been blocked by the user."
-                static let failedAlertMessage = "Check your Notification settings for this app."
-                static let successAlertMessage = "Command Notification has been set."
+                static let body = "Do not forget that you have set a reminder for this command, so open the app as soon as possible and continue your learning!"
             }
         }
     }
@@ -39,11 +26,11 @@ private extension ACNotificationManager {
 
 
 //MARK: - Manager fpr fast Notifications sending
-final public class ACNotificationManager {
+public final class ACNotificationManager {
     
     //MARK: Static
     static let shared = ACNotificationManager()
-    
+     
     //MARK: Public
     var notificationsEnabled: Bool = false
     
@@ -65,7 +52,7 @@ final public class ACNotificationManager {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { [self] success, error in
             DispatchQueue.main.async { [self] in
                 if !success {
-                    presentErrorAlert(error: error)
+                    ACGrayAlertManager.presentNotificationErrorAlert(error: error)
                 } else {
                     notificationsEnabled = true
                 }
@@ -75,42 +62,18 @@ final public class ACNotificationManager {
 }
 
 
-//MARK: - Setup application basic Notification types
-public extension ACNotificationManager {
+//MARK: - Setup common Notification requests
+extension ACNotificationManager {
     
     //MARK: Public
-    func sendCommandNotification(with command: ACCommand, for date: Date) {
-        let title = command.name!
-        let subtitle = command.subtitle!
-        let body = Constants.NotificationContent.commandNotificationBody
-        sendNotification(title: title,
-                         subtitle: subtitle,
-                         body: body,
-                         date: date)
-    }
-}
-
-
-//MARK: - Setup Notification setting result Alerts
-public extension ACNotificationManager {
-    
-    //MARK: Public
-    func presentFailedNotificationSetAlert() {
-        let title = Constants.Alert.Titles.failedAlertTitle
-        let message = Constants.Alert.Messages.failedAlertMessage
-        ACGrayAlertManager.present(title: title,
-                                   message: message,
-                                   duration: 3.5,
-                                   preset: .error)
-    }
-    
-    func presentSuccesedNotificationSetAlert() {
-        let title = Constants.Alert.Titles.successAlertTitle
-        let message = Constants.Alert.Messages.successAlertMessage
-        ACGrayAlertManager.present(title: title,
-                                   message: message,
-                                   duration: 4,
-                                   preset: .done)
+    func sendCommandNotification(with command: ACCommand, date: Date = Date()) {
+        let title = command.name
+        let subtitle = command.subtitle
+        let body = Constants.UI.CommandNotification.body
+        ACNotificationManager.shared.sendNotification(title: title!,
+                                                      subtitle: subtitle!,
+                                                      body: body,
+                                                      date: date)
     }
 }
 
@@ -119,15 +82,6 @@ public extension ACNotificationManager {
 private extension ACNotificationManager {
     
     //MARK: Private
-    func presentErrorAlert(error: Error?) {
-        let title = Constants.Alert.Titles.failedAlertTitle
-        let message = Constants.Alert.Messages.errorAlertMessage
-        ACGrayAlertManager.present(title: title,
-                                   message: message,
-                                   duration: 5,
-                                   preset: .error)
-    }
-    
     func setupFastNotificationContent(title: String, subtitle: String, body: String) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.body = body

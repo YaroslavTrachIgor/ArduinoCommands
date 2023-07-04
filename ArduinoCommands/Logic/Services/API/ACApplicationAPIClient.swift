@@ -8,12 +8,12 @@
 import Foundation
 
 //MARK: - Application API Client base completion Handler
-typealias ACApplicationAPICompletionHandler = ((Result<ACApplication, ACRequestError>) -> Void)
+typealias ACApplicationAPICompletionHandler = ((Result<ACApplication, APIError.ACRequestError>) -> Void)
 
 
 //MARK: - Application API Client protocol
 protocol ACApplicationAPIClientProtocol {
-    func getApplicationResponse() async throws -> ACApplication
+    func getApplicationResponse() async throws -> ACApplication?
 }
 
 
@@ -21,14 +21,16 @@ protocol ACApplicationAPIClientProtocol {
 final public class ACApplicationAPIClient: APIHelper, ACApplicationAPIClientProtocol {
     
     //MARK: Internal
-    func getApplicationResponse() async throws -> ACApplication {
-        let data = try await self.get()
-        let decoder = JSONDecoder(); decoder.configureBaseDecoder()
+    func getApplicationResponse() async throws -> ACApplication? {
         do {
-            let response = try decoder.decode(ACApplication.self, from: data)
-            return response
+            let data = try await self.get()
+            if let response: ACApplication = ACJSON.decode(data) {
+                return response
+            } else {
+                return nil
+            }
         } catch {
-            throw ACRequestError.unknownApplicationAPIGetError
+            throw APIError.ACRequestError.unknownApplicationAPIGetError
         }
     }
 }

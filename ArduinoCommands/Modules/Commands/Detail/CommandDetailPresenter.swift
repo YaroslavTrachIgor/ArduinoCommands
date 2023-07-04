@@ -151,7 +151,7 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
     }
     
     internal func onShareButton() {
-        view?.presentActivityVC(activityItems: [model?.description! as Any])
+        view?.presentActivityVC(activityItems: [model?.shared as Any])
     }
 }
 
@@ -161,6 +161,7 @@ private extension CommandDetailPresenter {
     
     //MARK: Private
     func refreshView() {
+        view?.show(model: CommandDetailFormatter.convert(model!))
         view?.setupMainUI()
         animateDetails(presentationType: .hide)
     }

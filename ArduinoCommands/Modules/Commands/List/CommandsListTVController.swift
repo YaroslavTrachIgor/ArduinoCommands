@@ -15,9 +15,10 @@ import Network
 protocol CommandsListTableViewControllerProtocol: ACBaseWithShareViewController {
     func presentAdlnterstitial()
     func presentAdLoadFailAlertController(error: Error)
-    func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void))
+    func presentReminderSetupAlert(with command: CommandUIModel, completion: @escaping ((Date) -> Void))
     func presentNotificationsDisabledAlert()
-    func presentDetailVC(section: Int, row: Int)
+    func presentCommandsListLoadFailedAlert()
+    func presentDetailVC(with command: ACCommand)
 }
 
 
@@ -27,11 +28,6 @@ private extension CommandsListTVController {
     //MARK: Private
     enum Constants {
         enum UI {
-            enum Segues {
-               
-                //MARK: Static
-                static let detail = "CommandDetailSegue"
-            }
             enum SearchBar {
                 
                 //MARK: Static
@@ -46,6 +42,12 @@ private extension CommandsListTVController {
                     static let cancelActionTitle = "Cancel"
                     static let setDateActionTitle = "Select"
                     static let attributedTitleKeyPath = "attributedTitle"
+                }
+                enum CommandsListLoadFailedAlert {
+                    
+                    //MARK: Static
+                    static let title = "Failed to load Commands List"
+                    static let message = "An unexpected error occurred while loading the list of commands. Please try again later."
                 }
                 enum NotificationsDisabledAlert {
                     
@@ -97,13 +99,14 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
     private var isSearchBarEmpty: Bool { searchController.searchBar.text?.isEmpty ?? true }
     private var isFiltering: Bool { searchController.isActive && !isSearchBarEmpty }
     private var interstitial: GADInterstitialAd?
-    private lazy var filteredSections = [ACCommandsSection]()
-    private var sections = [ACCommandsSection]()
+    private lazy var filteredSections = [CommandsSectionUIModel]()
+    private var sections = [CommandsSectionUIModel]()
+    
     private var presenter: CommandsListPresenterProtocol {
         return CommandsListPresenter(view: self)
     }
-    private var adsClient: ACCommandsListAdsClientProtocol? {
-        return ACCommandsListAdsClient()
+    private var adsClient: CommandsListAdsClientProtocol? {
+        return CommandsListAdsClient()
     }
     
     
@@ -114,8 +117,14 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
         presenter.onViewDidLoad { rows in
             self.sections = rows
         }
+        
+        let sortAlphabeticalyBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(sortAlphabeticaly))
+        navigationItem.rightBarButtonItem = sortAlphabeticalyBarButtonItem
     }
     
+    @objc func sortAlphabeticaly() {
+        ///presenter.sortAlphabeticaly()
+    }
 
     //MARK: TableView protocols
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -127,7 +136,7 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        neededSections()[section].name
+        neededSections()[section].header
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,7 +144,9 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.onDidSelectRow(section: indexPath.section, row: indexPath.row)
+        let command = neededSections()[indexPath.section].commands[indexPath.row]
+        let id = command.content
+        presenter.onDidSelectRow(id: id!)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -160,11 +171,8 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellKey = Constants.UI.TableViewCell.commandCellId
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellKey, for: indexPath) as! CommandsListTVCell
-        let row = indexPath.row
-        let section = indexPath.section
-        let model = neededSections()[section].commands[row]
-        let uiModel = CommandsListTVCellUIModel(model: model)
+        let cell: CommandsListTVCell = tableView.dequeueCell(cellKey, for: indexPath)
+        let uiModel = neededSections()[indexPath.section].commands[indexPath.row]
         cell.configure(with: uiModel)
         return cell
     }
@@ -185,8 +193,8 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
     }
     
     internal func presentAdlnterstitial() {
-        //guard let interstitial = interstitial else { return }
-        //adsClient?.presentCommandDetailnterstitialAd(interstitial: interstitial, on: self)
+        ///guard let interstitial = interstitial else { return }
+        ///adsClient?.presentCommandDetailnterstitialAd(interstitial: interstitial, on: self)
     }
     
     internal func presentActivityVC(activityItems: [Any]) {
@@ -194,6 +202,14 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         ACActivityManager.presentVC(activityItems: activityItems,
                                     tintColor: tintColor,
                                     on: self)
+    }
+    
+    internal func presentCommandsListLoadFailedAlert() {
+        let title = Constants.UI.Alert.CommandsListLoadFailedAlert.title
+        let message = Constants.UI.Alert.CommandsListLoadFailedAlert.message
+        ACAlertManager.shared.presentSimple(title: title,
+                                            message: message,
+                                            on: self)
     }
     
     internal func presentAdLoadFailAlertController(error: Error) {
@@ -216,7 +232,7 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
                                    preset: .custom(iconImage))
     }
     
-    internal func presentReminderSetupAlert(with command: ACCommand, completion: @escaping ((Date) -> Void)) {
+    internal func presentReminderSetupAlert(with command: CommandUIModel, completion: @escaping ((Date) -> Void)) {
         let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
         let reminderDatePicker = setupReminderDatePicker()
         let title = Constants.UI.Alert.ReminderAlert.title
@@ -240,9 +256,8 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         present(alertController, animated: true, completion: nil)
     }
     
-    internal func presentDetailVC(section: Int, row: Int) {
-        let detailVC = CommandDetailViewController.instantiate()
-        let model = neededSections()[section].commands[row]
+    internal func presentDetailVC(with model: ACCommand) {
+        let detailVC: CommandDetailViewController = .instantiate()
         detailVC.model = model
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -308,7 +323,7 @@ private extension CommandsListTVController {
         return reminderDatePicker
     }
     
-    func setupShareRowAction(command: ACCommand) -> UIContextualAction {
+    func setupShareRowAction(command: CommandUIModel) -> UIContextualAction {
         let shareActionBackColor = Constants.UI.RowAction.shareActionBackgroundColor
         let shareActionIconName = Constants.UI.Image.shareActionName
         let shareAction = UIContextualAction(style: .normal, title: nil) { [self] _, _, _ in
@@ -320,7 +335,7 @@ private extension CommandsListTVController {
         return shareAction
     }
     
-    func setupRemindRowAction(command: ACCommand) -> UIContextualAction {
+    func setupRemindRowAction(command: CommandUIModel) -> UIContextualAction {
         let remindActionBackColor = Constants.UI.RowAction.remindActionBackgroundColor
         let remindActionIconName = Constants.UI.Image.remindActionName
         let remindAction = UIContextualAction(style: .normal, title: nil) { [self] _, _, _ in
@@ -333,14 +348,14 @@ private extension CommandsListTVController {
     }
     
     func setupInterstitial() {
-        //adsClient?.setupCommandDetailnterstitialAd(delegate: self, completion: { interstitial in
-        //    self.interstitial = interstitial
-        //})
+        ///adsClient?.setupCommandDetailnterstitialAd(delegate: self, completion: { interstitial in
+        ///    self.interstitial = interstitial
+        ///})
     }
     
     
     //MARK: Fast methods
-    func neededSections() -> [ACCommandsSection] {
+    func neededSections() -> [CommandsSectionUIModel] {
         if isFiltering {
             return filteredSections
         } else {

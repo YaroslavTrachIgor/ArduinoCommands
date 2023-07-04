@@ -30,6 +30,17 @@ private extension DeviceImagesCollectionViewController {
                 //MARK: Static
                 static let baseInset: CGFloat = 0
             }
+            enum ToolBar {
+                
+                //MARK: Static
+                static let hiddenSpaceBarHeight: CGFloat = 0
+                static let visibleSpaceBarHeight: CGFloat = 25
+            }
+            enum SegmentedControl {
+                
+                //MARK: Static
+                static let galleryModeItems = ["1:4", "1:2", "1:1"]
+            }
             enum Alert {
                 
                 //MARK: Static
@@ -53,57 +64,6 @@ private extension DeviceImagesCollectionViewController {
 }
 
 
-final class DevicesImagesGallerySegmentedControl: UISegmentedControl {
-    
-    private var segmentInset: CGFloat = 0.1 {
-        didSet {
-            if segmentInset == 0 {
-                segmentInset = 0.1
-            }
-        }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        layer.cornerRadius = self.frame.height / 2
-        layer.borderColor = UIColor.white.withAlphaComponent(0.6).cgColor
-        layer.borderWidth = 0.2
-        layer.masksToBounds = true
-        
-        selectedSegmentTintColor = .clear
-        
-        let selectedImageViewIndex = numberOfSegments
-        if let selectedImageView = self.subviews[selectedImageViewIndex] as? UIImageView {
-            selectedImageView.image = nil
-            selectedImageView.backgroundColor = UIColor(named: "DevicesImagesSelectedSegmentBack")
-            selectedImageView.layer.cornerRadius = selectedImageView.frame.height / 2
-        }
-        
-        let defaultButtonTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-        setTitleTextAttributes(defaultButtonTextAttributes, for: .normal)
-        setTitleTextAttributes(defaultButtonTextAttributes, for: .selected)
-    }
-}
-
-
-
-public extension UICollectionViewFlowLayout {
-    
-    //MARK: Public
-    static func setupBasicGalleryFlowLayout(width: CGFloat, basicSpacing: CGFloat = 1) -> UICollectionViewFlowLayout {
-        let itemSize = CGSize(width: width, height: width)
-        let layout: UICollectionViewFlowLayout = .init()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = basicSpacing
-        layout.minimumLineSpacing = basicSpacing
-        layout.itemSize = itemSize
-        return layout
-    }
-}
-
-
-
 //MARK: - Main ViewController
 final class DeviceImagesCollectionViewController: UICollectionViewController {
     
@@ -117,7 +77,8 @@ final class DeviceImagesCollectionViewController: UICollectionViewController {
         return DeviceImagesPresenter(view: self, model: device)
     }
     private lazy var gallerySegmentedControl: UISegmentedControl = {
-        let segmentedControl = DevicesImagesGallerySegmentedControl(items: ["1:4", "1:2", "1:1"])
+        let segmentedControlItems = Constants.UI.SegmentedControl.galleryModeItems
+        let segmentedControl = ACModeSegmentedControl(items: segmentedControlItems)
         let action = #selector(chooseCollectionViewLayout(sender: ))
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: action, for: .valueChanged)
@@ -178,7 +139,7 @@ extension DeviceImagesCollectionViewController: DeviceImagesCollectionViewContro
     //MARK: Internal
     internal func setupMainUI() {
         setupCollectionView()
-        setupToolBar()
+        setupBottomToolBars()
         setupNavigationItem()
         view.backgroundColor = .secondarySystemGroupedBackground
     }
@@ -240,30 +201,58 @@ private extension DeviceImagesCollectionViewController {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
     
-    func setupToolBar() {
-        let toolbar = UIToolbar()
-        let barHeight: CGFloat = 60
+    func setupBottomToolBars() {
+        let spacerToolBarHeight = setupSpacerToolBarHeight()
+        let spacerToolBar = setupSpacerToolBar()
+        view.addSubview(spacerToolBar)
+        
+        NSLayoutConstraint.activate([
+            spacerToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            spacerToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            spacerToolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            spacerToolBar.heightAnchor.constraint(equalToConstant: spacerToolBarHeight)
+        ])
+        /**
+         In the code above, since the UIToolBar (unlike the UITabBar) does not increase
+         automatically its height for iPhones without a home button,
+         we add one more empty tool bar at the bottom of the main view
+         in order to not make the `gallerySegmentedControl` look too close to the bottom of the screen.
+         */
+        let segmentedControlToolBarHeight: CGFloat = 60
+        let segmentedControlToolBar = setupSegmentedControlToolBar()
+        view.addSubview(segmentedControlToolBar)
+        
+        NSLayoutConstraint.activate([
+            segmentedControlToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            segmentedControlToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            segmentedControlToolBar.topAnchor.constraint(equalTo: spacerToolBar.topAnchor, constant: -segmentedControlToolBarHeight),
+            segmentedControlToolBar.heightAnchor.constraint(equalToConstant: segmentedControlToolBarHeight)
+        ])
+    }
+
+    func setupSegmentedControlToolBar() -> UIToolbar {
+        let segmentedControlToolBar = UIToolbar()
         let maskedCorners: CACornerMask = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        let borderColor = UIColor.white.withAlphaComponent(0.15).cgColor
         let cornerRadius = CGFloat.Corners.baseACSecondaryRounding + 4
         let spacerBarItem = UIBarButtonItem.spacer()
         let segmentedControlBarItem = UIBarButtonItem(customView: gallerySegmentedControl)
-        let toolBarItmes: [UIBarButtonItem] = [spacerBarItem, segmentedControlBarItem, spacerBarItem]
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.layer.maskedCorners = maskedCorners
-        toolbar.layer.cornerRadius = cornerRadius
-        toolbar.layer.borderColor = borderColor
-        toolbar.layer.borderWidth = 0.4
-        toolbar.layer.masksToBounds = true
-        toolbar.items = toolBarItmes
-        view.addSubview(toolbar)
-        
-        NSLayoutConstraint.activate([
-            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            toolbar.heightAnchor.constraint(equalToConstant: barHeight)
-        ])
+        let toolBarItems: [UIBarButtonItem] = [spacerBarItem, segmentedControlBarItem, spacerBarItem]
+        segmentedControlToolBar.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControlToolBar.layer.maskedCorners = maskedCorners
+        segmentedControlToolBar.layer.cornerRadius = cornerRadius
+        segmentedControlToolBar.layer.masksToBounds = true
+        segmentedControlToolBar.items = toolBarItems
+        return segmentedControlToolBar
+    }
+
+    func setupSpacerToolBar() -> UIToolbar {
+        let spacerToolBar = UIToolbar()
+        let borderColor = UIColor.white.withAlphaComponent(0).cgColor
+        spacerToolBar.translatesAutoresizingMaskIntoConstraints = false
+        spacerToolBar.layer.borderColor = borderColor
+        spacerToolBar.layer.borderWidth = 1
+        spacerToolBar.layer.masksToBounds = true
+        return spacerToolBar
     }
     
     func setupBackBarButtonItem() -> UIBarButtonItem {
@@ -307,6 +296,16 @@ private extension DeviceImagesCollectionViewController {
         let layoutButton = UIBarButtonItem.init(customView: layoutButtonView)
         return layoutButton
     }
+    
+    func setupSpacerToolBarHeight() -> CGFloat {
+        switch UIDevice.diagonalModelName {
+        case .iPhone8, .iPhone8Plus, .iPhoneSE, .iPod:
+            return Constants.UI.ToolBar.hiddenSpaceBarHeight
+        default:
+            return Constants.UI.ToolBar.visibleSpaceBarHeight
+        }
+    }
+    
     
     //MARK: Fast methods
     func getCollectionViewLayout(with index: Int) -> UICollectionViewFlowLayout? {

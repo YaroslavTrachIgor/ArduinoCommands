@@ -12,16 +12,17 @@ final public class ACOnboardingHelper: Codable {
     let title: String!
     let subtitle: String!
     let foreword: String!
-    let sections: [ACOnboardingSection]!
+    let sections: ACOnboardingSections!
     
     //MARK: Initialization
     init(title: String!,
          subtitle: String!,
          foreword: String!,
-         sections: [ACOnboardingSection]!) {
+         sections: ACOnboardingSections!) {
         self.title = title
         self.subtitle = subtitle
         self.foreword = foreword
         self.sections = sections
     }
 }
+

@@ -15,7 +15,8 @@ public extension UserDefaults {
     enum Keys {
         
         //MARK: Static
-        static let allowsNotifications = "AllowsNotificationsKey"
+        static let allowNotifications = "AllowsNotificationsKey"
+        static let allowAnalytics = "AllowAnalyticsKey"
         static let isOnboardingNeeded = "IsNeededToBeOpenedKey"
         static let sessionsCountKey = "SessionsCountKey"
         static let checkVersionKey = "CheckVersionKey"

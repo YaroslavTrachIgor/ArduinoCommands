@@ -82,6 +82,15 @@ public extension UIViewController {
         }
     }
     
+    /// This sets up animated VC dismission handler.
+    /// - Parameter completion: last actions after function execution.
+    func dismissVC(completion: ACBaseCompletionHandler? = nil) {
+        dismiss(animated: true) {
+            guard let completion = completion else { return }
+            completion()
+        }
+    }
+    
     func setBlurViewForStatusBar() {
         let blurEffect = UIBlurEffect(style: .regular)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)

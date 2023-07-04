@@ -27,8 +27,30 @@ private extension ACGrayAlertManager {
                 static let title = "New Version"
                 static let message = "The New Version of Arduino Commands is available in App Store."
                 static let presetImageName = "app.gift.fill"
-                static let cornerRadius: CGFloat = 20
-                static let duration: CGFloat = 8
+                static let cornerRadius = CGFloat(20)
+                static let duration = CGFloat(6)
+            }
+            enum Notification {
+                enum ErrorAlert {
+                    
+                    //MARK: Static
+                    static let message = "The notifications have been blocked by the user."
+                    static let duration = CGFloat(5)
+                }
+                enum FailedAlert {
+                    
+                    //MARK: Static
+                    static let title = "Not available"
+                    static let message = "Check your Notification settings for this app."
+                    static let duration = CGFloat(4.5)
+                }
+                enum SuccessAlert {
+                    
+                    //MARK: Static
+                    static let title = "Success"
+                    static let message = "Command Notification has been set."
+                    static let duration = CGFloat(3)
+                }
             }
         }
     }
@@ -53,14 +75,15 @@ final public class ACGrayAlertManager {
 }
 
 
-//MARK: - Creating basic Alert View types
+//MARK: - Preparing basic Alert View types
 extension ACGrayAlertManager {
     
     //MARK: Static
     static func presentCopiedAlert(contentType: ACPasteboardManager.ContentType = .content) {
         let title = Constants.UI.CopiedAlert.title
         let message = contentType.rawValue + Constants.UI.CopiedAlert.message
-        ACGrayAlertManager.present(title: title, message: message)
+        ACGrayAlertManager.present(title: title,
+                                   message: message)
     }
     
     static func presentNewVersionAlert() {
@@ -68,6 +91,41 @@ extension ACGrayAlertManager {
         let message = Constants.UI.NewVersionAlert.message
         let cornerRadius = Constants.UI.NewVersionAlert.cornerRadius
         let presetImage = UIImage(systemName: Constants.UI.NewVersionAlert.presetImageName)!
-        ACGrayAlertManager.present(title: title, message: message, cornerRadius: cornerRadius, preset: .custom(presetImage))
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   cornerRadius: cornerRadius,
+                                   preset: .custom(presetImage))
+    }
+    
+    static func presentFailedNotificationSetAlert() {
+        let title = Constants.UI.Notification.FailedAlert.title
+        let message = Constants.UI.Notification.FailedAlert.message
+        let duration = Constants.UI.Notification.FailedAlert.duration
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   duration: duration,
+                                   preset: .error)
+    }
+    
+    static func presentSuccesedNotificationSetAlert() {
+        let title = Constants.UI.Notification.SuccessAlert.title
+        let message = Constants.UI.Notification.SuccessAlert.message
+        let duration = Constants.UI.Notification.SuccessAlert.duration
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   duration: duration,
+                                   preset: .done)
+    }
+    
+    static func presentNotificationErrorAlert(error: Error?) {
+        let title = Constants.UI.Notification.FailedAlert.title
+        let message = Constants.UI.Notification.ErrorAlert.message
+        let duration = Constants.UI.Notification.ErrorAlert.duration
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   duration: duration,
+                                   preset: .error)
     }
 }
+
+

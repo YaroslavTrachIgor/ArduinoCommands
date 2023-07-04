@@ -25,3 +25,5 @@ final public class ACOnboardingSection: Codable {
         self.imageSystemName = imageSystemName
     }
 }
+
+typealias ACOnboardingSections = [ACOnboardingSection]

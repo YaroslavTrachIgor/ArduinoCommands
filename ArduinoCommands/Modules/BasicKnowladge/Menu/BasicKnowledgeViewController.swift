@@ -16,8 +16,8 @@ protocol BasicKnowledgeVCProtocol: ACBaseViewController {
     func presentOnboardingVC()
     func presentSettingsHostVC()
     func presentDetailVC(with model: ACBasics)
-    func presentSiteWithSafari(with model: ACLink)
     func presentUserSheetVC(with model: ACUser)
+    func presentSiteWithSafari(with model: ACLink)
 }
 
 
@@ -97,7 +97,6 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter?.onOnboardingPresent()
         presenter?.onViewDidLoad(completion: { sections in
             self.sections = sections
         })
@@ -183,25 +182,25 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
         switch section {
         case .basics(let rows):
             let key = Constants.UI.CollectionView.CellKeys.basicsSectionCellKey
-            let cell = basicsCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! BasicsCollectionViewCell
+            let cell: BasicsCollectionViewCell = basicsCollectionView.dequeueCell(key, for: indexPath)
             let uiModel = BasicsCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell
         case .team(let rows):
             let key = Constants.UI.CollectionView.CellKeys.teamSectionCellKey
-            let cell = teamCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! PersonCollectionViewCell
+            let cell: PersonCollectionViewCell = teamCollectionView.dequeueCell(key, for: indexPath)
             let uiModel = PersonCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell
         case .links(let rows):
             let key = Constants.UI.CollectionView.CellKeys.siteSectionCellKey
-            let cell = sitesCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! SiteCollectionViewCell
+            let cell: SiteCollectionViewCell = sitesCollectionView.dequeueCell(key, for: indexPath)
             let uiModel = SiteCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell
         case .users(let rows):
             let key = Constants.UI.CollectionView.CellKeys.usersSectionCellKey
-            let cell = usersCollectionView.dequeueReusableCell(withReuseIdentifier: key, for: indexPath) as! UserCollectionViewCell
+            let cell: UserCollectionViewCell = usersCollectionView.dequeueCell(key, for: indexPath)
             let uiModel = UserCellUIModel(model: rows[row])
             cell.configure(with: uiModel)
             return cell

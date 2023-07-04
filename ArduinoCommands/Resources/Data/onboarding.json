@@ -4,22 +4,22 @@
     "foreword": "Developed and designed by Trach Yaroslav. Arduino Commands",
     "sections": [
         {
-            "title": "New Features",
-            "subtitle": "Now you can set reminders and share your favorites articles.",
+            "title": "Photo Gallery",
+            "subtitle": "View and Share images of Arduino microcontrollers and other devices.",
             "tintColorString": "#ff4747",
-            "imageSystemName": "heart.fill"
+            "imageSystemName": "sparkles.rectangle.stack"
         },
         {
-            "title": "Articles",
-            "subtitle": "A huge number of different articles about special Arduino Commands.",
+            "title": "Sorting Commands",
+            "subtitle": "Sort the articles in the App in alphabetical order and by their type.",
             "tintColorString": "#8447ff",
-            "imageSystemName": "square.grid.3x3.topright.filled"
+            "imageSystemName": "list.bullet.clipboard"
         },
         {
             "title": "Quick access to Websites",
             "subtitle": "A huge menu of Websites that can provide more information.",
             "tintColorString": "#fa7f0c",
-            "imageSystemName": "link"
+            "imageSystemName": "link.icloud"
         }
     ]
 }

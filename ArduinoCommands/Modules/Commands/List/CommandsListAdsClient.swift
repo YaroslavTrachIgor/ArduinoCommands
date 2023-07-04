@@ -9,7 +9,7 @@ import Foundation
 import GoogleMobileAds
 
 //MARK: - Keys
-private extension ACCommandsListAdsClient {
+private extension CommandsListAdsClient {
     
     //MARK: Private
     enum Keys {
@@ -22,18 +22,18 @@ private extension ACCommandsListAdsClient {
 }
 
 //MARK: - Commands List Ads client completion Handler
-typealias ACCommandsListAdDownloadedCompletionHandler = ((GADInterstitialAd?) -> Void)
+typealias CommandsListAdDownloadedCompletionHandler = ((GADInterstitialAd?) -> Void)
 
 
 //MARK: - Commands List Ads client protocol
-protocol ACCommandsListAdsClientProtocol {
+protocol CommandsListAdsClientProtocol {
     func presentCommandDetailnterstitialAd(interstitial: GADInterstitialAd, on rootVC: UIViewController)
-    func setupCommandDetailnterstitialAd(delegate: GADFullScreenContentDelegate, completion: @escaping ACCommandsListAdDownloadedCompletionHandler)
+    func setupCommandDetailnterstitialAd(delegate: GADFullScreenContentDelegate, completion: @escaping CommandsListAdDownloadedCompletionHandler)
 }
 
 
 //MARK: - Commands List Ads client
-final public class ACCommandsListAdsClient: ACAdsManagar, ACCommandsListAdsClientProtocol {
+final public class CommandsListAdsClient: ACAdsManagar, CommandsListAdsClientProtocol {
     
     //MARK: Internal
     /// Present GoogleMobileAds Interstitial.
@@ -49,7 +49,7 @@ final public class ACCommandsListAdsClient: ACAdsManagar, ACCommandsListAdsClien
     ///   - delegate: ViewController in which Interstitial will be initialized that confirms `GADFullScreenContentDelegate` protocol.
     ///   - completion: the action which happens after ad was downloaded from the Internet.
     func setupCommandDetailnterstitialAd(delegate: GADFullScreenContentDelegate,
-                                         completion: @escaping ACCommandsListAdDownloadedCompletionHandler) {
+                                         completion: @escaping CommandsListAdDownloadedCompletionHandler) {
         let request = GADRequest()
         let adUnitID = Keys.AdUnitIds.commandsDetailInterstitial
         GADInterstitialAd.load(withAdUnitID: adUnitID,

@@ -17,7 +17,7 @@ struct SettingsParameterCell: View {
     
     //MARK: Public
     @State var isOn: Bool
-    @State var item: ACSettingsParameterCell
+    @State var item: ACSettingsParameterUIModel
     @State var onDisappear: SettingsParameterCellDisappearHandler!
     
     //MARK: View Configuration
@@ -32,7 +32,7 @@ struct SettingsParameterCell: View {
             setNewParameterValue()
         })
         .disabled(!item.isEnabled!)
-        .toggleStyle(SwitchToggleStyle(tint: .indigo))
+        .toggleStyle(SwitchToggleStyle(tint: Color(item.tintColor!)))
         .padding(.trailing, -8)
     }
 }

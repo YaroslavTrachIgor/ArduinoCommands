@@ -10,7 +10,9 @@ import UIKit
 
 //MARK: - Main ViewController protocol
 protocol OnboardingViewControllerProtocol: ACBaseViewController {
-    func setupContent(with data: OnboardingUIModelProtocol)
+    func setupContent(with data: OnboardingUIModel)
+    func dismissOnboardingVC(completion: ACBaseCompletionHandler?)
+    func presentOnboardingAPILoadFailedAlert()
 }
 
 
@@ -25,6 +27,14 @@ private extension OnboardingViewController {
                 //MARK: Static
                 static let continueButtonTitle = "Continue"
             }
+            enum Alert {
+                enum OnboardingAPILoadFailedAlert {
+                    
+                    //MARK: Static
+                    static let title = "Failed to load Commands List"
+                    static let message = "An unexpected error occurred while loading the list of commands. Please try again later."
+                }
+            }
         }
     }
 }
@@ -34,7 +44,6 @@ private extension OnboardingViewController {
 final class OnboardingViewController: UIViewController {
 
     //MARK: Private
-    private let contentIndex = 0
     private var presenter: OnboardingPresenterProtocol {
         return OnboardingPresenter(view: self)
     }
@@ -59,7 +68,7 @@ final class OnboardingViewController: UIViewController {
     
     //MARK: @IBActions
     @IBAction func dismissVC(_ sender: Any) {
-        dismiss(animated: true)
+        presenter.onDismiss()
     }
 }
 
@@ -77,7 +86,11 @@ extension OnboardingViewController: OnboardingViewControllerProtocol {
         setupSectionsIconImageViews()
     }
     
-    internal func setupContent(with data: OnboardingUIModelProtocol) {
+    internal func dismissOnboardingVC(completion: ACBaseCompletionHandler?) {
+        dismissVC(completion: completion)
+    }
+    
+    internal func setupContent(with data: OnboardingUIModel) {
         titleLabel.text = data.header
         forewordTextView.text = data.foreword
         /**
@@ -88,20 +101,28 @@ extension OnboardingViewController: OnboardingViewControllerProtocol {
          we use the element tag specified in the `Storyboard` file.
          */
         for titleLabel in sectionsTitleLabels {
-            titleLabel.text = data.sectionTitle(for: titleLabel.tag)
+            titleLabel.text = data.sections[titleLabel.tag].title
         }
         for subtitleLabel in sectionsSubtitleLabels {
-            subtitleLabel.text = data.sectionSubtitle(for: subtitleLabel.tag)
+            subtitleLabel.text = data.sections[subtitleLabel.tag].subtitle
         }
         for imageView in sectionsImageViews {
-            imageView.image = data.sectionImage(for: imageView.tag)
+            imageView.image = data.sections[imageView.tag].image
 
         }
+    }
+    
+    internal func presentOnboardingAPILoadFailedAlert() {
+        let title = Constants.UI.Alert.OnboardingAPILoadFailedAlert.title
+        let message = Constants.UI.Alert.OnboardingAPILoadFailedAlert.message
+        ACAlertManager.shared.presentSimple(title: title,
+                                            message: message,
+                                            on: self)
     }
 }
 
 
-//MARK: Main methods
+//MARK: - Main methods
 private extension OnboardingViewController {
     
     //MARK: Private
@@ -152,8 +173,8 @@ private extension OnboardingViewController {
     }
     
     func setupSubtitleLabels() {
-        let textColor: UIColor = .label.withAlphaComponent(0.85)
-        let font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        let textColor: UIColor = .label.withAlphaComponent(0.80)
+        let font = UIFont.systemFont(ofSize: 13.3, weight: .regular)
         for subtitleLabel in sectionsSubtitleLabels {
             subtitleLabel.backgroundColor = .clear
             subtitleLabel.numberOfLines = 3

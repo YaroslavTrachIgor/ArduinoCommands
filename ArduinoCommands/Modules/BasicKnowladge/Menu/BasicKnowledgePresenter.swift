@@ -18,7 +18,6 @@ internal protocol BasicKnowledgePresenterProtocol {
     func onViewDidLoad(completion: @escaping ACBasicKnowledgePresenterCompletionHandler)
     func onDidSelectItemAt(for tag: Int, with row: Int)
     func onPresentSettingsHostVC()
-    func onOnboardingPresent()
 }
 
 
@@ -60,9 +59,7 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
         ACApplicationCheckManager.shared.checkVersion {
             ACGrayAlertManager.presentNewVersionAlert()
         }
-    }
-    
-    internal func onOnboardingPresent() {
+        
         if isNeededOnboarding {
             view?.presentOnboardingVC()
         }

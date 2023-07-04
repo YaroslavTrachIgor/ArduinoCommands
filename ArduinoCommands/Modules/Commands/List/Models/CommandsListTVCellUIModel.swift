@@ -13,7 +13,7 @@ protocol CommandsListTVCellUIModelProtocol {
     var title: String! { get }
     var subtitle: String! { get }
     var previewContent: String! { get }
-    var isFirstSection: Bool! { get }
+    var isInitialMethod: Bool! { get }
     var isUsedWithDevices: Bool! { get }
     var isLibraryMethod: Bool! { get }
     var middleLabelWidth: CGFloat! { get }
@@ -29,8 +29,8 @@ private extension CommandsListTVCellUIModel {
         
         //MARK: Static
         static let maxNumOfPreviewContentCharacters: Int = 90
-        static let firstSectionMiddleLabelWidth: CGFloat = 74
         static let anySectionMiddleLabelWidth: CGFloat = 82
+        static let initialMiddleLabelWidth: CGFloat = 74
     }
 }
 
@@ -39,10 +39,10 @@ private extension CommandsListTVCellUIModel {
 public struct CommandsListTVCellUIModel {
     
     //MARK: Private
-    private var model: ACCommand?
+    private var model: CommandUIModel?
     
     //MARK: Initialization
-    init(model: ACCommand) {
+    init(model: CommandUIModel) {
         self.model = model
     }
 }
@@ -53,23 +53,23 @@ extension CommandsListTVCellUIModel: CommandsListTVCellUIModelProtocol {
     
     //MARK: Internal
     internal var title: String! {
-        model?.name.uppercased()
+        model?.title.uppercased()
     }
     internal var subtitle: String! {
         model?.subtitle.uppercased()
     }
     internal var isLibraryMethod: Bool! {
-        model?.isLibraryMethod
+        model?.isLibraryMethodLabelFirst
     }
     internal var isUsedWithDevices: Bool! {
-        model?.isUsedWithDevices
+        model?.isDevicesLabelEnabled
     }
     internal var returns: Bool! {
-        model?.returns
+        model?.returnsLabelIsHidden
     }
     internal var previewContent: String! {
         let maxCharacters = Constants.maxNumOfPreviewContentCharacters
-        let description = model?.description!
+        let description = model?.content!
         let descriptionPreview = description!.prefix(maxCharacters)
         let previewContent = "\(descriptionPreview)..."
         return previewContent
@@ -80,13 +80,13 @@ extension CommandsListTVCellUIModel: CommandsListTVCellUIModelProtocol {
          This will help us identify if cell is a part of section, where `Initial` type of cells are contained,
          and then set the width value which will be appropriate for special keywords.
          */
-        if isFirstSection {
-            return Constants.firstSectionMiddleLabelWidth
+        if isInitialMethod {
+            return Constants.initialMiddleLabelWidth
         } else {
             return Constants.anySectionMiddleLabelWidth
         }
     }
-    internal var isFirstSection: Bool! {
+    internal var isInitialMethod: Bool! {
         /**
          This one below is used to determine, if the cell of a particular section
          shows preview of the`Initial` method.

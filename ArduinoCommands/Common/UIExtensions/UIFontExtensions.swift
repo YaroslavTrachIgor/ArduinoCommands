@@ -61,11 +61,11 @@ public extension UIFont {
 public extension UIFont {
     
     //MARK: Static
-    /// <#Description#>
+    /// This is needed to quickly set up a font of `Hiragino Mincho ProN` family.
     /// - Parameters:
-    ///   - ofSize: <#ofSize description#>
-    ///   - weight: <#weight description#>
-    /// - Returns: <#description#>
+    ///   - ofSize: font size.
+    ///   - weight: font weight.
+    /// - Returns: application basic font.
     static func ACFont(ofSize: CGFloat, weight: UIFont.ACWeight = .regular) -> UIFont {
         let fontName = UIFont.Keys.basicFontName
         switch weight {
@@ -76,11 +76,11 @@ public extension UIFont {
         }
     }
     
-    /// <#Description#>
+    /// This is needed to quickly set up a styled font of `Menlo` family.
     /// - Parameters:
-    ///   - ofSize: <#ofSize description#>
-    ///   - weight: <#weight description#>
-    /// - Returns: <#description#>
+    ///   - ofSize: font size.
+    ///   - weight: font weight.
+    /// - Returns: application Code Snippet styled font.
     static func ACCodeFont(ofSize: CGFloat, weight: UIFont.ACCodeWeight = .regular) -> UIFont {
         let fontName = UIFont.Keys.codeFontName
         switch weight {
@@ -91,6 +91,10 @@ public extension UIFont {
         }
     }
     
+    /// This is needed to quickly set up a styled font of `Hiragino Mincho ProN` family.
+    /// - Parameters:
+    ///   - style: custom font style.
+    /// - Returns: application styled font.
     static func ACFont(style: ACStyle) -> UIFont {
         switch style {
         case .navTitle:

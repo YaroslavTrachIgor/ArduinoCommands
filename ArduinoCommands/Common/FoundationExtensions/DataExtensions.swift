@@ -28,7 +28,7 @@ public extension Data {
     ///   - jsonFile: files name.
     ///   - bundle: files location.
     /// - Returns: Json file content in `Data` type.
-    static func load(from jsonFile: String, bundle: Bundle = Bundle.main) -> Data {
+    static func load(from jsonFile: String, bundle: Bundle = Bundle.main) throws -> Data {
         /**
          This function should be used to quickly convert `JSON` content to `Data` format
          by reading all the content from the project file with using its Bundle name.
@@ -37,10 +37,10 @@ public extension Data {
          we will issue a fatal error.
          */
         guard let urlString = bundle.path(forResource: jsonFile, ofType: "json") else {
-            fatalError("Failed to locate \(jsonFile) in bundle.")
+            throw APIError.ACParsingError.invalidBundle
         }
         guard let contentData = FileManager.default.contents(atPath: urlString) else {
-            fatalError("Failed to load \(jsonFile) from bundle.")
+            throw APIError.ACParsingError.invalidData
         }
         return contentData
     }

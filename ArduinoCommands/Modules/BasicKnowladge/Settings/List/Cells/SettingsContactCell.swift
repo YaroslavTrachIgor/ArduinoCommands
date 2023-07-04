@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsContactCell: View {
     
     //MARK: Public
-    @State var item: ACSettingsContactInfoCell
+    @State var item: ACSettingsContactInfoUIModel
     
     //MARK: View Configuration
     var body: some View {
@@ -45,13 +45,9 @@ private extension SettingsContactCell {
         Button {
             openResourceLink()
         } label: {
-            contactCellLinkIcon
+            SettingsCellDestinationArrow()
         }
         .accentColor(Color(.systemGray2))
-    }
-    var contactCellLinkIcon: some View {
-        Image(systemName: "chevron.right")
-            .font(.system(size: 14, weight: .semibold, design: .rounded))
     }
 }
 

@@ -22,6 +22,20 @@ protocol UserSheetCellUIModelProtocol {
 }
 
 
+//MARK: - Constants
+private extension UserSheetCellUIModel {
+    
+    //MARK: Private
+    enum Constants {
+        enum Label {
+            
+            //MARK: Static
+            static let dateDescriptionPhrase = "Added on"
+        }
+    }
+}
+
+
 //MARK: - Cell ViewModel
 public final class UserSheetCellUIModel {
     
@@ -63,12 +77,10 @@ extension UserSheetCellUIModel: UserSheetCellUIModelProtocol {
         model?.secondaryColor!
     }
     internal var dateDescription: String! {
-        /**
-         Add Constants ////////////////////////////////////////
-         */
         let date = model?.dateWhenAdded
         let dateDescription = Date.description(for: date)
-        let whenAddedDescription = "Added on \(dateDescription)".uppercased()
+        let dateDescriptionPhrase = Constants.Label.dateDescriptionPhrase
+        let whenAddedDescription = "\(dateDescriptionPhrase) \(dateDescription)".uppercased()
         return whenAddedDescription
     }
 }

@@ -56,7 +56,8 @@ private extension IntroCardView {
     }
     var introCardContent: some View {
         Text(card.content!)
-            .font(Font(UIFont.systemFont(ofSize: 15.5, weight: .regular)))
+            .font(Font(UIFont.ACFont(style: .articleContent)))
+            .lineSpacing(7.5)
             .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundColor(.primary.opacity(0.6))
             .padding(.trailing, 50)

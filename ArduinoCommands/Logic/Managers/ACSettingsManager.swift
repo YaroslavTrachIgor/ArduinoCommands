@@ -25,6 +25,8 @@ final class ACSettingsManager {
      
      User will change these Settings properties to block unwanted features of the App.
      */
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.allowsNotifications)
-    public var allowsNotifications = true
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.allowNotifications)
+    public var allowNotifications = true
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.allowAnalytics)
+    public var allowAnalytics = true
 }
