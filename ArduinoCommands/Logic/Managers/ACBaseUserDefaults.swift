@@ -17,6 +17,9 @@ public extension UserDefaults {
         //MARK: Static
         static let allowNotifications = "AllowsNotificationsKey"
         static let allowAnalytics = "AllowAnalyticsKey"
+        static let analyticsViewDays = "AnalyticsViewDaysKey"
+        static let analyticsDailyGoal = "AnalyticsDailyGoalKey"
+        static let analyticsArticlesCount = "AnalyticsArticlesCountKey"
         static let isOnboardingNeeded = "IsNeededToBeOpenedKey"
         static let sessionsCountKey = "SessionsCountKey"
         static let checkVersionKey = "CheckVersionKey"

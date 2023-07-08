@@ -45,24 +45,14 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
     
     //MARK: Internal
     internal func onViewDidLoad(completion: @escaping ACBasicKnowledgePresenterCompletionHandler) {
-        completion(sections!)
-        /**
-         In order to pass the rows between the entities of the application(Presenter and View),
-         we will pass the content of four `Menu` screen sections through a callback.
-         */
         view?.setupMainUI()
+        noticeNewVersion()
+        showOnboarding()
         /**
-         In the code below, we use special Application characteristics Manager,
-         in this case we need it, because we want to check the valid App Version
-         and present a Warning Alert if needed.
+         In the code below, in order to pass the rows between the entities of the application (Presenter and View),
+         we will pass the content of four `Menu` screen sections through a closure.
          */
-        ACApplicationCheckManager.shared.checkVersion {
-            ACGrayAlertManager.presentNewVersionAlert()
-        }
-        
-        if isNeededOnboarding {
-            view?.presentOnboardingVC()
-        }
+        completion(sections!)
     }
     
     internal func onPresentSettingsHostVC() {
@@ -89,6 +79,27 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
             view?.presentUserSheetVC(with: users[row].content)
         case .basics(let basics):
             view?.presentDetailVC(with: basics[row].content)
+        }
+    }
+}
+
+
+//MARK: - Main methods
+private extension BasicKnowledgePresenter {
+    
+    //MARK: Private
+    func noticeNewVersion() {
+        let applicationCheckManager = ACApplicationCheckManager()
+        applicationCheckManager.checkVersion { newVersionAvailable in
+            if newVersionAvailable {
+                ACGrayAlertManager.presentNewVersionAlert()
+            }
+        }
+    }
+    
+    func showOnboarding() {
+        if isNeededOnboarding {
+            view?.presentOnboardingVC()
         }
     }
 }

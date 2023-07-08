@@ -220,7 +220,8 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
     }
     
     internal func setupAdBunner() {
-        ///adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
+        adBunnerView.delegate = self
+        adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
     }
     
     internal func presentDetailsViews(with animationType: ACBasePresentationType) {
@@ -266,9 +267,6 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         deviceImagesVC.device = model.device
         navigationController?.pushViewController(deviceImagesVC, animated: true)
     }
-    
-    //MARK: CREATE FABRIC to ommit models in views and initialized presenters
-    
     
     internal func presentCodeSnippetViewController() {
         let codeSnippetVC = CodeSnippetViewController.instantiate()
@@ -540,5 +538,35 @@ extension CommandDetailViewController: UIColorPickerViewControllerDelegate {
     
     internal func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         presenter?.setNewTintColor(with: viewController.selectedColor)
+    }
+}
+
+
+//MARK: - GADBannerView delegate extension
+extension CommandDetailViewController: GADBannerViewDelegate {
+    
+    //MARK: Internal
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("bannerViewDidReceiveAd")
+    }
+    
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+        print("bannerViewDidRecordImpression")
+    }
+    
+    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("bannerViewWillPresentScreen")
+    }
+    
+    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("bannerViewWillDIsmissScreen")
+    }
+    
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("bannerViewDidDismissScreen")
     }
 }

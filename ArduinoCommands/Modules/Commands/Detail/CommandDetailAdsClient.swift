@@ -16,7 +16,7 @@ private extension CommandDetailAdsClient {
         enum AdUnitIds {
             
             //MARK: Static
-            static let commandsDetailAdBunner = "ca-app-pub-8702634561077907/2128494727"
+            static let commandsDetailAdBunner = "ca-app-pub-4698668975609084/8359365695"
         }
     }
 }

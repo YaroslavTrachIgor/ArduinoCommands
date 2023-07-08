@@ -58,10 +58,12 @@
 		CE348A062A4E6BA700B1F957 /* CommandsListFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE348A052A4E6BA700B1F957 /* CommandsListFormatter.swift */; };
 		CE348A082A4E6DD100B1F957 /* CommandDetailFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE348A072A4E6DD100B1F957 /* CommandDetailFormatter.swift */; };
 		CE47EBDA29446EC800A19E0B /* ACCommandsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47EBD929446EC800A19E0B /* ACCommandsAPIClient.swift */; };
+		CE4AE73A2A58390700BE84D3 /* ACCommandsAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE7392A58390700BE84D3 /* ACCommandsAnalyticsManager.swift */; };
 		CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56578F287F0D0600947DCB /* ACNetworkManager.swift */; };
 		CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */; };
 		CE58E2D9286FB0AA004D5A42 /* UserSheetCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */; };
 		CE58E2DB28715B21004D5A42 /* CommandDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2DA28715B21004D5A42 /* CommandDetailPresenter.swift */; };
+		CE6800DE2A555BC80009F2C0 /* SettingsAnalyticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6800DD2A555BC80009F2C0 /* SettingsAnalyticsCell.swift */; };
 		CE697C6A285A0EF20091CCF1 /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE697C69285A0EF10091CCF1 /* UITextViewExtensions.swift */; };
 		CE6A447829BE2059000ECDCA /* ACAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A447729BE2059000ECDCA /* ACAdsManager.swift */; };
 		CE6A447A29BE216E000ECDCA /* CommandDetailAdsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6A447929BE216E000ECDCA /* CommandDetailAdsClient.swift */; };
@@ -138,9 +140,11 @@
 		CE96F46A2A2A52480062E604 /* OnboardingFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96F4692A2A52480062E604 /* OnboardingFormatter.swift */; };
 		CE99BA8D28BF3493007A7158 /* OnboardingUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */; };
 		CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */; };
-		CE9A6FD228FCEBF400E1EF23 /* ACSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */; };
+		CE9A6FD228FCEBF400E1EF23 /* ACSettingsParametersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD128FCEBF400E1EF23 /* ACSettingsParametersManager.swift */; };
 		CE9A6FD429029ECD00E1EF23 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD329029ECD00E1EF23 /* IntroViewModel.swift */; };
 		CE9A6FD9290371F200E1EF23 /* UserSheetListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */; };
+		CE9D4BB72A59948D0099416E /* SettingsAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D4BB62A59948D0099416E /* SettingsAnalyticsView.swift */; };
+		CE9D4BB92A5994ED0099416E /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D4BB82A5994ED0099416E /* AnalyticsView.swift */; };
 		CE9FBBC629A863E800D193B2 /* ACCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9FBBC529A863E800D193B2 /* ACCache.swift */; };
 		CE9FBBC829A8687300D193B2 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9FBBC729A8687200D193B2 /* UIImageViewExtensions.swift */; };
 		CE9FBBCA29A8AAE300D193B2 /* HTTPURLResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9FBBC929A8AAE300D193B2 /* HTTPURLResponseExtensions.swift */; };
@@ -168,7 +172,6 @@
 		CECE1A1E294DBB6D0021D899 /* WidjetCommandPreviewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */; };
 		CECE1A22294DBBB70021D899 /* WidjetCommandPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */; };
 		CECE1A29294E74FA0021D899 /* CommandTypeRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */; };
-		CEDBC080285B291100C933AF /* ACAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC07F285B291100C933AF /* ACAPIManager.swift */; };
 		CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */; };
 		CEDBC0852860CA6B00C933AF /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */; };
 		CEDBC08C2860D63000C933AF /* onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC08B2860D63000C933AF /* onboarding.json */; };
@@ -276,10 +279,12 @@
 		CE348A052A4E6BA700B1F957 /* CommandsListFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandsListFormatter.swift; sourceTree = "<group>"; };
 		CE348A072A4E6DD100B1F957 /* CommandDetailFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailFormatter.swift; sourceTree = "<group>"; };
 		CE47EBD929446EC800A19E0B /* ACCommandsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommandsAPIClient.swift; sourceTree = "<group>"; };
+		CE4AE7392A58390700BE84D3 /* ACCommandsAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCommandsAnalyticsManager.swift; sourceTree = "<group>"; };
 		CE56578F287F0D0600947DCB /* ACNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNetworkManager.swift; sourceTree = "<group>"; };
 		CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACNotificationManager.swift; sourceTree = "<group>"; };
 		CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetCellPresenter.swift; sourceTree = "<group>"; };
 		CE58E2DA28715B21004D5A42 /* CommandDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailPresenter.swift; sourceTree = "<group>"; };
+		CE6800DD2A555BC80009F2C0 /* SettingsAnalyticsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAnalyticsCell.swift; sourceTree = "<group>"; };
 		CE697C69285A0EF10091CCF1 /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
 		CE697C88285B243E0091CCF1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CE697C8A285B243E0091CCF1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -356,9 +361,11 @@
 		CE96F4692A2A52480062E604 /* OnboardingFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFormatter.swift; sourceTree = "<group>"; };
 		CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUIModel.swift; sourceTree = "<group>"; };
 		CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellIcon.swift; sourceTree = "<group>"; };
-		CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsManager.swift; sourceTree = "<group>"; };
+		CE9A6FD128FCEBF400E1EF23 /* ACSettingsParametersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsParametersManager.swift; sourceTree = "<group>"; };
 		CE9A6FD329029ECD00E1EF23 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSheetListPresenter.swift; sourceTree = "<group>"; };
+		CE9D4BB62A59948D0099416E /* SettingsAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAnalyticsView.swift; sourceTree = "<group>"; };
+		CE9D4BB82A5994ED0099416E /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		CE9FBBC529A863E800D193B2 /* ACCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACCache.swift; sourceTree = "<group>"; };
 		CE9FBBC729A8687200D193B2 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		CE9FBBC929A8AAE300D193B2 /* HTTPURLResponseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPURLResponseExtensions.swift; sourceTree = "<group>"; };
@@ -384,7 +391,6 @@
 		CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreviewStorage.swift; sourceTree = "<group>"; };
 		CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreview.swift; sourceTree = "<group>"; };
 		CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTypeRectangle.swift; sourceTree = "<group>"; };
-		CEDBC07F285B291100C933AF /* ACAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAPIManager.swift; sourceTree = "<group>"; };
 		CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		CEDBC08B2860D63000C933AF /* onboarding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = onboarding.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
@@ -712,12 +718,12 @@
 			children = (
 				CE6EC780288F56650020DAFF /* APIHelper.swift */,
 				CE6A447729BE2059000ECDCA /* ACAdsManager.swift */,
-				CEDBC07F285B291100C933AF /* ACAPIManager.swift */,
 				84E4A2F527F24326002F7BFA /* ACActivityManager.swift */,
 				CE75CF9F287ED5A300BA42DF /* ACAlertManager.swift */,
 				CE6EC787288F57C30020DAFF /* ACApplicationCheckManager.swift */,
 				CE7F751F28B42A0700B77595 /* ACBaseUserDefaults.swift */,
 				CE9FBBC529A863E800D193B2 /* ACCache.swift */,
+				CE4AE7392A58390700BE84D3 /* ACCommandsAnalyticsManager.swift */,
 				CE6EC77C288DE0400020DAFF /* ACGradientType.swift */,
 				CE6C4D992869851C00D14AEA /* ACGrayAlertManager.swift */,
 				CE8917D829FF600D00003A8F /* ACJSON.swift */,
@@ -726,7 +732,7 @@
 				CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */,
 				CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */,
 				CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */,
-				CE9A6FD128FCEBF400E1EF23 /* ACSettingsManager.swift */,
+				CE9A6FD128FCEBF400E1EF23 /* ACSettingsParametersManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -892,6 +898,7 @@
 		CE8CFE0C28A6FBFF00A88586 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CE9D4BB52A5993E60099416E /* Analytics */,
 				CECB4A8928AB4A0400278130 /* List */,
 				CECB4A8A28AB4A1000278130 /* Intro */,
 			);
@@ -950,6 +957,7 @@
 		CE9A6FCD28FAAC1700E1EF23 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CE6800DD2A555BC80009F2C0 /* SettingsAnalyticsCell.swift */,
 				CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */,
 				CE9235F428AC9F400037846F /* SettingsContactCell.swift */,
 				CE9235F028AC9EFA0037846F /* SettingsBasicInfoCell.swift */,
@@ -962,6 +970,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */,
+				CE9D4BB62A59948D0099416E /* SettingsAnalyticsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -994,6 +1003,15 @@
 				CE9A6FD8290371F200E1EF23 /* UserSheetListPresenter.swift */,
 			);
 			path = SheetList;
+			sourceTree = "<group>";
+		};
+		CE9D4BB52A5993E60099416E /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				CE9D4BB82A5994ED0099416E /* AnalyticsView.swift */,
+			);
+			name = Analytics;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CEB71F27291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget */ = {
@@ -1290,7 +1308,7 @@
 				CE6EC781288F56650020DAFF /* APIHelper.swift in Sources */,
 				C474CC4827B2B53B00B1FD9A /* AppDelegate.swift in Sources */,
 				CE8C681D28A14D6B006C1888 /* BasicsCellUIModel.swift in Sources */,
-				CE9A6FD228FCEBF400E1EF23 /* ACSettingsManager.swift in Sources */,
+				CE9A6FD228FCEBF400E1EF23 /* ACSettingsParametersManager.swift in Sources */,
 				840B9FC9284193EE00EA6D47 /* ACFilenames.swift in Sources */,
 				CE78D58E28D58DDA0040B4D2 /* ACBasePresentationType.swift in Sources */,
 				CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */,
@@ -1315,7 +1333,6 @@
 				CECB4A9128AB4ADC00278130 /* ACIntroCard.swift in Sources */,
 				CE8CFE1028A89BA400A88586 /* IntroView.swift in Sources */,
 				CE7DE2D429F1188200538D93 /* ACOnboardingAPIClient.swift in Sources */,
-				CEDBC080285B291100C933AF /* ACAPIManager.swift in Sources */,
 				CE9A6FD9290371F200E1EF23 /* UserSheetListPresenter.swift in Sources */,
 				CE7038A7298EBE8C00FE4928 /* ACDeviceImageResult.swift in Sources */,
 				8464647327DEA1BB004B0D12 /* ACBasics.swift in Sources */,
@@ -1337,6 +1354,7 @@
 				CE7038A4298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift in Sources */,
 				CE8C682128A16DEE006C1888 /* SiteCellUIModel.swift in Sources */,
 				CE75CF8F2879F85D00BA42DF /* ACRateManager.swift in Sources */,
+				CE9D4BB72A59948D0099416E /* SettingsAnalyticsView.swift in Sources */,
 				8464647B27DEA2B2004B0D12 /* BasicsCollectionViewCell.swift in Sources */,
 				CE99BA8D28BF3493007A7158 /* OnboardingUIModel.swift in Sources */,
 				CEACE9912A3BB510007811A0 /* UICollectionViewExtensions.swift in Sources */,
@@ -1362,6 +1380,7 @@
 				8464648927E0CFE2004B0D12 /* ACLink.swift in Sources */,
 				CE9235F728ACA9F50037846F /* ACSettingsPreview.swift in Sources */,
 				CE9235E228ABDB610037846F /* ACSettingsStorage.swift in Sources */,
+				CE9D4BB92A5994ED0099416E /* AnalyticsView.swift in Sources */,
 				8464648727DF85B1004B0D12 /* PersonCollectionViewCell.swift in Sources */,
 				CE6A447A29BE216E000ECDCA /* CommandDetailAdsClient.swift in Sources */,
 				CEDE3F7629E235C000774172 /* UICollectionViewFlowLayoutExtensions.swift in Sources */,
@@ -1376,6 +1395,7 @@
 				CE177C6B28DA998E00B1B18D /* UISegmentedControlExtensions.swift in Sources */,
 				CE6C4D9A2869851C00D14AEA /* ACGrayAlertManager.swift in Sources */,
 				CE6EC77D288DE0400020DAFF /* ACGradientType.swift in Sources */,
+				CE6800DE2A555BC80009F2C0 /* SettingsAnalyticsCell.swift in Sources */,
 				CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */,
 				CE58E2D9286FB0AA004D5A42 /* UserSheetCellPresenter.swift in Sources */,
 				8464648F27E4EE90004B0D12 /* UserCollectionViewCell.swift in Sources */,
@@ -1415,6 +1435,7 @@
 				CE9A6FD429029ECD00E1EF23 /* IntroViewModel.swift in Sources */,
 				CE7038A9298EBEA100FE4928 /* ACDeviceImageURl.swift in Sources */,
 				CE6B0C092884D97B007F0F63 /* ACBaseConfigurableView.swift in Sources */,
+				CE4AE73A2A58390700BE84D3 /* ACCommandsAnalyticsManager.swift in Sources */,
 				CE177C6F28E11DDC00B1B18D /* ACCommandDetails.swift in Sources */,
 				CE7038A2298EB79600FE4928 /* ACImageDownloader.swift in Sources */,
 				CE697C6A285A0EF20091CCF1 /* UITextViewExtensions.swift in Sources */,

@@ -77,9 +77,11 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
     internal func onViewDidLoad(completion: @escaping (UIColor) -> Void) {
         completion(detailsTintColor)
         refreshView()
-        setupAdBunner()
+        showAd()
         view?.setupRateManager()
         view?.presentTabBarWithAnimation(alpha: 0)
+        
+        ACCommandsAnalyticsManager.shared.updateCurrentArticleViews()
     }
     
     internal func onViewDidDisappear() {
@@ -166,7 +168,7 @@ private extension CommandDetailPresenter {
         animateDetails(presentationType: .hide)
     }
     
-    func setupAdBunner() {
+    func showAd() {
         /**
          Before we setup Ad Bunner view, we need to check if the user wants to read
          an article from the paid sections.

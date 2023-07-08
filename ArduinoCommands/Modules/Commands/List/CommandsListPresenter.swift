@@ -96,7 +96,7 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
     }
     
     internal func onRemindRowAction(for command: CommandUIModel) {
-        if ACSettingsManager.shared.allowNotifications {
+        if ACSettingsParametersManager.shared.allowNotifications {
             view?.presentReminderSetupAlert(with: command, completion: { [self] date in
                 guard let model = selectModel(by: command.content) else { return }
                 let notificationsManager: ACNotificationManager = .shared

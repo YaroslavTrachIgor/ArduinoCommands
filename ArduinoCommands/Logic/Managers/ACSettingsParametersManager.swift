@@ -7,11 +7,11 @@
 
 import Foundation
 
-//MARK: - Manager for fast access to the Settings parameters
-final class ACSettingsManager {
+//MARK: - Manager for Settings parameters
+final class ACSettingsParametersManager {
     
     //MARK: Static
-    static let shared = ACSettingsManager()
+    static let shared = ACSettingsParametersManager()
     
     //MARK: Initialization
     private init() {}
@@ -27,6 +27,4 @@ final class ACSettingsManager {
      */
     @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.allowNotifications)
     public var allowNotifications = true
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.allowAnalytics)
-    public var allowAnalytics = true
 }

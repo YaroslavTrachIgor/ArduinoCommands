@@ -32,7 +32,7 @@ public enum ACSettingsStorage {
         static let content: [ACSettingsBasicInfo] = [
             ACSettingsBasicInfo(
                 parameter: "Version",
-                value: "1.3.0"
+                value: "1.3.1"
             ),
             ACSettingsBasicInfo(
                 parameter: "Category",
@@ -64,7 +64,7 @@ public enum ACSettingsStorage {
         static let content: [ACSettingsContactInfoUIModel] = [
             ACSettingsContactInfoUIModel(
                 content: ACSettingsContactInfo(
-                    link: "https://www.instagram.com/axcigrpvicj/",
+                    link: "https://instagram.com/axcigrpvicj_fake/",
                     linkName: "Instagram"
                 ),
                 iconName: "link",
@@ -88,7 +88,7 @@ public enum ACSettingsStorage {
         static let allowsNotificationsCell = ACSettingsParameterUIModel(
             content: ACSettingsParameter(
                 name: "Allow Notifications",
-                value: ACSettingsManager.shared.allowNotifications
+                value: ACSettingsParametersManager.shared.allowNotifications
             ),
             iconName: "app.badge",
             tintColor: .systemPurple,
