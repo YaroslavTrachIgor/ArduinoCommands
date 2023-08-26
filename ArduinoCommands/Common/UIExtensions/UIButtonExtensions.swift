@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+//MARK: - Details Button Type cases
+public enum DetailsButtonType {
+    case dark
+    case light
+}
+
+
 //MARK: - Setup base Button types
 public extension UIButton {
     
@@ -36,11 +43,12 @@ public extension UIButton {
     }
     
     func setupCodeContentEditingButton(tintColor: UIColor = .white,
-                                       imageName: String) {
+                                       imageName: String,
+                                       pointSize: CGFloat = 12.8) {
         let borderColor = tintColor.cgColor
         let backgroundColor = tintColor.withAlphaComponent(0.1)
         let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
-        let configuration = UIImage.SymbolConfiguration(scale: .medium)
+        let configuration = UIImage.SymbolConfiguration(pointSize: pointSize, weight: .medium)
         let image = UIImage(systemName: imageName, withConfiguration: configuration)
         self.tintColor = tintColor
         self.backgroundColor = backgroundColor
@@ -71,6 +79,82 @@ public extension UIButton {
         configuration.cornerStyle = .large
         configuration.image = image
         self.configuration = configuration
+    }
+    
+    /// This is needed for the fast configuration of buttons from the `Detail` module.
+    /// - Parameters:
+    ///   - buttonType: button appearance.
+    ///   - title: button content.
+    ///   - imageName: icon system name.
+    ///   - imageConfig: symbol configuration.
+    ///   - isEnabled: button availability bool value.
+    func setupDetailsButton(buttonType: DetailsButtonType,
+                            title: String? = nil,
+                            imageName: String? = nil,
+                            imageConfig: UIImage.SymbolConfiguration? = nil,
+                            isEnabled: Bool = true) {
+        let baseTintColor: UIColor
+        let baseStrokeColor: UIColor
+        let contentBackColor: UIColor
+        let baseBackgroundColor: UIColor
+        switch buttonType {
+        case .dark:
+            baseTintColor = UIColor.ACDetails.tintColor
+            baseBackgroundColor = UIColor.ACDetails.backgroundColor
+            contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
+            baseStrokeColor = UIColor.ACDetails.tintColor
+        case .light:
+            baseTintColor = UIColor.ACDetails.backgroundColor
+            baseBackgroundColor = UIColor.ACDetails.tintColor
+            contentBackColor = UIColor.ACDetails.tintColor
+            baseStrokeColor = .clear
+        }
+        /**
+         In the code below, before we setup the needed button properties,
+         we check if this buton for the particular command is enabled
+         through `isEnabled` constant.
+         
+         When we call this function in the VC, the `isEnabled` constnat will be,
+         in the most cases, filled with the UIModel property.
+         */
+        let tintColor: UIColor
+        let strokeColor: UIColor
+        let backgroundColor: UIColor
+        var configuration = UIButton.Configuration.filled()
+        if isEnabled {
+            tintColor = baseTintColor
+            strokeColor = baseStrokeColor.withAlphaComponent(0.2)
+            backgroundColor = contentBackColor.withAlphaComponent(0.95)
+        } else {
+            tintColor = baseBackgroundColor.withAlphaComponent(0.55)
+            strokeColor = baseStrokeColor.withAlphaComponent(0.06)
+            backgroundColor = contentBackColor.withAlphaComponent(0.2)
+        }
+        
+        /// Configure the button title if string content title was initialized.
+        if let title = title {
+            let attributes = tintColor.setupDetailButtonTitleContainer()
+            let attributedTitle = AttributedString(title, attributes: attributes)
+            configuration.attributedTitle = attributedTitle
+        }
+        
+        /// Configure the button image if image name and configuration were initialized.
+        if let imageName = imageName, let imageConfig = imageConfig {
+            let image = UIImage(systemName: imageName)
+            let imageWithTint = image?.withTintColor(tintColor, renderingMode: .alwaysOriginal)
+            let configuredImage = imageWithTint!.applyingSymbolConfiguration(imageConfig)
+            configuration.image = configuredImage
+            configuration.imagePadding = 6
+        }
+        
+        /// Configure the same properties for all possible button types.
+        configuration.background.backgroundColor = backgroundColor
+        configuration.background.strokeColor = strokeColor
+        configuration.background.strokeWidth = 0.45
+        configuration.baseForegroundColor = tintColor
+        configuration.cornerStyle = .large
+        self.configuration = configuration
+        self.isEnabled = isEnabled
     }
 }
 
@@ -107,6 +191,21 @@ extension UIButton {
         if let imageView = self.imageView {
             bringSubviewToFront(imageView)
         }
+    }
+    
+    func startPulsingAnimation() {
+        let layerKey = "pulse"
+        let animationKeyPath = "transform.scale"
+        let timingFunctionName = CAMediaTimingFunctionName.easeInEaseOut
+        let timingFunction = CAMediaTimingFunction(name: timingFunctionName)
+        let pulse = CABasicAnimation(keyPath: animationKeyPath)
+        pulse.timingFunction = timingFunction
+        pulse.autoreverses = true
+        pulse.repeatCount = 4
+        pulse.duration = 0.5
+        pulse.toValue = 1.2
+        pulse.fromValue = 1.0
+        layer.add(pulse, forKey: layerKey)
     }
 }
 

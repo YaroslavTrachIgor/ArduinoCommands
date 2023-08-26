@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import SafariServices
-import SPAlert
 import SwiftUI
 
 //MARK: - Main ViewController protocol
@@ -58,7 +57,7 @@ private extension BasicKnowledgeViewController {
                 enum CellSize {
                     
                     //MARK: Static
-                    static let sizeForItemAtBasicsSection = CGSize(width: 180, height: 285)
+                    static let sizeForItemAtBasicsSection = CGSize(width: 210, height: 250)
                     static let sizeForItemAtSitesSection = CGSize(width: 230, height: 90)
                     static let sizeForItemAtUsersSection = CGSize(width: 90, height: 115)
                     static let sizeForItemAtTeamSection = CGSize(width: 240, height: 185)
@@ -66,7 +65,7 @@ private extension BasicKnowledgeViewController {
                 enum MinimumSpacings {
                     
                     //MARK: Static
-                    static let minimumLineSpacing: CGFloat = 20
+                    static let minimumLineSpacing: CGFloat = 3qqq0
                     static let minimumInteritemSpacing: CGFloat = 0
                 }
             }

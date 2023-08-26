@@ -32,16 +32,15 @@ extension AppDelegate {
 
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, AnalyticsManagerInjector, RateManagerInjector {
     
     //MARK: Internal
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .userInteractive).async { [self] in
             GADMobileAds.sharedInstance().start(completionHandler: nil)
-            ACCommandsAnalyticsManager.shared.checkAndAddNewViewDay()
             ACNotificationManager.shared.requestAuthorization()
             ACNetworkManager.shared.startMonitoring()
-            ACRateManager.shared.startCounting()
+            rateManager.startCounting()
         }
         DispatchQueue.main.async { [self] in
             setupTabBerItemBasicAppearance()
@@ -53,8 +52,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-
-    //MARK: Scene session Lifecycle
+    
     internal func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         /**
          Called when a new scene session is being created.
@@ -62,7 +60,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
          */
         UISceneConfiguration(name: Keys.AppDelegateConstants.sceneConfigurationName, sessionRole: connectingSceneSession.role)
     }
+    
+    internal func applicationWillTerminate(_ application: UIApplication) {
+        analyticsManager.checkAndAddNewViewDay()
+    }
 
+    //MARK: Scene session Lifecycle
     internal func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         /**
          Called when the user discards a scene session.

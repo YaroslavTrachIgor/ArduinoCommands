@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 //MARK: - Main model
-public final class ACIntroCard {
+final class IntroCard: Identifiable {
+    var id = UUID()
     let title: String?
     let subtitle: String?
     let content: String?

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 //MARK: - Main model
-public final class ACSettingsContactInfo {
+public final class SettingsContactInfo {
     var link: String?
     var linkName: String?
     
@@ -24,12 +24,12 @@ public final class ACSettingsContactInfo {
 
 //MARK: - UI model
 public final class ACSettingsContactInfoUIModel: Identifiable {
-    var content: ACSettingsContactInfo
+    var content: SettingsContactInfo
     var iconName: String?
     var tintColor: UIColor?
     
     //MARK: Initialization
-    init(content: ACSettingsContactInfo,
+    init(content: SettingsContactInfo,
          iconName: String?,
          tintColor: UIColor?) {
         self.content = content

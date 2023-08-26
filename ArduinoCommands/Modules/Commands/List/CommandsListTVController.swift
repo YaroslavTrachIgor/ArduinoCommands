@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 import GoogleMobileAds
+import SwiftUI
 import UIKit
 import Network
 
@@ -18,6 +19,7 @@ protocol CommandsListTableViewControllerProtocol: ACBaseWithShareViewController 
     func presentReminderSetupAlert(with command: CommandUIModel, completion: @escaping ((Date) -> Void))
     func presentNotificationsDisabledAlert()
     func presentCommandsListLoadFailedAlert()
+    func presentDailyReadingProgressView()
     func presentDetailVC(with command: ACCommand)
 }
 
@@ -74,6 +76,7 @@ private extension CommandsListTVController {
                 static let favoriteActionName = "star.fill"
                 static let remindActionName = "app.badge"
                 static let shareActionName = "square.and.arrow.up"
+                static let dailyGoalIconName = "timer"
             }
             enum TableViewCell {
                 
@@ -117,13 +120,6 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
         presenter.onViewDidLoad { rows in
             self.sections = rows
         }
-        
-        let sortAlphabeticalyBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.dash"), style: .plain, target: self, action: #selector(sortAlphabeticaly))
-        navigationItem.rightBarButtonItem = sortAlphabeticalyBarButtonItem
-    }
-    
-    @objc func sortAlphabeticaly() {
-        ///presenter.sortAlphabeticaly()
     }
 
     //MARK: TableView protocols
@@ -176,6 +172,12 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
         cell.configure(with: uiModel)
         return cell
     }
+    
+    //MARK: @objc
+    @available(iOS 16.0, *)
+    @objc func showDailyGoals() {
+        presenter.onShowDailyGoals()
+    }
 }
 
 
@@ -189,12 +191,13 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         setupNavigationBar()
         setupSearchController()
         setBlurViewForStatusBar()
+        setupDailyGoalBarButtonItem()
         view.setupBasicMenuBackgroundView(.table)
     }
     
     internal func presentAdlnterstitial() {
-        ///guard let interstitial = interstitial else { return }
-        ///adsClient?.presentCommandDetailnterstitialAd(interstitial: interstitial, on: self)
+        guard let interstitial = interstitial else { return }
+        adsClient?.presentCommandDetailInterstitialAd(interstitial: interstitial, on: self)
     }
     
     internal func presentActivityVC(activityItems: [Any]) {
@@ -229,7 +232,7 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: 8,
-                                   preset: .custom(iconImage))
+                                   style: .iOS16AppleMusic)
     }
     
     internal func presentReminderSetupAlert(with command: CommandUIModel, completion: @escaping ((Date) -> Void)) {
@@ -254,6 +257,14 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
         alertController.setValue(attributedTitle, forKeyPath: attributedTitleKey)
         alertController.view.addSubview(reminderDatePicker)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    internal func presentDailyReadingProgressView() {
+        if #available(iOS 16.0, *) {
+            let rootView = DailyReadingProgressView(isOpenedFromSettings: false)
+            let analyticsView = UIHostingController(rootView: rootView)
+            presentSheet(with: analyticsView, detents: [.custom { _ in return 490 }])
+        }
     }
     
     internal func presentDetailVC(with model: ACCommand) {
@@ -323,6 +334,17 @@ private extension CommandsListTVController {
         return reminderDatePicker
     }
     
+    func setupDailyGoalBarButtonItem() {
+        if #available(iOS 16.0, *) {
+            let action = #selector(showDailyGoals)
+            let dailyGoalIconName = Constants.UI.Image.dailyGoalIconName
+            let dailyGoalIconImageConfiguration = UIImage.SymbolConfiguration(pointSize: 15.5, weight: .regular, scale: .unspecified)
+            let dailyGoalIconImageView = UIImage(systemName: dailyGoalIconName)?.applyingSymbolConfiguration(dailyGoalIconImageConfiguration)
+            let dailyGoalBarButtonItem = UIBarButtonItem(image: dailyGoalIconImageView, style: .plain, target: self, action: action)
+            navigationItem.leftBarButtonItem = dailyGoalBarButtonItem
+        }
+    }
+    
     func setupShareRowAction(command: CommandUIModel) -> UIContextualAction {
         let shareActionBackColor = Constants.UI.RowAction.shareActionBackgroundColor
         let shareActionIconName = Constants.UI.Image.shareActionName
@@ -348,9 +370,10 @@ private extension CommandsListTVController {
     }
     
     func setupInterstitial() {
-        ///adsClient?.setupCommandDetailnterstitialAd(delegate: self, completion: { interstitial in
-        ///    self.interstitial = interstitial
-        ///})
+        adsClient?.setupCommandDetailInterstitialAd(delegate: self, completion: { interstitial in
+            self.interstitial = interstitial
+            self.interstitial?.fullScreenContentDelegate = self
+        })
     }
     
     
@@ -391,7 +414,5 @@ extension CommandsListTVController: UISearchResultsUpdating {
 extension CommandsListTVController: GADFullScreenContentDelegate {
     
     //MARK: Internal
-    internal func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-        presenter.onDidFailPresentAd(with: error)
-    }
+    internal func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {}
 }

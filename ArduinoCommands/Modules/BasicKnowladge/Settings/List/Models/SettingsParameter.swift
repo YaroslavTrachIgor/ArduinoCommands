@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 //MARK: - Main model
-public final class ACSettingsParameter {
+public final class SettingsParameter {
     let name: String?
     var value: Bool?
     
@@ -25,13 +25,13 @@ public final class ACSettingsParameter {
 
 //MARK: - UI model
 public final class ACSettingsParameterUIModel: Identifiable {
-    var content: ACSettingsParameter
+    var content: SettingsParameter
     let iconName: String?
     let tintColor: UIColor?
     let isEnabled: Bool?
     
     //MARK: Initialization
-    init(content: ACSettingsParameter,
+    init(content: SettingsParameter,
          iconName: String?,
          tintColor: UIColor?,
          isEnabled: Bool?) {

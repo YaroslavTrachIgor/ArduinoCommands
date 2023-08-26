@@ -15,15 +15,7 @@ private extension CommandDetailPresenter {
     enum Keys {
         
         //MARK: Static
-        static let defaultDetailsTintColor: UIColor = .white
-    }
-    enum Constants {
-        enum ImagesLoadFailAlert {
-            
-            //MARK: Static
-            static let title = "Poor Network Connection"
-            static let message = "Failed to load Devices Images because of the Poor Network Connection. Please, check your Wifi network connection or try restarting the app."
-        }
+        static let defaultDetailsTintColor = UIColor.white
     }
 }
 
@@ -40,6 +32,7 @@ internal protocol CommandDetailPresenterProtocol {
     func onChangeContentButton(with index: Int)
     func onCopyDetails(for tag: Int)
     func onHideDetails()
+    func onGoToReadingMode()
     func onPresentDeviceImages()
     func onPresentDetails()
     func onShareButton()
@@ -49,7 +42,7 @@ internal protocol CommandDetailPresenterProtocol {
 
 
 //MARK: - Main Presenter
-final class CommandDetailPresenter {
+final class CommandDetailPresenter: AnalyticsManagerInjector, RateManagerInjector {
     
     //MARK: Private
     @ACBaseUserDefaultsColor(key: UserDefaults.Keys.detailsTintColorrKey)
@@ -78,10 +71,11 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         completion(detailsTintColor)
         refreshView()
         showAd()
-        view?.setupRateManager()
+        askToRate()
+        remindAboutReadingMode()
+        showDailyGoalCongratulations()
         view?.presentTabBarWithAnimation(alpha: 0)
-        
-        ACCommandsAnalyticsManager.shared.updateCurrentArticleViews()
+        analyticsManager.updateLastReadArticle(articleName: (model?.name!)!)
     }
     
     internal func onViewDidDisappear() {
@@ -96,10 +90,6 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         view?.presentFastImageViewController()
     }
     
-    internal func onViewCodeSnippet() {
-        view?.presentCodeSnippetViewController()
-    }
-    
     internal func onPresentDetailsColorPicker() {
         view?.presentColorPickerViewController()
     }
@@ -108,12 +98,21 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         view?.presentDeviceImagesCollectionViewController()
     }
     
+    internal func onGoToReadingMode() {
+        view?.presentReadingModeHostingViewController()
+    }
+    
     internal func onPresentDetails() {
         animateDetails(presentationType: .present)
     }
     
     internal func onHideDetails() {
         animateDetails(presentationType: .hide)
+    }
+    
+    internal func onViewCodeSnippet() {
+        view?.presentAdlnterstitial()
+        view?.presentCodeSnippetViewController()
     }
     
     internal func setNewTintColor(with color: UIColor) {
@@ -168,18 +167,14 @@ private extension CommandDetailPresenter {
         animateDetails(presentationType: .hide)
     }
     
-    func showAd() {
-        /**
-         Before we setup Ad Bunner view, we need to check if the user wants to read
-         an article from the paid sections.
-         
-         By using Command subtitle we can check:
-         if it is the first section, than we won't present any Ad screens or bunners,
-         in the other cases we will distract user with Advertisments.
-         */
-        if model?.subtitle != ACCommandsSection.Keys.firstSectionSubtitle {
-            view?.setupAdBunner()
-        }
+    func askToRate() {
+        rateManager.checkSession(completion: { [self] in
+            view?.presentRateAlert(noCompletion: { [self] in
+                view?.presentRateThanksAlert()
+            }, yesCompletion: { [self] in
+                view?.presentStoreReviewController()
+            })
+        })
     }
     
     func animateDetails(presentationType: ACBasePresentationType) {
@@ -193,14 +188,42 @@ private extension CommandDetailPresenter {
         }
     }
     
+    func showAd() {
+        /**
+         Before we setup Ad Bunner view, we need to check if the user wants to read
+         an article from the paid sections.
+         
+         By using Command subtitle we can check:
+         if it is the first section, than we won't present any Ad screens or bunners,
+         in the other cases we will distract user with Advertisments.
+         */
+        if model?.subtitle != ACCommandsSection.Keys.firstSectionSubtitle {
+            view?.presentAdBunner()
+        }
+    }
+    
     func copy(_ content: String!, contentType: ACPasteboardManager.ContentType) {
         ACGrayAlertManager.presentCopiedAlert(contentType: contentType)
         ACPasteboardManager.copy(content)
     }
     
-    func presentImagesLoadFailMessage() {
-        let title = Constants.ImagesLoadFailAlert.title
-        let message = Constants.ImagesLoadFailAlert.message
-        ACGrayAlertManager.present(title: title, message: message)
+    func remindAboutReadingMode() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            view?.pulseReadingModeButton()
+        }
+    }
+    
+    func showDailyGoalCongratulations() {
+        analyticsManager.updateCurrentArticleViews { isDailyGoalAchieved in
+            if isDailyGoalAchieved {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 60) { [self] in
+                    view?.presentDailyGoalCongratulationsView(with: .present)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+                        view?.presentDailyGoalCongratulationsView(with: .hide)
+                    }
+                }
+            }
+        }
     }
 }

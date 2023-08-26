@@ -16,6 +16,7 @@ struct CommandDetailFormatter {
         return CommandDetailUIModel(title: command.name.uppercased(),
                                     subtitle: command.subtitle.uppercased(),
                                     content: command.description,
+                                    readingTitle: command.name.capitalizeFirstLetter(),
                                     returnsLabelIsHidden: command.returns,
                                     isDevicesLabelEnabled: command.isUsedWithDevices,
                                     codeScreenImage: UIImage(named: command.imageURL)!,

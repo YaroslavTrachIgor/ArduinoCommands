@@ -109,7 +109,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - view: UI element that will be animated;
     ///   - animationType: kind of animation(present or hide view).
-    func animateViewIn(for view: UIView, animationType: ACBasePresentationType) {
+    func animateViewIn(for view: UIView, animationType: ACBasePresentationType, on center: CGPoint) {
         switch animationType {
         case .present:
             /**
@@ -117,7 +117,7 @@ public extension UIViewController {
              Before we animate the view, we use the `animatedViewBaseConfiguration` method,
              which prepares a UI element for easy future interaction
              */
-            animatedViewBaseConfiguration(for: view)
+            animatedViewBaseConfiguration(for: view, center: center)
             fastAnimation { [self] in
                 fastAnimatedViewSetup(for: view, alpha: 1, transform: 1)
             }
@@ -150,16 +150,15 @@ public extension UIViewController {
     /// - Parameters:
     ///   - view: the view that is on the VC and will be changed;
     ///   - animationType: case of animation depending on which the `view` properties will changed.
-    func enableViewIn(or view: UIBarItem, animationType: ACBasePresentationType) {
+    func enableViewIn(for view: UIBarItem, animationType: ACBasePresentationType) {
         switch animationType {
         case .present: fastAnimation { view.isEnabled = true }
         case .hide: fastAnimation { view.isEnabled = false }
         }
     }
     
-    func animatedViewBaseConfiguration(for view: UIView) {
+    func animatedViewBaseConfiguration(for view: UIView, center: CGPoint) {
         let backgroundView = self.view!
-        let center = backgroundView.center
         backgroundView.addSubview(view)
         view.center = center
         fastAnimatedViewSetup(for: view, alpha: 0, transform: 1.2)

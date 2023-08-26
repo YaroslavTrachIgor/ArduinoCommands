@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsBasicInfoCell: View {
     
     //MARK: Public
-    @State var item: ACSettingsBasicInfo
+    @State var item: SettingsBasicInfo
     
     //MARK: View Configuration
     var body: some View {

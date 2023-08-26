@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import SPAlert
 
 //MARK: - Constants
 private extension UserSheetCell {

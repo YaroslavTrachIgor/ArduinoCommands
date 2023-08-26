@@ -12,7 +12,6 @@ import StoreKit
 
 //MARK: - Main ViewController protocol
 protocol BasicKnowledgeDetailVCProtocol: ACBaseDetailViewController {
-    func setFastBottomContentViewShadowColor()
     func presentSafariVC(stringURL: String)
     func presentTabBarWithAnimation(alpha: Int)
 }
@@ -48,7 +47,7 @@ private extension BasicKnowledgeDetailViewController {
             enum Image {
                 
                 //MARK: Static
-                static let backgroundName = "basic-knowladge-background"
+                static let backgroundName = ""//"basic-knowladge-background"
             }
         }
     }
@@ -71,20 +70,14 @@ final class BasicKnowledgeDetailViewController: UIViewController, ACBaseStoryboa
     
     //MARK: @IBOutlets
     @IBOutlet private weak var wikiButton: UIButton!
-    @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var leftDecoLabel: UILabel!
     @IBOutlet private weak var centerDecoLabel: UILabel!
     @IBOutlet private weak var rightDecoLabel: UILabel!
     @IBOutlet private weak var wavesImageView: UIImageView!
-    @IBOutlet private weak var wavesImageBlurView: UIVisualEffectView!
     @IBOutlet private weak var contentTextView: UITextView!
-    @IBOutlet private weak var bottomContentBackView: UIView!
-    @IBOutlet private weak var bottomContentBackBlurView: UIVisualEffectView!
-    @IBOutlet private weak var bottomContentBackImageView: UIImageView!
-    @IBOutlet private weak var designedByLabel: UILabel!
-    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var contentBackView: UIView!
     
     //MARK: @IBOutlet collections
     @IBOutlet private var decorationCircleViews: [UIView]!
@@ -101,12 +94,6 @@ final class BasicKnowledgeDetailViewController: UIViewController, ACBaseStoryboa
         super.viewWillDisappear(animated)
         
         presenter?.onViewWillDisappear()
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        presenter?.onChangeAppearance()
     }
     
     //MARK: @IBActions
@@ -133,27 +120,17 @@ extension BasicKnowledgeDetailViewController: BasicKnowledgeDetailVCProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
-        setupHeaderLabel()
-        setupDateLabel()
         setupTitleLabel()
         setupSubtitleLabel()
         setupContentTextView()
-        setupDesignedByLabel()
         setupDecorationCircleViews()
-        setupBottomContentBackView()
-        setupBottomContentBackBlurView()
-        setupBottomContentBackImageView()
         leftDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoLeftTitle)
         centerDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoMiddleTitle, tintColor: .systemTeal)
         rightDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoRightTitle, tintColor: .systemPink)
         wikiButton.configuration = setupWikiLinkButtonConfiguration()
-    }
-    
-    internal func setFastBottomContentViewShadowColor() {
-        let shadowColor = UIColor.systemGray6.withAlphaComponent(0.5).cgColor
-        let borderColor = UIColor.systemGray4.cgColor
-        bottomContentBackView.layer.shadowColor = shadowColor
-        bottomContentBackView.layer.borderColor = borderColor
+        
+        contentBackView.backgroundColor = .clear
+        contentBackView.addGradient(colors: [UIColor.clear, UIColor(hexString: "#121212", alpha: 0.3), UIColor(hexString: "#121212", alpha: 0.65)], startPoint: CGPoint(x: 0.5, y: 0), endPoint: CGPoint(x: 0.5, y: 0.2))
     }
     
     internal func moveToThePreviousViewController() {
@@ -178,18 +155,8 @@ extension BasicKnowledgeDetailViewController: BasicKnowledgeDetailVCProtocol {
 private extension BasicKnowledgeDetailViewController {
     
     //MARK: Private
-    func setupHeaderLabel() {
-        let font = UIFont.ACFont(style: .header)
-        let content = Constants.UI.Label.Content.header
-        headerLabel.backgroundColor = .clear
-        headerLabel.numberOfLines = 2
-        headerLabel.textColor = .black
-        headerLabel.text = content
-        headerLabel.font = font
-    }
-    
     func setupTitleLabel() {
-        let font = UIFont.ACFont(ofSize: 14, weight: .bold)
+        let font = UIFont.ACFont(ofSize: 18, weight: .bold)
         let content = uiModel?.title
         titleLabel.backgroundColor = .clear
         titleLabel.numberOfLines = 1
@@ -199,80 +166,39 @@ private extension BasicKnowledgeDetailViewController {
     }
     
     func setupSubtitleLabel() {
-        let font = UIFont.ACFont(style: .articleTitle)
+        let font = UIFont.ACFont(ofSize: 27, weight: .bold)
         let content = Constants.UI.Label.Content.subtitle.uppercased()
         subtitleLabel.backgroundColor = .clear
         subtitleLabel.numberOfLines = 2
-        subtitleLabel.textColor = .label
+        subtitleLabel.textColor = .white
         subtitleLabel.text = content
         subtitleLabel.font = font
     }
     
     func setupContentTextView() {
-        let textColor = UIColor.label.withAlphaComponent(0.6)
+        let textColor = UIColor.secondaryLabel
         let content = uiModel?.content
         let font = UIFont.ACFont(style: .articleContent)
+        let style = NSMutableParagraphStyle(); style.lineSpacing = 5
+        let attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: style, .font: font]
+        let attributedText = NSAttributedString(string: content!, attributes: attributes)
         contentTextView.backgroundColor = .clear
+        contentTextView.attributedText = attributedText
         contentTextView.isSelectable = true
         contentTextView.isEditable = false
         contentTextView.textColor = textColor
-        contentTextView.text = content
-        contentTextView.font = font
-    }
-    
-    func setupBottomContentBackView() {
-        let backdColor = UIColor.secondarySystemBackground.withAlphaComponent(0.3)
-        let shadowOffset = CGSize(width: 0, height: -5)
-        bottomContentBackView.layer.shadowOpacity = 1
-        bottomContentBackView.layer.shadowRadius = 12
-        bottomContentBackView.layer.cornerRadius = CGFloat.Corners.baseACRounding
-        bottomContentBackView.layer.shadowOffset = shadowOffset
-        bottomContentBackView.backgroundColor = backdColor
-        bottomContentBackView.setFastGlassmorphismBorder()
-    }
-    
-    func setupBottomContentBackBlurView() {
-        let effect = UIBlurEffect(style: .prominent)
-        let cornerRadius = bottomContentBackView.layer.cornerRadius
-        bottomContentBackBlurView.layer.cornerRadius = cornerRadius
-        bottomContentBackBlurView.clipsToBounds = true
-        bottomContentBackBlurView.effect = effect
-    }
-    
-    func setupBottomContentBackImageView() {
-        let imageName = Constants.UI.Image.backgroundName
-        let image = UIImage(named: imageName)
-        bottomContentBackImageView.contentMode = .scaleAspectFit
-        bottomContentBackImageView.image = image
-        bottomContentBackImageView.alpha = 0.4
-    }
-    
-    func setupDesignedByLabel() {
-        let font = UIFont.ACFont(style: .footer)
-        let content = Constants.UI.Label.Content.designedBy.uppercased()
-        designedByLabel.backgroundColor = .clear
-        designedByLabel.numberOfLines = 1
-        designedByLabel.textColor = .systemGray2
-        designedByLabel.text = content
-        designedByLabel.font = font
-    }
-    
-    func setupDateLabel() {
-        let content = uiModel?.dateDescription
-        let font = UIFont.ACFont(style: .footer)
-        dateLabel.backgroundColor = .clear
-        dateLabel.textColor = .systemGray2
-        dateLabel.numberOfLines = 1
-        dateLabel.text = content
-        dateLabel.font = font
     }
     
     func setupWikiLinkButtonConfiguration() -> UIButton.Configuration {
         var config: UIButton.Configuration = .filled()
+        let image = UIImage(systemName: "globe", withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .light, scale: .medium))
         let attributedTitle = setupWikiLinkButtonAttributedTitle()
-        config.baseBackgroundColor = .black
+        config.baseBackgroundColor = .label
+        config.baseForegroundColor = .systemBackground
         config.attributedTitle = attributedTitle
         config.cornerStyle = .capsule
+        config.imagePadding = 6
+        config.image = image
         return config
     }
     
@@ -280,8 +206,7 @@ private extension BasicKnowledgeDetailViewController {
         let title = Constants.UI.Button.wikiLinkButtonTitle
         let font = UIFont.ACFont(ofSize: 12, weight: .bold)
         var attTitle = AttributedString.init(title)
-        attTitle.backgroundColor = .black
-        attTitle.foregroundColor = .white
+        attTitle.foregroundColor = .systemBackground
         attTitle.obliqueness = 0
         attTitle.font = font
         return attTitle
@@ -289,7 +214,7 @@ private extension BasicKnowledgeDetailViewController {
     
     func setupDecorationCircleViews() {
         for decoView in decorationCircleViews {
-            decoView.backgroundColor = .black
+            decoView.backgroundColor = .label
             decoView.layer.cornerRadius = decoView.frame.height / 2
         }
     }
@@ -300,3 +225,14 @@ private extension BasicKnowledgeDetailViewController {
 
 
 
+extension UIView {
+    func addGradient(colors: [UIColor], locations: [NSNumber]? = nil, startPoint: CGPoint = CGPoint(x: 0.16, y: 0), endPoint: CGPoint = CGPoint(x: 0.5, y: 1)) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}

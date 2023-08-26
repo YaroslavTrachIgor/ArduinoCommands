@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-import OpenAIKit
+import SwiftUI
+import StoreKit
 import GoogleMobileAds
 
 //MARK: - Main ViewController protocol
@@ -15,14 +16,20 @@ protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
     func show(model: CommandDetailUIModel!)
     func presentTabBarWithAnimation(alpha: Int)
     func changeTextViewContentAnimately(text: String)
+    func presentDailyGoalCongratulationsView(with animationType: ACBasePresentationType)
     func presentDetailsViews(with animationType: ACBasePresentationType)
     func enableBarViews(with animationType: ACBasePresentationType)
     func presentDeviceImagesCollectionViewController()
+    func presentReadingModeHostingViewController()
     func presentColorPickerViewController()
     func presentCodeSnippetViewController()
     func presentFastImageViewController()
-    func setupRateManager()
-    func setupAdBunner()
+    func presentRateAlert(noCompletion: @escaping ACBaseCompletionHandler, yesCompletion: @escaping ACBaseCompletionHandler)
+    func presentStoreReviewController()
+    func pulseReadingModeButton()
+    func presentRateThanksAlert()
+    func presentAdlnterstitial()
+    func presentAdBunner()
 }
 
 
@@ -47,16 +54,36 @@ private extension CommandDetailViewController {
                 
                 //MARK: Static
                 static let closeTitle = "Close"
-                static let goToScreenshotTitle = "Screenshot"
-                static let goToCodeSnippetTitle = "Code Snippet"
+                static let goToScreenshotTitle = "Model"
+                static let goToCodeSnippetTitle = "Code"
             }
             enum Image {
                 
                 //MARK: Static
                 static let detailsIcon = "list.dash"
+                static let readingModeIcon = "book"
                 static let colorPickerGoIcon = "circle.hexagongrid"
                 static let deviceIcon = "externaldrive.badge.plus"
+                static let modelIcon = "server.rack"
+                static let codeIcon = "chevron.left.slash.chevron.right"
                 static let copyIcon = "rectangle.portrait.on.rectangle.portrait"
+            }
+            enum Alert {
+                enum RateAlert {
+                    
+                    //MARK: Static
+                    static var title = "Do you enjoy using ArduinoCommands?"
+                    static var message = "Your opinion is very important for us."
+                    static let noActionTitle = "No, I don't"
+                    static let yesActionTitle = "Yes, I like it!"
+                    static let dismissActionTitle = "Dismiss"
+                }
+                enum ThanksAlert {
+                    
+                    //MARK: Static
+                    static var title = "Thank you!"
+                    static var message = "We will keep improving our Application."
+                }
             }
         }
     }
@@ -64,7 +91,7 @@ private extension CommandDetailViewController {
 
 
 //MARK: - Main ViewController
-final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
+final class CommandDetailViewController: UIViewController, ACBaseStoryboarded, RateManagerInjector {
     
     //MARK: Internal
     var model: ACCommand!
@@ -76,6 +103,7 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     
     //MARK: Private
     private var uiModel: CommandDetailUIModel?
+    private var interstitial: GADInterstitialAd?
     private var presenter: CommandDetailPresenterProtocol? {
         return CommandDetailPresenter(view: self, delegate: self, model: model)
     }
@@ -99,14 +127,17 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBOutlet private weak var shareBarButton: UIBarButtonItem!
     @IBOutlet private weak var copyBarButton: UIBarButtonItem!
     @IBOutlet private weak var screenshotBlurView: UIVisualEffectView!
+    @IBOutlet private weak var readingModeButton: UIButton!
     @IBOutlet private weak var screenshotButton: UIButton!
     @IBOutlet private weak var codeSnippetButton: UIButton!
     @IBOutlet private weak var adBunnerView: GADBannerView!
+    @IBOutlet private weak var adBunnerBackgroundView: UIView!
     @IBOutlet private weak var presentDetailsButton: UIButton!
     @IBOutlet private weak var presentDeviceImagesButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
     @IBOutlet private weak var detailBackgroundView: CommandDetailBackgroundView!
-
+    @IBOutlet private weak var dailyGoalCongratulationsView: CommandDetailDailyGoalCongratulationsView!
+    
     
     //MARK: Lifecycle
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -171,6 +202,10 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded {
     @IBAction func presentDetailsColorPicker(_ sender: Any) {
         presenter?.onPresentDetailsColorPicker()
     }
+    
+    @IBAction func goToReadingMode(_ sender: Any) {
+        presenter?.onGoToReadingMode()
+    }
 }
 
 
@@ -201,6 +236,9 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         setupDetailBackgroundView()
         setupDetailContentView()
         setupDetailCopyButtons()
+        setupDailyGoalCongratulationsView()
+        setupReadingModeButton()
+        setupInterstitial()
         presentDetailsButton.setupDetailsButton(with: Constants.UI.Image.detailsIcon)
         detailBackgroundView.changeTintColorButton.setupCodeContentEditingButton(tintColor: detailsTintColor, imageName: Constants.UI.Image.colorPickerGoIcon)
         detailBackgroundView.doneButton.setupPopupButton(tintColor: detailsTintColor, title: Constants.UI.Button.closeTitle)
@@ -211,44 +249,92 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         copyBarButton.setupBaseCopyBarButton()
     }
     
+    internal func presentAdBunner() {
+        setupAdBunnerBackgroundView()
+        setupAdBunnerView()
+        adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
+    }
+    
     internal func changeTextViewContentAnimately(text: String) {
         contentTextView.changeTextWithAnimation(text: text)
+    }
+    
+    internal func pulseReadingModeButton() {
+        readingModeButton.startPulsingAnimation()
     }
     
     internal func presentTabBarWithAnimation(alpha: Int) {
         hideTabBarWithAnimation(alpha: alpha)
     }
     
-    internal func setupAdBunner() {
-        adBunnerView.delegate = self
-        adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
-    }
-    
     internal func presentDetailsViews(with animationType: ACBasePresentationType) {
-        animateViewIn(for: detailBackgroundBlurView, animationType: animationType)
-        animateViewIn(for: detailBackgroundView, animationType: animationType)
+        animateViewIn(for: detailBackgroundBlurView, animationType: animationType, on: view.center)
+        animateViewIn(for: detailBackgroundView, animationType: animationType, on: view.center)
     }
     
     internal func enableBarViews(with animationType: ACBasePresentationType) {
-        enableViewIn(or: contentSegmentedControl, animationType: animationType)
-        enableViewIn(or: costomBackBarButton, animationType: animationType)
-        enableViewIn(or: shareBarButton, animationType: animationType)
-        enableViewIn(or: copyBarButton, animationType: animationType)
-    }
-    
-    internal func setupRateManager() {
-        ACRateManager.shared.currentViewController = self
-        ACRateManager.shared.presentRateAlert()
+        enableViewIn(for: costomBackBarButton, animationType: animationType)
+        enableViewIn(for: shareBarButton, animationType: animationType)
+        enableViewIn(for: copyBarButton, animationType: animationType)
     }
     
     internal func presentActivityVC(activityItems: [Any]) {
         ACActivityManager.presentVC(activityItems: activityItems, on: self)
     }
     
+    internal func presentAdlnterstitial() {
+        guard let interstitial = interstitial else { return }
+        adsClient?.presentCommandCodeSnippetInterstitialAd(interstitial: interstitial, on: self)
+    }
+    
+    internal func presentDailyGoalCongratulationsView(with animationType: ACBasePresentationType) {
+        let centerX = view.bounds.midX
+        let centerY = view.safeAreaInsets.top + 28
+        let centerPoint = CGPoint(x: centerX, y: centerY)
+        animateViewIn(for: dailyGoalCongratulationsView, animationType: animationType, on: centerPoint)
+    }
+    
+    internal func presentReadingModeHostingViewController() {
+        let viewModel = CommandDetailReadingViewModel(model: model)
+        let rootView = CommandDetailReadingView(viewModel: viewModel)
+        let commandDetailReadingVC = UIHostingController(rootView: rootView)
+        presentSheet(with: commandDetailReadingVC, detents: [.large()])
+    }
+    
     internal func presentFastImageViewController() {
         let imageVC = FastImageViewController()
         imageVC.image = codeScreenshotImageView.image
         presentSheet(with: imageVC, detents: [.large()])
+    }
+    
+    internal func presentRateThanksAlert() {
+        let title = Constants.UI.Alert.ThanksAlert.title
+        let message = Constants.UI.Alert.ThanksAlert.message
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   duration: 2,
+                                   style: .iOS16AppleMusic)
+    }
+    
+    func presentRateAlert(noCompletion: @escaping ACBaseCompletionHandler, yesCompletion: @escaping ACBaseCompletionHandler) {
+        let title = Constants.UI.Alert.RateAlert.title
+        let message = Constants.UI.Alert.RateAlert.message
+        let noActionTitle = Constants.UI.Alert.RateAlert.noActionTitle
+        let yesActionTitle = Constants.UI.Alert.RateAlert.yesActionTitle
+        let dismissActionTitle = Constants.UI.Alert.RateAlert.dismissActionTitle
+        let rateAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let noAlert = UIAlertAction(title: noActionTitle, style: .default) { _ in
+            noCompletion()
+        }
+        let yesAction = UIAlertAction(title: yesActionTitle, style: .default, handler: { _ in
+            yesCompletion()
+        })
+        let dismissAction = UIAlertAction(title: dismissActionTitle, style: .cancel)
+        rateAlert.view.tintColor = .label
+        rateAlert.addAction(yesAction)
+        rateAlert.addAction(noAlert)
+        rateAlert.addAction(dismissAction)
+        present(rateAlert, animated: true, completion: nil)
     }
     
     internal func presentColorPickerViewController() {
@@ -274,6 +360,11 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         navigationController?.pushViewController(codeSnippetVC, animated: true)
     }
     
+    func presentStoreReviewController() {
+        guard let scene = view.window?.windowScene else { return }
+        SKStoreReviewController.requestReview(in: scene)
+    }
+    
     internal func moveToThePreviousViewController() {
         navigationController?.popToRootViewController(animated: true)
     }
@@ -294,13 +385,6 @@ extension CommandDetailViewController: CommandDetailViewControllerDelegate {
 private extension CommandDetailViewController {
     
     //MARK: Private
-    func setupCodeScreenshotImageView() {
-        let image = uiModel?.codeScreenImage
-        codeScreenshotImageView.backgroundColor = .clear
-        codeScreenshotImageView.contentMode = .scaleAspectFill
-        codeScreenshotImageView.image = image
-    }
-    
     func setupTitleLabel() {
         let content = uiModel?.title
         let tintColor = UIColor.ACDetails.tintColor
@@ -335,6 +419,13 @@ private extension CommandDetailViewController {
         contentTextView.font = font
     }
     
+    func setupCodeScreenshotImageView() {
+        let image = uiModel?.codeScreenImage
+        codeScreenshotImageView.backgroundColor = .clear
+        codeScreenshotImageView.contentMode = .scaleAspectFill
+        codeScreenshotImageView.image = image
+    }
+    
     func setupContentBackgroundBlurView() {
         let maskedCorners: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         let cornerRadius = CGFloat.Corners.baseACBigRounding
@@ -350,13 +441,28 @@ private extension CommandDetailViewController {
         let backgroundColor = UIColor.ACDetails.secondaryBackgroundColor.withAlphaComponent(0.62)
         let cornerRadius = CGFloat.Corners.baseACBigRounding
         let tintColor = UIColor.ACDetails.tintColor
+        contentBackgroundView.setFastGlassmorphismBorder()
         contentBackgroundView.layer.maskedCorners = maskedCorners
         contentBackgroundView.layer.cornerRadius = cornerRadius
         contentBackgroundView.layer.masksToBounds = true
-        contentBackgroundView.setFastGlassmorphismBorder()
         contentBackgroundView.backgroundColor = backgroundColor
         contentBackgroundView.tintColor = tintColor
         contentBackgroundView.alpha = 1
+    }
+    
+    func setupDailyGoalCongratulationsView() {
+        let cornerRadius = CGFloat.Corners.baseACRounding
+        let shadowOffset = CGSize(width: 0, height: 0.8)
+        let shadowColor = UIColor.black.cgColor
+        let bounds = CGRect(x: 0, y: 0, width: 280, height: 59)
+        dailyGoalCongratulationsView.setFastGlassmorphismBorder()
+        dailyGoalCongratulationsView.layer.shadowColor = shadowColor
+        dailyGoalCongratulationsView.layer.cornerRadius = cornerRadius
+        dailyGoalCongratulationsView.layer.shadowOffset = shadowOffset
+        dailyGoalCongratulationsView.layer.shadowOpacity = 0.5
+        dailyGoalCongratulationsView.layer.shadowRadius = 8
+        dailyGoalCongratulationsView.backgroundColor = .black
+        dailyGoalCongratulationsView.bounds = bounds
     }
     
     func setupPresentDeviceImagesButton() {
@@ -379,6 +485,22 @@ private extension CommandDetailViewController {
         detailBackgroundBlurView.layer.cornerRadius = 0
         detailBackgroundBlurView.bounds = bounds
         detailBackgroundBlurView.effect = effect
+    }
+    
+    func setupAdBunnerBackgroundView() {
+        let backgroundColor = UIColor.ACDetails.secondaryBackgroundColor.withAlphaComponent(0.32)
+        let cornerRadius = CGFloat.Corners.baseACBigRounding
+        adBunnerBackgroundView.layer.cornerRadius = cornerRadius
+        adBunnerBackgroundView.layer.masksToBounds = true
+        adBunnerBackgroundView.setFastGlassmorphismBorder()
+        adBunnerBackgroundView.backgroundColor = backgroundColor
+        adBunnerBackgroundView.isHidden = false
+    }
+    
+    func setupAdBunnerView() {
+        adBunnerView.delegate = self
+        adBunnerView.layer.cornerRadius = 15
+        adBunnerView.layer.masksToBounds = true
     }
     
     func setupDetailContentView() {
@@ -452,78 +574,40 @@ private extension CommandDetailViewController {
     
     func setupScreenshotButton() {
         let title = Constants.UI.Button.goToScreenshotTitle
-        let baseTintColor = UIColor.ACDetails.tintColor
-        let baseBackgroundColor = UIColor.ACDetails.backgroundColor
-        let isEnabled = uiModel?.isScreenshotButtonEnabled!
-        let backgroundColor: UIColor
-        let tintColor: UIColor
-        var configuration = UIButton.Configuration.filled()
-        configuration.cornerStyle = .large
-        /**
-         In the code below, before we setup needed button properties,
-         we check if this buton for this command enabled
-         through UI model properties (in this case, if Screenshot Enabled).
-         */
-        if isEnabled! {
-            tintColor = baseBackgroundColor
-            backgroundColor = baseTintColor.withAlphaComponent(0.95)
-        } else {
-            tintColor = baseTintColor.withAlphaComponent(0.55)
-            backgroundColor = baseTintColor.withAlphaComponent(0.2)
-        }
-        let attributes = setupCodeSnippetButtonTitleContainer(tintColor: tintColor)
-        let attributedTitle = AttributedString(title, attributes: attributes)
-        configuration.baseBackgroundColor = backgroundColor
-        configuration.baseForegroundColor = tintColor
-        configuration.attributedTitle = attributedTitle
-        screenshotButton.configuration = configuration
-        screenshotButton.isEnabled = isEnabled!
+        let imageName = Constants.UI.Image.modelIcon
+        let isEnabled = uiModel?.isScreenshotButtonEnabled
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17.2, weight: .medium, scale: .small)
+        screenshotButton.setupDetailsButton(buttonType: .light,
+                                            title: title,
+                                            imageName: imageName,
+                                            imageConfig: imageConfig,
+                                            isEnabled: isEnabled!)
     }
     
     func setupCodeSnippetButton() {
         let title = Constants.UI.Button.goToCodeSnippetTitle
-        let baseTintColor = UIColor.ACDetails.tintColor
-        let baseBackgroundColor = UIColor.ACDetails.backgroundColor
-        let contentBackColor = UIColor.ACDetails.secondaryBackgroundColor
+        let imageName = Constants.UI.Image.codeIcon
         let isEnabled = uiModel?.isCodeSnippetButtonEnabled
-        let backgroundColor: UIColor
-        let strokeColor: UIColor
-        let tintColor: UIColor
-        var configuration = UIButton.Configuration.filled()
-        configuration.background.strokeWidth = 0.45
-        configuration.cornerStyle = .large
-        /**
-         In the code below, before we setup needed button properties,
-         we check if this buton for this command enabled
-         through UI model properties (in this case, if Code Snippet Enabled).
-         */
-        if isEnabled! {
-            tintColor = baseTintColor
-            backgroundColor = contentBackColor.withAlphaComponent(0.95)
-            strokeColor = tintColor.withAlphaComponent(0.2)
-        } else {
-            tintColor = baseBackgroundColor.withAlphaComponent(0.55)
-            backgroundColor = contentBackColor.withAlphaComponent(0.2)
-            strokeColor = tintColor.withAlphaComponent(0.06)
-        }
-        let attributes = setupCodeSnippetButtonTitleContainer(tintColor: tintColor)
-        let attributedTitle = AttributedString(title, attributes: attributes)
-        configuration.attributedTitle = attributedTitle
-        configuration.baseForegroundColor = tintColor
-        configuration.background.backgroundColor = backgroundColor
-        configuration.background.strokeColor = strokeColor
-        codeSnippetButton.configuration = configuration
-        codeSnippetButton.isEnabled = isEnabled!
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17.2, weight: .medium, scale: .small)
+        codeSnippetButton.setupDetailsButton(buttonType: .dark,
+                                             title: title,
+                                             imageName: imageName,
+                                             imageConfig: imageConfig,
+                                             isEnabled: isEnabled!)
     }
     
+    func setupReadingModeButton() {
+        let imageName = Constants.UI.Image.readingModeIcon
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 15.5, weight: .regular, scale: .unspecified)
+        readingModeButton.setupDetailsButton(buttonType: .dark,
+                                             imageName: imageName,
+                                             imageConfig: imageConfig)
+    }
     
-    //MARK: Fast methods
-    func setupCodeSnippetButtonTitleContainer(tintColor: UIColor) -> AttributeContainer {
-        let font = UIFont.systemFont(ofSize: 16.5, weight: .medium)
-        var container = AttributeContainer()
-        container.foregroundColor = tintColor
-        container.font = font
-        return container
+    func setupInterstitial() {
+        adsClient?.setupCommandCommandCodeSnippetInterstitialAd(delegate: self, completion: { interstitial in
+            self.interstitial = interstitial
+        })
     }
 }
 
@@ -546,27 +630,35 @@ extension CommandDetailViewController: UIColorPickerViewControllerDelegate {
 extension CommandDetailViewController: GADBannerViewDelegate {
     
     //MARK: Internal
-    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+    internal func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("bannerViewDidReceiveAd")
     }
     
-    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        print("bannerView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    internal func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        print("bannerViewDidFailToReceiveAdWithError: \(error.localizedDescription)")
     }
     
-    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+    internal func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
         print("bannerViewDidRecordImpression")
     }
     
-    func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+    internal func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
         print("bannerViewWillPresentScreen")
     }
     
-    func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
+    internal func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
         print("bannerViewWillDIsmissScreen")
     }
     
-    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
+    internal func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("bannerViewDidDismissScreen")
     }
+}
+
+
+//MARK: - GAD Delegate protocol extension
+extension CommandDetailViewController: GADFullScreenContentDelegate {
+    
+    //MARK: Internal
+    internal func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {}
 }

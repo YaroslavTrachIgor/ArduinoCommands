@@ -35,7 +35,7 @@ extension BasicKnowledgeDetailUIModel: BasicKnowledgeDetailUIModelProtocol {
     
     //MARK: Internal
     internal var title: String! {
-        model?.decoTitle!.uppercased()
+        model?.decoTitle!
     }
     internal var content: String! {
         model?.description!

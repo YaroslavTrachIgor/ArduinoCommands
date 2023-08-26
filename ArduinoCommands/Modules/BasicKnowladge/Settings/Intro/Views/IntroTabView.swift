@@ -12,17 +12,16 @@ import SwiftUI
 struct IntroTabView: View {
     
     //MARK: Private
-    private var cards: [ACIntroCard] {
-        return ACIntroStorage.cards
-    }
+    @EnvironmentObject
+    private var viewModel: IntroViewModel
     
     //MARK: View Configuration
     var body: some View {
         VStack {
             TabView {
-                IntroCardView(card: cards[0])
-                IntroCardView(card: cards[1])
-                IntroCardView(card: cards[2])
+                ForEach(viewModel.cards) { card in
+                    IntroCardView(card: card, tintGradient: viewModel.tintGradient)
+                }
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))

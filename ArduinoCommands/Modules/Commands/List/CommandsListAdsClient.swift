@@ -16,7 +16,7 @@ private extension CommandsListAdsClient {
         enum AdUnitIds {
             
             //MARK: Static
-            static let commandsDetailInterstitial = "ca-app-pub-8702634561077907/5371318316"
+            static let commandsDetailInterstitial = "ca-app-pub-4698668975609084/3402372278"
         }
     }
 }
@@ -27,8 +27,8 @@ typealias CommandsListAdDownloadedCompletionHandler = ((GADInterstitialAd?) -> V
 
 //MARK: - Commands List Ads client protocol
 protocol CommandsListAdsClientProtocol {
-    func presentCommandDetailnterstitialAd(interstitial: GADInterstitialAd, on rootVC: UIViewController)
-    func setupCommandDetailnterstitialAd(delegate: GADFullScreenContentDelegate, completion: @escaping CommandsListAdDownloadedCompletionHandler)
+    func presentCommandDetailInterstitialAd(interstitial: GADInterstitialAd, on rootVC: UIViewController)
+    func setupCommandDetailInterstitialAd(delegate: GADFullScreenContentDelegate, completion: @escaping CommandsListAdDownloadedCompletionHandler)
 }
 
 
@@ -40,7 +40,8 @@ final public class CommandsListAdsClient: ACAdsManagar, CommandsListAdsClientPro
     /// - Parameters:
     ///   - completion: the action which happens after Interstitial was shown.
     ///   - rootVC: ViewController in which Interstitial will be initialized.
-    func presentCommandDetailnterstitialAd(interstitial: GADInterstitialAd, on rootVC: UIViewController) {
+    func presentCommandDetailInterstitialAd(interstitial: GADInterstitialAd,
+                                            on rootVC: UIViewController) {
         fastPresentOfAdInterstitialScreen(for: interstitial, on: rootVC)
     }
     
@@ -48,8 +49,8 @@ final public class CommandsListAdsClient: ACAdsManagar, CommandsListAdsClientPro
     /// - Parameters:
     ///   - delegate: ViewController in which Interstitial will be initialized that confirms `GADFullScreenContentDelegate` protocol.
     ///   - completion: the action which happens after ad was downloaded from the Internet.
-    func setupCommandDetailnterstitialAd(delegate: GADFullScreenContentDelegate,
-                                         completion: @escaping CommandsListAdDownloadedCompletionHandler) {
+    func setupCommandDetailInterstitialAd(delegate: GADFullScreenContentDelegate,
+                                          completion: @escaping CommandsListAdDownloadedCompletionHandler) {
         let request = GADRequest()
         let adUnitID = Keys.AdUnitIds.commandsDetailInterstitial
         GADInterstitialAd.load(withAdUnitID: adUnitID,

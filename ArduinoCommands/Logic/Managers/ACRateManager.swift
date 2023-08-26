@@ -6,35 +6,27 @@
 //
 
 import Foundation
-import StoreKit
 import UIKit
 
-//MARK: - Constants
-private extension ACRateManager {
+//MARK: - Manager Injector protocol
+protocol RateManagerInjector {
+    var rateManager: ACRateManager { get }
+}
+
+
+//MARK: - Main Manager instance
+fileprivate let sharedRateManager: ACRateManager = ACRateManager.shared
+
+
+//MARK: - Manager Injector protocol extension
+extension RateManagerInjector {
     
-    //MARK: Private
-    enum Constants {
-        enum UI {
-            enum Alert {
-                enum RateAlert {
-                    
-                    //MARK: Static
-                    static var title = "Do you enjoy using ArduinoCommands?"
-                    static var message = "Your opinion is very important for us."
-                    static let noActionTitle = "No, I don't"
-                    static let yesActionTitle = "Yes, I like it!"
-                    static let dismissActionTitle = "Dismiss"
-                }
-                enum ThanksAlert {
-                    
-                    //MARK: Static
-                    static var title = "Thank you!"
-                    static var message = "We will keep improving our Application."
-                }
-            }
-        }
+    //MARK: Internal
+    var rateManager: ACRateManager {
+        return sharedRateManager
     }
 }
+
 
 //MARK: - Maneger for App rating by user
 final public class ACRateManager {
@@ -42,9 +34,6 @@ final public class ACRateManager {
     //MARK: Private
     @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.sessionsCountKey)
     private var sessionsCount = 0
-    
-    //MARK: Weak
-    weak var currentViewController: UIViewController?
     
     //MARK: Static
     static var shared = ACRateManager()
@@ -64,57 +53,15 @@ final public class ACRateManager {
         sessionsCount += 1
     }
     
-    func presentRateAlert() {
-        let isNeeded = sessionsCount % 12 == 0
-        let rateAlert = setupRateAlert()
+    func checkSession(completion: @escaping ACBaseCompletionHandler) {
+        let isNeeded = sessionsCount % 10 == 0
         /**
          In the code below, before showing an alert that will give the user the opportunity to rate the application,
          we check that the user has already opened it five times.
          In the future, we will not show this alert anymore.
          */
         if isNeeded {
-            currentViewController?.present(rateAlert, animated: true)
+            completion()
         }
-    }
-}
-
-
-//MARK: - Main methods
-private extension ACRateManager {
-    
-    //MARK: Private
-    func setupRateAlert() -> UIAlertController {
-        let title = Constants.UI.Alert.RateAlert.title
-        let message = Constants.UI.Alert.RateAlert.message
-        let noActionTitle = Constants.UI.Alert.RateAlert.noActionTitle
-        let yesActionTitle = Constants.UI.Alert.RateAlert.yesActionTitle
-        let dismissActionTitle = Constants.UI.Alert.RateAlert.dismissActionTitle
-        let rateAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let noAlert = UIAlertAction(title: noActionTitle, style: .default) { [weak self] _ in
-            self?.presentThanksAlert()
-        }
-        let yesAction = UIAlertAction(title: yesActionTitle, style: .default, handler: { [weak self] _ in
-            self?.presentStoreReviewController()
-        })
-        let dismissAction = UIAlertAction(title: dismissActionTitle, style: .cancel)
-        rateAlert.view.tintColor = .label
-        rateAlert.addAction(yesAction)
-        rateAlert.addAction(noAlert)
-        rateAlert.addAction(dismissAction)
-        return rateAlert
-    }
-    
-    func presentStoreReviewController() {
-        guard let scene = currentViewController?.view.window?.windowScene else { return }
-        SKStoreReviewController.requestReview(in: scene)
-    }
-    
-    func presentThanksAlert() {
-        let title = Constants.UI.Alert.ThanksAlert.title
-        let message = Constants.UI.Alert.ThanksAlert.message
-        ACGrayAlertManager.present(title: title,
-                                   message: message,
-                                   duration: 2,
-                                   preset: .heart)
     }
 }

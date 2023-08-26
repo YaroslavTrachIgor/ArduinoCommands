@@ -9,15 +9,18 @@ import Foundation
 import SwiftUI
 
 //MARK: - Main View
-struct SettingsAnalyticsCell: View {
+struct SettingsPersonalParameterCell: View {
+    
+    //MARK: Public
+    @State var item: SettingsPersonalParameter
     
     //MARK: View Configuration
     var body: some View {
         HStack {
-            analyticsCellIcon
+            personalParameterCellIcon
             VStack(alignment: .leading) {
-                analyticsCellTitle
-                analyticsCellSubtitle
+                personalParameterCellTitle
+                personalParameterCellSubtitle
             }
             .padding(.leading, 4)
         }
@@ -26,24 +29,24 @@ struct SettingsAnalyticsCell: View {
 
 
 //MARK: - Main properties
-private extension SettingsAnalyticsCell {
+private extension SettingsPersonalParameterCell {
     
     //MARK: Private
-    var analyticsCellIcon: some View {
-        SettingsCellIcon(iconName: "chart.bar.xaxis", tintColor: .systemTeal )
+    var personalParameterCellIcon: some View {
+        SettingsCellIcon(iconName: item.iconName, tintColor: item.tintColor)
             .frame(width: 26, height: 26, alignment: .center)
             .padding(.leading, -8)
     }
-    var analyticsCellTitle: some View {
-        Text("Anaylytics")
+    var personalParameterCellTitle: some View {
+        Text(item.title)
             .font(.system(size: 16, weight: .regular))
             .foregroundColor(Color(.label))
             .multilineTextAlignment(.leading)
             .padding(.leading, 0)
     }
-    var analyticsCellSubtitle: some View {
-        Text("Command Articles Anaylytics")
-            .font(.system(size: 10, weight: .regular))
+    var personalParameterCellSubtitle: some View {
+        Text(item.subtitle!)
+            .font(.system(size: 9.5, weight: .regular))
             .foregroundColor(Color(.secondaryLabel))
             .multilineTextAlignment(.leading)
     }

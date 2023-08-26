@@ -13,6 +13,7 @@ struct CommandDetailUIModel {
     let title: String!
     let subtitle: String!
     let content: String!
+    let readingTitle: String!
     let returnsLabelIsHidden: Bool!
     let isDevicesLabelEnabled: Bool!
     let codeScreenImage: UIImage!

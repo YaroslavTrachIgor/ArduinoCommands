@@ -11,19 +11,6 @@ import Foundation
 public extension String {
     
     //MARK: Public
-    /// This puts spaces between string characters.
-    /// - Returns: prapared `NavigationItem` String title in capital letters.
-    func transformInTitle() -> String {
-        /**
-         Due to the special features of the application font style(`Hiragino Mincho ProN`)
-         we add small spaces between characters.
-         By doing this we will get a good design solution
-         */
-        let separator = " "
-        let title = self.map { "\($0)" }.joined(separator: separator)
-        return title.uppercased()
-    }
-    
     /// This removes last two symbols in string.
     /// - Returns: string without last two characters.
     mutating func removeScopes() -> String {
@@ -37,5 +24,28 @@ public extension String {
          */
         let edittedName = String(self.dropLast().dropLast())
         return edittedName
+    }
+    
+    /// This puts spaces between string characters.
+    /// - Returns: prapared `NavigationItem` String title in capital letters.
+    func transformInTitle() -> String {
+        /**
+         Due to the special features of the application font style(`Hiragino Mincho ProN`)
+         we add small spaces between characters.
+         By doing this we will get a good design solution
+         */
+        let separator = " "
+        let separatedTitle = self.map { "\($0)" }.joined(separator: separator)
+        let uppercasedTitle = separatedTitle.uppercased()
+        return uppercasedTitle
+    }
+    
+    /// This capitalizes the first letter of the text.
+    /// - Returns: string with capitalized first letter.
+    func capitalizeFirstLetter() -> String {
+        guard let firstLetter = self.first else { return self }
+        let capitalizedFirstLetter = firstLetter.uppercased()
+        let stringMissingFirstLetter = self.dropFirst()
+        return capitalizedFirstLetter + stringMissingFirstLetter
     }
 }

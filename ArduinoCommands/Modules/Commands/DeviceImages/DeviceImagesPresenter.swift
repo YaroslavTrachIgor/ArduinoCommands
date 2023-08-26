@@ -148,7 +148,10 @@ private extension DeviceImagesPresenter {
     @MainActor func showErrorMessage(with error: Error) {
         let title = Keys.ErrorMessage.title
         let message = Keys.ErrorMessage.message + error.localizedDescription
-        ACGrayAlertManager.present(title: title, message: message, preset: .error)
+        ACGrayAlertManager.present(title: title,
+                                   message: message,
+                                   icon: .error,
+                                   style: .iOS16AppleMusic)
     }
     
     func changeGalleryFrame(index: Int) {

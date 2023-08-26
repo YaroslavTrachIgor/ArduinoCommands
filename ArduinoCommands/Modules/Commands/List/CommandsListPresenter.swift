@@ -34,6 +34,7 @@ protocol CommandsListPresenterProtocol {
     func onShareRowAction(for command: CommandUIModel)
     func onDidFailPresentAd(with error: Error)
     func onDidSelectRow(id: String)
+    func onShowDailyGoals()
 }
 
 
@@ -66,22 +67,12 @@ extension CommandsListPresenter: CommandsListPresenterProtocol {
     }
     
     internal func onDidSelectRow(id: String) {
-        ////**
-        /// Before we show the Screen with ads,
-        /// we need to make sure that the user wants to view content that is beyond the limit(not in the `Operators` section).
-        /// For this we will use the `sender` argument from the TableView.
-        ////*
-        /// If it's not the first section (not the `Operators` section),
-        /// then we show ads, but only then the Detail screen with the Article.
-        /// In other cases, we immediately show the screen with the Article.
-        /// */
-        ///switch section {
-        ///case 0:
-        ///    break
-        ///default:
-        ///    view?.presentAdlnterstitial()
-        ///}
+        view?.presentAdlnterstitial()
         view?.presentDetailVC(with: selectModel(by: id)!)
+    }
+    
+    internal func onShowDailyGoals() {
+        view?.presentDailyReadingProgressView()
     }
     
     internal func onDidFailPresentAd(with error: Error) {

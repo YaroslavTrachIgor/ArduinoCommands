@@ -30,6 +30,8 @@ private extension MainTabBarController {
         tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tabBar.layer.masksToBounds = true
         tabBar.layer.cornerRadius = CGFloat.Corners.baseACRounding
+        tabBar.tintColor = .label
+        selectedIndex = 0
         delegate = self
     }
 }

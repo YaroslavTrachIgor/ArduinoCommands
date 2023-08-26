@@ -22,7 +22,7 @@ struct SettingsView: View {
                 Form {
                     settingsPreviewSection
                     if #available(iOS 16.0, *) {
-                        settingsAnalyticsSection
+                        settingsPersonalParametersSection
                     }
                     settingsParametersSection
                     settingsContactInfoSection
@@ -45,9 +45,9 @@ private extension SettingsView {
     
     //MARK: Private
     var settingsPreviewSection: some View {
-        Section(header: Text(ACSettingsStorage.PreviewSection.header.uppercased()),
-                footer: Text(ACSettingsStorage.PreviewSection.footer)) {
-            ForEach(ACSettingsStorage.PreviewSection.content) { item in
+        Section(header: Text(SettingsContentStorage.Preview.header.uppercased()),
+                footer: Text(SettingsContentStorage.Preview.footer)) {
+            ForEach(SettingsContentStorage.Preview.content) { item in
                 SettingsPreviewCell(item: item)
                 .onTapGesture {
                     introSheetPresented.toggle()
@@ -59,35 +59,34 @@ private extension SettingsView {
         }
     }
     @available(iOS 16.0, *)
-    var settingsAnalyticsSection: some View {
-        Section(header: Text("Personal".uppercased()),
-                footer: Text("Track your progress in learning Arduino commands and set personal Commands Goals.")) {
-            NavigationLink(destination: SettingsAnalyticsView()) {
-                SettingsAnalyticsCell()
+    var settingsPersonalParametersSection: some View {
+        Section(header: Text(SettingsContentStorage.Personal.header.uppercased()),
+                footer: Text(SettingsContentStorage.Personal.footer)) {
+            NavigationLink(destination: AnalyticsView()) {
+                SettingsPersonalParameterCell(item: SettingsContentStorage.Personal.analyticsCell)
             }
-            .accentColor(.red)
         }
     }
     var settingsContactInfoSection: some View {
-        Section(header: Text(ACSettingsStorage.ContactInfoSection.header.uppercased()),
-                footer: Text(ACSettingsStorage.ContactInfoSection.footer)) {
-            ForEach(ACSettingsStorage.ContactInfoSection.content) { item in
+        Section(header: Text(SettingsContentStorage.ContactInfo.header.uppercased()),
+                footer: Text(SettingsContentStorage.ContactInfo.footer)) {
+            ForEach(SettingsContentStorage.ContactInfo.content) { item in
                 SettingsContactCell(item: item)
             }
         }
     }
     var settingsParametersSection: some View {
-        Section(header: Text(ACSettingsStorage.ParametersSection.header.uppercased())) {
+        Section(header: Text(SettingsContentStorage.Parameters.header.uppercased())) {
             SettingsParameterCell(isOn: ACSettingsParametersManager.shared.allowNotifications,
-                                  item: ACSettingsStorage.ParametersSection.allowsNotificationsCell) { isOn in
+                                  item: SettingsContentStorage.Parameters.allowsNotificationsCell) { isOn in
                 ACSettingsParametersManager.shared.allowNotifications = isOn
             }
         }
     }
     var settingsAboutAppSection: some View {
-        Section(header: Text(ACSettingsStorage.BasicInfoSection.header.uppercased()),
-                footer: Text(ACSettingsStorage.BasicInfoSection.footer)) {
-            ForEach(ACSettingsStorage.BasicInfoSection.content) { item in
+        Section(header: Text(SettingsContentStorage.BasicInfo.header.uppercased()),
+                footer: Text(SettingsContentStorage.BasicInfo.footer)) {
+            ForEach(SettingsContentStorage.BasicInfo.content) { item in
                 SettingsBasicInfoCell(item: item)
             }
         }

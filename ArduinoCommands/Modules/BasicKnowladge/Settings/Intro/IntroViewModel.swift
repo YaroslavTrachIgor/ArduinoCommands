@@ -17,8 +17,11 @@ protocol IntroViewModelProtocol {
 //MARK: - Main ViewModel
 final class IntroViewModel: ObservableObject {
     
-    //MARK: Published
-    @Published var viewIsHidden = false
+    //MARK: Public
+    @Published
+    public var viewIsHidden = false
+    public let tintGradient = IntroContentStorage.Constants.UI.Gradients.tintGradient
+    public let cards: [IntroCard] = IntroContentStorage.cards
 }
 
 

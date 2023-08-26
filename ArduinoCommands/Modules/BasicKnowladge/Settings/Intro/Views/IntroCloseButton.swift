@@ -14,9 +14,6 @@ struct IntroCloseButton: View {
     //MARK: Private
     @EnvironmentObject
     private var viewModel: IntroViewModel
-    private var tintGradient: Gradient {
-        return ACIntroStorage.Constants.UI.Gradients.tintGradient
-    }
     
     //MARK: View Configuration
     var body: some View {
@@ -50,7 +47,7 @@ private extension IntroCloseButton {
     }
     var introLinearGradient: LinearGradient {
         LinearGradient(
-            gradient: tintGradient,
+            gradient: viewModel.tintGradient,
             startPoint: .leading,
             endPoint: .trailing
         )

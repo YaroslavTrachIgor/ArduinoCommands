@@ -33,7 +33,7 @@ final class BasicKnowledgePresenter {
     
     //MARK: Initionalizate
     init(view: BasicKnowledgeVCProtocol,
-         sections: [BasicKnowledgeSectionRow] = ACBasicKnowledgeStorage.prepareSections()) {
+         sections: [BasicKnowledgeSectionRow] = BasicKnowledgeContentStorage.prepareSections()) {
         self.sections = sections
         self.view = view
     }
@@ -65,7 +65,7 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
         case .links(let sites):
             view?.presentSiteWithSafari(with: sites[row].content)
         case .team(_):
-            let user = ACBasicKnowledgeStorage.usersModels[row]
+            let user = BasicKnowledgeContentStorage.usersModels[row]
             let userContent = user.content
             /**
              In this section of main Menu, we don't use case constants,

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-//MARK: - Section Type cases
+//MARK: - Section Type
 enum BasicKnowledgeSectionRow {
     case links([ACLinkCellModel])
     case team([ACPersonCellModel])
@@ -18,7 +18,7 @@ enum BasicKnowledgeSectionRow {
 
 
 //MARK: - Constants
-public extension ACBasicKnowledgeStorage {
+public extension BasicKnowledgeContentStorage {
     
     //MARK: Public
     enum Constants {
@@ -53,21 +53,21 @@ public extension ACBasicKnowledgeStorage {
 }
 
 
-//MARK: - BasicKnowledge section content Storage
-public enum ACBasicKnowledgeStorage {
+//MARK: - BasicKnowledge sections content Storage
+public enum BasicKnowledgeContentStorage {
     
     //MARK: Statiс
     /// This fills an array of sections  of `BasicKnowledge` Menu VC.
     ///
     /// Such method of configuring sections and tableView
-    /// makes our code much more flexible and convenient for reusing(Data-Driven UI principle).
+    /// makes our code much more flexible and convenient for reusing (Data-Driven UI principle).
     /// - Returns: the sequence of sections.
     static func prepareSections() -> [BasicKnowledgeSectionRow] {
         var sections = [BasicKnowledgeSectionRow]()
-        sections.append(.basics(ACBasicKnowledgeStorage.basicsModels))
-        sections.append(.team(ACBasicKnowledgeStorage.teamModels))
-        sections.append(.links(ACBasicKnowledgeStorage.sitesModels))
-        sections.append(.users(ACBasicKnowledgeStorage.usersModels))
+        sections.append(.basics(BasicKnowledgeContentStorage.basicsModels))
+        sections.append(.team(BasicKnowledgeContentStorage.teamModels))
+        sections.append(.links(BasicKnowledgeContentStorage.sitesModels))
+        sections.append(.users(BasicKnowledgeContentStorage.usersModels))
         return sections
     }
     
@@ -84,9 +84,9 @@ public enum ACBasicKnowledgeStorage {
                 description: "Arduino IDE is an integrated development environment for Windows, MacOS and Linux, developed in C and C ++, designed to create and upload programs to Arduino-compatible boards, as well as boards from other manufacturers. The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules. The Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.",
                 date: Date.from(year: 2021, month: 12, day: 05)
             ),
-            backColor: UIColor(hexString: "#6e48aa"),
+            backColor: UIColor(hexString: "#013b85"),
             tintColor: Constants.BasicsSection.tintColor,
-            secondaryColor: UIColor(hexString: "#9d50bb"),
+            secondaryColor: UIColor(hexString: "#004299"),
             shadowAvailable: true,
             decorationImageName: "computer-work-0"
         ),

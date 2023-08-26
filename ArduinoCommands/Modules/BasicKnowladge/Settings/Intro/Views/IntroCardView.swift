@@ -12,12 +12,8 @@ import SwiftUI
 struct IntroCardView: View {
     
     //MARK: Public
-    @State var card: ACIntroCard
-    
-    //MARK: Private
-    private var tintGradient: Gradient {
-        return ACIntroStorage.Constants.UI.Gradients.tintGradient
-    }
+    @State var card: IntroCard
+    @State var tintGradient: Gradient
     
     //MARK: View Configuration
     var body: some View {

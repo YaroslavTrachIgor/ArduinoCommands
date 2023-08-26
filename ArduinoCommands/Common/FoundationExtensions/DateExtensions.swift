@@ -65,4 +65,14 @@ public extension Date {
         let stringDate = dateFormatter.string(from: date)
         return stringDate
     }
+    
+    /// This returns the first letter of date weekday.
+    /// - Returns: weekday symbol.
+    func firstLetterOfWeekday() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E"
+        let weekDayName = String(dateFormatter.string(from: self))
+        let weekDayLetter = weekDayName.prefix(1)
+        return String(weekDayLetter)
+    }
 }

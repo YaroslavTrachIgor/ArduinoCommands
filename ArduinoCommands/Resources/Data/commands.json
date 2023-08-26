@@ -7,7 +7,7 @@
             {
                 "name": "setup()",
                 "subtitle": "The main Operators",
-                "description": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board. The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
+                "description": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
                 "baseDescription": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.33.23 AM",
@@ -29,7 +29,7 @@
             {
                 "name": "loop()",
                 "subtitle": "The main Operators",
-                "description": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board. After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
+                "description": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
                 "baseDescription": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.33.41 AM",
@@ -598,8 +598,59 @@
         ]
     },
     {
+        "name": "External Interrupts",
+        "footer": "",
+        "headerHeight": 32,
+        "commands": [
+            {
+                "name": "attachInterrupt()",
+                "subtitle": "External Interrupts",
+                "description": "The first parameter to attachInterrupt() is an interrupt number. Normally you should use digitalPinToInterrupt(pin) to translate the actual digital pin to the specific interrupt number. For example, if you connect to pin 3, use digitalPinToInterrupt(3) as the first parameter to attachInterrupt().\n\nInside the attached function, delay() won’t work and the value returned by millis() will not increment. Serial data received while in the function may be lost. You should declare as volatile any variables that you modify within the attached function. See the section on ISRs below for more information.\n\nInterrupts are useful for making things happen automatically in microcontroller programs and can help solve timing problems. Good tasks for using an interrupt may include reading a rotary encoder, or monitoring user input.\n\nIf you wanted to ensure that a program always caught the pulses from a rotary encoder, so that it never misses a pulse, it would make it very tricky to write a program to do anything else, because the program would need to constantly poll the sensor lines for the encoder, in order to catch pulses when they occurred. Other sensors have a similar interface dynamic too, such as trying to read a sound sensor that is trying to catch a click, or an infrared slot sensor (photo-interrupter) trying to catch a coin drop. In all of these situations, using an interrupt can free the microcontroller to get some other work done while not missing the input.",
+                "baseDescription": "The first parameter to attachInterrupt() is an interrupt number. Normally you should use digitalPinToInterrupt(pin) to translate the actual digital pin to the specific interrupt number. For example, if you connect to pin 3, use digitalPinToInterrupt(3) as the first parameter to attachInterrupt().",
+                "exampleOfCode": "const byte ledPin = 13;\nconst byte interruptPin = 2;\nvolatile byte state = LOW;\n\nvoid setup() {\n  pinMode(ledPin, OUTPUT);\n  pinMode(interruptPin, INPUT_PULLUP);\n  attachInterrupt(digitalPinToInterrupt(interruptPin), blink, CHANGE);\n\nvoid loop() {\n  digitalWrite(ledPin, state);\n}\n\nvoid blink() {\n  state = !state;\n}",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "attachInterrupt(digitalPinToInterrupt(pin), ISR, mode)",
+                    "arguments": "interrupt: the number of the interrupt. Allowed data types: int.\npin: the Arduino pin number.\nISR: the ISR to call when the interrupt occurs; this function must take no parameters and return nothing. This function is sometimes referred to as an interrupt service routine.\nISR: the ISR to call when the interrupt occurs; this function must take no parameters and return nothing.\nmode: defines when the interrupt should be triggered. Four constants are predefined as valid values:",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "detachInterrupt()",
+                "subtitle": "External Interrupts",
+                "description": "Turns off the given interrupt.",
+                "baseDescription": "Turns off the given interrupt.",
+                "exampleOfCode": "",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "detachInterrupt(digitalPinToInterrupt(pin))",
+                    "arguments": "interrupt: the number of the interrupt to disable (see attachInterrupt() for more details).\npin: the Arduino pin number of the interrupt to disable",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": "servo",
+                    "enablePhotos": false
+                }
+            }
+        ]
+    },
+    {
         "name": "Servo",
-        "footer": "This library allows an Arduino board to control RC (hobby) servo motors. Servos have integrated gears and a shaft that can be precisely controlled. Standard servos allow the shaft to be positioned at various angles, usually between 0 and 180 degrees. Continuous rotation servos allow the rotation of the shaft to be set to various speeds. To use this library: #include <Servo.h>.",
+        "footer": "This library allows an Arduino board to control RC (hobby) servo motors. Servos have integrated gears and a shaft that can be precisely controlled. Standard servos allow the shaft to be positioned at various angles, usually between 0 and 180 degrees. Continuous rotation servos allow the rotation of the shaft to be set to various speeds. \n\nTo use this library: #include <Servo.h>.",
         "headerHeight": 32,
         "commands": [
             {

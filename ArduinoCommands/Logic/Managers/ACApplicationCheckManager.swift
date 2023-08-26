@@ -15,7 +15,7 @@ public extension ACApplicationCheckManager {
     enum Keys {
         
         //MARK: Static
-        static let currentVersion = "1.3.1"
+        static let currentVersion = "1.6.0"
     }
 }
 

@@ -47,7 +47,7 @@ extension CodeSnippetUIModel: CodeSnippetUIModelProtocol {
         var content = String()
         let maxLines = Constants.maxNumberOfLines
         for lineNumber in 0...maxLines {
-            content = content + " \(lineNumber)"
+            content = content + "\(lineNumber)\n"
         }
         return content
     }

@@ -178,7 +178,7 @@ extension CodeSnippetViewController: CodeSnippetViewControllerProtocol {
         decorationTextView.setupBaseFooterTextView(text: Constants.UI.TextView.footer)
         appearanceSegmentedControl.setupBaseDetailDarkSegmentedControl()
         colorPickerGoButton.setupCodeContentEditingButton(tintColor: codeTintColor, imageName: Constants.UI.Button.colorPickerGoIcon)
-        fontChangeButton.setupCodeContentEditingButton(tintColor: codeTintColor, imageName: Constants.UI.Button.fontChangeIcon)
+        fontChangeButton.setupCodeContentEditingButton(tintColor: codeTintColor, imageName: Constants.UI.Button.fontChangeIcon, pointSize: 11.5)
         view.backgroundColor = UIColor.ACDetails.secondaryBackgroundColor
     }
     
@@ -202,19 +202,20 @@ extension CodeSnippetViewController: CodeSnippetViewControllerProtocol {
     internal func changeCodeTextViewFontSize() {
         let newFontSize = CGFloat(codeFontSize)
         let newFont = UIFont.ACCodeFont(ofSize: newFontSize)
+        lineNumbersTextView.font = newFont
         codeTextView.font = newFont
     }
     
     internal func presentFontChangeViews(with animationType: ACBasePresentationType) {
-        animateViewIn(for: fontChangePopupBlurView, animationType: animationType)
-        animateViewIn(for: fontChangePopupBackView, animationType: animationType)
+        animateViewIn(for: fontChangePopupBlurView, animationType: animationType, on: view.center)
+        animateViewIn(for: fontChangePopupBackView, animationType: animationType, on: view.center)
     }
     
     internal func enableBarViews(with animationType: ACBasePresentationType) {
         enableViewIn(or: appearanceSegmentedControl, animationType: animationType)
-        enableViewIn(or: costomBackBarButton, animationType: animationType)
-        enableViewIn(or: shareBarButton, animationType: animationType)
-        enableViewIn(or: copyBarButton, animationType: animationType)
+        enableViewIn(for: costomBackBarButton, animationType: animationType)
+        enableViewIn(for: shareBarButton, animationType: animationType)
+        enableViewIn(for: copyBarButton, animationType: animationType)
     }
     
     internal func setupCodeContentViewAppearance(appearanceType: ACBaseAppearanceType) {
@@ -240,8 +241,9 @@ private extension CodeSnippetViewController {
     }
     
     func setupLineNumbersTextView() {
-        let font = UIFont.ACCodeFont(ofSize: 16, weight: .regular)
         let content = uiModel.linesContent
+        let fontSize = CGFloat(codeFontSize)
+        let font = UIFont.ACCodeFont(ofSize: fontSize, weight: .regular)
         lineNumbersTextView.backgroundColor = .clear
         lineNumbersTextView.isScrollEnabled = false
         lineNumbersTextView.isSelectable = false

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SPAlert
+import AlertKit
 import UIKit
 
 //MARK: - Constants
@@ -27,7 +27,6 @@ private extension ACGrayAlertManager {
                 static let title = "New Version"
                 static let message = "The New Version of Arduino Commands is available in App Store."
                 static let presetImageName = "app.gift.fill"
-                static let cornerRadius = CGFloat(20)
                 static let duration = CGFloat(6)
             }
             enum Notification {
@@ -47,8 +46,7 @@ private extension ACGrayAlertManager {
                 enum SuccessAlert {
                     
                     //MARK: Static
-                    static let title = "Success"
-                    static let message = "Command Notification has been set."
+                    static let title = "Notification has been set"
                     static let duration = CGFloat(3)
                 }
             }
@@ -62,15 +60,16 @@ final public class ACGrayAlertManager {
     
     //MARK: Static
     static func present(title: String?,
-                        message: String?,
+                        message: String? = nil,
                         duration: TimeInterval = 4,
                         cornerRadius: CGFloat = 18,
-                        preset: SPAlertIconPreset = .done) {
-        let alertView = SPAlertView(title: title!, message: message, preset: preset)
-        alertView.cornerRadius = cornerRadius
-        alertView.dismissByTap = true
-        alertView.duration = duration
-        alertView.present()
+                        icon: AlertIcon = .done,
+                        style: AlertViewStyle = .iOS16AppleMusic) {
+        AlertKitAPI.present(
+            title: title,
+            icon: icon,
+            style: style
+        )
     }
 }
 
@@ -83,18 +82,18 @@ extension ACGrayAlertManager {
         let title = Constants.UI.CopiedAlert.title
         let message = contentType.rawValue + Constants.UI.CopiedAlert.message
         ACGrayAlertManager.present(title: title,
-                                   message: message)
+                                   message: message,
+                                   icon: .done,
+                                   style: .iOS17AppleMusic)
     }
     
     static func presentNewVersionAlert() {
         let title = Constants.UI.NewVersionAlert.title
         let message = Constants.UI.NewVersionAlert.message
-        let cornerRadius = Constants.UI.NewVersionAlert.cornerRadius
         let presetImage = UIImage(systemName: Constants.UI.NewVersionAlert.presetImageName)!
         ACGrayAlertManager.present(title: title,
                                    message: message,
-                                   cornerRadius: cornerRadius,
-                                   preset: .custom(presetImage))
+                                   icon: .custom(presetImage))
     }
     
     static func presentFailedNotificationSetAlert() {
@@ -104,27 +103,25 @@ extension ACGrayAlertManager {
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: duration,
-                                   preset: .error)
+                                   icon: .error,
+                                   style: .iOS16AppleMusic)
     }
     
     static func presentSuccesedNotificationSetAlert() {
         let title = Constants.UI.Notification.SuccessAlert.title
-        let message = Constants.UI.Notification.SuccessAlert.message
         let duration = Constants.UI.Notification.SuccessAlert.duration
         ACGrayAlertManager.present(title: title,
-                                   message: message,
                                    duration: duration,
-                                   preset: .done)
+                                   style: .iOS17AppleMusic)
     }
     
     static func presentNotificationErrorAlert(error: Error?) {
         let title = Constants.UI.Notification.FailedAlert.title
-        let message = Constants.UI.Notification.ErrorAlert.message
         let duration = Constants.UI.Notification.ErrorAlert.duration
         ACGrayAlertManager.present(title: title,
-                                   message: message,
                                    duration: duration,
-                                   preset: .error)
+                                   icon: .error,
+                                   style: .iOS17AppleMusic)
     }
 }
 

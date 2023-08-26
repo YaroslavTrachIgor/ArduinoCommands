@@ -10,7 +10,6 @@ import Foundation
 //MARK: - Presenter protocol
 protocol BasicKnowledgeDetailPresenterProtcol: ACBasePresenter {
     init(view: BasicKnowledgeDetailVCProtocol, model: ACBasics)
-    func onChangeAppearance()
     func onViewWillDisappear()
     func onCopyContent()
     func onBackToMenu()
@@ -41,12 +40,7 @@ extension BasicKnowledgeDetailPresenter: BasicKnowledgeDetailPresenterProtcol {
     //MARK: Internal
     internal func onViewDidLoad() {
         view?.setupMainUI()
-        view?.setFastBottomContentViewShadowColor()
         view?.presentTabBarWithAnimation(alpha: 0)
-    }
-    
-    internal func onChangeAppearance() {
-        view?.setFastBottomContentViewShadowColor()
     }
     
     internal func onViewWillDisappear() {

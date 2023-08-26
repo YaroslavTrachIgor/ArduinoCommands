@@ -21,7 +21,7 @@ public enum ACURLs {
     enum Materials {
         
         //MARK: Static
-        static let wikiArduino = "https://ru.wikipedia.org/wiki/Arduino_IDE"
+        static let wikiArduino = "https://uk.wikipedia.org/wiki/Arduino"
         static let allArduino = "https://all-arduino.ru/biblioteki-arduino/arduino-biblioteka-servo/"
         static let kiberKoder = "https://bitkit.com.ua/file_downloads/kiberkozer_manual/RUS_instr_kiberkoder.pdf"
         static let arduinoRu = "https://All-arduino.ru"

@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsPreviewCell: View {
     
     //MARK: Public
-    @State var item: ACSettingsPreview
+    @State var item: SettingsPreview
     
     //MARK: View Configuration
     var body: some View {

@@ -16,6 +16,7 @@ private extension UIFont {
         
         //MARK: Static
         static let basicFontName = "Hiragino Mincho ProN"
+        static let readingFontName = "TimesNewRomanPS"
         static let codeFontName = "Menlo"
     }
 }
@@ -91,6 +92,21 @@ public extension UIFont {
         }
     }
     
+    /// This is needed to quickly set up a font of `Times New Roman` family.
+    /// - Parameters:
+    ///   - ofSize: font size.
+    ///   - weight: font weight.
+    /// - Returns: application Reading Mode font.
+    static func ACReadingFont(ofSize: CGFloat, weight: UIFont.ACWeight = .regular) -> UIFont {
+        let fontName = UIFont.Keys.readingFontName
+        switch weight {
+        case .regular:
+            return UIFont(name: "\(fontName)MT", size: ofSize)!
+        case .bold:
+            return UIFont(name: "\(fontName)-BoldMT", size: ofSize)!
+        }
+    }
+    
     /// This is needed to quickly set up a styled font of `Hiragino Mincho ProN` family.
     /// - Parameters:
     ///   - style: custom font style.
@@ -112,7 +128,7 @@ public extension UIFont {
         case .articleSubtitle:
             return UIFont.ACFont(ofSize: 9.5, weight: .bold)
         case .articleContent:
-            return UIFont.ACFont(ofSize: 12.5, weight: .regular)
+            return UIFont.ACFont(ofSize: 14, weight: .regular)
         case .articlePreview:
             return UIFont.ACFont(ofSize: 11, weight: .regular)
         case .header:
