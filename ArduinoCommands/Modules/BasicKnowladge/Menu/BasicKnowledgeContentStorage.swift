@@ -79,48 +79,48 @@ public enum BasicKnowledgeContentStorage {
                 title: "Arduino \nIDE",
                 decoTitle: "Arduino IDE",
                 subtitle: nil,
-                preview: "Integrated middleware for creating and uploading a program to an Arduino summation board.",
+                preview: "Integrated middleware for creating and uploading a program...",
                 stringSiteUrl: ACURLs.Materials.wikiArduino,
                 description: "Arduino IDE is an integrated development environment for Windows, MacOS and Linux, developed in C and C ++, designed to create and upload programs to Arduino-compatible boards, as well as boards from other manufacturers. The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules. The Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.",
                 date: Date.from(year: 2021, month: 12, day: 05)
             ),
             backColor: UIColor(hexString: "#013b85"),
             tintColor: Constants.BasicsSection.tintColor,
-            secondaryColor: UIColor(hexString: "#004299"),
+            secondaryColor: UIColor(hexString: "#034394"),
             shadowAvailable: true,
             decorationImageName: "computer-work-0"
+        ),
+        ACBasicsCellModel(
+            content: ACBasics(
+                title: "Programming \nLanguages",
+                decoTitle: "Programming languages",
+                subtitle: nil,
+                preview: "The Arduino IDE is written in such programming languages...",
+                stringSiteUrl: ACURLs.Materials.wikiArduino,
+                description: "The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules. The Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.",
+                date: Date.from(year: 2022, month: 6, day: 11)
+            ),
+            backColor: UIColor(hexString: "#2f55ad"),
+            tintColor: Constants.BasicsSection.tintColor,
+            secondaryColor: UIColor(hexString: "#365fbf"),
+            shadowAvailable: true,
+            decorationImageName: "computer-work-1"
         ),
         ACBasicsCellModel(
             content: ACBasics(
                 title: "Operating \nSystems",
                 decoTitle: "Operating Systems",
                 subtitle: nil,
-                preview: "The Arduino IDE is requred to use on Windows, Linux, macOS and other operation systems.",
+                preview: "The Arduino IDE is requred to use on Windows, Linux...",
                 stringSiteUrl: ACURLs.Materials.wikiArduino,
                 description: "The IDE supports Windows, MacOS and Linux. With the popularity of Arduino, other vendors have started introducing custom compilers and open source tools (kernels) as a software platform that can create and upload sketches to other microcontrollers not supported by the official Arduino line of microcontrollers.",
                 date: Date.from(year: 2022, month: 4, day: 06)
             ),
-            backColor: UIColor(hexString: "#e53935"),
+            backColor: UIColor(hexString: "#1c92d2"),
             tintColor: Constants.BasicsSection.tintColor,
-            secondaryColor: UIColor(hexString: "#e35d5b"),
+            secondaryColor: UIColor(hexString: "#2f99d6"),
             shadowAvailable: true,
             decorationImageName: "computer-work-3"
-        ),
-        ACBasicsCellModel(
-            content: ACBasics(
-                title: "Programming \nlanguages",
-                decoTitle: "Programming languages",
-                subtitle: nil,
-                preview: "The Arduino IDE is written in such programming languages like C, C++ and Java on Wring framework.",
-                stringSiteUrl: ACURLs.Materials.wikiArduino,
-                description: "The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules. The Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.",
-                date: Date.from(year: 2022, month: 6, day: 11)
-            ),
-            backColor: UIColor(hexString: "#0083b0"),
-            tintColor: Constants.BasicsSection.tintColor,
-            secondaryColor: UIColor(hexString: "#00b4db"),
-            shadowAvailable: true,
-            decorationImageName: "computer-work-1"
         )
     ]
     static let teamModels = [

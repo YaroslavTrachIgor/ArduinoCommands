@@ -33,7 +33,7 @@ extension BasicsCellUIModel: BasicsCellUIModelProtocol {
     
     //MARK: Internal
     internal var title: String! {
-        model?.content.title!.uppercased()
+        model?.content.title!
     }
     internal var previewDescription: String! {
         model?.content.preview!

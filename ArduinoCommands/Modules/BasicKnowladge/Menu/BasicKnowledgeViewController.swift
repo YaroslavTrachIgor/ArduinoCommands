@@ -49,23 +49,23 @@ private extension BasicKnowledgeViewController {
                 enum CellSpacing {
                     
                     //MARK: Static
-                    static let insetForBasicsSection = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 50)
-                    static let insetForSitesSection = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 50)
+                    static let insetForBasicsSection = UIEdgeInsets(top: 16, left: 20, bottom: 10, right: 50)
+                    static let insetForSitesSection = UIEdgeInsets(top: 16, left: 20, bottom: 10, right: 50)
                     static let insetForUsersSection = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 70)
-                    static let insetForTeamSection = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 50)
+                    static let insetForTeamSection = UIEdgeInsets(top: 16, left: 20, bottom: 10, right: 50)
                 }
                 enum CellSize {
                     
                     //MARK: Static
-                    static let sizeForItemAtBasicsSection = CGSize(width: 210, height: 250)
-                    static let sizeForItemAtSitesSection = CGSize(width: 230, height: 90)
+                    static let sizeForItemAtBasicsSection = CGSize(width: 190, height: 250)
+                    static let sizeForItemAtSitesSection = CGSize(width: 238, height: 80)
                     static let sizeForItemAtUsersSection = CGSize(width: 90, height: 115)
                     static let sizeForItemAtTeamSection = CGSize(width: 240, height: 185)
                 }
                 enum MinimumSpacings {
                     
                     //MARK: Static
-                    static let minimumLineSpacing: CGFloat = 3qqq0
+                    static let minimumLineSpacing: CGFloat = 30
                     static let minimumInteritemSpacing: CGFloat = 0
                 }
             }

@@ -36,8 +36,8 @@ final class BasicsCollectionViewCell: ACNeumorphicCollectionViewCell {
     @IBOutlet weak var subtitleTextView: UITextView!
 //    @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var bookmarkIconImageView: UIImageView!
-    @IBOutlet weak var bottomDecorationImageView: UIImageView!
-    @IBOutlet weak var topDecorationImageView: UIImageView!
+    
+    @IBOutlet var decorationImageViews: [UIImageView]!
 }
 
 
@@ -47,23 +47,45 @@ extension BasicsCollectionViewCell: ACBaseConfigurableView {
     //MARK: Internal
     internal func configure(with data: BasicsCellUIModelProtocol) {
         uiModel = data
-        //        continueButton.configuration = setupContinueButtonConfiguration()
-        //        setupBasicsSubtitleLabel()
-        //        setupBasicsTitleLabel()
-        //        setupDecorationImageView()
+        
+        titleLabel.text = uiModel?.title
+        titleLabel.setLineSpacing(lineSpacing: 6)
+        
+        subtitleTextView.text = uiModel?.previewDescription
+        
         layer.masksToBounds = false
-        layer.cornerRadius = CGFloat.Corners.baseACBigRounding + 8
+        layer.cornerRadius = CGFloat.Corners.baseACBigRounding + 10
         backgroundColor = uiModel?.backgroundColor
-        let shadowColor = uiModel?.backgroundColor.withAlphaComponent(0.8).cgColor
-        let shadowOffset = CGSize(width: 0, height: 1)
+        let shadowColor = uiModel?.backgroundColor.cgColor
+        let shadowOffset = CGSize(width: 2, height: 4)
         layer.shadowColor = shadowColor
         layer.shadowOffset = shadowOffset
-        layer.shadowOpacity = 1
-        layer.shadowRadius = 12
+        layer.shadowOpacity = 0.6
+        layer.shadowRadius = 10.5
         
-        bottomDecorationImageView.tintColor = uiModel?.secondaryColor
-        topDecorationImageView.tintColor = uiModel?.secondaryColor
+        for imageView in decorationImageViews {
+            imageView.tintColor = uiModel?.secondaryColor
+        }
+        
         bookmarkIconImageView.tintColor = .white
+    }
+}
+
+extension UILabel {
+    func setLineSpacing(lineSpacing: CGFloat) {
+        guard let labelText = self.text else {
+            return
+        }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        
+        let attributedString = NSAttributedString(
+            string: labelText,
+            attributes: [.paragraphStyle: paragraphStyle]
+        )
+        
+        self.attributedText = attributedString
     }
 }
 
