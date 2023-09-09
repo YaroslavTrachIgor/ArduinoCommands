@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import GoogleMobileAds
 import SafariServices
 import SwiftUI
 
@@ -14,6 +15,7 @@ import SwiftUI
 protocol BasicKnowledgeVCProtocol: ACBaseViewController {
     func presentOnboardingVC()
     func presentSettingsHostVC()
+    func presentAdlnterstitial()
     func presentDetailVC(with model: ACBasics)
     func presentUserSheetVC(with model: ACUser)
     func presentSiteWithSafari(with model: ACLink)
@@ -80,8 +82,12 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     //MARK: Private
     private let defaults = UserDefaults.standard
     private var sections = [BasicKnowledgeSectionRow]()
+    private var interstitial: GADInterstitialAd?
     private var presenter: BasicKnowledgePresenterProtocol? {
         return BasicKnowledgePresenter(view: self)
+    }
+    private var adsClient: BasicKnowledgeAdsClientProtocol? {
+        return BasicKnowledgeAdsClient()
     }
     
     //MARK: @IBOutlets
@@ -117,6 +123,7 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
         setupNavigationBar()
         setupSectionsUI()
         setupFooterLabel()
+        setupInterstitial()
         setBlurViewForStatusBar()
         view.setupBasicMenuBackgroundView(.secondary)
     }
@@ -141,6 +148,11 @@ extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
     internal func presentSiteWithSafari(with data: ACLink) {
         let stringURL = data.link!
         presentSafariVC(for: stringURL)
+    }
+    
+    internal func presentAdlnterstitial() {
+        guard let interstitial = interstitial else { return }
+        adsClient?.presentBasicKnowledgeDetailInterstitialAd(interstitial: interstitial, on: self)
     }
     
     internal func presentUserSheetVC(with data: ACUser) {
@@ -287,6 +299,13 @@ private extension BasicKnowledgeViewController {
         setupBasicCollectionView(with: teamCollectionView, tag: 1)
     }
     
+    func setupInterstitial() {
+        adsClient?.setupBasicKnowledgeDetailInterstitialAd(delegate: self, completion: { interstitial in
+            self.interstitial = interstitial
+            self.interstitial?.fullScreenContentDelegate = self
+        })
+    }
+    
     func setupFooterLabel() {
         let font = UIFont.systemFont(ofSize: 12, weight: .regular)
         let content = Constants.UI.Label.tableFooter
@@ -327,4 +346,12 @@ private extension BasicKnowledgeViewController {
         label.text = content
         return label
     }
+}
+
+
+//MARK: - GAD Delegate protocol extension
+extension BasicKnowledgeViewController: GADFullScreenContentDelegate {
+    
+    //MARK: Internal
+    internal func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {}
 }

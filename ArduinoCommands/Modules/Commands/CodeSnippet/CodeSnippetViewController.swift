@@ -313,7 +313,7 @@ private extension CodeSnippetViewController {
     
     func setupFontChangeSlider() {
         let minimumValue: Float = 12
-        let maximumValue: Float = 22
+        let maximumValue: Float = 18
         fontChangeSlider.thumbTintColor = .white
         fontChangeSlider.minimumTrackTintColor = codeTintColor
         fontChangeSlider.minimumValue = minimumValue

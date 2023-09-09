@@ -62,7 +62,7 @@ extension SiteCellUIModel: SiteCellUIModelProtocol {
     
     //MARK: Public
     internal var title: String! {
-        model?.content.name!.uppercased()
+        model?.content.name!.capitalizeFirstLetter()
     }
     internal var subtitle: String! {
         model?.content.link!

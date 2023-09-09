@@ -15,6 +15,7 @@ public final class ACCommand: Codable {
     var imageURL: String!
     var description: String!
     var exampleOfCode: String!
+    var iconName: String!
     var baseDescription: String!
     var isLibraryMethod: Bool!
     var isUsedWithDevices: Bool!
@@ -30,6 +31,7 @@ public final class ACCommand: Codable {
          description: String!,
          basicDescription: String!,
          exampleOfCode: String!,
+         iconName: String!,
          imageURL: String!,
          returns: Bool!,
          isUsedWithDevices: Bool!,
@@ -43,6 +45,7 @@ public final class ACCommand: Codable {
         self.imageURL = imageURL
         self.description = description
         self.exampleOfCode = exampleOfCode
+        self.iconName = iconName
         self.baseDescription = basicDescription
         self.isLibraryMethod = isLibraryMethod
         self.isUsedWithDevices = isUsedWithDevices

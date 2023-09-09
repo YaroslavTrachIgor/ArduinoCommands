@@ -2,7 +2,7 @@
     {
         "name": "Operators",
         "footer": "",
-        "headerHeight": 38,
+        "headerHeight": 36,
         "commands": [
             {
                 "name": "setup()",
@@ -10,6 +10,7 @@
                 "description": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
                 "baseDescription": "The setup() function is called when the sketch starts. Used to initialize variables, determine pin operation modes, run used libraries, etc. The setup function only runs once, after every power up or reset of the Arduino board.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "command",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.33.23 AM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -32,6 +33,7 @@
                 "description": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
                 "baseDescription": "After calling the setup() function, which initializes and sets the initial values, the loop() function does exactly what its name means, and loops around, allowing your program to perform calculations and react to them. Use it to actively control the Arduino board.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "command",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.33.41 AM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -53,7 +55,7 @@
     {
         "name": "Commands for Digital I/O",
         "footer": "",
-        "headerHeight": 32,
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "pinMode()",
@@ -61,6 +63,7 @@
                 "description": "Sets whether the specified input/output(pin) will operate as an input or as an output. Learn more about digital input/outputs (pins). Analog inputs (analog pins) can be used as digital inputs/outputs (digital pins). They are accessed by numbers from 14 (for analog input 0) to 19 (for analog input 5).",
                 "baseDescription": "Sets whether the specified input/output(pin) will operate as an input or as an output. Learn more about digital input/outputs (pins).",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.34.18 AM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -83,6 +86,7 @@
                 "description": "Gives a HIGH or LOW value to a digital input/output (pin). If an input/output (pin) has been set to OUTPUT mode by the pinMode() function, then for HIGH the voltage at the corresponding input/output (pin) will be 5V (3.3V for 3.3V boards), and 0V (ground) for LOW. If the input/output (pin) was set to input (INPUT), then the digitalWrite function with a value of HIGH will activate the internal 20K terminating resistor. Applying LOW in turn disables this resistor. The load resistor is enough to dim the LED connected to the input. If suddenly the LED works, but is very dim, it may be necessary to set the output mode (OUTPUT) using the pinMode () function. I/O 13 is more difficult to use as a digital input because it has a built-in resistor and an LED. If you also activate the internal 20K pull-up resistor, then the voltage at this input will be about 1.7V, instead of the expected 5V, because. LED and an additional resistor reduces the voltage, i.e.",
                 "baseDescription": "Gives a HIGH or LOW value to a digital input/output (pin). If an input/output (pin) has been set to OUTPUT mode by the pinMode() function, then for HIGH the voltage at the corresponding input/output (pin) will be 5V (3.3V for 3.3V boards), and 0V (ground) for LOW. If the input/output (pin) was set to input (INPUT), then the digitalWrite function with a value of HIGH will activate the internal 20K terminating resistor.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.34.47 AM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -105,6 +109,7 @@
                 "description": "The function reads the value from the specified input - HIGH or LOW. If the input is not connected, then digitalRead may return HIGH or LOW randomly. Analog inputs (analog pins) can be used as digital inputs/outputs (digital pins). They are accessed by numbers from 14 (for analog input 0) to 19 (for analog input 5).",
                 "baseDescription": "The function reads the value from the specified input - HIGH or LOW. If the input is not connected, then digitalRead may return HIGH or LOW randomly.",
                 "exampleOfCode": "int ledPin = 13;\nint inPin = 7;\nint val = 0;\n \nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n    pinMode(inPin, INPUT);\n}\n\nvoid loop() {\n    val = digitalRead(inPin);\n    digitalWrite(ledPin, val);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-02-09 в 2.35.02 AM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -125,7 +130,7 @@
     },
     {
         "name": "Commands for Analog I/O",
-        "headerHeight": 32,
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "analogWrite()",
@@ -133,6 +138,7 @@
                 "description": "Outputs an analog value (PWM wave) to the I/O port. The function can be useful for controlling the brightness of a connected LED or the speed of a motor. After calling analogWrite(), the output will generate a constant square wave with the specified pulse width until the next call to analogWrite (or a call to digitalWrite or digitalRead on the same I/O port). The PWM signal frequency is approximately 490 Hz. On most Arduino boards (based on the ATmega168 or ATmega328 microcontroller), PWM supports ports 3, 5, 6, 9, 10 and 11, on the Arduino Mega board, ports 2 to 13. On earlier versions of Arduino boards, analogWrite() only worked on 9, 10 and 11. There is no need to set the input/output type with the pinMode() function to call analogWrite(). The analogWrite function has nothing to do with analog inputs and with the analogRead function.",
                 "baseDescription": "Outputs an analog value (PWM wave) to the I/O port. The function can be useful for controlling the brightness of a connected LED or the speed of a motor.",
                 "exampleOfCode": "int ledPin = 9;\nint analogPin = 3;\nint val = 0;\n\nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() { \n    val = analogRead(analogPin);\n    analogWrite(ledPin, val / 4);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -155,6 +161,7 @@
                 "description": "The function reads the value from the specified analog input. Most Arduino boards have 6 channels (8 channels for Mini and Nano, 16 for Mega) with a 10-bit analog-to-digital converter (ADC). A voltage applied to an analog input, typically 0 to 5 volts, will be converted to a value from 0 to 1023, that's 1024 steps with a resolution of 0.0049 volts. The voltage spread and pitch can be changed with the analogReference() function. Reading a value from an analog input takes approximately 100 microseconds (0.0001 sec), i.e. the maximum reading rate is approximately 10,000 times per second. If an analog input is not connected, then the values ​​returned by the analogRead() function may be random.",
                 "baseDescription": "The function reads the value from the specified analog input. Most Arduino boards have 6 channels (8 channels for Mini and Nano, 16 for Mega) with a 10-bit analog-to-digital converter (ADC). A voltage applied to an analog input, typically 0 to 5 volts, will be converted to a value from 0 to 1023, that's 1024 steps with a resolution of 0.0049 volts.",
                 "exampleOfCode": "int ledPin = 9;\nint analogPin = 3;\nint val = 0;\n\nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() { \n    val = analogRead(analogPin);\n    analogWrite(ledPin, val / 4);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -177,6 +184,7 @@
                 "description": "The function determines the reference voltage relative to which analog measurements are made. The analogRead() function returns a value with a resolution of 10 bits proportional to the input voltage on the analog input, and depending on the reference voltage. Possible settings: DEFAULT(5V standard reference (on 5V platforms) or 3.3V (on 3.3V platforms)), INTERNAL (1.1V internal reference on the ATmega168 and ATmega328 microcontrollers, and 2.56V on the ATmega8), INTERNAL1V1 (1.1V internal voltage reference (Arduino Mega)), INTERNAL2V56 (Built-in 2.56 voltage reference (Arduino Mega)), EXTERNAL (External voltage reference connected to the AREF pin).",
                 "baseDescription": "The function determines the reference voltage relative to which analog measurements are made. The analogRead() function returns a value with a resolution of 10 bits proportional to the input voltage on the analog input, and depending on the reference voltage.",
                 "exampleOfCode": "int ledPin = 9;\nint analogPin = 3;\nint val = 0;\n\nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() { \n    val = analogRead(analogPin);\n    analogWrite(ledPin, val / 4);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -198,7 +206,7 @@
     {
         "name": "Zero, Due & MKR Family",
         "footer": "",
-        "headerHeight": 32,
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "analogReadResolution()",
@@ -206,6 +214,7 @@
                 "description": "AnalogReadResolution() is an extension of the Analog API for the Zero, Due, MKR family, Nano 33 (BLE and IoT) and Portenta.\n\nSets the size (in bits) of the value returned by analogRead(). It defaults to 10 bits (returns values between 0-1023) for backward compatibility with AVR based boards.\n\nThe Zero, Due, MKR family and Nano 33 (BLE and IoT) boards have 12-bit ADC capabilities that can be accessed by changing the resolution to 12. This will return values from analogRead() between 0 and 4095.\n\nThe Portenta H7 has a 16 bit ADC, which will allow values between 0 and 65535.",
                 "baseDescription": "AnalogReadResolution() is an extension of the Analog API for the Zero, Due, MKR family, Nano 33 (BLE and IoT) and Portenta.",
                 "exampleOfCode": "void setup() {\n   // open a serial connection\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   // read the input on A0 at default resolution (10 bits)\n   // and send it out the serial connection\n   analogReadResolution(10);\n   Serial.print('ADC 10-bit (default) : ');\n   Serial.print(analogRead(A0));\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": false,
@@ -228,6 +237,7 @@
                 "description": "analogWriteResolution() is an extension of the Analog API for the Arduino Due.\n\nanalogWriteResolution() sets the resolution of the analogWrite() function. It defaults to 8 bits (values between 0-255) for backward compatibility with AVR based boards.\n\nIf you set the analogWriteResolution() value to a value higher than your board’s capabilities, the Arduino will discard the extra bits. For example: using the Due with analogWriteResolution(16) on a 12-bit DAC pin, only the first 12 bits of the values passed to analogWrite() will be used and the last 4 bits will be discarded.\n\nIf you set the analogWriteResolution() value to a value lower than your board’s capabilities, the missing bits will be padded with zeros to fill the hardware required size. For example: using the Due with analogWriteResolution(8) on a 12-bit DAC pin, the Arduino will add 4 zero bits to the 8-bit value used in analogWrite() to obtain the 12 bits required.",
                 "baseDescription": "analogWriteResolution() is an extension of the Analog API for the Arduino Due.\n\nanalogWriteResolution() sets the resolution of the analogWrite() function.",
                 "exampleOfCode": "void setup() {\n   // open a serial connection\n   Serial.begin(9600);\n   // make our digital pin an output\n   pinMode(11, OUTPUT);\n}\n\nvoid loop() {\n   // read the input on A0 and map it to a PWM pin\n   // with an attached LED\n\n   int sensorVal = analogRead(A0);\n   Serial.print('Analog Read) : ');\n   Serial.print(sensorVal);\n   // the default PWM resolution\n   analogWriteResolution(8);\n   analogWrite(11, map(sensorVal, 0, 1023, 0, 255));\n   Serial.print(' , 8-bit PWM value : ');\n   Serial.print(map(sensorVal, 0, 1023, 0, 255));\n   delay(5);\n}",
+                "iconName": "macstudio",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": false,
@@ -249,7 +259,7 @@
     {
         "name": "Working with time",
         "footer": "",
-        "headerHeight": 32,
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "millis()",
@@ -257,6 +267,7 @@
                 "description": "Returns the number of milliseconds since the current program on the Arduino board started executing. This number is reset to zero due to a value overflow after approximately 50 days. Return value is a number of milliseconds since the program started executing. The function has no parameters.",
                 "baseDescription": "Returns the number of milliseconds since the current program on the Arduino board started executing. This number is reset to zero due to a value overflow after approximately 50 days.",
                 "exampleOfCode": "unsigned long time;\n\nvoid setup() {\n    Serial.begin(9600);\n}\n\nvoid loop() {\n    Serial.print('Time: ');\n    time = millis();\n\n    Serial.println(time);\n    delay(1000);\n}",
+                "iconName": "timer",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -279,6 +290,7 @@
                 "description": "Returns the number of microseconds since the current program on the Arduino board started executing. The value overflows and resets to zero after approximately 70 minutes. On 16MHz Arduino boards (Duemilanove and Nano) the micros() function has a resolution of 4 microseconds (the return value is always a multiple of 4). On 8MHz boards (Arduino Lilypad) the function resolution is 8 microseconds. The function has no parameters.",
                 "baseDescription": "Returns the number of microseconds since the current program on the Arduino board started executing. The value overflows and resets to zero after approximately 70 minutes.",
                 "exampleOfCode": "unsigned long time;\n\nvoid setup() {\n    Serial.begin(9600);\n}\n\nvoid loop() {\n    Serial.print('Time: ');\n    time = micros();\n\n    Serial.println(time);\n    delay(1000);\n}",
+                "iconName": "timer",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -301,6 +313,7 @@
                 "description": "Stops program execution for the number of milliseconds specified in the parameter (1000 milliseconds in 1 second). It is not recommended to use this function for events longer than 10 milliseconds, as during a stop, no port manipulation, no sensor readings, or math operations can be done. As an alternative approach, it is possible to control the execution time of certain functions using millis(). Most board activity is stopped by the delay() function. Nevertheless, the work of interrupts does not stop, the recording of serially transmitted data continues on the RX port, the PWM signal (analogWrite) continues to be generated on the ports.",
                 "baseDescription": "Stops program execution for the number of milliseconds specified in the parameter (1000 milliseconds in 1 second).",
                 "exampleOfCode": "int ledPin = 13; \nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(ledPin, HIGH);\n    delay(1000);\n    digitalWrite(ledPin, LOW);\n    delayMicroseconds(50);\n}",
+                "iconName": "timer",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -323,6 +336,7 @@
                 "description": "Stops program execution for the number of microseconds specified in the parameter (1,000,000 microseconds in 1 second). In this version of Arduino, the maximum pause that can be played correctly is 16383. Perhaps this will be changed in future versions of Arduino. To stop program execution for more than a few thousand microseconds, it is recommended to use the delay() function.",
                 "baseDescription": "Stops program execution for the number of microseconds specified in the parameter (1,000,000 microseconds in 1 second).",
                 "exampleOfCode": "int ledPin = 13; \nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(ledPin, HIGH);\n    delay(1000);\n    digitalWrite(ledPin, LOW);\n    delayMicroseconds(50);\n}",
+                "iconName": "timer",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -344,7 +358,7 @@
     {
         "name": "Random",
         "footer": "",
-        "headerHeight": 32,
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "random()",
@@ -352,6 +366,7 @@
                 "description": "The random function generates pseudo-random numbers. If it is important for a sequence of values generated by random() to differ, on subsequent executions of a sketch, use randomSeed() to initialize the random number generator with a fairly random input, such as analogRead() on an unconnected pin. Conversely, it can occasionally be useful to use pseudo-random sequences that repeat exactly. This can be accomplished by calling randomSeed() with a fixed number, before starting the random sequence. \n\nThe max parameter should be chosen according to the data type of the variable in which the value is stored. In any case, the absolute maximum is bound to the long nature of the value generated (32 bit - 2,147,483,647). Setting max to a higher value won’t generate an error during compilation, but during sketch execution the numbers generated will not be as expected.",
                 "baseDescription": "The random function generates pseudo-random numbers.",
                 "exampleOfCode": "long randNumber;\n\nvoid setup() {\n   Serial.begin(9600);\n   randomSeed(analogRead(0));\n}\n\nvoid loop() {\n   randNumber = random(300);\n   Serial.println(randNumber);\n   randNumber = random(10, 20);\n   Serial.println(randNumber);\n   delay(50);\n}",
+                "iconName": "textformat.abc",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -374,6 +389,7 @@
                 "description": "This initializes the pseudo-random number generator, causing it to start at an arbitrary point in its random sequence. This sequence, while very long, and random, is always the same.\n\nIf it is important for a sequence of values generated by random() to differ, on subsequent executions of a sketch, use randomSeed() to initialize the random number generator with a fairly random input, such as analogRead() on an unconnected pin.\n\nConversely, it can occasionally be useful to use pseudo-random sequences that repeat exactly. This can be accomplished by calling randomSeed() with a fixed number, before starting the random sequence.\n\nIf the seed is 0, randomSeed(seed) will have no effect.",
                 "baseDescription": "This initializes the pseudo-random number generator, causing it to start at an arbitrary point in its random sequence. This sequence, while very long, and random, is always the same.",
                 "exampleOfCode": "int ledPin = 13; \nvoid setup() {\n    pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(ledPin, HIGH);\n    delay(1000);\n    digitalWrite(ledPin, LOW);\n    delayMicroseconds(50);\n}",
+                "iconName": "textformat.abc",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -393,9 +409,246 @@
         ]
     },
     {
+        "name": "Math",
+        "footer": "",
+        "headerHeight": 26,
+        "commands": [
+            {
+                "name": "abs()",
+                "subtitle": "Math",
+                "description": "Calculates the absolute value of a number.",
+                "baseDescription": "Calculates the absolute value of a number.",
+                "exampleOfCode": "void setup() {\n   Serial.begin(9600);\n\n   x = -42;\n   Serial.print('The absolute value of ');\n   Serial.print(x);\n   Serial.print(' is ');\n   Serial.println(abs(x));\n}\nvoid loop() {}",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "abs(x)",
+                    "arguments": "x: the number",
+                    "returns": "x: if x is greater than or equal to 0.\n-x: if x is less than 0."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "constrain()",
+                "subtitle": "Math",
+                "description": "Constrains a number to be within a range.",
+                "baseDescription": "Constrains a number to be within a range.",
+                "exampleOfCode": "void setup() {\n   Serial.begin(9600);\n\n   x = -42;\n   sensVal = constrain(sensVal, 10, 150);  // limits range of sensor values to between 10 and 150\n   Serial.print(sensVal);\n}\nvoid loop() {}",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "constrain(x, a, b)",
+                    "arguments": "x: the number to constrain Allowed data types: all data types.\na: the lower end of the range. Allowed data types: all data types.\nb: the upper end of the range. Allowed data types: all data types.",
+                    "returns": "x: if x is between a and b.\na: if x is less than a.\nb: if x is greater than b."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "map()",
+                "subtitle": "Math",
+                "description": "Re-maps a number from one range to another. That is, a value of fromLow would get mapped to toLow, a value of fromHigh to toHigh, values in-between to values in-between, etc.",
+                "baseDescription": "Re-maps a number from one range to another. That is, a value of fromLow would get mapped to toLow, a value of fromHigh to toHigh, values in-between to values in-between, etc.\n\nDoes not constrain values to within the range, because out-of-range values are sometimes intended and useful. The constrain() function may be used either before or after this function, if limits to the ranges are desired.\n\nNote that the 'lower bounds' of either range may be larger or smaller than the 'upper bounds' so the map() function may be used to reverse a range of numbers. The function also handles negative numbers well.\n\nThe map() function uses integer math so will not generate fractions, when the math might indicate that it should do so. Fractional remainders are truncated, and are not rounded or averaged.",
+                "exampleOfCode": "void setup() {}\n\nvoid loop() {\n   int val = analogRead(0);\n   val = map(val, 0, 1023, 0, 255);\n   analogWrite(9, val);\n}",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "map(value, fromLow, fromHigh, toLow, toHigh)",
+                    "arguments": "value: the number to map.\nfromLow: the lower bound of the value’s current range.\nfromHigh: the upper bound of the value’s current range.\ntoLow: the lower bound of the value’s target range.\ntoHigh: the upper bound of the value’s target range.",
+                    "returns": "The mapped value. Data type: long."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "max()",
+                "subtitle": "Math",
+                "description": "Calculates the maximum of two numbers.",
+                "baseDescription": "Calculates the maximum of two numbers.",
+                "exampleOfCode": "sensVal = max(sensVal, 20); // assigns sensVal to the larger of sensVal or 20\n// (effectively ensuring that it is at least 20)",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "max(x, y)",
+                    "arguments": "x: the first number. Allowed data types: any data type.\ny: the second number. Allowed data types: any data type.",
+                    "returns": "The larger of the two parameter values."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "min()",
+                "subtitle": "Math",
+                "description": "Calculates the minimum of two numbers.",
+                "baseDescription": "Calculates the minimum of two numbers.",
+                "exampleOfCode": "ensVal = min(sensVal, 100);  // assigns sensVal to the smaller of sensVal or 100\n// ensuring that it never gets above 100.",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "min(x, y)",
+                    "arguments": "x: the first number. Allowed data types: any data type.\ny: the second number. Allowed data types: any data type.",
+                    "returns": "The smaller of the two numbers."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "sq()",
+                "subtitle": "Math",
+                "description": "Calculates the square of a number: the number multiplied by itself.",
+                "baseDescription": "Calculates the square of a number: the number multiplied by itself.",
+                "exampleOfCode": "ensVal = min(sensVal, 100);  // assigns sensVal to the smaller of sensVal or 100\n// ensuring that it never gets above 100.",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "sq(x)",
+                    "arguments": "x: the number. Allowed data types: any data type.",
+                    "returns": "The square of the number. Data type: double."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "sqrt()",
+                "subtitle": "Math",
+                "description": "Calculates the square root of a number.",
+                "baseDescription": "Calculates the square root of a number.",
+                "exampleOfCode": "ensVal = min(sensVal, 100);  // assigns sensVal to the smaller of sensVal or 100\n// ensuring that it never gets above 100.",
+                "iconName": "function",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "sqrt(x)",
+                    "arguments": "x: the number. Allowed data types: any data type.",
+                    "returns": "The number’s square root. Data type: double."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "cos()",
+                "subtitle": "Trigonometry",
+                "description": "Calculates the cosine of an angle (in radians). The result will be between -1 and 1.",
+                "baseDescription": "Calculates the cosine of an angle (in radians). The result will be between -1 and 1.",
+                "exampleOfCode": "ensVal = min(sensVal, 100);  // assigns sensVal to the smaller of sensVal or 100\n// ensuring that it never gets above 100.",
+                "iconName": "angle",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "cos(rad)",
+                    "arguments": "rad: The angle in radians. Allowed data types: float.",
+                    "returns": "The cos of the angle. Data type: double."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "sin()",
+                "subtitle": "Trigonometry",
+                "description": "Calculates the sine of an angle (in radians). The result will be between -1 and 1.",
+                "baseDescription": "Calculates the sine of an angle (in radians). The result will be between -1 and 1.",
+                "exampleOfCode": "ensVal = min(sensVal, 100);  // assigns sensVal to the smaller of sensVal or 100\n// ensuring that it never gets above 100.",
+                "iconName": "angle",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "sin(rad)",
+                    "arguments": "rad: The angle in radians. Allowed data types: float.",
+                    "returns": "The sine of the angle. Data type: double."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "tan()",
+                "subtitle": "Trigonometry",
+                "description": "Calculates the tangent of an angle (in radians).",
+                "baseDescription": "Calculates the tangent of an angle (in radians). The result will be between negative infinity and infinity.",
+                "exampleOfCode": "ensVal = min(sensVal, 100);  // assigns sensVal to the smaller of sensVal or 100\n// ensuring that it never gets above 100.",
+                "iconName": "angle",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": true,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": false,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": false,
+                "details": {
+                    "syntax": "tan(rad)",
+                    "arguments": "rad: The angle in radians. Allowed data types: float.",
+                    "returns": "The tangent of the angle. Data type: double."
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            }
+        ]
+    },
+    {
         "name": "Serial",
-        "footer": "The Serial function set is used to communicate the Arduino device with a computer or other devices that support a serial data exchange interface. All Arduino boards have at least one serial port (UART, sometimes called USART). Serial data exchange uses digital I/O ports 0 (RX) and 1 (TX), as well as a USB port. It is important to note that if you are using the Serial functions, then you cannot use ports 0 and 1 for other purposes at the same time. \n \nThe Arduino development environment has a built-in Serial monitor. To start data exchange, you need to start the monitor by pressing the Serial monitor button and set the same baud rate with which the begin() function was called.",
-        "headerHeight": 32,
+        "footer": "",
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "begin()",
@@ -403,11 +656,12 @@
                 "description": "Initiates a serial connection and sets the baud rate in bits/sec (baud). To communicate with a computer, use the following values: 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, or 115200. Other baud rates required by the device may be used when connecting through I/O ports 0 and 1 with which data will be exchanged.",
                 "baseDescription": "Initiates a serial connection and sets the baud rate in bits/sec (baud).",
                 "exampleOfCode": "int incomingByte = 0;\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n if (Serial.available() > 0) {\n    incomingByte = Serial.read();\n\n    Serial.print('I received: ');\n    Serial.println(incomingByte, DEC);\n  }\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "terminal",
+                "imageURL": "Знімок екрана 2023-09-05 о 1.09.23 пп",
                 "returns": false,
                 "isUsedWithDevices": false,
                 "isLibraryMethod": false,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.begin(speed)",
@@ -425,12 +679,13 @@
                 "description": "Closes the serial connection, the RX and TX ports are free and can be used for I/O. To restore a serial connection, use Serial.begin().",
                 "baseDescription": "Closes the serial connection, the RX and TX ports are free and can be used for I/O. To restore a serial connection, use Serial.begin().",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "terminal",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": false,
                 "isLibraryMethod": false,
                 "isScreenshotEnabled": false,
-                "isCodeSnippetEnabled": true,
+                "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "Serial.end()",
                     "arguments": "No arguments",
@@ -447,6 +702,7 @@
                 "description": "The function gets the number of bytes (characters) available for reading from the serial communication interface. These are the bytes that have already arrived and are written to the serial port buffer. The buffer can store up to 64 bytes.",
                 "baseDescription": "The function gets the number of bytes (characters) available for reading from the serial communication interface.",
                 "exampleOfCode": "int incomingByte = 0;\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n if (Serial.available() > 0) {\n    incomingByte = Serial.read();\n\n    Serial.print('I received: ');\n    Serial.println(incomingByte, DEC);\n  }\n}",
+                "iconName": "terminal",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -469,6 +725,7 @@
                 "description": "Reads the next available byte from the serial connection buffer.",
                 "baseDescription": "Reads the next available byte from the serial connection buffer.",
                 "exampleOfCode": "int incomingByte = 0;\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n if (Serial.available() > 0) {\n    incomingByte = Serial.read();\n\n    Serial.print('I received: ');\n    Serial.println(incomingByte, DEC);\n  }\n}",
+                "iconName": "terminal",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -491,6 +748,7 @@
                 "description": "Waits for outgoing data transfer to finish (before Arduino 1.0, the function cleared the serial connection buffer).",
                 "baseDescription": "Waits for outgoing data transfer to finish (before Arduino 1.0, the function cleared the serial connection buffer).",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "terminal",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": false,
@@ -513,11 +771,12 @@
                 "description": "Sends data over the serial port as ASCII text. This function can accept various types of data. So integers are printed with their corresponding ASCII characters. Reals are output using two ASCII characters, for integer and fractional parts. The bytes are transmitted as a character with the corresponding number. Characters and strings are sent as is. Using the second optional parameter, you can set the basis (number system) for numbers. Valid values are BYTE, BIN (binary), OCT (octal), DEC (decimal), HEX (hexadecimal). For real (fractional) numbers, the second parameter specifies the number of decimal places.",
                 "baseDescription": "Sends data over the serial port as ASCII text. This function can accept various types of data.",
                 "exampleOfCode": "int incomingByte = 0;\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n if (Serial.available() > 0) {\n    incomingByte = Serial.read();\n\n    Serial.print('I received: ');\n    Serial.println(incomingByte, DEC);\n  }\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "terminal",
+                "imageURL": "Знімок екрана 2023-09-05 о 1.09.23 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.print(val)",
@@ -535,11 +794,12 @@
                 "description": "Sends data over the serial connection as ASCII text followed by a line break and a newline character. The parameters and data types for this function are the same as for Serial.print().",
                 "baseDescription": "Sends data over the serial connection as ASCII text followed by a line break (ASCII character 13 or '\r') and a newline character (ASCII 10 or '\n').",
                 "exampleOfCode": "int incomingByte = 0;\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n if (Serial.available() > 0) {\n    incomingByte = Serial.read();\n\n    Serial.print('I received: ');\n    Serial.println(incomingByte, DEC);\n  }\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "terminal",
+                "imageURL": "Знімок екрана 2023-09-05 о 1.09.23 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": false,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "Serial.println(val)",
@@ -557,6 +817,7 @@
                 "description": "The function transmits data as a binary code through a serial connection. The data is sent as one or a series of bytes. To transfer data as characters, another print() function should be used.",
                 "baseDescription": "The function transmits data as a binary code through a serial connection. To transfer data as characters, another print() function should be used.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "terminal",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -579,6 +840,7 @@
                 "description": "Returns the next available byte (character) from the incoming serial connection buffer without removing it from that buffer. That is, a successful call to this function will return the same value as the next call to the read() function.",
                 "baseDescription": "Returns the next available byte (character) from the incoming serial connection buffer without removing it from that buffer.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "terminal",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -600,7 +862,7 @@
     {
         "name": "External Interrupts",
         "footer": "",
-        "headerHeight": 32,
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "attachInterrupt()",
@@ -608,6 +870,7 @@
                 "description": "The first parameter to attachInterrupt() is an interrupt number. Normally you should use digitalPinToInterrupt(pin) to translate the actual digital pin to the specific interrupt number. For example, if you connect to pin 3, use digitalPinToInterrupt(3) as the first parameter to attachInterrupt().\n\nInside the attached function, delay() won’t work and the value returned by millis() will not increment. Serial data received while in the function may be lost. You should declare as volatile any variables that you modify within the attached function. See the section on ISRs below for more information.\n\nInterrupts are useful for making things happen automatically in microcontroller programs and can help solve timing problems. Good tasks for using an interrupt may include reading a rotary encoder, or monitoring user input.\n\nIf you wanted to ensure that a program always caught the pulses from a rotary encoder, so that it never misses a pulse, it would make it very tricky to write a program to do anything else, because the program would need to constantly poll the sensor lines for the encoder, in order to catch pulses when they occurred. Other sensors have a similar interface dynamic too, such as trying to read a sound sensor that is trying to catch a click, or an infrared slot sensor (photo-interrupter) trying to catch a coin drop. In all of these situations, using an interrupt can free the microcontroller to get some other work done while not missing the input.",
                 "baseDescription": "The first parameter to attachInterrupt() is an interrupt number. Normally you should use digitalPinToInterrupt(pin) to translate the actual digital pin to the specific interrupt number. For example, if you connect to pin 3, use digitalPinToInterrupt(3) as the first parameter to attachInterrupt().",
                 "exampleOfCode": "const byte ledPin = 13;\nconst byte interruptPin = 2;\nvolatile byte state = LOW;\n\nvoid setup() {\n  pinMode(ledPin, OUTPUT);\n  pinMode(interruptPin, INPUT_PULLUP);\n  attachInterrupt(digitalPinToInterrupt(interruptPin), blink, CHANGE);\n\nvoid loop() {\n  digitalWrite(ledPin, state);\n}\n\nvoid blink() {\n  state = !state;\n}",
+                "iconName": "command",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -630,6 +893,7 @@
                 "description": "Turns off the given interrupt.",
                 "baseDescription": "Turns off the given interrupt.",
                 "exampleOfCode": "",
+                "iconName": "command",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -650,8 +914,8 @@
     },
     {
         "name": "Servo",
-        "footer": "This library allows an Arduino board to control RC (hobby) servo motors. Servos have integrated gears and a shaft that can be precisely controlled. Standard servos allow the shaft to be positioned at various angles, usually between 0 and 180 degrees. Continuous rotation servos allow the rotation of the shaft to be set to various speeds. \n\nTo use this library: #include <Servo.h>.",
-        "headerHeight": 32,
+        "footer": "",
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "attach()",
@@ -659,11 +923,12 @@
                 "description": "Attach the Servo variable to a pin. Note that in Arduino 0016 and earlier, the Servo library supports servos on only two pins: 9 and 10.",
                 "baseDescription": "Attach the Servo variable to a pin. Note that in Arduino 0016 and earlier, the Servo library supports servos on only two pins: 9 and 10.",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nint servoVal = 0;\n\nvoid setup() { \n    myservo.attach(9);\n    Serial.begin(9600);\n} \n\nvoid loop() {\n    myservo.write(90);\n    servoVal = myservo.read();\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "externaldrive.connected.to.line.below",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.58.57 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "servo.attach(pin)",
@@ -681,11 +946,12 @@
                 "description": "Writes a value to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft (in degrees), moving the shaft to that orientation. On a continuous rotation servo, this will set the speed of the servo (with 0 being full-speed in one direction, 180 being full speed in the other, and a value near 90 being no movement).",
                 "baseDescription": "Writes a value to the servo, controlling the shaft accordingly.",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nint servoVal = 0;\n\nvoid setup() { \n    myservo.attach(9);\n    Serial.begin(9600);\n} \n\nvoid loop() {\n    myservo.write(90);\n    servoVal = myservo.read();\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "externaldrive.connected.to.line.below",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.58.57 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "servo.write(angle)",
@@ -703,6 +969,7 @@
                 "description": "Writes a value in microseconds(us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft. On standard servos a parameter value of 1000 is fully counter-clockwise, 2000 is fully clockwise, and 1500 is in the middle. Note that some manufactures do not follow this standard very closely so that servos often respond to values between 700 and 2300. Feel free to increase these endpoints until the servo no longer continues to increase its range. Note however that attempting to drive a servo past its endpoints (often indicated by a growling sound) is a high-current state, and should be avoided. Continuous-rotation servos will respond to the writeMicrosecond function in an analogous manner to the write function.",
                 "baseDescription": "Writes a value in microseconds (us) to the servo, controlling the shaft accordingly. On a standard servo, this will set the angle of the shaft.",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nvoid setup() {\n  myservo.attach(9);\n    myservo.writeMicroseconds(1500);\n}\n\nvoid loop() {} ",
+                "iconName": "externaldrive.connected.to.line.below",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -725,6 +992,7 @@
                 "description": "Reads the current angle of the servo (the value passed to the last call to write()).",
                 "baseDescription": "Reads the current angle of the servo (the value passed to the last call to write()).",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nint servoVal = 0;\n\nvoid setup() { \n    myservo.attach(9);\n    Serial.begin(9600);\n} \n\nvoid loop() {\n    myservo.write(90);\n    servoVal = myservo.read();\n}",
+                "iconName": "externaldrive.connected.to.line.below",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -747,6 +1015,7 @@
                 "description": "Checks whether the Servo variable is attached to a pin.",
                 "baseDescription": "Checks whether the Servo variable is attached to a pin.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "externaldrive.connected.to.line.below",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -769,6 +1038,7 @@
                 "description": "Detachs the Servo variable from its pin. If all Servo variables are detached, then pins 9 and 10 can be used for PWM output with analogWrite().",
                 "baseDescription": "Detachs the Servo variable from its pin.",
                 "exampleOfCode": "void setup() {\n    pinMode(2, OUTPUT);\n}\n\nvoid loop() {\n    digitalWrite(2, HIGH);\n    delay(1000);\n    digitalWrite(2, LOW);\n    delay(1000);\n}",
+                "iconName": "externaldrive.connected.to.line.below",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -789,8 +1059,8 @@
     },
     {
         "name": "Stepper",
-        "footer": "Allows Arduino boards to control a variety of stepper motors. This library allows you to control unipolar or bipolar stepper motors. To use it you will need a stepper motor, and the appropriate hardware to control it.\n\nTo use this library: #include <Stepper.h>",
-        "headerHeight": 32,
+        "footer": "",
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "stepper()",
@@ -798,6 +1068,7 @@
                 "description": "This function creates a new instance of the Stepper class that represents a particular stepper motor attached to your Arduino board. Use it at the top of your sketch, above setup() and loop(). The number of parameters depends on how you’ve wired your motor, either using two or four pins of the Arduino board.",
                 "baseDescription": "This function creates a new instance of the Stepper class that represents a particular stepper motor attached to your Arduino board.",
                 "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "iconName": "number",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": true,
                 "isUsedWithDevices": true,
@@ -820,6 +1091,7 @@
                 "description": "This function sets the motor speed in rotations per minute (RPMs). This function doesn’t make the motor turn, just sets the speed at which it will when you call step().",
                 "baseDescription": "This function sets the motor speed in rotations per minute (RPMs). This function doesn’t make the motor turn, just sets the speed at which it will when you call step().",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nint servoVal = 0;\n\nvoid setup() { \n    myservo.attach(9);\n    Serial.begin(9600);\n} \n\nvoid loop() {\n    myservo.write(90);\n    servoVal = myservo.read();\n}",
+                "iconName": "number",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -842,6 +1114,7 @@
                 "description": "This function turns the motor a specific number of steps, at a speed determined by the most recent call to setSpeed(). This function is blocking; that is, it will wait until the motor has finished moving to pass control to the next line in your sketch. For example, if you set the speed to, say, 1 RPM and called step(100) on a 100-step motor, this function would take a full minute to run. For better control, keep the speed high and only go a few steps with each call to step().",
                 "baseDescription": "This function turns the motor a specific number of steps, at a speed determined by the most recent call to setSpeed(). This function is blocking; that is, it will wait until the motor has finished moving to pass control to the next line in your sketch.",
                 "exampleOfCode": "#include <Servo.h>\n\nServo myservo;\n\nvoid setup() {\n  myservo.attach(9);\n    myservo.writeMicroseconds(1500);\n}\n\nvoid loop() {} ",
+                "iconName": "number",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -862,8 +1135,8 @@
     },
     {
         "name": "LiquidCrystal",
-        "footer": "This library allows an Arduino board to control LiquidCrystal displays (LCDs) based on the Hitachi HD44780 (or a compatible) chipset, which is found on most text-based LCDs. The library works with in either 4- or 8-bit mode (i.e. using 4 or 8 data lines in addition to the rs, enable, and, optionally, the rw control lines).\n\nTo use this library: #include <LiquidCrystal.h>",
-        "headerHeight": 32,
+        "footer": "",
+        "headerHeight": 26,
         "commands": [
             {
                 "name": "LiquidCrystal()",
@@ -871,11 +1144,12 @@
                 "description": "Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display. begin() needs to be called before any other LCD library commands.",
                 "baseDescription": "Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display. begin() needs to be called before any other LCD library commands.",
                 "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "lcd.begin(cols, rows)",
@@ -893,11 +1167,12 @@
                 "description": "Clears the LCD screen and positions the cursor in the upper-left corner.",
                 "baseDescription": "Initializes the interface to the LCD screen, and specifies the dimensions (width and height) of the display. begin() needs to be called before any other LCD library commands.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nbyte smiley[8] = {\n   B00000,\n   B10001,\n   B00000,\n   B00000,\n   B10001,\n   B01110,\n   B00000,\n};\n\nvoid setup() {\n   lcd.createChar(0, smiley);\n   lcd.begin(16, 2);  \n   lcd.write(byte(0));\n}\n\nvoid loop() {}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "lcd.begin(cols, rows)",
@@ -915,6 +1190,7 @@
                 "description": "Clears the LCD screen and positions the cursor in the upper-left corner.",
                 "baseDescription": "Clears the LCD screen and positions the cursor in the upper-left corner.",
                 "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -937,11 +1213,12 @@
                 "description": "Position the LCD cursor; that is, set the location at which subsequent text written to the LCD will be displayed.",
                 "baseDescription": "Position the LCD cursor; that is, set the location at which subsequent text written to the LCD will be displayed.",
                 "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "lcd.setCursor(col, row)",
@@ -959,11 +1236,12 @@
                 "description": "Positions the cursor in the upper-left of the LCD. That is, use that location in outputting subsequent text to the display. To also clear the display, use the clear() function instead.",
                 "baseDescription": "Positions the cursor in the upper-left of the LCD. That is, use that location in outputting subsequent text to the display. To also clear the display, use the clear() function instead.",
                 "exampleOfCode": "#include <Servo.h>\n\nStepper myStepper = Stepper(100, 5, 6);",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "lcd.home()",
@@ -981,11 +1259,12 @@
                 "description": "Write a character to the LCD.",
                 "baseDescription": "Write a character to the LCD.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nbyte smiley[8] = {\n   B00000,\n   B10001,\n   B00000,\n   B00000,\n   B10001,\n   B01110,\n   B00000,\n};\n\nvoid setup() {\n   lcd.createChar(0, smiley);\n   lcd.begin(16, 2);  \n   lcd.write(byte(0));\n}\n\nvoid loop() {}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.49.52 пп",
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "lcd.write(data)",
@@ -1003,11 +1282,12 @@
                 "description": "Prints text to the LCD.",
                 "baseDescription": "Prints text to the LCD.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": true,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "lcd.print(data)",
@@ -1025,11 +1305,12 @@
                 "description": "Create a custom character (glyph) for use on the LCD. Up to eight characters of 5x8 pixels are supported (numbered 0 to 7). The appearance of each custom character is specified by an array of eight bytes, one for each row. The five least significant bits of each byte determine the pixels in that row. To display a custom character on the screen, write() its number. NB: When referencing custom character “0”, if it is not in a variable, you need to cast it as a byte, otherwise the compiler throws an error.",
                 "baseDescription": "Create a custom character (glyph) for use on the LCD. Up to eight characters of 5x8 pixels are supported (numbered 0 to 7).",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nbyte smiley[8] = {\n   B00000,\n   B10001,\n   B00000,\n   B00000,\n   B10001,\n   B01110,\n   B00000,\n};\n\nvoid setup() {\n   lcd.createChar(0, smiley);\n   lcd.begin(16, 2);  \n   lcd.write(byte(0));\n}\n\nvoid loop() {}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.49.52 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": true,
                 "details": {
                     "syntax": "lcd.createChar(num, data)",
@@ -1047,11 +1328,12 @@
                 "description": "Display the LCD cursor: an underscore (line) at the position to which the next character will be written.",
                 "baseDescription": "Display the LCD cursor: an underscore (line) at the position to which the next character will be written.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "lcd.cursor()",
@@ -1069,11 +1351,12 @@
                 "description": "Hides the LCD cursor.",
                 "baseDescription": "Hides the LCD cursor.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
-                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "iconName": "sparkles.tv",
+                "imageURL": "Знімок екрана 2023-09-05 о 12.38.36 пп",
                 "returns": false,
                 "isUsedWithDevices": true,
                 "isLibraryMethod": true,
-                "isScreenshotEnabled": false,
+                "isScreenshotEnabled": true,
                 "isCodeSnippetEnabled": false,
                 "details": {
                     "syntax": "lcd.noCursor()",
@@ -1091,6 +1374,7 @@
                 "description": "Display the blinking LCD cursor. If used in combination with the cursor() function, the result will depend on the particular display.",
                 "baseDescription": "Display the blinking LCD cursor.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1113,6 +1397,7 @@
                 "description": "Turns off the blinking LCD cursor.",
                 "baseDescription": "Turns off the blinking LCD cursor.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1135,6 +1420,7 @@
                 "description": "Turns on the LCD display, after it’s been turned off with noDisplay(). This will restore the text (and cursor) that was on the display.",
                 "baseDescription": "Turns on the LCD display, after it’s been turned off with noDisplay().",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1157,6 +1443,7 @@
                 "description": "Turns off the LCD display, without losing the text currently shown on it.",
                 "baseDescription": "Turns off the LCD display, without losing the text currently shown on it.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1179,6 +1466,7 @@
                 "description": "Scrolls the contents of the display (text and cursor) one space to the left.",
                 "baseDescription": "Scrolls the contents of the display (text and cursor) one space to the left.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1201,6 +1489,7 @@
                 "description": "Scrolls the contents of the display (text and cursor) one space to the right.",
                 "baseDescription": "Scrolls the contents of the display (text and cursor) one space to the right.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1223,6 +1512,7 @@
                 "description": "Turns on automatic scrolling of the LCD. This causes each character output to the display to push previous characters over by one space. If the current text direction is left-to-right (the default), the display scrolls to the left; if the current direction is right-to-left, the display scrolls to the right. This has the effect of outputting each new character to the same location on the LCD.",
                 "baseDescription": "Turns on automatic scrolling of the LCD. This causes each character output to the display to push previous characters over by one space.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1245,6 +1535,7 @@
                 "description": "Turns off automatic scrolling of the LCD.",
                 "baseDescription": "Turns off automatic scrolling of the LCD.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1267,6 +1558,7 @@
                 "description": "Set the direction for text written to the LCD to left-to-right, the default. This means that subsequent characters written to the display will go from left to right, but does not affect previously-output text.",
                 "baseDescription": "Set the direction for text written to the LCD to left-to-right, the default.",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1289,6 +1581,7 @@
                 "description": "Set the direction for text written to the LCD to right-to-left (the default is left-to-right). This means that subsequent characters written to the display will go from right to left, but does not affect previously-output text.",
                 "baseDescription": "Set the direction for text written to the LCD to right-to-left (the default is left-to-right).",
                 "exampleOfCode": "#include <LiquidCrystal.h>\n\nLiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);\n\nvoid setup() {\n   Serial.begin(9600);\n}\n\nvoid loop() {\n   if (Serial.available()) {\n      lcd.print('hello world!');\n   }\n}",
+                "iconName": "sparkles.tv",
                 "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
                 "returns": false,
                 "isUsedWithDevices": true,
@@ -1298,6 +1591,243 @@
                 "details": {
                     "syntax": "lcd.rightToLeft()",
                     "arguments": "lcd: a variable of type LiquidCrystal",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            }
+        ]
+    },
+    {
+        "name": "TFT Display",
+        "footer": "",
+        "headerHeight": 26,
+        "commands": [
+            {
+                "name": "begin()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Must be called to initialize the Arduino GLCD screen before drawing anything.",
+                "baseDescription": "Must be called to initialize the Arduino GLCD screen before drawing anything.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();   // make the background white\n   screen.background(255,255,255);\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.begin()",
+                    "arguments": "No Arguments",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "background()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Erases everything currently on the LCD screen with the indicated color. Can be used in loop() to clear the screen.\n\nWhile background() expects 8-bit values for each of the red, green, and blue channels, the screen does not display with this fidelity. The red and blue values are scaled to 5-bit color (32 discrete steps), and the green is 6-bit color (64 discrete steps).",
+                "baseDescription": "Erases everything currently on the LCD screen with the indicated color. Can be used in loop() to clear the screen.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(255,255,255); // make the background white\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.background(red, green, blue);",
+                    "arguments": "red : int 0-255 green : int 0-255 blue : int 0-255",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "stroke()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Called before drawing an object on screen, it sets the color of lines and borders around shapes./n/nstroke() expects 8-bit values for each of the red, green, and blue channels, but the screen does not display with this fidelity. The red and blue values are scaled to 5-bit color (32 discrete steps), and the green is 6-bit color (64 discrete steps).",
+                "baseDescription": "Erases everything currently on the LCD screen with the indicated color. Can be used in loop() to clear the screen.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.stroke(255,255,255); // make the background white\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.stroke(red, green, blue);",
+                    "arguments": "red : int 0-255 green : int 0-255 blue : int 0-255",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "noStroke()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Called before drawing an object on screen, it sets the color of lines and borders around shapes./n/nstroke() expects 8-bit values for each of the red, green, and blue channels, but the screen does not display with this fidelity. The red and blue values are scaled to 5-bit color (32 discrete steps), and the green is 6-bit color (64 discrete steps).",
+                "baseDescription": "Erases everything currently on the LCD screen with the indicated color. Can be used in loop() to clear the screen.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.stroke(255,255,255); // make the background white\n\n   screen.noStroke(); // turn the stroke off\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.noStroke();",
+                    "arguments": "No Arguments",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "fill()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Called before drawing an object on screen, it sets the fill color of shapes and text.\n\nfill() expects 8-bit values for each of the red, green, and blue channels, but the screen does not display with this fidelity. The red and blue values are scaled to 5-bit color (32 discrete steps), and the green is 6-bit color (64 discrete steps).",
+                "baseDescription": "Called before drawing an object on screen, it sets the fill color of shapes and text.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.fill(255,255,255); // set the stroke color to white\n\n   screen.noStroke(); // turn the stroke off\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.fill(red, green, blue);",
+                    "arguments": "red : int 0-255 green : int 0-255 blue : int 0-255",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "text()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Write text to the screen at the given coordinates.",
+                "baseDescription": "Write text to the screen at the given coordinates.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.fill(255,255,255); // set the stroke color to white\n\n   screen.text('Testing!', 0, 0); // write text to the screen in the top left corner\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.text(text, xPos, yPos);",
+                    "arguments": "text : char array, the text you want to write on the screen \nxPos : int, the location on the x-axis you want to start drawing text to the screen \nyPos : int, the location on the y-axis you want to start drawing text to the screen",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "line()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Draws a line between two points. Use stroke() to change the color of something drawn with line().",
+                "baseDescription": "Draws a line between two points. Use stroke() to change the color of something drawn with line().",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.fill(255,255,255); // set the stroke color to white\n\n   screen.line(0, 0, 160, 124); // draw a diagonal line across the screen's center\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.line(xStart, yStart, xEnd, yEnd);",
+                    "arguments": "xStart : int, the horizontal position where the line starts \nyStart : int, the vertical position where the line starts \nxEnd : int, the horizontal position where the line ends \nyEnd : int, the vertical position where the line ends",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "rect()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Draws a rectangle to the TFT screen. rect() takes 4 arguments, the first two are the top left corner of the shape, the last two are the width and height of the shape.",
+                "baseDescription": "Draws a rectangle to the TFT screen. rect() takes 4 arguments, the first two are the top left corner of the shape, the last two are the width and height of the shape.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.fill(255,255,255); // set the stroke color to white\n\n   screen.rect(screen.width()/2-5, screen.height()/2-5, 10, 10 // draw a rectangle in the center of screen\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.rect(xStart, yStart, width, height);",
+                    "arguments": "xStart : int, the horizontal position where the line starts \nyStart : int, the vertical position where the line starts \nwidth : int, the width of the rectangle \nheight : int, the height of the rectangle",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "circle()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Draws a circle on the screen. The circle is drawn relative to its center point, which means the total diameter will always be an odd number.",
+                "baseDescription": "Draws a circle on the screen.",
+                "exampleOfCode": "#include <SPI.h>\n#include <TFT.h> // Arduino LCD library\n\n#define cs   10\n#define dc   9\n#define rst  8\n\nTFT screen = TFT(cs, dc, rst);\n\nvoid setup() {\n   // initialize the screen\n   screen.begin();\n   screen.background(0,0,0); // make the background white\n   screen.fill(255,255,255); // set the stroke color to white\n\n   screen.circle(screen.width()/2, screen.height()/2, 10); // draw a circle in the center of screen\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.circle(xPos, yPos, radius);",
+                    "arguments": "xPos : int, the location of the center of the circle on the x axis \nyPos : int, the location of the center of the circle on the y axis \nradius : int, the radius of the circle",
+                    "returns": "Nothing"
+                },
+                "device": {
+                    "name": null,
+                    "enablePhotos": false
+                }
+            },
+            {
+                "name": "image()",
+                "subtitle": "Drawing text, images, and shapes",
+                "description": "Draws an image from the SD card to the screen at a specified location.",
+                "baseDescription": "Draws an image from the SD card to the screen at a specified location.",
+                "exampleOfCode": "#include <Esplora.h>\n#include <SPI.h>\n#include <SD.h>\n#include <TFT.h>  // Arduino TFT library\n\n#define SD_CS    8  // Chip select line for SD card in Esplora\n\nPImage logo;\n\nvoid setup() {   // initialize the screen\n   EsploraTFT.begin();\n   // initialize the SD card\n   SD.begin(SD_CS);\n   // set the background the black\n   EsploraTFT.background(0, 0, 0);\n   // load the image into the named instance of PImage\n   logo = EsploraTFT.loadImage('arduino.bmp');\n\n// if it is a valid image file, turn the Esplora's LED green\n   if (logo.isValid()) {\n     Esplora.writeGreen(255);\n   }\nelse {\n     // if it is not valid, turn the LED red\n     Esplora.writeRed(255);\n   }\n   // draw the image on the screen starting at the top left corner\n   EsploraTFT.image(logo, 0, 0);\n}\n\nvoid loop() {}",
+                "iconName": "photo.tv",
+                "imageURL": "Снимок экрана 2022-01-25 в 5.55.35 PM",
+                "returns": false,
+                "isUsedWithDevices": true,
+                "isLibraryMethod": true,
+                "isScreenshotEnabled": false,
+                "isCodeSnippetEnabled": true,
+                "details": {
+                    "syntax": "screen.image(image, xPos, yPos);",
+                    "arguments": "image : a named instance of PImage. \nxPos : int, location on the x-axis to start drawing \nyPos : int, location on the y-axis to start drawing",
                     "returns": "Nothing"
                 },
                 "device": {

@@ -78,6 +78,7 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
         case .users(let users):
             view?.presentUserSheetVC(with: users[row].content)
         case .basics(let basics):
+            view?.presentAdlnterstitial()
             view?.presentDetailVC(with: basics[row].content)
         }
     }

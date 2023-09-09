@@ -126,7 +126,7 @@ private extension ACAnalyticsManager {
          we check if the analytics command views array consists of more than 7 elements,
          and then remove the first element from the analytics command views array.
          */
-        if viewDays.count>=6 {
+        if viewDays.count >= 6 {
             viewDays.remove(at: 0)
         }
         

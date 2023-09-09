@@ -16,8 +16,8 @@ private extension CommandsListFormatter {
         
         //MARK: Static
         static let maxNumOfPreviewContentCharacters: Int = 90
-        static let anySectionMiddleLabelWidth: CGFloat = 82
-        static let initialMiddleLabelWidth: CGFloat = 74
+        static let anySectionMiddleLabelWidth: CGFloat = 66
+        static let initialMiddleLabelWidth: CGFloat = 61
     }
 }
 
@@ -37,7 +37,8 @@ struct CommandsListFormatter {
 
     static func convert(_ commands: [ACCommand]) -> [CommandUIModel] {
         return commands.map { command in
-            return CommandUIModel(title: command.name.uppercased(),
+            return CommandUIModel(icon: setupIconImage(with: command),
+                                  title: command.name.uppercased(),
                                   subtitle: command.subtitle.uppercased(),
                                   content: command.description,
                                   previewContent: setupPreviewContent(with: command),
@@ -96,6 +97,13 @@ private extension CommandsListFormatter {
         let descriptionPreview = description.prefix(maxCharacters)
         let previewContent = "\(descriptionPreview)..."
         return previewContent
+    }
+    
+    static func setupIconImage(with command: ACCommand) -> UIImage {
+        let imageName = command.iconName!
+        let imageConfig = UIImage.SymbolConfiguration(weight: .medium)
+        let iconImage = UIImage(systemName: imageName, withConfiguration: imageConfig)
+        return iconImage!
     }
 }
       

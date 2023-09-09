@@ -116,10 +116,9 @@ private extension AnalyticsView {
                     }
                 ForEach(viewModel.viewDays) { viewDay in
                     LineMark(
-                        x: .value("Day", viewDay.date),
+                        x: .value("Day", viewDay.date, unit: .day),
                         y: .value("ViewDay", viewDay.articlesCount)
                     )
-                    .lineStyle(.init(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 }
                 .foregroundStyle(Gradient(colors: [Color(.systemTeal), Color(.systemTeal).opacity(0.3)]))
                 .interpolationMethod(.cardinal)

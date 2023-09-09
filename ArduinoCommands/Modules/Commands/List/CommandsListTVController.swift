@@ -78,6 +78,11 @@ private extension CommandsListTVController {
                 static let shareActionName = "square.and.arrow.up"
                 static let dailyGoalIconName = "timer"
             }
+            enum TableView {
+                
+                //MARK: Static
+                static let headerSuffix = "    "
+            }
             enum TableViewCell {
                 
                 //MARK: Static
@@ -131,12 +136,14 @@ final class CommandsListTVController: UITableViewController, ACBaseViewControlle
         neededSections()[section].footer
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        neededSections()[section].header
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         neededSections()[section].commands.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let header = neededSections()[section].header!
+        let headerSuffix = Constants.UI.TableView.headerSuffix
+        return headerSuffix + header
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -227,8 +234,6 @@ extension CommandsListTVController: CommandsListTableViewControllerProtocol {
     internal func presentNotificationsDisabledAlert() {
         let title = Constants.UI.Alert.NotificationsDisabledAlert.title
         let message = Constants.UI.Alert.NotificationsDisabledAlert.message
-        let iconName = Constants.UI.Image.notifiactionsDisabledIconName
-        let iconImage = UIImage(systemName: iconName)!
         ACGrayAlertManager.present(title: title,
                                    message: message,
                                    duration: 8,
@@ -313,15 +318,14 @@ private extension CommandsListTVController {
     
     func setupTableView() {
         let backgroundColor = view.backgroundColor
-        let separatorColor: UIColor = .separator.withAlphaComponent(0.14)
         tableView.backgroundColor = backgroundColor
         tableView.allowsMultipleSelection = false
         tableView.sectionHeaderTopPadding = .leastNonzeroMagnitude
         tableView.dragInteractionEnabled = true
         tableView.sectionHeaderHeight = 0
         tableView.allowsSelection = true
-        tableView.separatorColor = separatorColor
-        tableView.rowHeight = 145
+        tableView.separatorColor = .clear
+        tableView.rowHeight = 164
         tableView.isEditing = false
     }
     

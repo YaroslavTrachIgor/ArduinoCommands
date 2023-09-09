@@ -10,6 +10,7 @@ import UIKit
 
 //MARK: - Command model for UI
 struct CommandUIModel {
+    let icon: UIImage!
     let title: String!
     let subtitle: String!
     let content: String!

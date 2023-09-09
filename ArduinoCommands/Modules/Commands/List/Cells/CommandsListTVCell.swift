@@ -17,7 +17,10 @@ final class CommandsListTVCell: UITableViewCell {
     //MARK: @IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var contentBackView: UIView!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var decorationImageView: UIImageView!
+    @IBOutlet weak var decorationImageBackView: UIView!
     @IBOutlet weak var rightDecorationLabel: UILabel!
     @IBOutlet weak var leftDecorationLabel: UILabel!
     @IBOutlet weak var middleDecorationLabel: UILabel!
@@ -32,12 +35,36 @@ extension CommandsListTVCell: ACBaseConfigurableView {
     internal func configure(with data: CommandUIModel) {
         uiModel = data
         setupCommandCellTitleLabel()
-        setupCommandCellSubtitleLabel()
-        setupCommandCellContentTextView()
-        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returnsLabelIsHidden)
+//        setupCommandCellSubtitleLabel()
+//        setupCommandCellContentTextView()
+        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returnsLabelIsHidden, scaleType: .small)
         setupDevicesDecorationLabel()
         setupMethodDecoLabel()
-        backgroundColor = UIColor.ACTable.cellBackgroundColor
+        
+        setupCommandCellContentTextView()
+        
+        backgroundColor = .clear
+        
+        subtitleLabel.text = uiModel?.subtitle
+        
+        decorationImageView.tintColor = .white
+        decorationImageView.image = uiModel?.icon
+        
+        decorationImageBackView.backgroundColor = .appTintColor
+        decorationImageBackView.layer.cornerRadius = CGFloat.Corners.baseACSecondaryRounding + 2
+        decorationImageBackView.layer.shadowColor = decorationImageBackView.backgroundColor?.withAlphaComponent(0.35).cgColor
+        decorationImageBackView.layer.shadowOpacity = 0.7
+        decorationImageBackView.layer.shadowRadius = 6
+        decorationImageBackView.layer.shadowOffset = CGSize(width: 2, height: 9)
+        
+        contentBackView.backgroundColor = UIColor.secondarySystemGroupedBackground.withAlphaComponent(0.65)
+        contentBackView.layer.cornerRadius = CGFloat.Corners.baseACBigRounding + 3
+//        let shadowColor = UIColor.systemGray4.withAlphaComponent(0.3).cgColor
+//        let shadowOffset = CGSize(width: 2, height: 7)
+//        contentBackView.layer.shadowColor = shadowColor
+//        contentBackView.layer.shadowOffset = shadowOffset
+//        contentBackView.layer.shadowOpacity = 0.6
+//        contentBackView.layer.shadowRadius = 6
     }
 }
 
@@ -65,9 +92,11 @@ private extension CommandsListTVCell {
     }
     
     func setupCommandCellContentTextView() {
-        let textColor: UIColor = .label.withAlphaComponent(0.65)
+        let textColor: UIColor = .secondaryLabel.withAlphaComponent(0.6)
         let content = uiModel?.previewContent
         let font = UIFont.ACFont(style: .articlePreview)
+        contentTextView.isUserInteractionEnabled = false
+        contentTextView.backgroundColor = .clear
         contentTextView.isSelectable = false
         contentTextView.isEditable = false
         contentTextView.textColor = textColor
@@ -76,19 +105,19 @@ private extension CommandsListTVCell {
     }
     
     func setupDevicesDecorationLabel() {
-        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled)
+        middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled, scaleType: .small)
         middleLabelWidth.constant = uiModel!.middleLabelWidth
         
         if uiModel!.isInitialMethod {
-            middleDecorationLabel.setupInitialDecoLabel(with: uiModel?.isDevicesLabelEnabled)
+            middleDecorationLabel.setupInitialDecoLabel(with: uiModel?.isDevicesLabelEnabled, scaleType: .small)
         }
     }
     
     func setupMethodDecoLabel() {
-        leftDecorationLabel.setupMethodDecoLabel()
-        
+        leftDecorationLabel.setupMethodDecoLabel(scaleType: .small)
+
         if uiModel!.isLibraryMethodLabelFirst {
-            leftDecorationLabel.setupLibraryDecoLabel()
+            leftDecorationLabel.setupLibraryDecoLabel(scaleType: .small)
         }
     }
 }

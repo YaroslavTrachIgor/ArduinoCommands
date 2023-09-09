@@ -43,7 +43,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AnalyticsManagerInj
             rateManager.startCounting()
         }
         DispatchQueue.main.async { [self] in
-            setupTabBerItemBasicAppearance()
             setupTabBerBasicAppearance()
             setupNavBarBasicAppearance()
             setupNotificationCenter()
@@ -119,13 +118,6 @@ private extension AppDelegate {
         UITabBar.appearance().layer.masksToBounds = true
         UITabBar.appearance().layer.maskedCorners = corners
         UITabBar.appearance().layer.cornerRadius = cornerRadius
-    }
-    
-    func setupTabBerItemBasicAppearance() {
-        let font = UIFont.ACFont(ofSize: 10)
-        let textAttributes = [NSAttributedString.Key.font: font]
-        UITabBarItem.appearance().setTitleTextAttributes(textAttributes, for: .normal)
-        UITabBarItem.appearance().badgeColor = .systemIndigo
     }
 
     func setupSearchBarBasicAppearance() {

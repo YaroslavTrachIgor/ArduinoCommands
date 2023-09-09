@@ -17,6 +17,7 @@ final class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         setupTabBar()
+        setupTabBarItems()
     }
 }
 
@@ -33,6 +34,17 @@ private extension MainTabBarController {
         tabBar.tintColor = .label
         selectedIndex = 0
         delegate = self
+    }
+    
+    func setupTabBarItems() {
+        let normalFont = UIFont.ACFont(ofSize: 8)
+        let selectedFont = UIFont.ACFont(ofSize: 8, weight: .bold)
+        let normalFontAttributes: [NSAttributedString.Key: Any] = [.font: normalFont]
+        let selectedFontAttributes: [NSAttributedString.Key: Any] = [.font: selectedFont]
+        for tabBarItem in tabBar.items ?? [] {
+            tabBarItem.setTitleTextAttributes(normalFontAttributes, for: .normal)
+            tabBarItem.setTitleTextAttributes(selectedFontAttributes, for: .selected)
+        }
     }
 }
 

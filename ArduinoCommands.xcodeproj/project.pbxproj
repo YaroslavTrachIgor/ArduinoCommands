@@ -167,6 +167,7 @@
 		CEA4AFFD2A812FA900DFDEA1 /* CommandReadingModeAppearancePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4AFFC2A812FA900DFDEA1 /* CommandReadingModeAppearancePresenter.swift */; };
 		CEACE9912A3BB510007811A0 /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE9902A3BB50F007811A0 /* UICollectionViewExtensions.swift */; };
 		CEACE9932A3BB5F8007811A0 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEACE9922A3BB5F8007811A0 /* UITableViewExtensions.swift */; };
+		CEAFC32F2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAFC32E2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift */; };
 		CEB71F25291650C700B82B86 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE697C88285B243E0091CCF1 /* WidgetKit.framework */; };
 		CEB71F26291650C700B82B86 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE697C8A285B243E0091CCF1 /* SwiftUI.framework */; };
 		CEB71F29291650C700B82B86 /* WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB71F28291650C700B82B86 /* WidgetBundle.swift */; };
@@ -424,6 +425,7 @@
 		CEA4AFFC2A812FA900DFDEA1 /* CommandReadingModeAppearancePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandReadingModeAppearancePresenter.swift; sourceTree = "<group>"; };
 		CEACE9902A3BB50F007811A0 /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		CEACE9922A3BB5F8007811A0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		CEAFC32E2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeAdsClient.swift; sourceTree = "<group>"; };
 		CEB71F24291650C600B82B86 /* ArduinoCommandsDynamicNotificationsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ArduinoCommandsDynamicNotificationsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB71F28291650C700B82B86 /* WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBundle.swift; sourceTree = "<group>"; };
 		CEB71F2A291650C700B82B86 /* WidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLiveActivity.swift; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 				8464647027DEA1A3004B0D12 /* BasicKnowledgePresenter.swift */,
 				8464646E27DE551C004B0D12 /* BasicKnowledgeViewController.swift */,
 				CE6C4D9E286A328E00D14AEA /* BasicKnowledgeContentStorage.swift */,
+				CEAFC32E2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1539,6 +1542,7 @@
 				CE348A082A4E6DD100B1F957 /* CommandDetailFormatter.swift in Sources */,
 				84A81C14282FEBB700FBFC7B /* ACCommand.swift in Sources */,
 				CE9FBBCA29A8AAE300D193B2 /* HTTPURLResponseExtensions.swift in Sources */,
+				CEAFC32F2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift in Sources */,
 				CECB4A9E28AB4E2000278130 /* ACBaseNavigationConfigurationViewController.swift in Sources */,
 				CE84FAAB2866A35900CE9D4D /* UIColorExtensions.swift in Sources */,
 				CE75CF91287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift in Sources */,

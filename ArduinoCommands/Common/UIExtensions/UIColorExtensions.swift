@@ -42,6 +42,9 @@ public extension UIColor {
         public static let neuLightShadowColor = UIColor(named: "NeuLightShadowColor")!
         public static let neuDarkShadowColor = UIColor(named: "NeuDarkShadowColor")!
     }
+    
+    //MARK: Static
+    static let appTintColor = UIColor(hexString: "#034394")
 }
 
 

@@ -18,17 +18,24 @@ private enum DecoLabelType {
 }
 
 
+//MARK: - Deco Labels Scale Types
+public enum DecoLabelScaleType {
+    case regular
+    case small
+}
+
+
 //MARK: - Fast Label methods
 public extension UILabel {
     
     //MARK: Public
-    func setupDecorationRoleLabel(content: String, tintColor: UIColor = .systemIndigo, if needed: Bool = true) {
+    func setupDecorationRoleLabel(content: String, tintColor: UIColor = .systemIndigo, if needed: Bool = true, fontSize: CGFloat = 13, cornerRadius: CGFloat = 6) {
         let backColor = tintColor.withAlphaComponent(0.16)
-        let font = UIFont.systemFont(ofSize: 13, weight: .light)
+        let font = UIFont.systemFont(ofSize: fontSize, weight: .light)
         self.font = font
         text = "#" + content.uppercased()
         textColor = tintColor
-        layer.cornerRadius = 6
+        layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
         backgroundColor = backColor
         alpha = 0
@@ -51,39 +58,49 @@ public extension UILabel {
 public extension UILabel {
     
     //MARK: Public
-    func setupMethodDecoLabel(with needed: Bool! = true) {
+    func setupMethodDecoLabel(with needed: Bool! = true, scaleType: DecoLabelScaleType = .regular) {
         let labelType: DecoLabelType = .method
         let content = setupDecoLabelTitle(with: labelType)
+        let fontSize = setupDecoLabelFontSize(with: scaleType)
         let tintColor = setupDecoLabelTintColor(with: labelType)
-        setupDecorationRoleLabel(content: content, tintColor: tintColor)
+        let cornerRadius = setupDecoLabelCornerRadius(with: scaleType)
+        setupDecorationRoleLabel(content: content, tintColor: tintColor, fontSize: fontSize, cornerRadius: cornerRadius)
     }
     
-    func setupLibraryDecoLabel(with needed: Bool! = true) {
+    func setupLibraryDecoLabel(with needed: Bool! = true, scaleType: DecoLabelScaleType = .regular) {
         let labelType: DecoLabelType = .library
         let content = setupDecoLabelTitle(with: labelType)
+        let fontSize = setupDecoLabelFontSize(with: scaleType)
         let tintColor = setupDecoLabelTintColor(with: labelType)
-        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed)
+        let cornerRadius = setupDecoLabelCornerRadius(with: scaleType)
+        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed, fontSize: fontSize, cornerRadius: cornerRadius)
     }
     
-    func setupReturnsDecoLabel(with needed: Bool!) {
+    func setupReturnsDecoLabel(with needed: Bool!, scaleType: DecoLabelScaleType = .regular) {
         let labelType: DecoLabelType = .returns
         let content = setupDecoLabelTitle(with: labelType)
+        let fontSize = setupDecoLabelFontSize(with: scaleType)
         let tintColor = setupDecoLabelTintColor(with: labelType)
-        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed)
+        let cornerRadius = setupDecoLabelCornerRadius(with: scaleType)
+        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed, fontSize: fontSize, cornerRadius: cornerRadius)
     }
     
-    func setupDevicesDecoLabel(with needed: Bool!) {
+    func setupDevicesDecoLabel(with needed: Bool!, scaleType: DecoLabelScaleType = .regular) {
         let labelType: DecoLabelType = .devices
         let content = setupDecoLabelTitle(with: labelType)
+        let fontSize = setupDecoLabelFontSize(with: scaleType)
         let tintColor = setupDecoLabelTintColor(with: labelType)
-        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed)
+        let cornerRadius = setupDecoLabelCornerRadius(with: scaleType)
+        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed, fontSize: fontSize, cornerRadius: cornerRadius)
     }
     
-    func setupInitialDecoLabel(with needed: Bool!) {
+    func setupInitialDecoLabel(with needed: Bool!, scaleType: DecoLabelScaleType = .regular) {
         let labelType: DecoLabelType = .initial
         let content = setupDecoLabelTitle(with: labelType)
+        let fontSize = setupDecoLabelFontSize(with: scaleType)
         let tintColor = setupDecoLabelTintColor(with: labelType)
-        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed)
+        let cornerRadius = setupDecoLabelCornerRadius(with: scaleType)
+        setupDecorationRoleLabel(content: content, tintColor: tintColor, if: needed, fontSize: fontSize, cornerRadius: cornerRadius)
     }
     
     
@@ -123,6 +140,30 @@ public extension UILabel {
             return .systemPink
         case .library:
             return .systemBlue
+        }
+    }
+    
+    /// This prepares a font size for the Command Keyword label.
+    /// - Parameter type: command keyword label scale type.
+    /// - Returns: deco label font size.
+    fileprivate func setupDecoLabelFontSize(with type: DecoLabelScaleType) -> CGFloat {
+        switch type {
+        case .regular:
+            return 13
+        case .small:
+            return 10
+        }
+    }
+    
+    /// This prepares a corner radius for the Command Keyword label.
+    /// - Parameter type: command keyword label scale type.
+    /// - Returns: deco label corner radius.
+    fileprivate func setupDecoLabelCornerRadius(with type: DecoLabelScaleType) -> CGFloat {
+        switch type {
+        case .regular:
+            return 7
+        case .small:
+            return 5.6
         }
     }
 }

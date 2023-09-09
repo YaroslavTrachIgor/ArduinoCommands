@@ -81,7 +81,7 @@ public enum BasicKnowledgeContentStorage {
                 subtitle: nil,
                 preview: "Integrated middleware for creating and uploading a program...",
                 stringSiteUrl: ACURLs.Materials.wikiArduino,
-                description: "Arduino IDE is an integrated development environment for Windows, MacOS and Linux, developed in C and C ++, designed to create and upload programs to Arduino-compatible boards, as well as boards from other manufacturers. The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules. The Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.",
+                description: "Arduino IDE is an integrated development environment for Windows, MacOS and Linux, developed in C and C ++, designed to create and upload programs to Arduino-compatible boards, as well as boards from other manufacturers. The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules.\n\nThe Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.\n\n",
                 date: Date.from(year: 2021, month: 12, day: 05)
             ),
             backColor: UIColor(hexString: "#013b85"),
@@ -97,7 +97,7 @@ public enum BasicKnowledgeContentStorage {
                 subtitle: nil,
                 preview: "The Arduino IDE is written in such programming languages...",
                 stringSiteUrl: ACURLs.Materials.wikiArduino,
-                description: "The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules. The Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.",
+                description: "The source code for the environment is released under the GNU General Public License version 2. Supports C and C++ languages ​​using special code structuring rules.\n\nThe Arduino IDE provides a software library from the Wiring project that provides many common input and output routines. User-written code requires only two basic functions to run the sketch and the main program loop, which are compiled and linked with the main() program stub into an executable loop program with the GNU toolchain also included in the IDE distribution.\n\n",
                 date: Date.from(year: 2022, month: 6, day: 11)
             ),
             backColor: UIColor(hexString: "#2f55ad"),
@@ -113,7 +113,7 @@ public enum BasicKnowledgeContentStorage {
                 subtitle: nil,
                 preview: "The Arduino IDE is requred to use on Windows, Linux...",
                 stringSiteUrl: ACURLs.Materials.wikiArduino,
-                description: "The IDE supports Windows, MacOS and Linux. With the popularity of Arduino, other vendors have started introducing custom compilers and open source tools (kernels) as a software platform that can create and upload sketches to other microcontrollers not supported by the official Arduino line of microcontrollers.",
+                description: "The IDE supports Windows, MacOS and Linux. With the popularity of Arduino, other vendors have started introducing custom compilers and open source tools (kernels) as a software platform that can create and upload sketches to other microcontrollers not supported by the official Arduino line of microcontrollers.\n\n",
                 date: Date.from(year: 2022, month: 4, day: 06)
             ),
             backColor: UIColor(hexString: "#1c92d2"),
@@ -268,7 +268,7 @@ public enum BasicKnowledgeContentStorage {
         ),
         ACLinkCellModel(
             content: ACLink(
-                name: "KIBER KODER",
+                name: "Kiber Koder",
                 link: ACURLs.Materials.kiberKoder
             ),
             tintColor: Constants.LinksSection.secondaryTintColor,

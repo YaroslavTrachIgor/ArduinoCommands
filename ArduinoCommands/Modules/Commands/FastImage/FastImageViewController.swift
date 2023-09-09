@@ -247,31 +247,31 @@ extension FastImageViewController: UIScrollViewDelegate {
         return imageView
     }
     
-    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let zoomScale = scrollView.zoomScale
-        if zoomScale > 1 {
-            if let image = imageView.image {
-                let imageWidth = image.size.width
-                let imageHeight = image.size.height
-                let imageViewWidth = imageView.frame.width
-                let imageViewHeight = imageView.frame.height
-                let ratioW = imageViewWidth / imageWidth
-                let ratioH = imageViewHeight / imageHeight
-                let ratio = ratioW < ratioH ? ratioW : ratioH
-                let newWidth = imageWidth * ratio
-                let newHeight = imageHeight * ratio
-                let scrollViewHeight = scrollView.frame.height
-                let scrollViewWidth = scrollView.frame.width
-                let scrollViewContentWidth = scrollView.contentSize.width
-                let scrollViewContentHeight = scrollView.contentSize.height
-                let conditionLeft = newWidth * zoomScale > imageViewWidth
-                let conditionTop = newHeight * zoomScale > imageViewHeight
-                let left = 0.5 * (conditionLeft ? newWidth - imageViewWidth : (scrollViewWidth - scrollViewContentWidth))
-                let top = 0.5 * (conditionTop ? newWidth - imageViewHeight : (scrollViewHeight - scrollViewContentHeight))
-                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
-            }
-        } else {
-            scrollView.contentInset = .zero
-        }
-    }
+//    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let zoomScale = scrollView.zoomScale
+//        if zoomScale > 1 {
+//            if let image = imageView.image {
+//                let imageWidth = image.size.width
+//                let imageHeight = image.size.height
+//                let imageViewWidth = imageView.frame.width
+//                let imageViewHeight = imageView.frame.height
+//                let ratioW = imageViewWidth / imageWidth
+//                let ratioH = imageViewHeight / imageHeight
+//                let ratio = ratioW < ratioH ? ratioW : ratioH
+//                let newWidth = imageWidth * ratio
+//                let newHeight = imageHeight * ratio
+//                let scrollViewHeight = scrollView.frame.height
+//                let scrollViewWidth = scrollView.frame.width
+//                let scrollViewContentWidth = scrollView.contentSize.width
+//                let scrollViewContentHeight = scrollView.contentSize.height
+//                let conditionLeft = newWidth * zoomScale > imageViewWidth
+//                let conditionTop = newHeight * zoomScale > imageViewHeight
+//                let left = 0.5 * (conditionLeft ? newWidth - imageViewWidth : (scrollViewWidth - scrollViewContentWidth))
+//                let top = 0.5 * (conditionTop ? newWidth - imageViewHeight : (scrollViewHeight - scrollViewContentHeight))
+//                scrollView.contentInset = UIEdgeInsets(top: top, left: left, bottom: top, right: left)
+//            }
+//        } else {
+//            scrollView.contentInset = .zero
+//        }
+//    }
 }
