@@ -38,11 +38,11 @@ extension SiteCollectionViewCell: ACBaseConfigurableView {
         backgroundColor = .secondarySystemGroupedBackground
         
         linkIconImageBackView.backgroundColor = .appTintColor
-        linkIconImageBackView.layer.cornerRadius = 14
-        linkIconImageBackView.layer.shadowColor = linkIconImageBackView.backgroundColor?.cgColor
+        linkIconImageBackView.layer.cornerRadius = CGFloat.Corners.baseACSecondaryRounding + 2
+        linkIconImageBackView.layer.shadowColor = linkIconImageBackView.backgroundColor?.withAlphaComponent(0.35).cgColor
         linkIconImageBackView.layer.shadowOpacity = 0.7
         linkIconImageBackView.layer.shadowRadius = 6
-        linkIconImageBackView.layer.shadowOffset = CGSize(width: 2, height: 5)
+        linkIconImageBackView.layer.shadowOffset = CGSize(width: 2, height: 9)
         
     }
 }

@@ -51,10 +51,10 @@ private extension BasicKnowledgeViewController {
                 enum CellSpacing {
                     
                     //MARK: Static
-                    static let insetForBasicsSection = UIEdgeInsets(top: 16, left: 20, bottom: 10, right: 50)
-                    static let insetForSitesSection = UIEdgeInsets(top: 16, left: 20, bottom: 10, right: 50)
-                    static let insetForUsersSection = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 70)
-                    static let insetForTeamSection = UIEdgeInsets(top: 16, left: 20, bottom: 10, right: 50)
+                    static let insetForBasicsSection = UIEdgeInsets(top: 16, left: 22, bottom: 10, right: 35)
+                    static let insetForSitesSection = UIEdgeInsets(top: 16, left: 15, bottom: 10, right: 35)
+                    static let insetForUsersSection = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 70)
+                    static let insetForTeamSection = UIEdgeInsets(top: 16, left: 22, bottom: 10, right: 35)
                 }
                 enum CellSize {
                     
@@ -62,11 +62,12 @@ private extension BasicKnowledgeViewController {
                     static let sizeForItemAtBasicsSection = CGSize(width: 190, height: 250)
                     static let sizeForItemAtSitesSection = CGSize(width: 238, height: 80)
                     static let sizeForItemAtUsersSection = CGSize(width: 90, height: 115)
-                    static let sizeForItemAtTeamSection = CGSize(width: 240, height: 185)
+                    static let sizeForItemAtTeamSection = CGSize(width: 270, height: 108)
                 }
                 enum MinimumSpacings {
                     
                     //MARK: Static
+                    static let minimumHeaderHeight: CGFloat = 10
                     static let minimumLineSpacing: CGFloat = 30
                     static let minimumInteritemSpacing: CGFloat = 0
                 }
@@ -254,6 +255,10 @@ extension BasicKnowledgeViewController: UICollectionViewDataSource, UICollection
         Constants.UI.CollectionView.MinimumSpacings.minimumLineSpacing
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Constants.UI.CollectionView.MinimumSpacings.minimumHeaderHeight
+    }
+    
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.onDidSelectItemAt(for: collectionView.tag, with: indexPath.row)
     }
@@ -334,13 +339,14 @@ private extension BasicKnowledgeViewController {
     }
     
     func setupBasicsHeaderLabel(with headerView: UIView) -> UILabel {
-        let labelFont = UIFont.systemFont(ofSize: 14, weight: .regular)
         let content = Constants.UI.Label.tableHeader.uppercased()
+        let textColor = UIColor.secondaryLabel
+        let labelFont = UIFont.systemFont(ofSize: 13, weight: .regular)
         let labelWidth = headerView.frame.width - 10
         let labelHeight = headerView.frame.height - 10
-        let labelFrame = CGRect.init(x: 30, y: -5, width: labelWidth, height: labelHeight)
+        let labelFrame = CGRect.init(x: 32, y: -8, width: labelWidth, height: labelHeight)
         let label = UILabel()
-        label.textColor = .secondaryLabel
+        label.textColor = textColor
         label.frame = labelFrame
         label.font = labelFont
         label.text = content

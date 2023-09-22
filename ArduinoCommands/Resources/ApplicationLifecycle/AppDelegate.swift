@@ -85,10 +85,13 @@ private extension AppDelegate {
     }
     
     func setupNavBarBasicAppearance() {
+        let largeAttributedFont = UIFont.ACFont(ofSize: 26, weight: .bold)
         let attributedFont = UIFont.ACFont(ofSize: 16, weight: .bold)
         let attributes = [NSAttributedString.Key.font: attributedFont]
+        let largeAttributes = [NSAttributedString.Key.font: largeAttributedFont]
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
+        appearance.largeTitleTextAttributes = largeAttributes
         appearance.titleTextAttributes = attributes
         appearance.backgroundColor = .clear
         /**
