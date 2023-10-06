@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 import GoogleMobileAds
+//import RevenueCat
 import UIKit
 
 //MARK: - Application delegate Keys
@@ -38,6 +39,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AnalyticsManagerInj
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DispatchQueue.global(qos: .userInteractive).async { [self] in
             GADMobileAds.sharedInstance().start(completionHandler: nil)
+//            Purchases.logLevel = .debug
+//            Purchases.configure(withAPIKey: "appl_bGmEuPnIaNiLbnnTawOwXOJLLLI")
             ACNotificationManager.shared.requestAuthorization()
             ACNetworkManager.shared.startMonitoring()
             rateManager.startCounting()

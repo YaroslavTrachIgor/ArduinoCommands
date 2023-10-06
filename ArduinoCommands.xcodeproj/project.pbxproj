@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -62,6 +62,8 @@
 		CE348A082A4E6DD100B1F957 /* CommandDetailFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE348A072A4E6DD100B1F957 /* CommandDetailFormatter.swift */; };
 		CE47EBDA29446EC800A19E0B /* ACCommandsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47EBD929446EC800A19E0B /* ACCommandsAPIClient.swift */; };
 		CE4AE73A2A58390700BE84D3 /* ACAnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4AE7392A58390700BE84D3 /* ACAnalyticsManager.swift */; };
+		CE4F76802AC26AC500965EBA /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = CE4F767F2AC26AC500965EBA /* RevenueCat */; };
+		CE4F76822AC26AC500965EBA /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = CE4F76812AC26AC500965EBA /* RevenueCatUI */; };
 		CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56578F287F0D0600947DCB /* ACNetworkManager.swift */; };
 		CE58E2D7286E6C6A004D5A42 /* ACNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D6286E6C6A004D5A42 /* ACNotificationManager.swift */; };
 		CE58E2D9286FB0AA004D5A42 /* UserSheetCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58E2D8286FB0AA004D5A42 /* UserSheetCellPresenter.swift */; };
@@ -93,6 +95,7 @@
 		CE7038A4298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A3298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift */; };
 		CE7038A7298EBE8C00FE4928 /* ACDeviceImageResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A6298EBE8C00FE4928 /* ACDeviceImageResult.swift */; };
 		CE7038A9298EBEA100FE4928 /* ACDeviceImageURl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7038A8298EBEA100FE4928 /* ACDeviceImageURl.swift */; };
+		CE743E3B2AC0EF3D00FB5778 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE743E3A2AC0EF3D00FB5778 /* StoreKit.framework */; };
 		CE75CF8F2879F85D00BA42DF /* ACRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */; };
 		CE75CF91287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF90287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift */; };
 		CE75CF99287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75CF98287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift */; };
@@ -352,6 +355,7 @@
 		CE7038A3298EBE4D00FE4928 /* ACDeviceImagesAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDeviceImagesAPIResponse.swift; sourceTree = "<group>"; };
 		CE7038A6298EBE8C00FE4928 /* ACDeviceImageResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDeviceImageResult.swift; sourceTree = "<group>"; };
 		CE7038A8298EBEA100FE4928 /* ACDeviceImageURl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDeviceImageURl.swift; sourceTree = "<group>"; };
+		CE743E3A2AC0EF3D00FB5778 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACRateManager.swift; sourceTree = "<group>"; };
 		CE75CF90287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeDetailViewController.swift; sourceTree = "<group>"; };
 		CE75CF98287D600000BA42DF /* BasicKnowledgeDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeDetailPresenter.swift; sourceTree = "<group>"; };
@@ -481,7 +485,10 @@
 			files = (
 				CE75CF9C287D97E400BA42DF /* GoogleMobileAds in Frameworks */,
 				CE6E9B572953F3C200632249 /* OpenAIKit in Frameworks */,
+				CE4F76822AC26AC500965EBA /* RevenueCatUI in Frameworks */,
+				CE4F76802AC26AC500965EBA /* RevenueCat in Frameworks */,
 				CEDC65FF2A9805B700ED1360 /* AlertKit in Frameworks */,
+				CE743E3B2AC0EF3D00FB5778 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,6 +898,7 @@
 		CE697C87285B243E0091CCF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE743E3A2AC0EF3D00FB5778 /* StoreKit.framework */,
 				CE697C88285B243E0091CCF1 /* WidgetKit.framework */,
 				CE697C8A285B243E0091CCF1 /* SwiftUI.framework */,
 			);
@@ -1314,6 +1322,8 @@
 				CE75CF9B287D97E400BA42DF /* GoogleMobileAds */,
 				CE6E9B562953F3C200632249 /* OpenAIKit */,
 				CEDC65FE2A9805B700ED1360 /* AlertKit */,
+				CE4F767F2AC26AC500965EBA /* RevenueCat */,
+				CE4F76812AC26AC500965EBA /* RevenueCatUI */,
 			);
 			productName = ArduinoCommands;
 			productReference = C474CC4427B2B53B00B1FD9A /* ArduinoCommands.app */;
@@ -1410,6 +1420,7 @@
 				CE75CF9A287D97E400BA42DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				CE6E9B552953F3C200632249 /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 				CEDC65FD2A9805B700ED1360 /* XCRemoteSwiftPackageReference "AlertKit" */,
+				CE4F767E2AC26AC500965EBA /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = C474CC4527B2B53B00B1FD9A /* Products */;
 			projectDirPath = "";
@@ -1855,7 +1866,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.8.0;
+				CURRENT_PROJECT_VERSION = 1.9.0;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Commands;
@@ -1865,7 +1876,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1883,7 +1894,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.8.0;
+				CURRENT_PROJECT_VERSION = 1.9.0;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Commands;
@@ -1893,7 +1904,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2097,6 +2108,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE4F767E2AC26AC500965EBA /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		CE6E9B552953F3C200632249 /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marcodotio/OpenAIKit.git";
@@ -2124,6 +2143,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE4F767F2AC26AC500965EBA /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE4F767E2AC26AC500965EBA /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+		CE4F76812AC26AC500965EBA /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE4F767E2AC26AC500965EBA /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCatUI;
+		};
 		CE6E9B562953F3C200632249 /* OpenAIKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE6E9B552953F3C200632249 /* XCRemoteSwiftPackageReference "OpenAIKit" */;

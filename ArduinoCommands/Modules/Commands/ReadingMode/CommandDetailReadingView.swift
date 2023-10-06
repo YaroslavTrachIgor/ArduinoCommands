@@ -89,12 +89,15 @@ private extension CommandDetailReadingView {
             
             Spacer()
             
-            CommandReadingModeBarButton(action: {
-                isContentAppearanceSheetPresented.toggle()
-            }, imageName: "textformat.size", foregroundColor: themeManager.foregroundColor, strokeColor: themeManager.secondaryForegroundColor)
-            .sheet(isPresented: $isContentAppearanceSheetPresented) {
-                CommandReadingModeAppearanceView(themeManager: themeManager)
-                    .background(Color(.clear))
+            if #available(iOS 16.0, *) {
+                CommandReadingModeBarButton(action: {
+                    isContentAppearanceSheetPresented.toggle()
+                }, imageName: "textformat.size", foregroundColor: themeManager.foregroundColor, strokeColor: themeManager.secondaryForegroundColor)
+                .sheet(isPresented: $isContentAppearanceSheetPresented) {
+                    CommandReadingModeAppearanceView(themeManager: themeManager)
+                        .presentationDetents([.height(425)])
+                        .presentationDragIndicator(.visible)
+                }
             }
             
             CommandReadingModeBarButton(action: {
@@ -102,11 +105,6 @@ private extension CommandDetailReadingView {
                 ACGrayAlertManager.presentCopiedAlert(contentType: .article)
             }, imageName: "rectangle.portrait.on.rectangle.portrait", foregroundColor: themeManager.foregroundColor, strokeColor: themeManager.secondaryForegroundColor)
             .padding(.leading, 3)
-//
-//            CommandReadingModeBarButton(action: {
-//
-//            }, imageName: "bookmark.fill", foregroundColor: .systemRed, strokeColor: themeManager.secondaryForegroundColor)
-//            .padding(.leading, 3)
             .padding(.trailing, -8)
         }
         .padding([.top], 25)

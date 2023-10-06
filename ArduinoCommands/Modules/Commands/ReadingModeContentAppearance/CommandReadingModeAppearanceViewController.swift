@@ -15,9 +15,6 @@ protocol CommandReadingModeAppearanceViewControllerProtocol: ACBaseViewControlle
     func updateArtcileThemeNameLabels(selectedIndex: Int)
     func updateContentFontButtons(selectedIndex: Int)
     func updateContentFontNameLabels(selectedIndex: Int)
-    func updateExampleTextViewFont(fontTheme: ReadingModeFontTheme, colorTheme: ReadingModeColorTheme, ofSize: CGFloat)
-    func updateExampleArticleFont(fontTheme: ReadingModeFontTheme)
-    func updateExampleArticleTheme(colorTheme: ReadingModeColorTheme)
     func updateSliderValue(_ contentFontSize: Float)
 }
 
@@ -37,8 +34,8 @@ private extension CommandReadingModeAppearanceViewController {
             enum View {
                 
                 //MARK: Static
-                static let mainViewBackgroundColor          = UIColor.systemGroupedBackground.withAlphaComponent(0.8)
-                static let secondaryViewBackgroundColor     = UIColor.secondarySystemGroupedBackground
+                static let mainViewBackgroundColor          = UIColor.quaternaryLabel
+                static let secondaryViewBackgroundColor     = UIColor.systemBackground
             }
             enum Button {
                 enum FontThemeButton {
@@ -48,7 +45,7 @@ private extension CommandReadingModeAppearanceViewController {
                     static let timesFont                    = UIFont.ACReadingFont(ofSize: 19, weight: .bold)
                     static let classicFont                  = UIFont.systemFont(ofSize: 19, weight: .medium)
                     
-                    static let backgroundColor              = UIColor.secondarySystemGroupedBackground
+                    static let backgroundColor              = UIColor.systemBackground
                     static let foregroundColor              = UIColor.systemGray4
                     static let selectedForegroundColor      = UIColor.label
                 }
@@ -57,7 +54,7 @@ private extension CommandReadingModeAppearanceViewController {
                         
                         //MARK: Static
                         static let strokeColor              = UIColor.systemGray4
-                        static let backgroundColor          = UIColor.secondarySystemGroupedBackground
+                        static let backgroundColor          = UIColor.systemBackground
                         static let foregroundColor          = UIColor.systemGray4
                         static let selectedForegroundColor  = UIColor.label
                     }
@@ -121,11 +118,8 @@ final class CommandReadingModeAppearanceViewController: UIViewController, ACBase
     }
     
     //MARK: @IBOutlets
-    @IBOutlet private weak var exampleTitleLabel: UILabel!
-    @IBOutlet private weak var exampleSubtitleLabel: UILabel!
     @IBOutlet private weak var contentAppearanceToolBarView: UIView!
-    @IBOutlet private weak var exampleArticleBackgroundView: UIView!
-    @IBOutlet private weak var exampleContentTextView: UITextView!
+    @IBOutlet weak var brightnessProgressView: UIProgressView!
     @IBOutlet private weak var fontSizeSlider: UISlider!
     
     //MARK: @IBOutlet Collections
@@ -144,20 +138,13 @@ final class CommandReadingModeAppearanceViewController: UIViewController, ACBase
         
         let colorThemeIndex = appearanceManager.colorThemeIndex
         let fontThemeIndex = appearanceManager.fontThemeIndex
-        let fontSize = themeManager?.fontSize
         updateArtcileThemeNameLabels(selectedIndex: colorThemeIndex)
         updateContentFontNameLabels(selectedIndex: fontThemeIndex)
         updateArtcileThemeButtons(selectedIndex: colorThemeIndex)
         updateContentFontButtons(selectedIndex: fontThemeIndex)
-        updateSliderValue(Float(fontSize!))
         
-        let colorTheme = themeManager!.colorTheme
-        let fontTheme = themeManager!.fontTheme
-        updateExampleArticleTheme(colorTheme: colorTheme)
-        updateExampleArticleFont(fontTheme: fontTheme)
-        updateExampleTextViewFont(fontTheme: fontTheme,
-                                  colorTheme: colorTheme,
-                                  ofSize: fontSize!)
+        let fontSize = themeManager?.fontSize
+        updateSliderValue(Float(fontSize!))
     }
     
     @IBAction func changeArtcleAppearance(_ sender: UIButton) {
@@ -168,33 +155,21 @@ final class CommandReadingModeAppearanceViewController: UIViewController, ACBase
         
         let colorTheme = appearanceManager.getColorTheme()
         themeManager?.colorTheme = colorTheme!
-        updateExampleArticleTheme(colorTheme: colorTheme!)
     }
     
     @IBAction func changeContentFont(_ sender: UIButton) {
         let fontIndex = sender.tag
-        let fontSize = themeManager!.fontSize
         appearanceManager.updateContentFontThemeIndex(fontIndex)
         updateContentFontButtons(selectedIndex: fontIndex)
         updateContentFontNameLabels(selectedIndex: fontIndex)
         
         let fontTheme = appearanceManager.getFontTheme()
-        let colorTheme = appearanceManager.getColorTheme()
         themeManager?.fontTheme = fontTheme!
-        updateExampleArticleFont(fontTheme: fontTheme!)
-        updateExampleTextViewFont(fontTheme: fontTheme!,
-                                  colorTheme: colorTheme!,
-                                  ofSize: fontSize)
     }
     
     @IBAction func chnageFontSize(_ sender: UISlider) {
         let fontSize = CGFloat(sender.value)
-        let fontTheme = appearanceManager.getFontTheme()
-        let colorTheme = appearanceManager.getColorTheme()
         themeManager?.fontSize = fontSize
-        updateExampleTextViewFont(fontTheme: fontTheme!,
-                                  colorTheme: colorTheme!,
-                                  ofSize: fontSize)
     }
 }
 
@@ -204,7 +179,7 @@ private extension CommandReadingModeAppearanceViewController {
     
     //MARK: Private
     func setupView() {
-        view.backgroundColor = Constants.UI.View.mainViewBackgroundColor
+        view.backgroundColor = .clear
     }
     
     func setupFontSizeSlider() {
@@ -217,21 +192,18 @@ private extension CommandReadingModeAppearanceViewController {
         fontSizeSlider.maximumValue = maximumValue
     }
     
+    func setupBrightnessProgressView() {
+        let trackTintColor = Constants.UI.View.mainViewBackgroundColor
+        let brightness = Float(UIScreen.main.brightness)
+        brightnessProgressView.progress = brightness
+        brightnessProgressView.trackTintColor = trackTintColor
+        brightnessProgressView.progressTintColor = .black
+    }
+    
     func setupContentAppearanceToolBarView() {
-        let maskedCorners: CACornerMask = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        let cornerRadius = CGFloat.Corners.baseACBigRounding + 4
         let backgroundColor = Constants.UI.View.secondaryViewBackgroundColor
         contentAppearanceToolBarView.backgroundColor = backgroundColor
         contentAppearanceToolBarView.clipsToBounds = true
-        contentAppearanceToolBarView.layer.cornerRadius = cornerRadius
-        contentAppearanceToolBarView.layer.maskedCorners = maskedCorners
-    }
-    
-    func setupExampleArticleBackgroundView() {
-        let cornerRadius = CGFloat.Corners.baseACSecondaryRounding
-        let backgroundColor = Constants.UI.View.secondaryViewBackgroundColor
-        exampleArticleBackgroundView.backgroundColor = backgroundColor
-        exampleArticleBackgroundView.layer.cornerRadius = cornerRadius
     }
     
     func setupSliderDecorationBarViews() {
@@ -276,10 +248,9 @@ extension CommandReadingModeAppearanceViewController: CommandReadingModeAppearan
     internal func setupMainUI() {
         setupView()
         setupFontSizeSlider()
+        setupBrightnessProgressView()
         setupSliderDecorationBarViews()
-        setupExampleArticleBackgroundView()
         setupContentAppearanceToolBarView()
-        exampleContentTextView.isUserInteractionEnabled = false
     }
     
     internal func updateArtcileThemeButtons(selectedIndex: Int) {
@@ -408,34 +379,6 @@ extension CommandReadingModeAppearanceViewController: CommandReadingModeAppearan
                 }
             }
         }
-    }
-    
-    internal func updateExampleTextViewFont(fontTheme: ReadingModeFontTheme, colorTheme: ReadingModeColorTheme, ofSize: CGFloat) {
-        let font = fontTheme.contentFont(ofSize: ofSize)!
-        let style = NSMutableParagraphStyle(); style.lineSpacing = 7
-        let exampleText = Constants.UI.TextView.exampleArticle
-        let attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: style, .font: font]
-        let attributedText = NSAttributedString(string: exampleText, attributes: attributes)
-        let textColor = colorTheme.foregroundColor
-        exampleContentTextView.attributedText = attributedText
-        exampleContentTextView.textColor = textColor
-    }
-    
-    internal func updateExampleArticleTheme(colorTheme: ReadingModeColorTheme) {
-        let textColor = colorTheme.foregroundColor
-        let backgroundColor = colorTheme.previewBackgroundColor
-        let secondaryTextColor = colorTheme.secondaryForegroundColor
-        exampleArticleBackgroundView.backgroundColor = backgroundColor
-        exampleContentTextView.textColor = textColor
-        exampleSubtitleLabel.textColor = secondaryTextColor
-        exampleTitleLabel.textColor = textColor
-    }
-    
-    internal func updateExampleArticleFont(fontTheme: ReadingModeFontTheme) {
-        let subtitleFont = fontTheme.subtitleFont
-        let titleFont = fontTheme.titleFont
-        exampleSubtitleLabel.font = subtitleFont
-        exampleTitleLabel.font = titleFont
     }
     
     internal func updateArtcileThemeNameLabels(selectedIndex: Int) {

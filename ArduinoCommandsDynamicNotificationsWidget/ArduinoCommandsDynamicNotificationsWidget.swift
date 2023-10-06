@@ -23,6 +23,8 @@ private enum Constants {
             
             //MARK: Static
             static let header = "Daily Command"
+            static let stringSpacer = " "
+            static let notImplemented = "Not Implemented"
         }
     }
     enum Keys {
@@ -48,7 +50,7 @@ struct ArduinoCommandsDynamicNotificationsWidget: Widget {
         StaticConfiguration(kind: Constants.Keys.kind, provider: Provider()) { entry in
             ArduinoCommandsDynamicNotificationsWidgetEntryView(entry: entry)
         }
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .accessoryInline, .accessoryRectangular])
         .configurationDisplayName(Constants.Keys.PreviewContent.displayName)
         .description(Constants.Keys.PreviewContent.description)
     }
@@ -109,31 +111,62 @@ struct ArduinoCommandsDynamicNotificationsWidgetEntryView: View {
     
     //MARK: Public
     @State var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
 
     
     //MARK: View Configuration
     var body: some View {
-        ZStack {
-            backgroundGradient
-            VStack {
-                VStack(alignment: .leading) {
-                    commandHeader
-                }
-                .padding(.leading, 0)
-                .background(Color(.systemTeal).gradient)
-                
-                Spacer()
-                
-                VStack(alignment: .leading) {
+        switch widgetFamily {
+        case .systemSmall:
+            ZStack {
+                backgroundGradient
+                VStack {
                     VStack(alignment: .leading) {
-                        commandTitles
-                        commandSubtitle
+                        commandHeader
                     }
-                    commandTypeRectangles
-                    commandContectTextView
+                    .padding(.leading, 0)
+                    .background(Color(.systemTeal).gradient)
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        VStack(alignment: .leading) {
+                            commandTitles
+                            commandSubtitle
+                        }
+                        commandTypeRectangles
+                        commandContectTextView
+                    }
+                    .padding([.leading, .trailing], 14)
                 }
-                .padding([.leading, .trailing], 14)
             }
+        case .accessoryRectangular:
+            HStack {
+                HStack {
+                    Image(systemName: entry.commandPreview.iconName)
+                        .font(.system(size: 25, weight: .regular))
+                    Rectangle()
+                        .frame(width: 1.2, height: 44)
+                        .padding([.trailing, .leading], 4)
+                        .opacity(0.6)
+                    VStack(alignment: .leading) {
+                        Text(entry.commandPreview.title)
+                            .font(.system(size: 14, weight: .semibold))
+                            .lineLimit(1)
+                        Text(entry.commandPreview.subtitle)
+                            .font(.system(size: 12, weight: .medium))
+                            .lineLimit(2)
+                            .opacity(0.8)
+                    }
+                }
+            }
+        case .accessoryInline:
+            HStack {
+                Image(systemName: entry.commandPreview.iconName)
+                Text(Constants.UI.Text.stringSpacer + entry.commandPreview.title)
+            }
+        default:
+            Text(Constants.UI.Text.notImplemented)
         }
     }
 }

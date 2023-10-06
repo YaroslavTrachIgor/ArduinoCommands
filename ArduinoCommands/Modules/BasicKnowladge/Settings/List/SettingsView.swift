@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+//import RevenueCat
 
 //MARK: - Main View
 struct SettingsView: View {
@@ -14,6 +15,8 @@ struct SettingsView: View {
     //MARK: Private
     @State
     private var introSheetPresented = false
+//    @State
+//    private var currentOffering: Offering?
     
     //MARK: View Configuration
     var body: some View {
@@ -28,6 +31,16 @@ struct SettingsView: View {
                     settingsContactInfoSection
                     settingsAboutAppSection
                 }
+            }
+            .onAppear {
+//                Purchases.shared.getOfferings { offerings, error in
+//                    if let currentOffering = offerings?.current, error == nil {
+//                        self.currentOffering = currentOffering
+//                        for package in currentOffering.availablePackages {
+//                            print(package.storeProduct.localizedPriceString)
+//                        }
+//                    }
+//                }
             }
             .padding(.top, -15)
             .navigationBarTitle("Settings".transformInTitle(), displayMode: .inline)

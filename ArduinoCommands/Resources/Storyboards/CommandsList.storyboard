@@ -867,10 +867,10 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqN-3J-5yg">
-                                <rect key="frame" x="0.0" y="556" width="414" height="375"/>
+                                <rect key="frame" x="0.0" y="476" width="414" height="455"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFD-2H-tYw">
-                                        <rect key="frame" x="60" y="34" width="78" height="55"/>
+                                        <rect key="frame" x="60" y="35" width="78" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="4TG-6G-Kdq"/>
@@ -900,7 +900,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVj-j5-coS">
-                                        <rect key="frame" x="168" y="34" width="78" height="55"/>
+                                        <rect key="frame" x="168" y="35" width="78" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="dyk-5h-ZOj"/>
@@ -930,7 +930,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-TW-MgT">
-                                        <rect key="frame" x="276" y="34" width="78" height="55"/>
+                                        <rect key="frame" x="276" y="35" width="78" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="nSi-rm-E9e"/>
@@ -960,7 +960,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJZ-WD-i92">
-                                        <rect key="frame" x="60" y="146" width="78" height="55"/>
+                                        <rect key="frame" x="60" y="147" width="78" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="59j-4x-0Me"/>
@@ -981,7 +981,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-VX-jgc">
-                                        <rect key="frame" x="168" y="146" width="78" height="55"/>
+                                        <rect key="frame" x="168" y="147" width="78" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="YUR-lS-ZFZ"/>
@@ -1011,7 +1011,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqR-6G-2GP">
-                                        <rect key="frame" x="276" y="146" width="78" height="55"/>
+                                        <rect key="frame" x="276" y="147" width="78" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="IUO-mK-GYY"/>
@@ -1032,7 +1032,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63C-hj-jyf">
-                                        <rect key="frame" x="60" y="101" width="78" height="15"/>
+                                        <rect key="frame" x="60" y="102" width="78" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="dIX-9P-i1I"/>
                                         </constraints>
@@ -1041,7 +1041,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eggshell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUl-R7-Ar4">
-                                        <rect key="frame" x="168" y="101" width="78" height="15"/>
+                                        <rect key="frame" x="168" y="102" width="78" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="Tps-nS-KRd"/>
                                         </constraints>
@@ -1050,7 +1050,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3D-nw-bkM">
-                                        <rect key="frame" x="60" y="213" width="78" height="15"/>
+                                        <rect key="frame" x="60" y="214" width="78" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="QWl-zq-jI7"/>
                                         </constraints>
@@ -1059,7 +1059,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Times" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkR-t3-n96">
-                                        <rect key="frame" x="276" y="213" width="78" height="15"/>
+                                        <rect key="frame" x="276" y="214" width="78" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="yDX-2Z-96q"/>
                                         </constraints>
@@ -1068,7 +1068,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serif" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtx-U7-4L7">
-                                        <rect key="frame" x="168" y="213" width="78" height="15"/>
+                                        <rect key="frame" x="168" y="214" width="78" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="0iJ-I5-IdG"/>
                                         </constraints>
@@ -1077,7 +1077,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nightowl" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43D-6j-PDF">
-                                        <rect key="frame" x="276" y="101" width="78" height="15"/>
+                                        <rect key="frame" x="276" y="102" width="78" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="78" id="S2q-s6-OOx"/>
                                         </constraints>
@@ -1086,7 +1086,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hym-do-o2P">
-                                        <rect key="frame" x="51" y="264" width="32" height="35"/>
+                                        <rect key="frame" x="51" y="279" width="32" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Zgb-aN-Uon"/>
                                             <constraint firstAttribute="width" constant="32" id="dvL-HK-gLW"/>
@@ -1096,7 +1096,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chl-WQ-Gpc">
-                                        <rect key="frame" x="331" y="264" width="32" height="35"/>
+                                        <rect key="frame" x="331" y="279" width="32" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Ye8-Vg-lAv"/>
                                             <constraint firstAttribute="width" constant="32" id="iKd-Db-YTP"/>
@@ -1106,7 +1106,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOM-ce-pAa">
-                                        <rect key="frame" x="206" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="206" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="2zu-pu-MYk"/>
@@ -1114,7 +1114,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61d-km-r3j">
-                                        <rect key="frame" x="228" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="228" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="GQM-Et-tLW"/>
@@ -1122,7 +1122,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9H-uF-FW6">
-                                        <rect key="frame" x="250" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="250" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="PY1-jL-MUp"/>
@@ -1131,7 +1131,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-yD-z6F">
-                                        <rect key="frame" x="272" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="272" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="2" id="CjM-Hg-IXX"/>
@@ -1140,7 +1140,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xal-3P-irR">
-                                        <rect key="frame" x="294" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="294" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="Abo-6o-cpg"/>
@@ -1149,7 +1149,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGw-ci-qya">
-                                        <rect key="frame" x="316" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="316" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="LBi-0R-pIo"/>
@@ -1158,7 +1158,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC3-j0-nbJ">
-                                        <rect key="frame" x="97" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="97" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="Vzm-Yg-NBC"/>
@@ -1166,7 +1166,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJw-36-C0V">
-                                        <rect key="frame" x="119" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="119" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="BGR-Ee-pOk"/>
@@ -1175,7 +1175,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIf-Dt-AAh">
-                                        <rect key="frame" x="141" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="141" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="4uN-hd-KJ5"/>
@@ -1184,7 +1184,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPi-yC-sAl">
-                                        <rect key="frame" x="163" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="163" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="7aC-x3-998"/>
@@ -1193,7 +1193,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YU3-0F-pWF">
-                                        <rect key="frame" x="184" y="264" width="2" height="8"/>
+                                        <rect key="frame" x="184" y="279" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="M1J-R3-ysV"/>
@@ -1202,7 +1202,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZ4-sU-n6D">
-                                        <rect key="frame" x="206" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="206" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="4T0-nn-dDu"/>
@@ -1210,7 +1210,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oce-58-qW8">
-                                        <rect key="frame" x="228" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="228" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="GL3-vj-wEF"/>
@@ -1218,7 +1218,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzL-3x-FQP">
-                                        <rect key="frame" x="250" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="250" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="6pS-jA-o0K"/>
@@ -1226,7 +1226,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAR-23-PXW">
-                                        <rect key="frame" x="272" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="272" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="TDP-rl-9o9"/>
@@ -1234,7 +1234,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKf-tY-Jrn">
-                                        <rect key="frame" x="294" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="294" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="7e0-Ee-4mm"/>
@@ -1242,7 +1242,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uz2-P3-bOR">
-                                        <rect key="frame" x="316" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="316" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="gRM-3P-H0c"/>
@@ -1250,7 +1250,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4X-hc-KKC">
-                                        <rect key="frame" x="96" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="96" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="VP1-Vw-Fib"/>
@@ -1258,7 +1258,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69Q-uI-jMy">
-                                        <rect key="frame" x="118" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="118" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="K8C-T9-SFN"/>
@@ -1266,7 +1266,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iH-Qp-Bxn">
-                                        <rect key="frame" x="140" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="140" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="8" id="2yb-G7-wdd"/>
@@ -1274,7 +1274,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-5e-ZaO">
-                                        <rect key="frame" x="162" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="162" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="RVa-Wz-vgd"/>
@@ -1282,7 +1282,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksq-am-PcI">
-                                        <rect key="frame" x="184" y="291" width="2" height="8"/>
+                                        <rect key="frame" x="184" y="306" width="2" height="8"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="2" id="AkF-sh-IYP"/>
@@ -1290,7 +1290,7 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                         </constraints>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sGb-JX-7XZ">
-                                        <rect key="frame" x="91" y="264" width="232" height="36"/>
+                                        <rect key="frame" x="91" y="279" width="232" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="0Na-Mq-5Mi"/>
                                             <constraint firstAttribute="width" constant="228" id="krF-HS-qGd"/>
@@ -1301,25 +1301,50 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                             <action selector="chnageFontSize:" destination="zYH-Y1-jTC" eventType="valueChanged" id="YrI-Nn-dAq"/>
                                         </connections>
                                     </slider>
-                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYM-IK-H0h">
-                                        <rect key="frame" x="182" y="6" width="50" height="5"/>
-                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Osd-2T-oai">
+                                        <rect key="frame" x="35" y="391" width="344" height="4"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="5" id="0rG-7D-JfE"/>
-                                            <constraint firstAttribute="width" constant="50" id="l21-ti-Qet"/>
+                                            <constraint firstAttribute="height" constant="4" id="akk-kN-ufo"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                        <color key="trackTintColor" systemColor="systemGray5Color"/>
+                                    </progressView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7X8-nq-Z6A">
+                                        <rect key="frame" x="35" y="356" width="25" height="20.5"/>
+                                        <color key="tintColor" systemColor="quaternaryLabelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="cUY-FL-hLW"/>
+                                            <constraint firstAttribute="width" constant="25" id="x1x-5w-Nr1"/>
+                                        </constraints>
+                                        <imageReference key="image" image="moon" catalog="system" variableValue="1"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="regular"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2Ql-RR-sTa">
+                                        <rect key="frame" x="354" y="355.5" width="25" height="21.5"/>
+                                        <color key="tintColor" systemColor="quaternaryLabelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="dq0-jN-7Lm"/>
+                                            <constraint firstAttribute="height" constant="25" id="j74-r0-wuC"/>
+                                        </constraints>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="regular"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BRIGHTNESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LG0-lq-t7g">
+                                        <rect key="frame" x="147" y="354" width="120" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="G8P-Uc-aFF"/>
+                                            <constraint firstAttribute="width" constant="120" id="ISR-G2-G0k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" systemColor="quaternaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="ksq-am-PcI" firstAttribute="leading" secondItem="cj9-5e-ZaO" secondAttribute="trailing" constant="20" id="0Mq-C4-35C"/>
                                     <constraint firstItem="lPi-yC-sAl" firstAttribute="leading" secondItem="oIf-Dt-AAh" secondAttribute="trailing" constant="20" id="0Yu-oU-yqz"/>
                                     <constraint firstItem="Vtx-U7-4L7" firstAttribute="leading" secondItem="S3D-nw-bkM" secondAttribute="trailing" constant="30" id="0sK-In-Mku"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Ql-RR-sTa" secondAttribute="trailing" constant="35" id="1NO-It-KCB"/>
                                     <constraint firstItem="Y1Z-TW-MgT" firstAttribute="leading" secondItem="rVj-j5-coS" secondAttribute="trailing" constant="30" id="1SN-Po-GHc"/>
                                     <constraint firstItem="oIf-Dt-AAh" firstAttribute="leading" secondItem="lJw-36-C0V" secondAttribute="trailing" constant="20" id="3gB-90-xEQ"/>
                                     <constraint firstItem="ZAV-yD-z6F" firstAttribute="leading" secondItem="a9H-uF-FW6" secondAttribute="trailing" constant="20" id="4Bf-ca-SNF"/>
@@ -1328,37 +1353,41 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     <constraint firstItem="xal-3P-irR" firstAttribute="leading" secondItem="ZAV-yD-z6F" secondAttribute="trailing" constant="20" id="9Gq-Zf-16C"/>
                                     <constraint firstItem="dGw-ci-qya" firstAttribute="leading" secondItem="xal-3P-irR" secondAttribute="trailing" constant="20" id="AlM-8f-CjY"/>
                                     <constraint firstItem="sGb-JX-7XZ" firstAttribute="centerX" secondItem="qqN-3J-5yg" secondAttribute="centerX" id="ApB-OE-nSp"/>
-                                    <constraint firstItem="qJZ-WD-i92" firstAttribute="top" secondItem="63C-hj-jyf" secondAttribute="bottom" constant="30" id="CTe-E8-l5b"/>
+                                    <constraint firstItem="cUe-VX-jgc" firstAttribute="centerY" secondItem="yqR-6G-2GP" secondAttribute="centerY" id="CCa-tp-VkX"/>
+                                    <constraint firstItem="chl-WQ-Gpc" firstAttribute="centerY" secondItem="sGb-JX-7XZ" secondAttribute="centerY" id="CEB-QY-Vic"/>
                                     <constraint firstItem="FAR-23-PXW" firstAttribute="centerY" secondItem="pzL-3x-FQP" secondAttribute="centerY" id="Dmw-MX-vZQ"/>
                                     <constraint firstItem="rVj-j5-coS" firstAttribute="centerX" secondItem="qqN-3J-5yg" secondAttribute="centerX" id="Fpp-9c-Jn1"/>
                                     <constraint firstItem="lJw-36-C0V" firstAttribute="leading" secondItem="EC3-j0-nbJ" secondAttribute="trailing" constant="20" id="G47-q7-Ogc"/>
-                                    <constraint firstItem="bYM-IK-H0h" firstAttribute="top" secondItem="qqN-3J-5yg" secondAttribute="top" constant="6" id="Gj6-xc-PIU"/>
-                                    <constraint firstItem="chl-WQ-Gpc" firstAttribute="top" secondItem="UkR-t3-n96" secondAttribute="bottom" constant="36" id="GjT-wg-yBL"/>
                                     <constraint firstItem="4iH-Qp-Bxn" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="H03-fe-qit"/>
                                     <constraint firstItem="nKf-tY-Jrn" firstAttribute="leading" secondItem="FAR-23-PXW" secondAttribute="trailing" constant="20" id="HCU-62-wor"/>
                                     <constraint firstItem="a9H-uF-FW6" firstAttribute="centerY" secondItem="61d-km-r3j" secondAttribute="centerY" id="Hge-rD-MiB"/>
-                                    <constraint firstItem="bYM-IK-H0h" firstAttribute="centerX" secondItem="qqN-3J-5yg" secondAttribute="centerX" id="HmR-z8-jjY"/>
                                     <constraint firstItem="wOM-ce-pAa" firstAttribute="leading" secondItem="YU3-0F-pWF" secondAttribute="trailing" constant="20" id="Iit-wZ-xqy"/>
                                     <constraint firstItem="69Q-uI-jMy" firstAttribute="leading" secondItem="o4X-hc-KKC" secondAttribute="trailing" constant="20" id="J7I-Az-gue"/>
                                     <constraint firstItem="ksq-am-PcI" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="Jt8-Lf-vgZ"/>
                                     <constraint firstItem="Vtx-U7-4L7" firstAttribute="top" secondItem="cUe-VX-jgc" secondAttribute="bottom" constant="12" id="KO9-gv-Sqx"/>
-                                    <constraint firstItem="yqR-6G-2GP" firstAttribute="top" secondItem="43D-6j-PDF" secondAttribute="bottom" constant="30" id="Kdb-eM-I5s"/>
-                                    <constraint firstItem="sGb-JX-7XZ" firstAttribute="top" secondItem="S3D-nw-bkM" secondAttribute="bottom" constant="36" id="Lk8-m5-jSU"/>
+                                    <constraint firstItem="hym-do-o2P" firstAttribute="centerY" secondItem="sGb-JX-7XZ" secondAttribute="centerY" id="LBj-E9-2d4"/>
+                                    <constraint firstItem="sGb-JX-7XZ" firstAttribute="top" secondItem="S3D-nw-bkM" secondAttribute="bottom" constant="50" id="Lk8-m5-jSU"/>
+                                    <constraint firstItem="Osd-2T-oai" firstAttribute="top" secondItem="7X8-nq-Z6A" secondAttribute="bottom" constant="12" id="OOI-uZ-LcN"/>
+                                    <constraint firstItem="cUe-VX-jgc" firstAttribute="centerY" secondItem="qJZ-WD-i92" secondAttribute="centerY" id="Oo7-E4-k20"/>
                                     <constraint firstItem="61d-km-r3j" firstAttribute="centerY" secondItem="wOM-ce-pAa" secondAttribute="centerY" id="Pgb-KK-wEa"/>
+                                    <constraint firstItem="Y1Z-TW-MgT" firstAttribute="centerY" secondItem="rVj-j5-coS" secondAttribute="centerY" id="QFD-OW-JSM"/>
+                                    <constraint firstItem="7X8-nq-Z6A" firstAttribute="leading" secondItem="qqN-3J-5yg" secondAttribute="leading" constant="35" id="QgC-z9-xMl"/>
                                     <constraint firstItem="cUe-VX-jgc" firstAttribute="centerX" secondItem="qqN-3J-5yg" secondAttribute="centerX" id="R14-bG-Tnr"/>
                                     <constraint firstItem="cUe-VX-jgc" firstAttribute="leading" secondItem="qJZ-WD-i92" secondAttribute="trailing" constant="30" id="R9w-AU-ADQ"/>
                                     <constraint firstItem="43D-6j-PDF" firstAttribute="top" secondItem="Y1Z-TW-MgT" secondAttribute="bottom" constant="12" id="RGh-Mn-00h"/>
+                                    <constraint firstItem="Osd-2T-oai" firstAttribute="leading" secondItem="qqN-3J-5yg" secondAttribute="leading" constant="35" id="Sw7-DP-01j"/>
+                                    <constraint firstItem="LG0-lq-t7g" firstAttribute="top" secondItem="sGb-JX-7XZ" secondAttribute="bottom" constant="40" id="Szg-08-r9l"/>
                                     <constraint firstItem="oIf-Dt-AAh" firstAttribute="centerY" secondItem="wOM-ce-pAa" secondAttribute="centerY" id="TXS-Li-1li"/>
                                     <constraint firstItem="61d-km-r3j" firstAttribute="leading" secondItem="wOM-ce-pAa" secondAttribute="trailing" constant="20" id="USu-SO-Gq1"/>
                                     <constraint firstItem="Uz2-P3-bOR" firstAttribute="leading" secondItem="nKf-tY-Jrn" secondAttribute="trailing" constant="20" id="Ukj-ec-V2i"/>
                                     <constraint firstItem="pzL-3x-FQP" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="UzD-Gk-Y29"/>
                                     <constraint firstItem="xZ4-sU-n6D" firstAttribute="top" secondItem="sGb-JX-7XZ" secondAttribute="bottom" constant="-8" id="V4L-5B-Kgb"/>
+                                    <constraint firstAttribute="bottom" secondItem="Osd-2T-oai" secondAttribute="bottom" constant="60" id="VRW-tN-kzg"/>
                                     <constraint firstItem="UkR-t3-n96" firstAttribute="top" secondItem="yqR-6G-2GP" secondAttribute="bottom" constant="12" id="Vm9-k9-rAw"/>
                                     <constraint firstItem="UkR-t3-n96" firstAttribute="leading" secondItem="Vtx-U7-4L7" secondAttribute="trailing" constant="30" id="WZk-lU-liK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Osd-2T-oai" secondAttribute="trailing" constant="35" id="Wyh-wp-tq8"/>
                                     <constraint firstItem="kUl-R7-Ar4" firstAttribute="leading" secondItem="63C-hj-jyf" secondAttribute="trailing" constant="30" id="X2g-hc-EDV"/>
-                                    <constraint firstItem="Y1Z-TW-MgT" firstAttribute="top" secondItem="qqN-3J-5yg" secondAttribute="top" constant="34" id="XMX-lz-oYi"/>
                                     <constraint firstItem="63C-hj-jyf" firstAttribute="top" secondItem="MFD-2H-tYw" secondAttribute="bottom" constant="12" id="XMZ-oE-6SF"/>
-                                    <constraint firstItem="MFD-2H-tYw" firstAttribute="top" secondItem="qqN-3J-5yg" secondAttribute="top" constant="34" id="Xu9-4o-6oX"/>
                                     <constraint firstItem="xZ4-sU-n6D" firstAttribute="leading" secondItem="ksq-am-PcI" secondAttribute="trailing" constant="20" id="Xxj-2K-9q7"/>
                                     <constraint firstItem="cj9-5e-ZaO" firstAttribute="leading" secondItem="4iH-Qp-Bxn" secondAttribute="trailing" constant="20" id="ZIM-al-NF4"/>
                                     <constraint firstItem="yqR-6G-2GP" firstAttribute="leading" secondItem="cUe-VX-jgc" secondAttribute="trailing" constant="30" id="ZU6-hz-JfP"/>
@@ -1366,14 +1395,18 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     <constraint firstItem="lJw-36-C0V" firstAttribute="centerY" secondItem="wOM-ce-pAa" secondAttribute="centerY" id="a9w-6y-gpd"/>
                                     <constraint firstItem="xZ4-sU-n6D" firstAttribute="centerX" secondItem="sGb-JX-7XZ" secondAttribute="centerX" id="aWf-hk-fid"/>
                                     <constraint firstItem="FAR-23-PXW" firstAttribute="leading" secondItem="pzL-3x-FQP" secondAttribute="trailing" constant="20" id="bQQ-cW-bbx"/>
+                                    <constraint firstItem="LG0-lq-t7g" firstAttribute="centerX" secondItem="qqN-3J-5yg" secondAttribute="centerX" id="buL-f6-bI2"/>
+                                    <constraint firstItem="Osd-2T-oai" firstAttribute="top" secondItem="LG0-lq-t7g" secondAttribute="bottom" constant="12" id="cQl-ty-mSt"/>
                                     <constraint firstItem="Uz2-P3-bOR" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="cVs-Qg-3nl"/>
                                     <constraint firstItem="sGb-JX-7XZ" firstAttribute="leading" secondItem="hym-do-o2P" secondAttribute="trailing" constant="10" id="cbS-cN-R0u"/>
+                                    <constraint firstItem="rVj-j5-coS" firstAttribute="centerY" secondItem="MFD-2H-tYw" secondAttribute="centerY" id="cck-3G-gMb"/>
                                     <constraint firstItem="o4X-hc-KKC" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="d8e-24-EQa"/>
                                     <constraint firstItem="cUe-VX-jgc" firstAttribute="top" secondItem="kUl-R7-Ar4" secondAttribute="bottom" constant="30" id="dxH-qS-6DN"/>
                                     <constraint firstItem="EC3-j0-nbJ" firstAttribute="centerY" secondItem="wOM-ce-pAa" secondAttribute="centerY" id="egb-le-3vT"/>
                                     <constraint firstItem="Oce-58-qW8" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="f4s-bQ-W4o"/>
                                     <constraint firstItem="rVj-j5-coS" firstAttribute="leading" secondItem="MFD-2H-tYw" secondAttribute="trailing" constant="30" id="fdE-TF-pX7"/>
-                                    <constraint firstAttribute="height" constant="375" id="gIF-h6-Ptj"/>
+                                    <constraint firstAttribute="height" constant="455" id="gIF-h6-Ptj"/>
+                                    <constraint firstItem="Osd-2T-oai" firstAttribute="top" secondItem="2Ql-RR-sTa" secondAttribute="bottom" constant="12" id="gbY-pO-ToF"/>
                                     <constraint firstItem="69Q-uI-jMy" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="hGc-0V-GfY"/>
                                     <constraint firstItem="pzL-3x-FQP" firstAttribute="leading" secondItem="Oce-58-qW8" secondAttribute="trailing" constant="20" id="ho3-rZ-nn9"/>
                                     <constraint firstItem="lPi-yC-sAl" firstAttribute="centerY" secondItem="wOM-ce-pAa" secondAttribute="centerY" id="hqc-uN-dhB"/>
@@ -1387,109 +1420,28 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
                                     <constraint firstItem="lJw-36-C0V" firstAttribute="centerY" secondItem="EC3-j0-nbJ" secondAttribute="centerY" id="niu-9e-BNg"/>
                                     <constraint firstItem="43D-6j-PDF" firstAttribute="leading" secondItem="kUl-R7-Ar4" secondAttribute="trailing" constant="30" id="qD8-D9-iYY"/>
                                     <constraint firstItem="sGb-JX-7XZ" firstAttribute="top" secondItem="wOM-ce-pAa" secondAttribute="bottom" constant="-8" id="qOa-cK-1Gh"/>
-                                    <constraint firstItem="rVj-j5-coS" firstAttribute="top" secondItem="qqN-3J-5yg" secondAttribute="top" constant="34" id="qnl-jc-v8H"/>
                                     <constraint firstItem="kUl-R7-Ar4" firstAttribute="top" secondItem="rVj-j5-coS" secondAttribute="bottom" constant="12" id="sfc-1c-jlm"/>
                                     <constraint firstItem="kUl-R7-Ar4" firstAttribute="centerX" secondItem="qqN-3J-5yg" secondAttribute="centerX" id="tQP-H6-mu9"/>
                                     <constraint firstItem="YU3-0F-pWF" firstAttribute="leading" secondItem="lPi-yC-sAl" secondAttribute="trailing" constant="19" id="uFI-TY-Xq5"/>
                                     <constraint firstItem="S3D-nw-bkM" firstAttribute="top" secondItem="qJZ-WD-i92" secondAttribute="bottom" constant="12" id="vbh-CQ-gEj"/>
                                     <constraint firstItem="wOM-ce-pAa" firstAttribute="centerX" secondItem="sGb-JX-7XZ" secondAttribute="centerX" id="wjw-Pe-vi6"/>
-                                    <constraint firstItem="hym-do-o2P" firstAttribute="top" secondItem="S3D-nw-bkM" secondAttribute="bottom" constant="36" id="xh9-wz-g68"/>
                                     <constraint firstItem="cj9-5e-ZaO" firstAttribute="centerY" secondItem="xZ4-sU-n6D" secondAttribute="centerY" id="yq0-jR-cOR"/>
                                     <constraint firstItem="ZAV-yD-z6F" firstAttribute="centerY" secondItem="wOM-ce-pAa" secondAttribute="centerY" id="yyK-Uc-Fr2"/>
                                     <constraint firstItem="4iH-Qp-Bxn" firstAttribute="leading" secondItem="69Q-uI-jMy" secondAttribute="trailing" constant="20" id="zKp-F0-tFM"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mk2-iT-kcD">
-                                <rect key="frame" x="182" y="54" width="50" height="5"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="PPq-bG-rzI"/>
-                                    <constraint firstAttribute="height" constant="5" id="ol2-Ct-9lg"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyD-sn-7id">
-                                <rect key="frame" x="27" y="81" width="360" height="404"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Function name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw8-d9-ZCp">
-                                        <rect key="frame" x="25" y="43" width="319" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="8HO-OL-3Xp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FUNCTION TYPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIA-fb-Phv">
-                                        <rect key="frame" x="25" y="25" width="319" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="yzX-gs-nws"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qbX-CZ-H9g">
-                                        <rect key="frame" x="23" y="85" width="314" height="296"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">A detailed description of the function. A detailed description of the arguments, syntax, and return value of the function. A detailed description of the circumstances during which the function may not work correctly.</string>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="JIA-fb-Phv" firstAttribute="top" secondItem="AyD-sn-7id" secondAttribute="top" constant="25" id="8Gw-1A-20B"/>
-                                    <constraint firstItem="qbX-CZ-H9g" firstAttribute="leading" secondItem="AyD-sn-7id" secondAttribute="leading" constant="23" id="B4R-QS-rNg"/>
-                                    <constraint firstAttribute="bottom" secondItem="qbX-CZ-H9g" secondAttribute="bottom" constant="23" id="FYB-q3-gVj"/>
-                                    <constraint firstItem="qbX-CZ-H9g" firstAttribute="top" secondItem="Dw8-d9-ZCp" secondAttribute="bottom" constant="6" id="FuS-gP-T0a"/>
-                                    <constraint firstItem="Dw8-d9-ZCp" firstAttribute="top" secondItem="JIA-fb-Phv" secondAttribute="bottom" id="I01-27-67t"/>
-                                    <constraint firstAttribute="trailing" secondItem="Dw8-d9-ZCp" secondAttribute="trailing" constant="16" id="Nz4-qL-h0u"/>
-                                    <constraint firstItem="JIA-fb-Phv" firstAttribute="leading" secondItem="AyD-sn-7id" secondAttribute="leading" constant="25" id="YQj-tP-4LR"/>
-                                    <constraint firstAttribute="trailing" secondItem="JIA-fb-Phv" secondAttribute="trailing" constant="16" id="bjv-qi-T0k"/>
-                                    <constraint firstAttribute="trailing" secondItem="qbX-CZ-H9g" secondAttribute="trailing" constant="23" id="v7j-Ae-bda"/>
-                                    <constraint firstItem="Dw8-d9-ZCp" firstAttribute="leading" secondItem="AyD-sn-7id" secondAttribute="leading" constant="25" id="xqR-6m-Txw"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="View different Reading Mode Appearance types using the example article." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="578-a3-oZW">
-                                <rect key="frame" x="40" y="489" width="334" height="55"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="gvA-Tp-IWg"/>
-                                </constraints>
-                                <color key="textColor" systemColor="systemGray2Color"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YWM-YZ-Y8G"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstItem="578-a3-oZW" firstAttribute="top" secondItem="AyD-sn-7id" secondAttribute="bottom" constant="4" id="0BU-5j-5aV"/>
-                            <constraint firstItem="AyD-sn-7id" firstAttribute="leading" secondItem="YWM-YZ-Y8G" secondAttribute="leading" constant="27" id="3RZ-hh-3Nb"/>
-                            <constraint firstItem="578-a3-oZW" firstAttribute="leading" secondItem="YWM-YZ-Y8G" secondAttribute="leading" constant="40" id="HDJ-Po-JVz"/>
-                            <constraint firstItem="mk2-iT-kcD" firstAttribute="top" secondItem="YWM-YZ-Y8G" secondAttribute="top" constant="6" id="IS3-3M-4Gc"/>
                             <constraint firstAttribute="bottom" secondItem="qqN-3J-5yg" secondAttribute="bottom" constant="-35" id="OUp-26-kWT"/>
                             <constraint firstItem="YWM-YZ-Y8G" firstAttribute="trailing" secondItem="qqN-3J-5yg" secondAttribute="trailing" id="fvh-zB-Ac6"/>
-                            <constraint firstItem="qqN-3J-5yg" firstAttribute="top" secondItem="578-a3-oZW" secondAttribute="bottom" constant="12" id="j9l-oI-tI0"/>
-                            <constraint firstItem="mk2-iT-kcD" firstAttribute="centerX" secondItem="YWM-YZ-Y8G" secondAttribute="centerX" id="kXn-Ve-VOF"/>
                             <constraint firstItem="qqN-3J-5yg" firstAttribute="leading" secondItem="YWM-YZ-Y8G" secondAttribute="leading" id="n0A-fE-CWs"/>
-                            <constraint firstItem="YWM-YZ-Y8G" firstAttribute="trailing" secondItem="AyD-sn-7id" secondAttribute="trailing" constant="27" id="ulN-PY-Q6W"/>
-                            <constraint firstItem="YWM-YZ-Y8G" firstAttribute="trailing" secondItem="578-a3-oZW" secondAttribute="trailing" constant="40" id="xCC-GQ-XGc"/>
-                            <constraint firstItem="AyD-sn-7id" firstAttribute="top" secondItem="mk2-iT-kcD" secondAttribute="bottom" constant="22" id="xbN-jW-wne"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="brightnessProgressView" destination="Osd-2T-oai" id="gZi-Tg-kTb"/>
                         <outlet property="contentAppearanceToolBarView" destination="qqN-3J-5yg" id="oGD-2X-sv1"/>
-                        <outlet property="exampleArticleBackgroundView" destination="AyD-sn-7id" id="dAU-bb-WTW"/>
-                        <outlet property="exampleContentTextView" destination="qbX-CZ-H9g" id="d3t-kt-INW"/>
-                        <outlet property="exampleSubtitleLabel" destination="JIA-fb-Phv" id="BHH-Vt-zRH"/>
-                        <outlet property="exampleTitleLabel" destination="Dw8-d9-ZCp" id="y4T-Ad-k9E"/>
                         <outlet property="fontSizeSlider" destination="sGb-JX-7XZ" id="Sz9-dg-Cjh"/>
                         <outletCollection property="changeArtcileThemeButtons" destination="Y1Z-TW-MgT" collectionClass="NSMutableArray" id="XTm-Op-ypg"/>
                         <outletCollection property="changeArtcileThemeButtons" destination="rVj-j5-coS" collectionClass="NSMutableArray" id="P1e-Ld-BsP"/>
@@ -1806,24 +1758,23 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <image name="list.bullet.clipboard.fill" catalog="system" width="103" height="128"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="moon" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.on.rectangle.portrait" catalog="system" width="118" height="128"/>
         <image name="server.rack" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="square.on.square" catalog="system" width="128" height="116"/>
+        <image name="sun.max" catalog="system" width="128" height="125"/>
         <image name="textformat.size" catalog="system" width="128" height="79"/>
         <image name="Снимок экрана 2022-02-09 в 2.33.41 AM" width="357" height="277"/>
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="NeuDarkShadowColor">
             <color red="0.81999993324279785" green="0.81999993324279785" blue="0.83899998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1839,9 +1790,6 @@ Most board activity is stopped by the delay() function. Nevertheless, the work o
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

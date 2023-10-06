@@ -11,6 +11,7 @@ import Foundation
 public struct CommandPreview {
     let title: String
     let subtitle: String
+    let iconName: String
     let previewContent: String
     let isUsedForDevices: Bool
     let isInitial: Bool
