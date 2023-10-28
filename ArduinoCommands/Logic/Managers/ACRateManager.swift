@@ -32,7 +32,7 @@ extension RateManagerInjector {
 final public class ACRateManager {
 
     //MARK: Private
-    @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.sessionsCountKey)
+    @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.Onboarding.sessionsCountKey)
     private var sessionsCount = 0
     
     //MARK: Static

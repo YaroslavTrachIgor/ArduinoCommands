@@ -10,9 +10,11 @@ import UIKit
 import GoogleMobileAds
 import SafariServices
 import SwiftUI
+import TipKit
 
 //MARK: - Main ViewController protocol
 protocol BasicKnowledgeVCProtocol: ACBaseViewController {
+    func presentSettingsTip()
     func presentOnboardingVC()
     func presentSettingsHostVC()
     func presentAdlnterstitial()
@@ -92,6 +94,7 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
     }
     
     //MARK: @IBOutlets
+    @IBOutlet private weak var settingsBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var basicsCollectionView: UICollectionView!
     @IBOutlet private weak var sitesCollectionView: UICollectionView!
     @IBOutlet private weak var usersCollectionView: UICollectionView!
@@ -106,6 +109,12 @@ final class BasicKnowledgeViewController: UITableViewController, ACBaseViewContr
         presenter?.onViewDidLoad(completion: { sections in
             self.sections = sections
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        presenter?.onViewDidAppear()
     }
     
     //MARK: TableView protocols
@@ -160,6 +169,18 @@ extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
         let usersSheetVC = UserSheetListController.instantiate()
         usersSheetVC.model = data
         presentSheet(with: usersSheetVC, detents: [.medium()])
+    }
+    
+    internal func presentSettingsTip() {
+        if #available(iOS 17.0, *) {
+            Task { @MainActor in
+                let tip = BasicKnowledgeSettingsTip()
+                let tipViewStyle = BasicKnowledgeSettingsTipViewStyle()
+                let controller = TipUIPopoverViewController(tip, sourceItem: settingsBarButtonItem)
+                controller.viewStyle = tipViewStyle
+                present(controller, animated: true)
+            }
+        }
     }
     
     internal func presentDetailVC(with data: ACBasics) {

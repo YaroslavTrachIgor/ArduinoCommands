@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KQt-Rt-tg2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KQt-Rt-tg2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -224,21 +224,13 @@
                                         <rect key="frame" x="0.0" y="100" width="414" height="720"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDt-ng-xLL">
-                                                <rect key="frame" x="20" y="253" width="374" height="467"/>
+                                                <rect key="frame" x="20" y="67" width="374" height="653"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">Arduino IDE is an integrated development environment for Windows, MacOS and Linux, developed in C and C ++, designed to create and upload programs to Arduino-compatible boards, as well as boards from other manufacturers.</string>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arduino IDE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2N-ke-T6X">
-                                                <rect key="frame" x="25" y="225" width="364" height="18"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="d0S-ip-qxF"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="15"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#FUNDAMENTAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaK-jM-dv5">
                                                 <rect key="frame" x="25" y="25" width="128" height="30"/>
                                                 <color key="backgroundColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="0.1544275346970716" colorSpace="custom" customColorSpace="sRGB"/>
@@ -272,46 +264,19 @@
                                                 <color key="textColor" systemColor="systemIndigoColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basic knowledge about Arduino IDE and its main features." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njf-gz-lR6">
-                                                <rect key="frame" x="25" y="164" width="329" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="t0a-Yh-gua"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="17"/>
-                                                <color key="textColor" systemColor="systemGrayColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fundamental concepts of the Arduino Development environment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8d-gE-S3K">
-                                                <rect key="frame" x="25" y="71" width="364" height="85"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="85" id="sBk-MR-hfm"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="21"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="s8d-gE-S3K" secondAttribute="trailing" constant="25" id="4pL-3K-wfW"/>
                                             <constraint firstItem="UaK-jM-dv5" firstAttribute="top" secondItem="aSZ-9F-Vcl" secondAttribute="top" constant="25" id="BqU-bN-rG9"/>
-                                            <constraint firstItem="s8d-gE-S3K" firstAttribute="top" secondItem="UaK-jM-dv5" secondAttribute="bottom" constant="16" id="Cj3-Ze-Snr"/>
-                                            <constraint firstAttribute="trailing" secondItem="i2N-ke-T6X" secondAttribute="trailing" constant="25" id="JWe-iq-Ow4"/>
                                             <constraint firstItem="D8d-J0-pW6" firstAttribute="centerY" secondItem="vxi-Iz-nbc" secondAttribute="centerY" id="K9Q-In-vmc"/>
                                             <constraint firstItem="vxi-Iz-nbc" firstAttribute="leading" secondItem="UaK-jM-dv5" secondAttribute="trailing" constant="8" id="Ppb-Le-Sb2"/>
-                                            <constraint firstItem="s8d-gE-S3K" firstAttribute="leading" secondItem="aSZ-9F-Vcl" secondAttribute="leading" constant="25" id="Vyo-Ps-aKJ"/>
                                             <constraint firstItem="UaK-jM-dv5" firstAttribute="leading" secondItem="aSZ-9F-Vcl" secondAttribute="leading" constant="25" id="ZYF-vC-HdI"/>
-                                            <constraint firstItem="njf-gz-lR6" firstAttribute="top" secondItem="s8d-gE-S3K" secondAttribute="bottom" constant="8" id="c1R-su-jL0"/>
-                                            <constraint firstAttribute="trailing" secondItem="njf-gz-lR6" secondAttribute="trailing" constant="60" id="d1j-eR-hlA"/>
-                                            <constraint firstItem="RDt-ng-xLL" firstAttribute="top" secondItem="i2N-ke-T6X" secondAttribute="bottom" constant="10" id="dmT-6F-esT"/>
                                             <constraint firstItem="RDt-ng-xLL" firstAttribute="leading" secondItem="aSZ-9F-Vcl" secondAttribute="leading" constant="20" id="eXw-j2-XgB"/>
-                                            <constraint firstItem="njf-gz-lR6" firstAttribute="leading" secondItem="aSZ-9F-Vcl" secondAttribute="leading" constant="25" id="esN-sY-zmh"/>
                                             <constraint firstAttribute="bottom" secondItem="RDt-ng-xLL" secondAttribute="bottom" id="f5N-Gn-KzW"/>
                                             <constraint firstItem="D8d-J0-pW6" firstAttribute="leading" secondItem="vxi-Iz-nbc" secondAttribute="trailing" constant="8" id="gVY-s6-PIJ"/>
+                                            <constraint firstItem="RDt-ng-xLL" firstAttribute="top" secondItem="UaK-jM-dv5" secondAttribute="bottom" constant="12" id="hAP-hJ-HVG"/>
                                             <constraint firstItem="vxi-Iz-nbc" firstAttribute="centerY" secondItem="UaK-jM-dv5" secondAttribute="centerY" id="iXB-Hk-mSR"/>
                                             <constraint firstAttribute="trailing" secondItem="RDt-ng-xLL" secondAttribute="trailing" constant="20" id="mtx-5o-86F"/>
-                                            <constraint firstItem="i2N-ke-T6X" firstAttribute="top" secondItem="njf-gz-lR6" secondAttribute="bottom" constant="16" id="xTN-Hg-yKI"/>
-                                            <constraint firstItem="i2N-ke-T6X" firstAttribute="leading" secondItem="aSZ-9F-Vcl" secondAttribute="leading" constant="25" id="yYg-Pc-94Z"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -389,11 +354,8 @@
                         <outlet property="centerDecoLabel" destination="UaK-jM-dv5" id="GcK-zG-tQx"/>
                         <outlet property="contentBackView" destination="0lj-Xv-3xZ" id="kXv-Lh-MOb"/>
                         <outlet property="contentTextView" destination="RDt-ng-xLL" id="73v-up-jNh"/>
-                        <outlet property="headerLabel" destination="s8d-gE-S3K" id="mOY-rL-FOk"/>
                         <outlet property="leftDecoLabel" destination="D8d-J0-pW6" id="ya9-US-anf"/>
                         <outlet property="rightDecoLabel" destination="vxi-Iz-nbc" id="Kvr-F9-hMy"/>
-                        <outlet property="secondaryHeaderLabel" destination="njf-gz-lR6" id="CZ8-0M-CcE"/>
-                        <outlet property="titleLabel" destination="i2N-ke-T6X" id="MRB-1V-CPP"/>
                         <outlet property="wavesImageView" destination="kso-vr-If6" id="NXi-Sc-AAN"/>
                     </connections>
                 </viewController>
@@ -771,7 +733,7 @@
                                                                         <rect key="frame" x="16" y="31.5" width="45" height="45"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fAG-Ma-ek6">
-                                                                                <rect key="frame" x="8" y="10.5" width="29" height="24.5"/>
+                                                                                <rect key="frame" x="8" y="10" width="29" height="24.5"/>
                                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="regular"/>
                                                                             </imageView>
                                                                         </subviews>
@@ -863,6 +825,7 @@
                     <connections>
                         <outlet property="basicsCollectionView" destination="Jcb-4z-H1o" id="eo4-OV-S9U"/>
                         <outlet property="footerLabel" destination="gIl-Rt-hJx" id="8Lz-BA-i5Q"/>
+                        <outlet property="settingsBarButtonItem" destination="n0v-2i-MH3" id="B5g-ki-95N"/>
                         <outlet property="sitesCollectionView" destination="xdi-fv-i27" id="oqa-sN-9f2"/>
                         <outlet property="teamCollectionView" destination="6gf-kw-je2" id="Cs5-cX-41G"/>
                         <outlet property="usersCollectionView" destination="lKW-aB-Dme" id="8Rg-sG-vqQ"/>
@@ -885,43 +848,43 @@
         <image name="link" catalog="system" width="128" height="124"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="rectangle.portrait.on.rectangle.portrait.fill" catalog="system" width="118" height="128"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="rectangle.portrait.on.rectangle.portrait.fill" catalog="system" width="112" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="square.on.square" catalog="system" width="128" height="116"/>
         <image name="text.alignleft" catalog="system" width="128" height="99"/>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -15,7 +15,7 @@ public extension ACApplicationCheckManager {
     enum Keys {
         
         //MARK: Static
-        static let currentVersion = "1.9.0"
+        static let currentVersion = "1.9.2"
     }
 }
 
@@ -34,7 +34,7 @@ protocol ACApplicationCheckManagerProtocol {
 final public class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
 
     //MARK: Private
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.checkVersionKey)
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.ApplicationCheck.checkVersionKey)
     private var isNeededAlert = true
     private var service: ACApplicationAPIClientProtocol! {
         return ACApplicationAPIClient(url: URL(string: ACURLs.API.applicationAPI))

@@ -35,36 +35,15 @@ extension CommandsListTVCell: ACBaseConfigurableView {
     internal func configure(with data: CommandUIModel) {
         uiModel = data
         setupCommandCellTitleLabel()
-//        setupCommandCellSubtitleLabel()
-//        setupCommandCellContentTextView()
-        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returnsLabelIsHidden, scaleType: .small)
-        setupDevicesDecorationLabel()
-        setupMethodDecoLabel()
-        
+        setupCommandCellSubtitleLabel()
         setupCommandCellContentTextView()
-        
+        setupMethodDecoLabel()
+        setupDevicesDecoLabel()
+        setupReturnsDecoLabel()
+        setupDecorationImageView()
+        setupDecorationImageBackView()
+        setupContentBackView()
         backgroundColor = .clear
-        
-        subtitleLabel.text = uiModel?.subtitle
-        
-        decorationImageView.tintColor = .white
-        decorationImageView.image = uiModel?.icon
-        
-        decorationImageBackView.backgroundColor = .appTintColor
-        decorationImageBackView.layer.cornerRadius = CGFloat.Corners.baseACSecondaryRounding + 2
-        decorationImageBackView.layer.shadowColor = decorationImageBackView.backgroundColor?.withAlphaComponent(0.35).cgColor
-        decorationImageBackView.layer.shadowOpacity = 0.7
-        decorationImageBackView.layer.shadowRadius = 6
-        decorationImageBackView.layer.shadowOffset = CGSize(width: 2, height: 9)
-        
-        contentBackView.backgroundColor = UIColor.secondarySystemGroupedBackground.withAlphaComponent(0.65)
-        contentBackView.layer.cornerRadius = CGFloat.Corners.baseACBigRounding + 3
-//        let shadowColor = UIColor.systemGray4.withAlphaComponent(0.3).cgColor
-//        let shadowOffset = CGSize(width: 2, height: 7)
-//        contentBackView.layer.shadowColor = shadowColor
-//        contentBackView.layer.shadowOffset = shadowOffset
-//        contentBackView.layer.shadowOpacity = 0.6
-//        contentBackView.layer.shadowRadius = 6
     }
 }
 
@@ -76,19 +55,36 @@ private extension CommandsListTVCell {
     func setupCommandCellTitleLabel() {
         let content = uiModel?.title
         let font = UIFont.ACFont(style: .articleTitle)
+        subtitleLabel.numberOfLines = 1
         titleLabel.textColor = .label
         titleLabel.text = content
         titleLabel.font = font
     }
     
     func setupCommandCellSubtitleLabel() {
-        let textColor: UIColor = .label.withAlphaComponent(0.95)
         let content = uiModel?.subtitle
-        let font = UIFont.ACFont(style: .articleSubtitle)
         subtitleLabel.numberOfLines = 1
-        subtitleLabel.textColor = textColor
+        subtitleLabel.textColor = .label
         subtitleLabel.text = content
-        subtitleLabel.font = font
+    }
+    
+    func setupDecorationImageView() {
+        let image = uiModel?.icon
+        decorationImageView.contentMode = .scaleAspectFit
+        decorationImageView.tintColor = .white
+        decorationImageView.image = image
+    }
+    
+    func setupDecorationImageBackView() {
+        let cornerRadius = CGFloat.Corners.baseACSecondaryRounding + 2
+        let shadowColor = UIColor.appTintColor.withAlphaComponent(0.35).cgColor
+        let shadowOffset = CGSize(width: 2, height: 9)
+        decorationImageBackView.backgroundColor = .appTintColor
+        decorationImageBackView.layer.cornerRadius = cornerRadius
+        decorationImageBackView.layer.shadowColor = shadowColor
+        decorationImageBackView.layer.shadowOffset = shadowOffset
+        decorationImageBackView.layer.shadowOpacity = 0.7
+        decorationImageBackView.layer.shadowRadius = 6
     }
     
     func setupCommandCellContentTextView() {
@@ -104,7 +100,18 @@ private extension CommandsListTVCell {
         contentTextView.font = font
     }
     
-    func setupDevicesDecorationLabel() {
+    func setupContentBackView() {
+        let backgroundColor = UIColor.secondarySystemGroupedBackground.withAlphaComponent(0.65)
+        let cornerRadius = CGFloat.Corners.baseACBigRounding + 3
+        contentBackView.backgroundColor = backgroundColor
+        contentBackView.layer.cornerRadius = cornerRadius
+    }
+    
+    func setupReturnsDecoLabel() {
+        rightDecorationLabel.setupReturnsDecoLabel(with: uiModel!.returnsLabelIsHidden, scaleType: .small)
+    }
+    
+    func setupDevicesDecoLabel() {
         middleDecorationLabel.setupDevicesDecoLabel(with: uiModel?.isDevicesLabelEnabled, scaleType: .small)
         middleLabelWidth.constant = uiModel!.middleLabelWidth
         

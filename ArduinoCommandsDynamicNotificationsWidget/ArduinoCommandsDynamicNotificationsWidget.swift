@@ -8,6 +8,37 @@
 import WidgetKit
 import SwiftUI
 
+//MARK: - Fast hex Color transformation initialization
+public extension UIColor {
+    
+    //MARK: Public
+    /// In the code below, we create a special formatter that will allow us to convert hes code to UIColor.
+    /// Some parameters(for instance, `scanLocation`) have been removed in new versions of iOS,
+    /// so in the future you will need to find a replacement for them.
+    ///
+    /// This initialization will typically be used to format JSON content.
+    /// - Parameters:
+    ///   - hexString: hex color code.
+    ///   - alpha: color opacity.
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let set              = CharacterSet.whitespacesAndNewlines
+        let hexString        = hexString.trimmingCharacters(in: set)
+        let scanner          = Scanner(string: hexString)
+        var color: UInt32    = 0
+        scanner.scanLocation = 1
+        scanner.scanHexInt32(&color)
+        let maxValue         = 255.0
+        let mask             = 0x000000FF
+        let rInt             = Int(color >> 16) & mask
+        let gInt             = Int(color >> 8) & mask
+        let bInt             = Int(color) & mask
+        let red              = CGFloat(rInt) / maxValue
+        let blue             = CGFloat(bInt) / maxValue
+        let green            = CGFloat(gInt) / maxValue
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
 //MARK: - Constants
 private enum Constants {
     
@@ -16,7 +47,7 @@ private enum Constants {
         enum Colors {
             
             //MARK: Static
-            static let mainBackgroundColorName = "WidgetBackground"
+            static let mainBackgroundColorName = UIColor(hexString: "#034394")
             static let seconadaryBackgroundColorName = "WidgetSecondaryBackground"
         }
         enum Text {
@@ -50,7 +81,7 @@ struct ArduinoCommandsDynamicNotificationsWidget: Widget {
         StaticConfiguration(kind: Constants.Keys.kind, provider: Provider()) { entry in
             ArduinoCommandsDynamicNotificationsWidgetEntryView(entry: entry)
         }
-        .supportedFamilies([.systemSmall, .accessoryInline, .accessoryRectangular])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryRectangular])
         .configurationDisplayName(Constants.Keys.PreviewContent.displayName)
         .description(Constants.Keys.PreviewContent.description)
     }
@@ -119,26 +150,88 @@ struct ArduinoCommandsDynamicNotificationsWidgetEntryView: View {
         switch widgetFamily {
         case .systemSmall:
             ZStack {
-                backgroundGradient
-                VStack {
-                    VStack(alignment: .leading) {
-                        commandHeader
-                    }
-                    .padding(.leading, 0)
-                    .background(Color(.systemTeal).gradient)
+                ContainerRelativeShape()
+                    .fill(Color(Constants.UI.Colors.mainBackgroundColorName).gradient)
+                    .ignoresSafeArea(.all)
+                    .padding(-20)
+                
+                Image("arduinchikIcon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipped()
+                    .frame(width: 110, height: 110)
+                    .padding(.top, -30)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Spacer()
+                    
+                    Text(entry.commandPreview.title.dropLast(2))
+                        .foregroundStyle(Color.white.opacity(0.95))
+                        .font(Font.system(size: 14, weight: .semibold))
+                    
+                    
+                    Text("Command of The Day".uppercased())
+                        .foregroundStyle(Color.white.opacity(0.8))
+                        .font(Font.system(size: 10, weight: .semibold))
+                    
+                }
+                .padding(.bottom, 2)
+                .background(
+                    LinearGradient(colors: [Color(Constants.UI.Colors.mainBackgroundColorName).opacity(0.2), Color.black.opacity(0.45)], startPoint: .top, endPoint: .bottom)
+                        .padding(-30)
+                )
+            }
+        case .systemMedium:
+            ZStack(alignment: .leading) {
+                ContainerRelativeShape()
+                    .fill(Color(Constants.UI.Colors.mainBackgroundColorName).gradient)
+                    .ignoresSafeArea(.all)
+                    .padding(-30)
+                
+                HStack {
+                    Spacer()
+                    
+                    Image("arduinchikPro")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipped()
+                        .frame(width: 140, height: 140)
+                        .padding(.trailing, 20)
+                }
+                
+                LinearGradient(colors: [Color(Constants.UI.Colors.mainBackgroundColorName).opacity(0.2), Color.black.opacity(0.45)], startPoint: .top, endPoint: .bottom)
+                    .padding(-30)
+                
+                VStack(alignment: .leading) {
+                    Text("Command of The Day".uppercased())
+                        .foregroundStyle(Color(.white).opacity(0.8))
+                        .font(Font.system(size: 10, weight: .semibold))
+                        .padding(.top, 2)
                     
                     Spacer()
                     
-                    VStack(alignment: .leading) {
-                        VStack(alignment: .leading) {
-                            commandTitles
-                            commandSubtitle
+                    Text(entry.commandPreview.title.dropLast(2))
+                        .foregroundStyle(Color(.white).opacity(0.75))
+                        .font(Font.system(size: 16, weight: .semibold))
+                    
+                    Text(entry.commandPreview.previewContent)
+                        .foregroundStyle(Color(.clear))
+                        .overlay {
+                            LinearGradient(
+                                colors: [Color(.white.withAlphaComponent(0.55)), Color(.white.withAlphaComponent(0.25))],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                            .mask(
+                                Text(entry.commandPreview.previewContent)
+                                    .font(Font.system(size: 12, weight: .regular))
+                            )
                         }
-                        commandTypeRectangles
-                        commandContectTextView
-                    }
-                    .padding([.leading, .trailing], 14)
+                        .frame(width: 150, height: 65)
+                        .padding(.leading, -2)
+                        .padding(.top, -9)
                 }
+                .padding(4)
             }
         case .accessoryRectangular:
             HStack {
@@ -176,57 +269,5 @@ struct ArduinoCommandsDynamicNotificationsWidgetEntryView: View {
 private extension ArduinoCommandsDynamicNotificationsWidgetEntryView {
     
     //MARK: Private
-    var backgroundGradient: some View {
-        LinearGradient(gradient: Gradient(
-            colors: [
-                Color(Constants.UI.Colors.mainBackgroundColorName),
-                Color(Constants.UI.Colors.seconadaryBackgroundColorName)
-            ]), startPoint: .top, endPoint: .bottom)
-    }
-    var commandHeader: some View {
-        Text(Constants.UI.Text.header.uppercased())
-            .multilineTextAlignment(.leading)
-            .foregroundColor(.white)
-            .font(Font(UIFont.systemFont(ofSize: 13, weight: .medium)))
-            .frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
-            .frame(height: 30)
-            .padding(.leading, 14)
-    }
-    var commandTitles: some View {
-        Text(entry.commandPreview.title.uppercased())
-            .font(Font(UIFont.ACFont(ofSize: 14, weight: .bold)))
-            .lineLimit(2)
-            .padding(.bottom, 0)
-            .lineLimit(1)
-    }
-    var commandSubtitle: some View {
-        Text(entry.commandPreview.subtitle.uppercased())
-            .font(Font(UIFont.ACFont(ofSize: 8, weight: .bold)))
-            .lineLimit(1)
-    }
-    var commandContectTextView: some View {
-        Text(entry.commandPreview.previewContent)
-            .font(Font(UIFont.systemFont(ofSize: 10, weight: .regular)))
-            .padding(.bottom, 16)
-            .padding(.trailing, 10)
-            .opacity(0.6)
-            .lineLimit(4)
-    }
-    var commandTypeRectangles: some View {
-        HStack() {
-            CommandTypeRectangle(tintColor: .systemIndigo)
-                .padding(.leading, 2)
-            
-            if entry.commandPreview.isInitial {
-                CommandTypeRectangle(tintColor: .systemTeal)
-            } else {
-                CommandTypeRectangle(tintColor: .systemPurple)
-            }
-            
-            if entry.commandPreview.returns {
-                CommandTypeRectangle(tintColor: .red)
-            }
-        }
-        .padding([.top, .bottom], 0)
-    }
+    
 }

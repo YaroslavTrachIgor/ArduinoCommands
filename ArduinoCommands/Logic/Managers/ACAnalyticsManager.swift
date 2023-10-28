@@ -38,15 +38,15 @@ final public class ACAnalyticsManager {
     static let shared = ACAnalyticsManager()
     
     //MARK: Public
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.allowAnalytics)
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.Settings.allowAnalytics)
     var allowAnalytics = true
-    @ACBaseUserDefaults<[String]>(key: UserDefaults.Keys.analyticsViewDays)
+    @ACBaseUserDefaults<[String]>(key: UserDefaults.Keys.Analytics.analyticsViewDays)
     var viewDays = []
-    @ACBaseUserDefaults<String>(key: UserDefaults.Keys.analyticsLastReadArticle)
+    @ACBaseUserDefaults<String>(key: UserDefaults.Keys.Analytics.analyticsLastReadArticle)
     var lastReadArticle = ""
-    @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.analyticsArticlesCount)
+    @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.Analytics.analyticsArticlesCount)
     var articleViews = 0
-    @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.analyticsDailyGoal)
+    @ACBaseUserDefaults<Int>(key: UserDefaults.Keys.Analytics.analyticsDailyGoal)
     var dailyGoal = 3
     
 

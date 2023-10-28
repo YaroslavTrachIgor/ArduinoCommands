@@ -107,6 +107,12 @@
 		CE78D58E28D58DDA0040B4D2 /* ACBasePresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */; };
 		CE78D59028D58E7A0040B4D2 /* ACBaseAppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */; };
 		CE78D59228D5A0CE0040B4D2 /* NSStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */; };
+		CE7B02562AE88C4500AA366B /* ACTipsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B02552AE88C4500AA366B /* ACTipsManager.swift */; };
+		CE7B02582AE88C9D00AA366B /* CommandDetailTipClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B02572AE88C9D00AA366B /* CommandDetailTipClient.swift */; };
+		CE7B025A2AE88CCC00AA366B /* BasicKnowledgeTipClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B02592AE88CCC00AA366B /* BasicKnowledgeTipClient.swift */; };
+		CE7B028B2AECC07300AA366B /* CommandDetailCircuitsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B028A2AECC07300AA366B /* CommandDetailCircuitsTip.swift */; };
+		CE7B028D2AECC0A300AA366B /* CommandDetailReadingModesTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B028C2AECC0A300AA366B /* CommandDetailReadingModesTip.swift */; };
+		CE7B02902AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B028F2AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift */; };
 		CE7B452D296040E9001C1B25 /* ACDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B452C296040E9001C1B25 /* ACDevice.swift */; };
 		CE7DE2D429F1188200538D93 /* ACOnboardingAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DE2D329F1188200538D93 /* ACOnboardingAPIClient.swift */; };
 		CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751D28B35ED100B77595 /* StringExtensions.swift */; };
@@ -366,6 +372,12 @@
 		CE78D58D28D58DDA0040B4D2 /* ACBasePresentationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBasePresentationType.swift; sourceTree = "<group>"; };
 		CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACBaseAppearanceType.swift; sourceTree = "<group>"; };
 		CE78D59128D5A0CE0040B4D2 /* NSStringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStringExtensions.swift; sourceTree = "<group>"; };
+		CE7B02552AE88C4500AA366B /* ACTipsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACTipsManager.swift; sourceTree = "<group>"; };
+		CE7B02572AE88C9D00AA366B /* CommandDetailTipClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailTipClient.swift; sourceTree = "<group>"; };
+		CE7B02592AE88CCC00AA366B /* BasicKnowledgeTipClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeTipClient.swift; sourceTree = "<group>"; };
+		CE7B028A2AECC07300AA366B /* CommandDetailCircuitsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailCircuitsTip.swift; sourceTree = "<group>"; };
+		CE7B028C2AECC0A300AA366B /* CommandDetailReadingModesTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailReadingModesTip.swift; sourceTree = "<group>"; };
+		CE7B028F2AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeSettingsTip.swift; sourceTree = "<group>"; };
 		CE7B452C296040E9001C1B25 /* ACDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDevice.swift; sourceTree = "<group>"; };
 		CE7DE2D329F1188200538D93 /* ACOnboardingAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACOnboardingAPIClient.swift; sourceTree = "<group>"; };
 		CE7F751D28B35ED100B77595 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -833,6 +845,7 @@
 				CE83D68F286982DC009DFFA8 /* ACPasteboardManager.swift */,
 				CE75CF8E2879F85D00BA42DF /* ACRateManager.swift */,
 				CE9A6FD128FCEBF400E1EF23 /* ACSettingsParametersManager.swift */,
+				CE7B02552AE88C4500AA366B /* ACTipsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -846,6 +859,7 @@
 				CE6A447929BE216E000ECDCA /* CommandDetailAdsClient.swift */,
 				CE58E2DA28715B21004D5A42 /* CommandDetailPresenter.swift */,
 				CE348A072A4E6DD100B1F957 /* CommandDetailFormatter.swift */,
+				CE7B02572AE88C9D00AA366B /* CommandDetailTipClient.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -877,11 +891,13 @@
 			isa = PBXGroup;
 			children = (
 				CE8C681B28A14D30006C1888 /* Models */,
+				CE7B028E2AECC11E00AA366B /* Views */,
 				8464647627DEA21F004B0D12 /* Cells */,
 				8464647027DEA1A3004B0D12 /* BasicKnowledgePresenter.swift */,
 				8464646E27DE551C004B0D12 /* BasicKnowledgeViewController.swift */,
 				CE6C4D9E286A328E00D14AEA /* BasicKnowledgeContentStorage.swift */,
 				CEAFC32E2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift */,
+				CE7B02592AE88CCC00AA366B /* BasicKnowledgeTipClient.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -977,6 +993,14 @@
 				CE78D58F28D58E7A0040B4D2 /* ACBaseAppearanceType.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		CE7B028E2AECC11E00AA366B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE7B028F2AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE8917D729FF5FE700003A8F /* Managers */ = {
@@ -1112,6 +1136,8 @@
 			children = (
 				CE8A0D3828F113E1004D7DED /* CommandDetailBackgroundView.swift */,
 				CEA4AFDD2A68016D00DFDEA1 /* CommandDetailDailyGoalCongratulationsView.swift */,
+				CE7B028C2AECC0A300AA366B /* CommandDetailReadingModesTip.swift */,
+				CE7B028A2AECC07300AA366B /* CommandDetailCircuitsTip.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1534,6 +1560,7 @@
 				CE9235E728AC2E270037846F /* SettingsBasicInfo.swift in Sources */,
 				84A81C12282FEB9400FBFC7B /* ACCommandsSection.swift in Sources */,
 				CEB71F3B291652C400B82B86 /* CommandsListPresenter.swift in Sources */,
+				CE7B02902AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift in Sources */,
 				84CCC932281711B6008371F1 /* ACNeumorphicCollectionViewCell.swift in Sources */,
 				CECB4A9128AB4ADC00278130 /* IntroCard.swift in Sources */,
 				CE8CFE1028A89BA400A88586 /* IntroView.swift in Sources */,
@@ -1555,6 +1582,7 @@
 				CE9FBBCA29A8AAE300D193B2 /* HTTPURLResponseExtensions.swift in Sources */,
 				CEAFC32F2AA6F2AC00A00DA8 /* BasicKnowledgeAdsClient.swift in Sources */,
 				CECB4A9E28AB4E2000278130 /* ACBaseNavigationConfigurationViewController.swift in Sources */,
+				CE7B02562AE88C4500AA366B /* ACTipsManager.swift in Sources */,
 				CE84FAAB2866A35900CE9D4D /* UIColorExtensions.swift in Sources */,
 				CE75CF91287B322C00BA42DF /* BasicKnowledgeDetailViewController.swift in Sources */,
 				84BB5D6A2845828A00CE1AA2 /* ACBaseViewController.swift in Sources */,
@@ -1579,6 +1607,7 @@
 				CE6EC78B288F582C0020DAFF /* ACApplication.swift in Sources */,
 				CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */,
 				84802A8028217FF3001E45D4 /* CommandsListTVController.swift in Sources */,
+				CE7B025A2AE88CCC00AA366B /* BasicKnowledgeTipClient.swift in Sources */,
 				CE47EBDA29446EC800A19E0B /* ACCommandsAPIClient.swift in Sources */,
 				CE6C4DA1286A63C200D14AEA /* ACURLs.swift in Sources */,
 				CE9235EF28AC9EE50037846F /* SettingsViewToggleCell.swift in Sources */,
@@ -1600,6 +1629,7 @@
 				84CCC92F28171039008371F1 /* ACNeumorphicShadowManeger.swift in Sources */,
 				CE6EC784288F56F60020DAFF /* ACApplicationAPIClient.swift in Sources */,
 				CEEDA5A62931FF1600F25C02 /* ACCommandType.swift in Sources */,
+				CE7B02582AE88C9D00AA366B /* CommandDetailTipClient.swift in Sources */,
 				CE8CFE0E28A6FC2200A88586 /* SettingsView.swift in Sources */,
 				CECB4A9928AB4BDC00278130 /* IntroCardView.swift in Sources */,
 				84E4A2F627F24327002F7BFA /* ACActivityManager.swift in Sources */,
@@ -1613,12 +1643,14 @@
 				8464648F27E4EE90004B0D12 /* UserCollectionViewCell.swift in Sources */,
 				CE8CFE0B28A5E2EC00A88586 /* ACBaseStoryboarded.swift in Sources */,
 				CEACE9932A3BB5F8007811A0 /* UITableViewExtensions.swift in Sources */,
+				CE7B028D2AECC0A300AA366B /* CommandDetailReadingModesTip.swift in Sources */,
 				840B9FC628418F2700EA6D47 /* DataExtensions.swift in Sources */,
 				CE6B0C0B28855D61007F0F63 /* ACCustomCollectionViewCell.swift in Sources */,
 				CE11E5952A5BD8CE00AB6939 /* AnalyticsViewModel.swift in Sources */,
 				CE78D58928CC59FA0040B4D2 /* NumericExtensions.swift in Sources */,
 				CEA22DAF29C955D000B3A6D6 /* UIImageExtensions.swift in Sources */,
 				CE8A0D3928F113E1004D7DED /* CommandDetailBackgroundView.swift in Sources */,
+				CE7B028B2AECC07300AA366B /* CommandDetailCircuitsTip.swift in Sources */,
 				CE177C6D28DA9DD500B1B18D /* UIBarButtonItemExtensions.swift in Sources */,
 				CE348A062A4E6BA700B1F957 /* CommandsListFormatter.swift in Sources */,
 				849CBE6B27F11F1600DCEBA3 /* UIButtonExtensions.swift in Sources */,
@@ -1866,7 +1898,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.0;
+				CURRENT_PROJECT_VERSION = 1.9.2;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Commands;
@@ -1876,7 +1908,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1894,7 +1926,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9.0;
+				CURRENT_PROJECT_VERSION = 1.9.2;
 				DEVELOPMENT_TEAM = 59C6H8HQ42;
 				INFOPLIST_FILE = ArduinoCommands/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Commands;
@@ -1904,7 +1936,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.0;
+				MARKETING_VERSION = 1.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = yareyapp.ArduinoCommands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

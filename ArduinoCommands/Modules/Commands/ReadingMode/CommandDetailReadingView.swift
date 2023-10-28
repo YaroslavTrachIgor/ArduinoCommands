@@ -95,7 +95,7 @@ private extension CommandDetailReadingView {
                 }, imageName: "textformat.size", foregroundColor: themeManager.foregroundColor, strokeColor: themeManager.secondaryForegroundColor)
                 .sheet(isPresented: $isContentAppearanceSheetPresented) {
                     CommandReadingModeAppearanceView(themeManager: themeManager)
-                        .presentationDetents([.height(425)])
+                        .presentationDetents([.height(395)])
                         .presentationDragIndicator(.visible)
                 }
             }

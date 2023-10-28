@@ -11,6 +11,7 @@ import GoogleMobileAds
 import SwiftUI
 import UIKit
 import Network
+import TipKit
 
 //MARK: - Main ViewController protocol
 protocol CommandsListTableViewControllerProtocol: ACBaseWithShareViewController {

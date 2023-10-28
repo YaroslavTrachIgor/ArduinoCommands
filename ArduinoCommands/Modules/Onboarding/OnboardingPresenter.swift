@@ -18,7 +18,7 @@ internal protocol OnboardingPresenterProtocol: ACBasePresenter {
 final class OnboardingPresenter {
     
     //MARK: Private
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.isOnboardingNeeded)
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.Onboarding.isOnboardingNeeded)
     private var isNeededOnboarding = true
     private var service: ACOnboardingAPIClientProtocol?
     private weak var view: OnboardingViewControllerProtocol?

@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import StoreKit
 import GoogleMobileAds
+import TipKit
 
 //MARK: - Main ViewController protocol
 protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
@@ -29,7 +30,8 @@ protocol ACBaseCommandDetailViewControllerProtocol: ACBaseDetailViewController {
     func pulseReadingModeButton()
     func presentRateThanksAlert()
     func presentAdlnterstitial()
-    func presentAdBunner()
+    func presentReadingModeTip()
+    func presentCircuitsTip()
 }
 
 
@@ -54,7 +56,7 @@ private extension CommandDetailViewController {
                 
                 //MARK: Static
                 static let closeTitle = "Close"
-                static let goToScreenshotTitle = "Model"
+                static let goToScreenshotTitle = "Circuit"
                 static let goToCodeSnippetTitle = "Code"
             }
             enum Image {
@@ -130,8 +132,6 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded, R
     @IBOutlet private weak var readingModeButton: UIButton!
     @IBOutlet private weak var screenshotButton: UIButton!
     @IBOutlet private weak var codeSnippetButton: UIButton!
-    @IBOutlet private weak var adBunnerView: GADBannerView!
-    @IBOutlet private weak var adBunnerBackgroundView: UIView!
     @IBOutlet private weak var presentDetailsButton: UIButton!
     @IBOutlet private weak var presentDeviceImagesButton: UIButton!
     @IBOutlet private weak var detailBackgroundBlurView: UIVisualEffectView!
@@ -150,6 +150,12 @@ final class CommandDetailViewController: UIViewController, ACBaseStoryboarded, R
         presenter?.onViewDidLoad { tintColor in
             self.detailsTintColor = tintColor
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        presenter?.onViewDidAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -249,12 +255,6 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         copyBarButton.setupBaseCopyBarButton()
     }
     
-    internal func presentAdBunner() {
-        setupAdBunnerBackgroundView()
-        setupAdBunnerView()
-        adsClient?.setupCommandDetailAdBunner(for: adBunnerView, on: self)
-    }
-    
     internal func changeTextViewContentAnimately(text: String) {
         contentTextView.changeTextWithAnimation(text: text)
     }
@@ -335,6 +335,30 @@ extension CommandDetailViewController: ACBaseCommandDetailViewControllerProtocol
         rateAlert.addAction(noAlert)
         rateAlert.addAction(dismissAction)
         present(rateAlert, animated: true, completion: nil)
+    }
+    
+    internal func presentReadingModeTip() {
+        if #available(iOS 17.0, *) {
+            Task { @MainActor in
+                let tip = CommandDetailReadingModesTip()
+                let tipViewStyle = CommandDetailReadingModesTipViewStyle()
+                let controller = TipUIPopoverViewController(tip, sourceItem: readingModeButton)
+                controller.viewStyle = tipViewStyle
+                present(controller, animated: true)
+            }
+        }
+    }
+    
+    internal func presentCircuitsTip() {
+        if #available(iOS 17.0, *) {
+            Task { @MainActor in
+                let tip = CommandDetailCircuitsTip()
+                let tipViewStyle = CommandDetailCircuitsTipViewStyle()
+                let controller = TipUIPopoverViewController(tip, sourceItem: screenshotButton)
+                controller.viewStyle = tipViewStyle
+                present(controller, animated: true)
+            }
+        }
     }
     
     internal func presentColorPickerViewController() {
@@ -485,22 +509,6 @@ private extension CommandDetailViewController {
         detailBackgroundBlurView.layer.cornerRadius = 0
         detailBackgroundBlurView.bounds = bounds
         detailBackgroundBlurView.effect = effect
-    }
-    
-    func setupAdBunnerBackgroundView() {
-        let backgroundColor = UIColor.ACDetails.secondaryBackgroundColor.withAlphaComponent(0.32)
-        let cornerRadius = CGFloat.Corners.baseACBigRounding
-        adBunnerBackgroundView.layer.cornerRadius = cornerRadius
-        adBunnerBackgroundView.layer.masksToBounds = true
-        adBunnerBackgroundView.setFastGlassmorphismBorder()
-        adBunnerBackgroundView.backgroundColor = backgroundColor
-        adBunnerBackgroundView.isHidden = false
-    }
-    
-    func setupAdBunnerView() {
-        adBunnerView.delegate = self
-        adBunnerView.layer.cornerRadius = 15
-        adBunnerView.layer.masksToBounds = true
     }
     
     func setupDetailContentView() {

@@ -67,9 +67,6 @@ final class BasicKnowledgeDetailViewController: UIViewController, ACBaseStoryboa
     }
     
     //MARK: @IBOutlets
-    @IBOutlet private weak var secondaryHeaderLabel: UILabel!
-    @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var leftDecoLabel: UILabel!
     @IBOutlet private weak var centerDecoLabel: UILabel!
     @IBOutlet private weak var rightDecoLabel: UILabel!
@@ -114,16 +111,15 @@ extension BasicKnowledgeDetailViewController: BasicKnowledgeDetailVCProtocol {
     
     //MARK: Internal
     internal func setupMainUI() {
-        setupTitleLabel()
         setupContentTextView()
-        headerLabel.setLineSpacing(Constants.UI.Label.baseLineSpacing)
-        secondaryHeaderLabel.setLineSpacing(Constants.UI.Label.baseLineSpacing)
         leftDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoLeftTitle)
         centerDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoMiddleTitle, tintColor: .systemTeal)
         rightDecoLabel.setupDecorationRoleLabel(content: Constants.UI.Label.Deco.decoRightTitle, tintColor: .systemPink)
         
         contentBackView.backgroundColor = .clear
         contentBackView.addGradient(colors: [UIColor.clear, UIColor(hexString: "#121212", alpha: 0.3), UIColor(hexString: "#121212", alpha: 0.65)], startPoint: CGPoint(x: 0.5, y: 0), endPoint: CGPoint(x: 0.5, y: 0.2))
+        
+        view.backgroundColor = .systemBackground
     }
     
     internal func moveToThePreviousViewController() {
@@ -148,25 +144,31 @@ extension BasicKnowledgeDetailViewController: BasicKnowledgeDetailVCProtocol {
 private extension BasicKnowledgeDetailViewController {
     
     //MARK: Private
-    func setupTitleLabel() {
-        let content = uiModel?.title
-        titleLabel.textColor = .label
-        titleLabel.text = content
-        titleLabel.alpha = 0.8
-    }
-    
     func setupContentTextView() {
-        let textColor = UIColor.systemGray
-        let content = uiModel?.content
-        let font = UIFont.ACFont(style: .articleContent)
         let style = NSMutableParagraphStyle(); style.lineSpacing = 5
-        let attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: style, .font: font]
-        let attributedText = NSAttributedString(string: content!, attributes: attributes)
+        let content = NSMutableAttributedString(string: "Fundamental concepts of the Arduino Development environment.\n", attributes: [NSAttributedString.Key.font: UIFont.ACFont(ofSize: 21, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.label])
+        
+        content.append(NSAttributedString(string: "\n", attributes: [NSAttributedString.Key.font: UIFont.ACFont(ofSize: 8, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.clear]))
+        
+        content.append(NSAttributedString(string: "Basic knowledge about Arduino IDE and its main features.\n", attributes: [NSAttributedString.Key.font: UIFont.ACFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.systemGray]))
+        
+        guard let title = uiModel?.title else { return }
+        
+        content.append(NSAttributedString(string: "\n", attributes: [NSAttributedString.Key.font: UIFont.ACFont(ofSize: 8, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.clear]))
+        
+        content.append(NSAttributedString(string: title + "\n", attributes: [NSAttributedString.Key.font: UIFont.ACFont(ofSize: 15, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.label]))
+        
+        guard let article = uiModel?.content else { return }
+        
+        content.append(NSAttributedString(string: "\n", attributes: [NSAttributedString.Key.font: UIFont.ACFont(ofSize: 8, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.clear]))
+        
+        content.append(NSAttributedString(string: article, attributes: [NSAttributedString.Key.font: UIFont.ACFont(style: .articleContent), NSAttributedString.Key.foregroundColor: UIColor.systemGray, NSAttributedString.Key.paragraphStyle: style]))
+        
+        
         contentTextView.backgroundColor = .clear
-        contentTextView.attributedText = attributedText
+        contentTextView.attributedText = content
         contentTextView.isSelectable = true
         contentTextView.isEditable = false
-        contentTextView.textColor = textColor
     }
 }
 

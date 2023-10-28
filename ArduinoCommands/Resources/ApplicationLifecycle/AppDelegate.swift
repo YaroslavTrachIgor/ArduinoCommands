@@ -9,6 +9,7 @@ import Foundation
 import UserNotifications
 import GoogleMobileAds
 //import RevenueCat
+import TipKit
 import UIKit
 
 //MARK: - Application delegate Keys
@@ -51,6 +52,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AnalyticsManagerInj
             setupNotificationCenter()
             setupSearchBarBasicAppearance()
             setupPageControlBasicAppearance()
+        }
+        if #available(iOS 17.0, *) {
+            try? Tips.configure()
         }
         return true
     }

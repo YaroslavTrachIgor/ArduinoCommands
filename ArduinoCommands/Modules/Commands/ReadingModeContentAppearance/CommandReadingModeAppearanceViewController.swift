@@ -13,8 +13,6 @@ import UIKit
 protocol CommandReadingModeAppearanceViewControllerProtocol: ACBaseViewController {
     func updateArtcileThemeButtons(selectedIndex: Int)
     func updateArtcileThemeNameLabels(selectedIndex: Int)
-    func updateContentFontButtons(selectedIndex: Int)
-    func updateContentFontNameLabels(selectedIndex: Int)
     func updateSliderValue(_ contentFontSize: Float)
 }
 
@@ -35,6 +33,7 @@ private extension CommandReadingModeAppearanceViewController {
                 
                 //MARK: Static
                 static let mainViewBackgroundColor          = UIColor.quaternaryLabel
+                static let secondaryControlTintColor        = UIColor.quaternaryLabel.withAlphaComponent(0.08)
                 static let secondaryViewBackgroundColor     = UIColor.systemBackground
             }
             enum Button {
@@ -79,11 +78,6 @@ private extension CommandReadingModeAppearanceViewController {
                 //MARK: Static
                 static let themeExmapleTitle = "Aa"
             }
-            enum TextView {
-                
-                //MARK: Static
-                static let exampleArticle = "A detailed description of the function. A detailed description of the arguments, syntax, and return value of the function. A detailed description of the circumstances during which the function may not work correctly."
-            }
         }
     }
 }
@@ -119,15 +113,14 @@ final class CommandReadingModeAppearanceViewController: UIViewController, ACBase
     
     //MARK: @IBOutlets
     @IBOutlet private weak var contentAppearanceToolBarView: UIView!
-    @IBOutlet weak var brightnessProgressView: UIProgressView!
+    @IBOutlet private weak var brightnessProgressView: UIProgressView!
+    @IBOutlet private weak var changeFontSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var fontSizeSlider: UISlider!
     
     //MARK: @IBOutlet Collections
     @IBOutlet private var sliderDecorationBarViews: [UIView]!
     @IBOutlet private var changeArtcileThemeButtons: [UIButton]!
-    @IBOutlet private var changeContentFontButtons: [UIButton]!
     @IBOutlet private var articleThemeNamesLabels: [UILabel]!
-    @IBOutlet private var contentFontNamesLabels: [UILabel]!
     
     
     //MARK: Lifecycle
@@ -139,14 +132,13 @@ final class CommandReadingModeAppearanceViewController: UIViewController, ACBase
         let colorThemeIndex = appearanceManager.colorThemeIndex
         let fontThemeIndex = appearanceManager.fontThemeIndex
         updateArtcileThemeNameLabels(selectedIndex: colorThemeIndex)
-        updateContentFontNameLabels(selectedIndex: fontThemeIndex)
         updateArtcileThemeButtons(selectedIndex: colorThemeIndex)
-        updateContentFontButtons(selectedIndex: fontThemeIndex)
         
         let fontSize = themeManager?.fontSize
         updateSliderValue(Float(fontSize!))
     }
     
+    //MARK: @IBActions
     @IBAction func changeArtcleAppearance(_ sender: UIButton) {
         let colorThemeIndex = sender.tag
         appearanceManager.updateAppearanceThemeIndex(colorThemeIndex)
@@ -157,11 +149,9 @@ final class CommandReadingModeAppearanceViewController: UIViewController, ACBase
         themeManager?.colorTheme = colorTheme!
     }
     
-    @IBAction func changeContentFont(_ sender: UIButton) {
-        let fontIndex = sender.tag
+    @IBAction func changeContentFont(_ sender: UISegmentedControl) {
+        let fontIndex = sender.selectedSegmentIndex
         appearanceManager.updateContentFontThemeIndex(fontIndex)
-        updateContentFontButtons(selectedIndex: fontIndex)
-        updateContentFontNameLabels(selectedIndex: fontIndex)
         
         let fontTheme = appearanceManager.getFontTheme()
         themeManager?.fontTheme = fontTheme!
@@ -185,19 +175,19 @@ private extension CommandReadingModeAppearanceViewController {
     func setupFontSizeSlider() {
         let minimumValue = Constants.UI.Slider.fontSizeMinimumValue
         let maximumValue = Constants.UI.Slider.fontSizeMaximumValue
-        let tintColor = Constants.UI.View.mainViewBackgroundColor
+        let tintColor = Constants.UI.View.secondaryControlTintColor
         fontSizeSlider.maximumTrackTintColor = tintColor
-        fontSizeSlider.minimumTrackTintColor = .black
+        fontSizeSlider.minimumTrackTintColor = .label
         fontSizeSlider.minimumValue = minimumValue
         fontSizeSlider.maximumValue = maximumValue
     }
     
     func setupBrightnessProgressView() {
-        let trackTintColor = Constants.UI.View.mainViewBackgroundColor
+        let trackTintColor = Constants.UI.View.secondaryControlTintColor
         let brightness = Float(UIScreen.main.brightness)
         brightnessProgressView.progress = brightness
         brightnessProgressView.trackTintColor = trackTintColor
-        brightnessProgressView.progressTintColor = .black
+        brightnessProgressView.progressTintColor = .label
     }
     
     func setupContentAppearanceToolBarView() {
@@ -253,6 +243,21 @@ extension CommandReadingModeAppearanceViewController: CommandReadingModeAppearan
         setupContentAppearanceToolBarView()
     }
     
+    /**
+     Updates the appearance of article theme buttons based on the selected index.
+     
+     - Parameters:
+     - selectedIndex: An integer representing the index of the currently selected article theme.
+     
+     This method iterates through a collection of article theme buttons and adjusts their appearance based on the selected theme.
+     It customizes the appearance of the buttons, including background color, text color, stroke color, and other attributes to visually indicate the selected theme.
+     
+     It compares the `selectedIndex` with each button's `tag` property to determine whether the button corresponds to the selected theme. 
+     The selected theme's button will have different visual attributes to indicate it's the active theme.
+     
+     - Note:
+     It's essential to call this method when the user changes the selected article theme to ensure the UI reflects the chosen theme.
+     */
     internal func updateArtcileThemeButtons(selectedIndex: Int) {
         for button in changeArtcileThemeButtons {
             let font = Constants.UI.Button.FontThemeButton.serifFont
@@ -283,7 +288,11 @@ extension CommandReadingModeAppearanceViewController: CommandReadingModeAppearan
                                           font: font)
             default: break
             }
-            
+            /**
+             - Warning:
+             The `selectedIndex` parameter must be a valid index within the range of the article theme buttons. 
+             Providing an invalid index may lead to unexpected behavior.
+             */
             if button.tag == selectedIndex {
                 switch selectedIndex {
                 case 0:
@@ -316,80 +325,8 @@ extension CommandReadingModeAppearanceViewController: CommandReadingModeAppearan
         }
     }
     
-    internal func updateContentFontButtons(selectedIndex: Int) {
-        for button in changeContentFontButtons {
-            let backgroundColor = Constants.UI.Button.FontThemeButton.backgroundColor
-            let foregroundColor = Constants.UI.Button.FontThemeButton.foregroundColor
-            let selectedForegroundColor = Constants.UI.Button.FontThemeButton.selectedForegroundColor
-            switch button.tag {
-            case 0:
-                setupFastAppearanceButton(for: button,
-                                          isSelected: false,
-                                          backgroundColor: backgroundColor,
-                                          foregroundColor: foregroundColor,
-                                          selectedForegroundColor: selectedForegroundColor,
-                                          strokeColor: foregroundColor,
-                                          font: Constants.UI.Button.FontThemeButton.classicFont)
-            case 1:
-                setupFastAppearanceButton(for: button,
-                                          isSelected: false,
-                                          backgroundColor: backgroundColor,
-                                          foregroundColor: foregroundColor,
-                                          selectedForegroundColor: selectedForegroundColor,
-                                          strokeColor: foregroundColor,
-                                          font: Constants.UI.Button.FontThemeButton.serifFont)
-            case 2:
-                setupFastAppearanceButton(for: button,
-                                          isSelected: false,
-                                          backgroundColor: backgroundColor,
-                                          foregroundColor: foregroundColor,
-                                          selectedForegroundColor: selectedForegroundColor,
-                                          strokeColor: foregroundColor,
-                                          font: Constants.UI.Button.FontThemeButton.timesFont)
-            default: break
-            }
-            
-            if button.tag == selectedIndex {
-                switch selectedIndex {
-                case 0:
-                    setupFastAppearanceButton(for: button,
-                                              isSelected: true,
-                                              backgroundColor: backgroundColor,
-                                              foregroundColor: foregroundColor,
-                                              selectedForegroundColor: selectedForegroundColor,
-                                              strokeColor: foregroundColor,
-                                              font: Constants.UI.Button.FontThemeButton.classicFont)
-                case 1:
-                    setupFastAppearanceButton(for: button,
-                                              isSelected: true,
-                                              backgroundColor: backgroundColor,
-                                              foregroundColor: foregroundColor,
-                                              selectedForegroundColor: selectedForegroundColor,
-                                              strokeColor: foregroundColor,
-                                              font: Constants.UI.Button.FontThemeButton.serifFont)
-                case 2:
-                    setupFastAppearanceButton(for: button,
-                                              isSelected: true,
-                                              backgroundColor: backgroundColor,
-                                              foregroundColor: foregroundColor,
-                                              selectedForegroundColor: selectedForegroundColor,
-                                              strokeColor: foregroundColor,
-                                              font: Constants.UI.Button.FontThemeButton.timesFont)
-                default: break
-                }
-            }
-        }
-    }
-    
     internal func updateArtcileThemeNameLabels(selectedIndex: Int) {
         for label in articleThemeNamesLabels {
-            let isSelected = selectedIndex == label.tag
-            setupFastNameLabel(for: label, isSelected: isSelected)
-        }
-    }
-    
-    internal func updateContentFontNameLabels(selectedIndex: Int) {
-        for label in contentFontNamesLabels {
             let isSelected = selectedIndex == label.tag
             setupFastNameLabel(for: label, isSelected: isSelected)
         }

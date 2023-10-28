@@ -25,6 +25,7 @@ internal protocol CommandDetailPresenterProtocol {
     init(view: ACBaseCommandDetailViewControllerProtocol, delegate: CommandDetailViewControllerDelegate, model: ACCommand)
     func onViewDidLoad(completion: @escaping (UIColor) -> Void)
     func onViewDidDisappear()
+    func onViewDidAppear()
     func onViewScreenshotButton()
     func onViewCodeSnippet()
     func onPresentDetailsColorPicker()
@@ -45,8 +46,9 @@ internal protocol CommandDetailPresenterProtocol {
 final class CommandDetailPresenter: AnalyticsManagerInjector, RateManagerInjector {
     
     //MARK: Private
-    @ACBaseUserDefaultsColor(key: UserDefaults.Keys.detailsTintColorrKey)
+    @ACBaseUserDefaultsColor(key: UserDefaults.Keys.CommandDetail.detailsTintColorrKey)
     private var detailsTintColor = Keys.defaultDetailsTintColor
+    private var tipService: CommandDetailTipClientProtocol?
     private weak var delegate: CommandDetailViewControllerDelegate?
     private weak var view: ACBaseCommandDetailViewControllerProtocol?
     private weak var model: ACCommand?
@@ -56,6 +58,7 @@ final class CommandDetailPresenter: AnalyticsManagerInjector, RateManagerInjecto
     init(view: ACBaseCommandDetailViewControllerProtocol,
          delegate: CommandDetailViewControllerDelegate,
          model: ACCommand) {
+        self.tipService = CommandDetailTipClient()
         self.view = view
         self.model = model
         self.delegate = delegate
@@ -70,12 +73,15 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
     internal func onViewDidLoad(completion: @escaping (UIColor) -> Void) {
         completion(detailsTintColor)
         refreshView()
-        showAd()
         askToRate()
-        remindAboutReadingMode()
         showDailyGoalCongratulations()
         view?.presentTabBarWithAnimation(alpha: 0)
         analyticsManager.updateLastReadArticle(articleName: (model?.name!)!)
+    }
+    
+    internal func onViewDidAppear() {
+        remindAboutCircuits()
+        remindAboutReadingMode()
     }
     
     internal func onViewDidDisappear() {
@@ -121,17 +127,6 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
         refreshView()
     }
     
-    internal func onChangeContentButton(with index: Int) {
-        switch index {
-        case 0:
-            view?.changeTextViewContentAnimately(text: (model?.description)!)
-        case 1:
-            view?.changeTextViewContentAnimately(text: (model?.baseDescription)!)
-        default:
-            break
-        }
-    }
-    
     internal func onCopyDetails(for tag: Int) {
         let contentForCopying: String!
         switch tag {
@@ -153,6 +148,17 @@ extension CommandDetailPresenter: CommandDetailPresenterProtocol {
     
     internal func onShareButton() {
         view?.presentActivityVC(activityItems: [model?.shared as Any])
+    }
+    
+    internal func onChangeContentButton(with index: Int) {
+        switch index {
+        case 0:
+            view?.changeTextViewContentAnimately(text: (model?.description)!)
+        case 1:
+            view?.changeTextViewContentAnimately(text: (model?.baseDescription)!)
+        default:
+            break
+        }
     }
 }
 
@@ -188,27 +194,25 @@ private extension CommandDetailPresenter {
         }
     }
     
-    func showAd() {
-        /**
-         Before we setup Ad Bunner view, we need to check if the user wants to read
-         an article from the paid sections.
-         
-         By using Command subtitle we can check:
-         if it is the first section, than we won't present any Ad screens or bunners,
-         in the other cases we will distract user with Advertisments.
-         */
-        if model?.subtitle != ACCommandsSection.Keys.firstSectionSubtitle {
-            view?.presentAdBunner()
-        }
-    }
-    
     func copy(_ content: String!, contentType: ACPasteboardManager.ContentType) {
         ACGrayAlertManager.presentCopiedAlert(contentType: contentType)
         ACPasteboardManager.copy(content)
     }
     
+    func remindAboutCircuits() {
+        if let tipAvailable = tipService?.isCircuitTipAvailable, tipAvailable {
+            view?.presentCircuitsTip()
+            tipService?.markCircuitTipAsComplete()
+        }
+    }
+    
     func remindAboutReadingMode() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            if let tipAvailable = tipService?.isReadingModeTipAvailable, tipAvailable {
+                view?.presentReadingModeTip()
+                tipService?.markReadingModeTipAsComplete()
+            }
+            
             view?.pulseReadingModeButton()
         }
     }

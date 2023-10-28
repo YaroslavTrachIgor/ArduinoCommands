@@ -13,21 +13,51 @@ public extension UserDefaults {
     
     //MARK: Private
     enum Keys {
-        
-        //MARK: Static
-        static let allowNotifications = "AllowsNotificationsKey"
-        static let allowAnalytics = "AllowAnalyticsKey"
-        static let analyticsViewDays = "AnalyticsViewDaysKey"
-        static let analyticsDailyGoal = "AnalyticsDailyGoalKey"
-        static let analyticsLastReadArticle = "AnalyticsLastReadArticleKey"
-        static let analyticsArticlesCount = "AnalyticsArticlesCountKey"
-        static let analyticsAvailableKey = "AnalyticsAvailableKey"
-        static let isOnboardingNeeded = "IsNeededToBeOpenedKey"
-        static let sessionsCountKey = "SessionsCountKey"
-        static let checkVersionKey = "CheckVersionKey"
-        static let codeFontSize = "CodeFontSizeKey"
-        static let codeTintColorKey = "CodeTintColorKey"
-        static let detailsTintColorrKey = "DetailsTintColorrKey"
+        enum ApplicationCheck {
+            
+            //MARK: Static
+            static let checkVersionKey = "CheckVersionKey"
+        }
+        enum Settings {
+            
+            //MARK: Static
+            static let allowNotifications = "AllowsNotificationsKey"
+            static let allowAnalytics = "AllowAnalyticsKey"
+        }
+        enum Analytics {
+            
+            //MARK: Static
+            static let analyticsViewDays = "AnalyticsViewDaysKey"
+            static let analyticsDailyGoal = "AnalyticsDailyGoalKey"
+            static let analyticsLastReadArticle = "AnalyticsLastReadArticleKey"
+            static let analyticsArticlesCount = "AnalyticsArticlesCountKey"
+            static let analyticsAvailableKey = "AnalyticsAvailableKey"
+        }
+        enum Tips {
+            
+            //MARK: Static
+            static let isSettingsTipNeeded = "isSettingsTipNeeded"
+            static let isReadingModeTipNeeded = "isReadingModeTipNeeded"
+            static let isCircuitTipAvailable = "isCircuitTipAvailable"
+            static let isAnalyticsTipNeeded = "isAnalyticsTipNeeded"
+        }
+        enum Onboarding {
+            
+            //MARK: Static
+            static let isOnboardingNeeded = "IsNeededToBeOpenedKey"
+            static let sessionsCountKey = "SessionsCountKey"
+        }
+        enum CodeSnippet {
+            
+            //MARK: Static
+            static let codeFontSize = "CodeFontSizeKey"
+            static let codeTintColorKey = "CodeTintColorKey"
+        }
+        enum CommandDetail {
+            
+            //MARK: Static
+            static let detailsTintColorrKey = "DetailsTintColorrKey"
+        }
     }
 }
 

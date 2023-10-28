@@ -41,9 +41,9 @@ protocol CodeSnippetPresenterProtocol {
 final class CodeSnippetPresenter {
     
     //MARK: Private
-    @ACBaseUserDefaultsColor(key: UserDefaults.Keys.codeTintColorKey)
+    @ACBaseUserDefaultsColor(key: UserDefaults.Keys.CodeSnippet.codeTintColorKey)
     private var codeTintColor = Keys.defaultCodeTintColor
-    @ACBaseUserDefaults<Float>(key: UserDefaults.Keys.codeFontSize)
+    @ACBaseUserDefaults<Float>(key: UserDefaults.Keys.CodeSnippet.codeFontSize)
     private var codeFontSize = Keys.defaultCodeFontSize
     
     //MARK: Weak

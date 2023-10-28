@@ -18,6 +18,7 @@ internal protocol BasicKnowledgePresenterProtocol {
     func onViewDidLoad(completion: @escaping ACBasicKnowledgePresenterCompletionHandler)
     func onDidSelectItemAt(for tag: Int, with row: Int)
     func onPresentSettingsHostVC()
+    func onViewDidAppear()
 }
 
 
@@ -25,8 +26,9 @@ internal protocol BasicKnowledgePresenterProtocol {
 final class BasicKnowledgePresenter {
     
     //MARK: Private
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.isOnboardingNeeded)
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.Onboarding.isOnboardingNeeded)
     private var isNeededOnboarding = true
+    private var tipService: BasicKnowledgeTipClientProtocol?
     private var sections: [BasicKnowledgeSectionRow]?
     private weak var view: BasicKnowledgeVCProtocol?
     
@@ -34,6 +36,7 @@ final class BasicKnowledgePresenter {
     //MARK: Initionalizate
     init(view: BasicKnowledgeVCProtocol,
          sections: [BasicKnowledgeSectionRow] = BasicKnowledgeContentStorage.prepareSections()) {
+        self.tipService = BasicKnowledgeTipClient()
         self.sections = sections
         self.view = view
     }
@@ -47,12 +50,18 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
     internal func onViewDidLoad(completion: @escaping ACBasicKnowledgePresenterCompletionHandler) {
         view?.setupMainUI()
         noticeNewVersion()
-        showOnboarding()
         /**
          In the code below, in order to pass the rows between the entities of the application (Presenter and View),
          we will pass the content of four `Menu` screen sections through a closure.
          */
         completion(sections!)
+    }
+    
+    internal func onViewDidAppear() {
+        if let tipAvailable = tipService?.isSettingsTipAvailable, tipAvailable {
+            view?.presentSettingsTip()
+            tipService?.markSettingsTipAsComplete()
+        }
     }
     
     internal func onPresentSettingsHostVC() {
