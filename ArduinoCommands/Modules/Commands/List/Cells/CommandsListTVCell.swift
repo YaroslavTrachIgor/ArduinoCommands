@@ -105,6 +105,7 @@ private extension CommandsListTVCell {
         let cornerRadius = CGFloat.Corners.baseACBigRounding + 3
         contentBackView.backgroundColor = backgroundColor
         contentBackView.layer.cornerRadius = cornerRadius
+        contentBackView.layer.shadowRadius = 0
     }
     
     func setupReturnsDecoLabel() {

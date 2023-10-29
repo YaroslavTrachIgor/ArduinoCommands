@@ -29,6 +29,34 @@ public enum DecoLabelScaleType {
 public extension UILabel {
     
     //MARK: Public
+    /// Sets the line spacing for the label's text.
+    /// - Parameter lineSpacing: The desired line spacing value in points.
+    func setLineSpacing(_ lineSpacing: CGFloat) {
+        guard let labelText = self.text else {
+            return
+        }
+        
+        /// Create a mutable paragraph style with the specified line spacing.
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineSpacing
+        
+        /// Create an attributed string with the modified paragraph style.
+        let attributedString = NSAttributedString(
+            string: labelText,
+            attributes: [.paragraphStyle: paragraphStyle]
+        )
+        
+        /// Apply the attributed string to the label's text.
+        self.attributedText = attributedString
+    }
+    
+    /// Sets up a decoration role label with the specified content, appearance, and visibility.
+    /// - Parameters:
+    ///   - content: The content to display in the label.
+    ///   - tintColor: The color for text and background of the label. (default: systemIndigo)
+    ///   - needed: A boolean value indicating if the label should be visible. (default: true)
+    ///   - fontSize: The font size for the label. (default: 13)
+    ///   - cornerRadius: The corner radius for the label's background. (default: 6)
     func setupDecorationRoleLabel(content: String, tintColor: UIColor = .systemIndigo, if needed: Bool = true, fontSize: CGFloat = 13, cornerRadius: CGFloat = 6) {
         let backColor = tintColor.withAlphaComponent(0.16)
         let font = UIFont.systemFont(ofSize: fontSize, weight: .light)

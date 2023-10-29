@@ -30,7 +30,8 @@ struct CommandDetailReadingView: View {
                     
                     topToolBar
                     
-                    Divider().padding(.bottom, 8)
+                    Divider()
+                        .padding(.bottom, 8)
                     
                     CommandReadingModeSubtitleText(
                         text: viewModel.model.subtitle,
@@ -75,7 +76,7 @@ private extension CommandDetailReadingView {
     
     //MARK: Private
     var title: some View {
-        Text(String(viewModel.model.name.dropLast().dropLast()).capitalizeFirstLetter())
+        Text(String(viewModel.model.name.removeScopes()).capitalizeFirstLetter())
             .font(Font(themeManager.titleFont))
             .foregroundColor(Color(themeManager.foregroundColor).opacity(0.88))
             .padding([.bottom], 1)

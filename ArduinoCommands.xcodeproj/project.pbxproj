@@ -197,7 +197,6 @@
 		CECE1A19294DBAA60021D899 /* WidgetLiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */; };
 		CECE1A1E294DBB6D0021D899 /* WidjetCommandPreviewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */; };
 		CECE1A22294DBBB70021D899 /* WidjetCommandPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */; };
-		CECE1A29294E74FA0021D899 /* CommandTypeRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */; };
 		CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */; };
 		CEDBC0852860CA6B00C933AF /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */; };
 		CEDBC08C2860D63000C933AF /* onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC08B2860D63000C933AF /* onboarding.json */; };
@@ -460,7 +459,6 @@
 		CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLiveActivityAttributes.swift; sourceTree = "<group>"; };
 		CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreviewStorage.swift; sourceTree = "<group>"; };
 		CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreview.swift; sourceTree = "<group>"; };
-		CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTypeRectangle.swift; sourceTree = "<group>"; };
 		CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		CEDBC08B2860D63000C933AF /* onboarding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = onboarding.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
@@ -1198,7 +1196,6 @@
 				CECE1A15294DBA070021D899 /* LiveActivity */,
 				CECE1A25294E71390021D899 /* Storage */,
 				CECE1A1F294DBB950021D899 /* Model */,
-				CECE1A26294E74C50021D899 /* View */,
 				CEB71F2C291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift */,
 				CEB71F2E291650CF00B82B86 /* Assets.xcassets */,
 				CEB71F30291650CF00B82B86 /* Info.plist */,
@@ -1270,14 +1267,6 @@
 				CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */,
 			);
 			path = Storage;
-			sourceTree = "<group>";
-		};
-		CECE1A26294E74C50021D899 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CECE1A27294E74D00021D899 /* CommandTypeRectangle.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		CEDBC0862860D54B00C933AF /* Onboarding */ = {
@@ -1722,7 +1711,6 @@
 				CECE1A22294DBBB70021D899 /* WidjetCommandPreview.swift in Sources */,
 				CECE1A19294DBAA60021D899 /* WidgetLiveActivityAttributes.swift in Sources */,
 				CEB71F2D291650C700B82B86 /* ArduinoCommandsDynamicNotificationsWidget.swift in Sources */,
-				CECE1A29294E74FA0021D899 /* CommandTypeRectangle.swift in Sources */,
 				CEB71F2B291650C700B82B86 /* WidgetLiveActivity.swift in Sources */,
 				CEB71F482917011700B82B86 /* UIFontExtensions.swift in Sources */,
 				CEB71F29291650C700B82B86 /* WidgetBundle.swift in Sources */,

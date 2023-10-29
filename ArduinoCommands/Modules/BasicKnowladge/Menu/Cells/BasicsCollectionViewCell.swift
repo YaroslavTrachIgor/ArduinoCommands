@@ -47,44 +47,59 @@ extension BasicsCollectionViewCell: ACBaseConfigurableView {
     //MARK: Internal
     internal func configure(with data: BasicsCellUIModelProtocol) {
         uiModel = data
-        
-        titleLabel.text = uiModel?.title
+        setupTitleLabel()
+        setupSubtitleTextView()
+        setupBookmarkImageView()
+        setupDecorationImageViews()
+        setupCellAppearance()
+    }
+}
+
+
+//MARK: - Main methods
+private extension BasicsCollectionViewCell {
+    
+    func setupTitleLabel() {
+        let content = uiModel?.title
+        titleLabel.text = content
+        titleLabel.numberOfLines = 2
         titleLabel.setLineSpacing(6)
-        
-        subtitleTextView.text = uiModel?.previewDescription
-        
-        layer.masksToBounds = false
-        layer.cornerRadius = CGFloat.Corners.baseACBigRounding + 10
-        backgroundColor = uiModel?.backgroundColor
+    }
+    
+    func setupSubtitleTextView() {
+        let textColor = UIColor.white.withAlphaComponent(0.90)
+        let content = uiModel?.previewDescription
+        subtitleTextView.isUserInteractionEnabled = false
+        subtitleTextView.isSelectable = false
+        subtitleTextView.textColor = textColor
+        subtitleTextView.text = content
+    }
+    
+    func setupBookmarkImageView() {
+        bookmarkIconImageView.contentMode = .scaleAspectFit
+        bookmarkIconImageView.tintColor = .white
+        bookmarkIconImageView.alpha = 0.95
+    }
+    
+    func setupDecorationImageViews() {
+        for imageView in decorationImageViews {
+            imageView.tintColor = uiModel?.secondaryColor
+            imageView.contentMode = .scaleAspectFit
+            imageView.alpha = 0.85
+        }
+    }
+    
+    func setupCellAppearance() {
+        let backgroundColor = uiModel?.backgroundColor
+        let cornerRadius = CGFloat.Corners.baseACBigRounding + 10
         let shadowColor = uiModel?.backgroundColor.cgColor
         let shadowOffset = CGSize(width: 2, height: 4)
+        self.backgroundColor = backgroundColor
+        layer.masksToBounds = false
+        layer.cornerRadius = cornerRadius
         layer.shadowColor = shadowColor
         layer.shadowOffset = shadowOffset
         layer.shadowOpacity = 0.6
         layer.shadowRadius = 10.5
-        
-        for imageView in decorationImageViews {
-            imageView.tintColor = uiModel?.secondaryColor
-        }
-        
-        bookmarkIconImageView.tintColor = .white
-    }
-}
-
-extension UILabel {
-    func setLineSpacing(_ lineSpacing: CGFloat) {
-        guard let labelText = self.text else {
-            return
-        }
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineSpacing
-        
-        let attributedString = NSAttributedString(
-            string: labelText,
-            attributes: [.paragraphStyle: paragraphStyle]
-        )
-        
-        self.attributedText = attributedString
     }
 }
