@@ -21,12 +21,13 @@ public extension ACApplicationCheckManager {
 
 
 //MARK: - Application version check Completion Handler
-typealias ACApplicationVersionCheckCompletionHandler = (Bool) -> ()
+typealias ACApplicationCheckCompletionHandler = (Bool) -> ()
 
 
 //MARK: - Manager protocol
 protocol ACApplicationCheckManagerProtocol {
-    func checkVersion(completion: ACApplicationVersionCheckCompletionHandler?)
+    func checkVersion(completion: ACApplicationCheckCompletionHandler?)
+    func checkIfOnboardingNeeded(completion: @escaping ACApplicationCheckCompletionHandler)
 }
 
 
@@ -34,6 +35,8 @@ protocol ACApplicationCheckManagerProtocol {
 final public class ACApplicationCheckManager: ACApplicationCheckManagerProtocol {
 
     //MARK: Private
+    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.Onboarding.isOnboardingNeeded)
+    private var isNeededOnboarding = true
     @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.ApplicationCheck.checkVersionKey)
     private var isNeededAlert = true
     private var service: ACApplicationAPIClientProtocol! {
@@ -41,12 +44,27 @@ final public class ACApplicationCheckManager: ACApplicationCheckManagerProtocol 
     }
     
     //MARK: Public
+    /// Checks if onboarding is needed and calls a completion handler with the result value.
+    /// - Parameters:
+    ///   - completion: the closure takes a boolean parameter indicating whether onboarding is needed or not.
+    ///
+    /// - Note:
+    ///   If onboarding is needed (the completion handler parameter is `true`),
+    ///   this function will also toggle the `isNeededOnboarding` flag,
+    ///   assuming that onboarding has been displayed and should not be shown again until explicitly required.
+    ///
+    /// - Parameter completion: A closure that receives a boolean value indicating whether onboarding is needed.
+    func checkIfOnboardingNeeded(completion: @escaping ACApplicationCheckCompletionHandler) {
+        completion(isNeededOnboarding)
+        if isNeededOnboarding { isNeededOnboarding.toggle() }
+    }
+    
     /// This checks version of app downloaded on a particular device,
     /// and compares it with the current version available in AppStore from Appliction content Database.
     ///
     /// The function is used in `BasicKnowledgePresenter` file.
     /// - Parameter completion: this is the handler which we will use to do some UI stuff.
-    func checkVersion(completion: ACApplicationVersionCheckCompletionHandler? = nil) {
+    func checkVersion(completion: ACApplicationCheckCompletionHandler? = nil) {
         Task {
             do {
                 let applicationAPI = try await service.getApplicationResponse()

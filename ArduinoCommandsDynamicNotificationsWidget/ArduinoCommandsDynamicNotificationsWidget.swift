@@ -16,7 +16,7 @@ private enum Constants {
         enum Colors {
             
             //MARK: Static
-            static let mainBackgroundColorName = #colorLiteral(red: 0, green: 0.2448818684, blue: 0.5670689344, alpha: 1)
+            static let backgroundColorName = "WidgetBackground"
         }
         enum Text {
             
@@ -45,23 +45,6 @@ private enum Constants {
         static let kind = "ArduinoCommandsDynamicNotificationsWidget"
     }
 }
-
-
-//MARK: - Main Widget
-@available(iOSApplicationExtension 16.0, *)
-struct ArduinoCommandsDynamicNotificationsWidget: Widget {
-
-    //MARK: - Widget Configuration
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: Constants.Keys.kind, provider: Provider()) { entry in
-            ArduinoCommandsDynamicNotificationsWidgetEntryView(entry: entry)
-        }
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryRectangular])
-        .configurationDisplayName(Constants.Keys.PreviewContent.displayName)
-        .description(Constants.Keys.PreviewContent.description)
-    }
-}
-
 
 
 //MARK: - Main Widget Entry
@@ -110,13 +93,28 @@ struct Provider: TimelineProvider {
 }
 
 
+//MARK: - Main Widget
+@available(iOSApplicationExtension 16.0, *)
+struct ArduinoCommandsDynamicNotificationsWidget: Widget {
+
+    //MARK: - Widget Configuration
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: Constants.Keys.kind, provider: Provider()) { entry in
+            ArduinoCommandsDynamicNotificationsWidgetEntryView(entry: entry)
+        }
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryRectangular])
+        .configurationDisplayName(Constants.Keys.PreviewContent.displayName)
+        .description(Constants.Keys.PreviewContent.description)
+    }
+}
+
+
 //MARK: - Main Widget View
 struct ArduinoCommandsDynamicNotificationsWidgetEntryView: View {
     
     //MARK: Public
     @State var entry: Provider.Entry
     @Environment(\.widgetFamily) var widgetFamily
-
     
     //MARK: View Configuration
     var body: some View {
@@ -145,115 +143,142 @@ struct DailyCommandSmallWidgetEntryView: View {
     //MARK: View Configuration
     var body: some View {
         ZStack {
-            ContainerRelativeShape()
-                .fill(Color(Constants.UI.Colors.mainBackgroundColorName).gradient)
-                .ignoresSafeArea(.all)
-                .padding(-20)
-            
-            Image(Constants.UI.Image.arduinchikIconName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipped()
-                .frame(width: 110, height: 110)
-                .padding(.top, -30)
+            backgroundContainer
+            arduinchikIconImage
             
             VStack(alignment: .leading, spacing: 2) {
                 Spacer()
-                
-                Text(commandPreview.title.dropLast().dropLast())
-                    .foregroundStyle(Color.white.opacity(0.95))
-                    .font(Font.system(size: 14, weight: .semibold))
-                
-                Text(Constants.UI.Text.subtitle.uppercased())
-                    .foregroundStyle(Color.white.opacity(0.8))
-                    .font(Font.system(size: 10, weight: .semibold))
+                title
+                subtitle
             }
             .padding(.bottom, 16)
-            .background(
-                LinearGradient(
-                    colors: [
-                        Color(Constants.UI.Colors.mainBackgroundColorName).opacity(0.2),
-                        Color.black.opacity(0.45)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .padding(-30)
-            )
+            .background(backgroundGradient)
         }
+    }
+    
+    //MARK: Private
+    private var backgroundContainer: some View {
+        ContainerRelativeShape()
+            .fill(Color(Constants.UI.Colors.backgroundColorName).gradient)
+            .ignoresSafeArea(.all)
+            .padding(-20)
+    }
+    private var arduinchikIconImage: some View {
+        Image(Constants.UI.Image.arduinchikIconName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .clipped()
+            .frame(width: 110, height: 110)
+            .padding(.top, -30)
+    }
+    private var title: some View {
+        Text(commandPreview.title.dropLast().dropLast())
+            .foregroundStyle(Color.white.opacity(0.95))
+            .font(Font.system(size: 14, weight: .semibold))
+    }
+    private var subtitle: some View {
+        Text(Constants.UI.Text.subtitle.uppercased())
+            .foregroundStyle(Color.white.opacity(0.8))
+            .font(Font.system(size: 10, weight: .semibold))
+    }
+    private var backgroundGradient: some View {
+        LinearGradient(
+            colors: [
+                Color(Constants.UI.Colors.backgroundColorName).opacity(0.2),
+                Color.black.opacity(0.45)
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        .padding(-30)
     }
 }
 
 
 //MARK: - Main medium Widget View
 struct DailyCommandMediumWidgetEntryView: View {
-    
-    //MARK: Public
     var commandPreview: CommandPreview
     
-    //MARK: View Configuration
     var body: some View {
         ZStack(alignment: .leading) {
-            ContainerRelativeShape()
-                .fill(Color(Constants.UI.Colors.mainBackgroundColorName).gradient)
-                .ignoresSafeArea(.all)
-                .padding(-30)
+            backgroundContainer
             
             HStack {
                 Spacer()
-                
-                Image(Constants.UI.Image.arduinchikProIconName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipped()
-                    .frame(width: 140, height: 140)
-                    .padding(.trailing, 20)
+                arduinchikIconImage
             }
             
-            LinearGradient(
-                colors: [
-                    Color(Constants.UI.Colors.mainBackgroundColorName).opacity(0.2),
-                    Color.black.opacity(0.45)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .padding(-30)
+            backgroundGradient
             
             VStack(alignment: .leading) {
-                Text(Constants.UI.Text.subtitle.uppercased())
-                    .foregroundStyle(Color(.white).opacity(0.8))
-                    .font(Font.system(size: 10, weight: .semibold))
-                    .padding(.top, 2)
-                
+                subtitle
                 Spacer()
-                
-                Text(commandPreview.title.dropLast().dropLast())
-                    .foregroundStyle(Color(.white).opacity(0.85))
-                    .font(Font.system(size: 16, weight: .semibold))
-                Text(commandPreview.previewContent)
-                    .foregroundStyle(Color(.clear))
-                    .overlay {
-                        LinearGradient(
-                            colors: [
-                                Color(.white.withAlphaComponent(0.55)),
-                                Color(.white.withAlphaComponent(0.25))
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                        .mask(
-                            Text(commandPreview.previewContent)
-                                .font(Font.system(size: 12, weight: .regular))
-                        )
-                    }
-                    .frame(width: 150, height: 65)
-                    .padding(.leading, -2)
-                    .padding(.top, -12)
+                title
+                previewContent
             }
             .padding([.top, .leading], 16)
             .padding([.bottom], 12)
         }
+    }
+    
+    //MARK: Private
+    private var title: some View {
+        Text(commandPreview.title.dropLast().dropLast())
+            .foregroundStyle(Color(.white).opacity(0.85))
+            .font(Font.system(size: 16, weight: .semibold))
+    }
+    private var subtitle: some View {
+        Text(Constants.UI.Text.subtitle.uppercased())
+            .foregroundStyle(Color(.white).opacity(0.8))
+            .font(Font.system(size: 10, weight: .semibold))
+            .padding(.top, 2)
+    }
+    private var arduinchikIconImage: some View {
+        Image(Constants.UI.Image.arduinchikProIconName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .clipped()
+            .frame(width: 140, height: 140)
+            .padding(.trailing, 20)
+    }
+    private var previewContent: some View {
+        Text(commandPreview.previewContent)
+            .foregroundStyle(Color(.clear))
+            .overlay { previewContentGradient }
+            .frame(width: 150, height: 65)
+            .padding(.leading, -2)
+            .padding(.top, -12)
+    }
+    private var backgroundContainer: some View {
+        ContainerRelativeShape()
+            .fill(Color(Constants.UI.Colors.backgroundColorName).gradient)
+            .ignoresSafeArea(.all)
+            .padding(-30)
+    }
+    private var backgroundGradient: some View {
+        LinearGradient(
+            colors: [
+                Color(Constants.UI.Colors.backgroundColorName).opacity(0.2),
+                Color.black.opacity(0.45)
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        .padding(-30)
+    }
+    private var previewContentGradient: some View {
+        LinearGradient(
+            colors: [
+                Color(.white.withAlphaComponent(0.55)),
+                Color(.white.withAlphaComponent(0.25))
+            ],
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+        .mask(
+            Text(commandPreview.previewContent)
+                .font(Font.system(size: 12, weight: .regular))
+        )
     }
 }
 
@@ -268,21 +293,35 @@ struct DailyCommandAccessoryRectangularWidgetEntryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: commandPreview.iconName)
-                    .font(.system(size: 13, weight: .semibold))
-                    .padding(.trailing, -3)
-                Text(Constants.UI.Text.header)
-                    .font(.system(size: 16, weight: .semibold))
-                    .lineLimit(1)
+                iconImage
+                header
             }
-            Text(commandPreview.title)
-                .font(.system(size: 15, weight: .regular))
-                .lineLimit(1)
-            Text(commandPreview.subtitle)
-                .font(.system(size: 10, weight: .medium))
-                .lineLimit(2)
-                .opacity(0.6)
+            title
+            subtitle
         }
+    }
+    
+    //MARK: Private
+    private var iconImage: some View {
+        Image(systemName: commandPreview.iconName)
+            .font(.system(size: 13, weight: .semibold))
+            .padding(.trailing, -3)
+    }
+    private var header: some View {
+        Text(Constants.UI.Text.header)
+            .font(.system(size: 16, weight: .semibold))
+            .lineLimit(1)
+    }
+    private var title: some View {
+        Text(commandPreview.title)
+            .font(.system(size: 15, weight: .regular))
+            .lineLimit(1)
+    }
+    private var subtitle: some View {
+        Text(commandPreview.subtitle)
+            .font(.system(size: 10, weight: .medium))
+            .lineLimit(2)
+            .opacity(0.6)
     }
 }
 

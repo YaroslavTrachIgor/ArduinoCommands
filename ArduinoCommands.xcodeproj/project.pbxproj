@@ -113,6 +113,7 @@
 		CE7B028B2AECC07300AA366B /* CommandDetailCircuitsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B028A2AECC07300AA366B /* CommandDetailCircuitsTip.swift */; };
 		CE7B028D2AECC0A300AA366B /* CommandDetailReadingModesTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B028C2AECC0A300AA366B /* CommandDetailReadingModesTip.swift */; };
 		CE7B02902AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B028F2AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift */; };
+		CE7B03472AF768DE00AA366B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B03462AF768DE00AA366B /* OnboardingView.swift */; };
 		CE7B452D296040E9001C1B25 /* ACDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B452C296040E9001C1B25 /* ACDevice.swift */; };
 		CE7DE2D429F1188200538D93 /* ACOnboardingAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DE2D329F1188200538D93 /* ACOnboardingAPIClient.swift */; };
 		CE7F751E28B35ED100B77595 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F751D28B35ED100B77595 /* StringExtensions.swift */; };
@@ -150,8 +151,6 @@
 		CE9235F328AC9F0E0037846F /* SettingsPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */; };
 		CE9235F528AC9F400037846F /* SettingsContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F428AC9F400037846F /* SettingsContactCell.swift */; };
 		CE9235F728ACA9F50037846F /* SettingsPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9235F628ACA9F50037846F /* SettingsPreview.swift */; };
-		CE96F46A2A2A52480062E604 /* OnboardingFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96F4692A2A52480062E604 /* OnboardingFormatter.swift */; };
-		CE99BA8D28BF3493007A7158 /* OnboardingUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */; };
 		CE9A6FD028FAB18C00E1EF23 /* SettingsCellIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */; };
 		CE9A6FD228FCEBF400E1EF23 /* ACSettingsParametersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD128FCEBF400E1EF23 /* ACSettingsParametersManager.swift */; };
 		CE9A6FD429029ECD00E1EF23 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6FD329029ECD00E1EF23 /* IntroViewModel.swift */; };
@@ -197,10 +196,7 @@
 		CECE1A19294DBAA60021D899 /* WidgetLiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */; };
 		CECE1A1E294DBB6D0021D899 /* WidjetCommandPreviewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */; };
 		CECE1A22294DBBB70021D899 /* WidjetCommandPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */; };
-		CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */; };
-		CEDBC0852860CA6B00C933AF /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */; };
 		CEDBC08C2860D63000C933AF /* onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = CEDBC08B2860D63000C933AF /* onboarding.json */; };
-		CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */; };
 		CEDC65FF2A9805B700ED1360 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEDC65FE2A9805B700ED1360 /* AlertKit */; };
 		CEDC66132A9A031500ED1360 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC66012A9A030F00ED1360 /* Poppins-ExtraLightItalic.ttf */; };
 		CEDC66142A9A031500ED1360 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEDC66022A9A030F00ED1360 /* Poppins-MediumItalic.ttf */; };
@@ -377,6 +373,7 @@
 		CE7B028A2AECC07300AA366B /* CommandDetailCircuitsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailCircuitsTip.swift; sourceTree = "<group>"; };
 		CE7B028C2AECC0A300AA366B /* CommandDetailReadingModesTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDetailReadingModesTip.swift; sourceTree = "<group>"; };
 		CE7B028F2AECC12D00AA366B /* BasicKnowledgeSettingsTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicKnowledgeSettingsTip.swift; sourceTree = "<group>"; };
+		CE7B03462AF768DE00AA366B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CE7B452C296040E9001C1B25 /* ACDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACDevice.swift; sourceTree = "<group>"; };
 		CE7DE2D329F1188200538D93 /* ACOnboardingAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACOnboardingAPIClient.swift; sourceTree = "<group>"; };
 		CE7F751D28B35ED100B77595 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -414,8 +411,6 @@
 		CE9235F228AC9F0E0037846F /* SettingsPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPreviewCell.swift; sourceTree = "<group>"; };
 		CE9235F428AC9F400037846F /* SettingsContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContactCell.swift; sourceTree = "<group>"; };
 		CE9235F628ACA9F50037846F /* SettingsPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPreview.swift; sourceTree = "<group>"; };
-		CE96F4692A2A52480062E604 /* OnboardingFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFormatter.swift; sourceTree = "<group>"; };
-		CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUIModel.swift; sourceTree = "<group>"; };
 		CE9A6FCF28FAB18B00E1EF23 /* SettingsCellIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellIcon.swift; sourceTree = "<group>"; };
 		CE9A6FD128FCEBF400E1EF23 /* ACSettingsParametersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingsParametersManager.swift; sourceTree = "<group>"; };
 		CE9A6FD329029ECD00E1EF23 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
@@ -459,10 +454,7 @@
 		CECE1A17294DBA4D0021D899 /* WidgetLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetLiveActivityAttributes.swift; sourceTree = "<group>"; };
 		CECE1A1C294DBB5B0021D899 /* WidjetCommandPreviewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreviewStorage.swift; sourceTree = "<group>"; };
 		CECE1A20294DBBA80021D899 /* WidjetCommandPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidjetCommandPreview.swift; sourceTree = "<group>"; };
-		CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		CEDBC08B2860D63000C933AF /* onboarding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = onboarding.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
-		CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		CEDC66012A9A030F00ED1360 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		CEDC66022A9A030F00ED1360 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		CEDC66032A9A030F00ED1360 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -1038,14 +1030,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CE96F4682A2A52320062E604 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CE99BA8C28BF3493007A7158 /* OnboardingUIModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		CE99BA8928BED7BE007A7158 /* ApplicationLifecycle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1272,11 +1256,7 @@
 		CEDBC0862860D54B00C933AF /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				CE96F4682A2A52320062E604 /* Model */,
-				CEDBC0832860CA6B00C933AF /* OnboardingViewController.xib */,
-				CEDBC0822860CA6B00C933AF /* OnboardingViewController.swift */,
-				CEDBC08D2860E2A900C933AF /* OnboardingPresenter.swift */,
-				CE96F4692A2A52480062E604 /* OnboardingFormatter.swift */,
+				CE7B03462AF768DE00AA366B /* OnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1470,7 +1450,6 @@
 				CEDC66222A9A031500ED1360 /* Poppins-ExtraLight.ttf in Resources */,
 				CEDC661C2A9A031500ED1360 /* Poppins-Thin.ttf in Resources */,
 				840B9FC428416E0C00EA6D47 /* commands.json in Resources */,
-				CEDBC0852860CA6B00C933AF /* OnboardingViewController.xib in Resources */,
 				CEDC66182A9A031500ED1360 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				CE84FAB02867634200CE9D4D /* FastImageViewController.xib in Resources */,
 				CEDC66202A9A031500ED1360 /* Poppins-SemiBoldItalic.ttf in Resources */,
@@ -1528,7 +1507,6 @@
 				CE9A6FD228FCEBF400E1EF23 /* ACSettingsParametersManager.swift in Sources */,
 				840B9FC9284193EE00EA6D47 /* ACFilenames.swift in Sources */,
 				CE78D58E28D58DDA0040B4D2 /* ACBasePresentationType.swift in Sources */,
-				CEDBC08E2860E2A900C933AF /* OnboardingPresenter.swift in Sources */,
 				CE84FAB2286765BA00CE9D4D /* UIViewControllerExtensions.swift in Sources */,
 				CEDE3F7429E235A400774172 /* ACModeSegmentedControl.swift in Sources */,
 				CEA4AFE62A73A1EB00DFDEA1 /* DailyReadingProgressBar.swift in Sources */,
@@ -1581,7 +1559,6 @@
 				CE9D4BB72A59948D0099416E /* AnalyticsView.swift in Sources */,
 				8464647B27DEA2B2004B0D12 /* BasicsCollectionViewCell.swift in Sources */,
 				CEA4AFF82A7B058200DFDEA1 /* CommandReadingModeSubtitleText.swift in Sources */,
-				CE99BA8D28BF3493007A7158 /* OnboardingUIModel.swift in Sources */,
 				CEACE9912A3BB510007811A0 /* UICollectionViewExtensions.swift in Sources */,
 				CE565790287F0D0600947DCB /* ACNetworkManager.swift in Sources */,
 				CE78D58728CC55270040B4D2 /* UserDefaultsExtensions.swift in Sources */,
@@ -1613,7 +1590,6 @@
 				8464648727DF85B1004B0D12 /* PersonCollectionViewCell.swift in Sources */,
 				CE6A447A29BE216E000ECDCA /* CommandDetailAdsClient.swift in Sources */,
 				CEDE3F7629E235C000774172 /* UICollectionViewFlowLayoutExtensions.swift in Sources */,
-				CE96F46A2A2A52480062E604 /* OnboardingFormatter.swift in Sources */,
 				CE84FAA728666FC700CE9D4D /* ACOnboardingHelper.swift in Sources */,
 				84CCC92F28171039008371F1 /* ACNeumorphicShadowManeger.swift in Sources */,
 				CE6EC784288F56F60020DAFF /* ACApplicationAPIClient.swift in Sources */,
@@ -1661,7 +1637,6 @@
 				84A81C0E282FEB3900FBFC7B /* CommandsListTVCell.swift in Sources */,
 				CE7B452D296040E9001C1B25 /* ACDevice.swift in Sources */,
 				CE8BF6232A5DF301005E6800 /* SettingsPersonalParameter.swift in Sources */,
-				CEDBC0842860CA6B00C933AF /* OnboardingViewController.swift in Sources */,
 				CE8C681F28A16161006C1888 /* PersonCellUIModel.swift in Sources */,
 				CE6A447E29BE23F2000ECDCA /* CommandsListAdsClient.swift in Sources */,
 				CE348A022A4E67B400B1F957 /* CommandUIModel.swift in Sources */,
@@ -1672,6 +1647,7 @@
 				C474CC4A27B2B53B00B1FD9A /* SceneDelegate.swift in Sources */,
 				CE9A6FD429029ECD00E1EF23 /* IntroViewModel.swift in Sources */,
 				CE7038A9298EBEA100FE4928 /* ACDeviceImageURl.swift in Sources */,
+				CE7B03472AF768DE00AA366B /* OnboardingView.swift in Sources */,
 				CE6B0C092884D97B007F0F63 /* ACBaseConfigurableView.swift in Sources */,
 				CE0765DB2A5D242D00DAC10B /* SettingsCellDestinationArrow.swift in Sources */,
 				CE4AE73A2A58390700BE84D3 /* ACAnalyticsManager.swift in Sources */,

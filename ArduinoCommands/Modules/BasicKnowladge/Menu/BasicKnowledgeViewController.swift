@@ -150,11 +150,6 @@ extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
         presentSheet(with: controller)
     }
     
-    internal func presentOnboardingVC() {
-        let vc = OnboardingViewController()
-        presentSheet(with: vc, detents: [.large()])
-    }
-    
     internal func presentSiteWithSafari(with data: ACLink) {
         let stringURL = data.link!
         presentSafariVC(for: stringURL)
@@ -180,6 +175,15 @@ extension BasicKnowledgeViewController: BasicKnowledgeVCProtocol {
                 controller.viewStyle = tipViewStyle
                 present(controller, animated: true)
             }
+        }
+    }
+    
+    internal func presentOnboardingVC() {
+        if #available(iOS 16.0, *) {
+            let onboardingView = OnboardingView()
+            let onboardingViewController = UIHostingController(rootView: onboardingView)
+            onboardingViewController.modalPresentationStyle = .fullScreen
+            present(onboardingViewController, animated: true)
         }
     }
     

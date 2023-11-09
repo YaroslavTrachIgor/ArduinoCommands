@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-//import RevenueCat
 
 //MARK: - Main View
 struct SettingsView: View {
@@ -15,32 +14,20 @@ struct SettingsView: View {
     //MARK: Private
     @State
     private var introSheetPresented = false
-//    @State
-//    private var currentOffering: Offering?
     
     //MARK: View Configuration
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
                 Form {
-                    settingsPreviewSection
                     if #available(iOS 16.0, *) {
+                        settingsPreviewSection
                         settingsPersonalParametersSection
                     }
                     settingsParametersSection
                     settingsContactInfoSection
                     settingsAboutAppSection
                 }
-            }
-            .onAppear {
-//                Purchases.shared.getOfferings { offerings, error in
-//                    if let currentOffering = offerings?.current, error == nil {
-//                        self.currentOffering = currentOffering
-//                        for package in currentOffering.availablePackages {
-//                            print(package.storeProduct.localizedPriceString)
-//                        }
-//                    }
-//                }
             }
             .padding(.top, -15)
             .navigationBarTitle("Settings".transformInTitle(), displayMode: .inline)
@@ -57,6 +44,7 @@ struct SettingsView: View {
 private extension SettingsView {
     
     //MARK: Private
+    @available(iOS 16.0, *)
     var settingsPreviewSection: some View {
         Section(header: Text(SettingsContentStorage.Preview.header.uppercased()),
                 footer: Text(SettingsContentStorage.Preview.footer)) {
@@ -65,8 +53,8 @@ private extension SettingsView {
                 .onTapGesture {
                     introSheetPresented.toggle()
                 }
-                .sheet(isPresented: $introSheetPresented) {
-                    IntroView()
+                .fullScreenCover(isPresented: $introSheetPresented) {
+                    OnboardingView()
                 }
             }
         }

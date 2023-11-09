@@ -26,8 +26,7 @@ internal protocol BasicKnowledgePresenterProtocol {
 final class BasicKnowledgePresenter {
     
     //MARK: Private
-    @ACBaseUserDefaults<Bool>(key: UserDefaults.Keys.Onboarding.isOnboardingNeeded)
-    private var isNeededOnboarding = true
+    private var applicationCheckManager: ACApplicationCheckManagerProtocol?
     private var tipService: BasicKnowledgeTipClientProtocol?
     private var sections: [BasicKnowledgeSectionRow]?
     private weak var view: BasicKnowledgeVCProtocol?
@@ -36,6 +35,7 @@ final class BasicKnowledgePresenter {
     //MARK: Initionalizate
     init(view: BasicKnowledgeVCProtocol,
          sections: [BasicKnowledgeSectionRow] = BasicKnowledgeContentStorage.prepareSections()) {
+        self.applicationCheckManager = ACApplicationCheckManager()
         self.tipService = BasicKnowledgeTipClient()
         self.sections = sections
         self.view = view
@@ -50,6 +50,7 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
     internal func onViewDidLoad(completion: @escaping ACBasicKnowledgePresenterCompletionHandler) {
         view?.setupMainUI()
         noticeNewVersion()
+        showOnboarding()
         /**
          In the code below, in order to pass the rows between the entities of the application (Presenter and View),
          we will pass the content of four `Menu` screen sections through a closure.
@@ -98,18 +99,21 @@ extension BasicKnowledgePresenter: BasicKnowledgePresenterProtocol {
 private extension BasicKnowledgePresenter {
     
     //MARK: Private
-    func noticeNewVersion() {
-        let applicationCheckManager = ACApplicationCheckManager()
-        applicationCheckManager.checkVersion { newVersionAvailable in
-            if newVersionAvailable {
-                ACGrayAlertManager.presentNewVersionAlert()
+    func showOnboarding() {
+        applicationCheckManager?.checkIfOnboardingNeeded { isNeededOnboarding in
+            if isNeededOnboarding {
+                DispatchQueue.main.async {
+                    self.view?.presentOnboardingVC()
+                }
             }
         }
     }
     
-    func showOnboarding() {
-        if isNeededOnboarding {
-            view?.presentOnboardingVC()
+    func noticeNewVersion() {
+        applicationCheckManager?.checkVersion { newVersionAvailable in
+            if newVersionAvailable {
+                ACGrayAlertManager.presentNewVersionAlert()
+            }
         }
     }
 }
