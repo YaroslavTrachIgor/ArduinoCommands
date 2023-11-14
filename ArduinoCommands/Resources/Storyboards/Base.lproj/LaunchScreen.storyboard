@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wwm-Ce-yi5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wwm-Ce-yi5">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,51 +16,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arduinoCommands-icon-2" translatesAutoresizingMaskIntoConstraints="NO" id="dbL-0m-GDy">
-                                <rect key="frame" x="132" y="380" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="DIM-EM-NoI"/>
-                                    <constraint firstAttribute="width" constant="150" id="R2d-Ze-TEI"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-0w-7jc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-0w-7jc">
                                 <rect key="frame" x="77" y="826" width="260" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="X0w-jn-NrA"/>
                                     <constraint firstAttribute="width" constant="260" id="rBY-HB-Aoa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arduino Commands © 2022" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9X-Ar-lPs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arduino Commands © 2022" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9X-Ar-lPs">
                                 <rect key="frame" x="77" y="809" width="260" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="TGG-JK-a3k"/>
                                     <constraint firstAttribute="height" constant="20" id="jsl-wB-aTh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MADE IN UKRAINE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-0K-41i">
-                                <rect key="frame" x="140.5" y="550" width="133" height="17"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="14"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arduinchikPlaying" translatesAutoresizingMaskIntoConstraints="NO" id="4GE-4P-jmd">
+                                <rect key="frame" x="0.0" y="198" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="pm3-aa-7Al"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MADE IN UKRAINE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-0K-41i">
+                                <rect key="frame" x="57" y="538" width="300" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="0TM-hJ-Ca0"/>
+                                    <constraint firstAttribute="width" constant="300" id="CwU-fQ-0oP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bSl-hS-9h2"/>
-                        <color key="backgroundColor" red="0.042973142681699827" green="0.042973142681699827" blue="0.042973142681699827" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.032117773380070685" green="0.059328140852462685" blue="0.097044665404040442" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="HPn-0w-7jc" firstAttribute="top" secondItem="S9X-Ar-lPs" secondAttribute="bottom" constant="-3" id="248-yj-ujZ"/>
-                            <constraint firstItem="VfX-0K-41i" firstAttribute="top" secondItem="dbL-0m-GDy" secondAttribute="bottom" constant="20" id="Gfq-tI-tfk"/>
-                            <constraint firstItem="dbL-0m-GDy" firstAttribute="centerY" secondItem="bSl-hS-9h2" secondAttribute="centerY" id="OQ7-mJ-uay"/>
+                            <constraint firstItem="VfX-0K-41i" firstAttribute="top" secondItem="4GE-4P-jmd" secondAttribute="bottom" constant="40" id="BKm-Mp-UaM"/>
                             <constraint firstItem="S9X-Ar-lPs" firstAttribute="centerX" secondItem="bSl-hS-9h2" secondAttribute="centerX" id="RDa-g0-wtl"/>
-                            <constraint firstItem="dbL-0m-GDy" firstAttribute="centerX" secondItem="bSl-hS-9h2" secondAttribute="centerX" id="Zv6-7m-BLA"/>
+                            <constraint firstItem="4GE-4P-jmd" firstAttribute="trailing" secondItem="bSl-hS-9h2" secondAttribute="trailing" id="WR2-o1-O8J"/>
+                            <constraint firstItem="4GE-4P-jmd" firstAttribute="leading" secondItem="bSl-hS-9h2" secondAttribute="leading" id="hnt-ll-pLt"/>
                             <constraint firstItem="HPn-0w-7jc" firstAttribute="centerX" secondItem="bSl-hS-9h2" secondAttribute="centerX" id="icx-vU-aPG"/>
                             <constraint firstItem="VfX-0K-41i" firstAttribute="centerX" secondItem="bSl-hS-9h2" secondAttribute="centerX" id="lCv-fc-bDS"/>
                             <constraint firstItem="bSl-hS-9h2" firstAttribute="bottom" secondItem="HPn-0w-7jc" secondAttribute="bottom" constant="16" id="x9C-sQ-Ndn"/>
+                            <constraint firstItem="4GE-4P-jmd" firstAttribute="top" secondItem="bSl-hS-9h2" secondAttribute="top" constant="150" id="xpT-cZ-3Qy"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -70,6 +74,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arduinoCommands-icon-2" width="512.5" height="511.5"/>
+        <image name="arduinchikPlaying" width="473" height="522"/>
+        <systemColor name="lightTextColor">
+            <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
